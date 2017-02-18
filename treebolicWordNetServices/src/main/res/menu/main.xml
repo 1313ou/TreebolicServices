@@ -1,0 +1,59 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="org.treebolic.wordnet.service.MainActivity" >
+
+    <item
+        android:id="@+id/searchView"
+        android:actionViewClass="android.widget.SearchView"
+        android:iconifiedByDefault="false"
+        android:showAsAction="always"
+        android:title="@string/title_search"/>
+    <item
+        android:id="@+id/status_data"
+        android:icon="@drawable/ic_action_error"
+        android:showAsAction="ifRoom"
+        android:title="@string/title_status_data_available"/>
+    <item
+        android:id="@+id/action_query"
+        android:showAsAction="never"
+        android:title="@string/title_query"/>
+    <item
+        android:id="@+id/action_download"
+        android:showAsAction="never"
+        android:title="@string/title_download"/>
+
+    <group android:id="@+id/provider_available" >
+        <item
+            android:id="@+id/action_query_file_provider"
+            android:showAsAction="never"
+            android:title="@string/title_query_file_provider"/>
+    </group>
+    <group android:id="@+id/data_available" >
+        <item
+            android:id="@+id/action_cleanup"
+            android:showAsAction="never"
+            android:title="@string/title_cleanup"/>
+    </group>
+
+    <item
+        android:id="@+id/action_demo"
+        android:showAsAction="never"
+        android:title="@string/title_demo"/>
+    <item
+        android:id="@+id/action_finish"
+        android:showAsAction="never"
+        android:title="@string/title_finish"/>
+    <item
+        android:id="@+id/action_kill"
+        android:showAsAction="never"
+        android:title="@string/title_kill"/>
+    <item
+        android:id="@+id/action_settings"
+        android:showAsAction="never"
+        android:title="@string/title_settings"/>
+    <item
+        android:id="@+id/action_app_settings"
+        android:showAsAction="never"
+        android:title="@string/title_activity_app_settings"/>
+
+</menu>

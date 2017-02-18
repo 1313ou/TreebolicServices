@@ -1,0 +1,198 @@
+package org.treebolic.wordnet.service;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.regex.Pattern;
+
+import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
+import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
+import org.apache.commons.compress.compressors.gzip.GzipCompressorInputStream;
+
+import android.util.Log;
+
+/**
+ * Source data deployer
+ *
+ * @author Bernard Bou
+ */
+public class Deployer
+{
+	/**
+	 * Log tag
+	 */
+	static private final String TAG = "Treebolic WordNet deployer"; //$NON-NLS-1$
+
+	/**
+	 * Sub path in main directory
+	 */
+	static private final String PATH = "wordnet"; //$NON-NLS-1$
+
+	/**
+	 * Dir to write data to
+	 */
+	private final File dir;
+
+	/**
+	 * Constructor
+	 *
+	 * @param dir0
+	 *            parent dir to write data to
+	 */
+	public Deployer(final File dir0)
+	{
+		this.dir = new File(dir0, Deployer.PATH);
+	}
+
+	/**
+	 * Data status
+	 *
+	 * @return data status
+	 */
+	public boolean status()
+	{
+		return treebolic.provider.wordnet.jwi.DataManager.check(this.dir);
+	}
+
+	/**
+	 * Clean up data
+	 */
+	public void cleanup()
+	{
+		for (final File file : this.dir.listFiles())
+		{
+			file.delete();
+		}
+	}
+
+	/**
+	 * Process input stream
+	 *
+	 * @param fin
+	 *            input stream
+	 * @param asTarGz
+	 *            process as tar.ge stream
+	 * @return File
+	 * @throws IOException
+	 */
+	public File process(final InputStream fin, final boolean asTarGz) throws IOException
+	{
+		if (asTarGz)
+			return Deployer.extractTarGz(fin, this.dir, true, ".*/?dic/?.*", ".*/?dbfiles/?.*"); //$NON-NLS-1$ //$NON-NLS-2$
+		return treebolic.provider.wordnet.jwi.DataManager.expand(fin, null, this.dir);
+	}
+
+	/**
+	 * Extract tar.gz stream
+	 *
+	 * @param fin
+	 *            input stream
+	 * @param destDir
+	 *            destination dir
+	 * @param flat
+	 *            flatten
+	 * @param include
+	 *            include regexp filter
+	 * @param exclude
+	 *            exclude regexp filter
+	 * @throws IOException
+	 */
+	private static File extractTarGz(final InputStream fin, final File destDir, final boolean flat, final String include, final String exclude)
+			throws IOException
+	{
+		final Pattern includePattern = include == null ? null : Pattern.compile(include);
+		final Pattern excludePattern = exclude == null ? null : Pattern.compile(exclude);
+
+		// prepare destination
+		destDir.mkdirs();
+
+		// input stream
+		TarArchiveInputStream tarIn = null;
+		try
+		{
+			tarIn = new TarArchiveInputStream(new GzipCompressorInputStream(new BufferedInputStream(fin)));
+
+			// loop through entries
+			for (TarArchiveEntry tarEntry = tarIn.getNextTarEntry(); tarEntry != null; tarEntry = tarIn.getNextTarEntry())
+			{
+				String entryName = tarEntry.getName();
+
+				// include
+				if (includePattern != null)
+				{
+					if (!includePattern.matcher(entryName).matches())
+					{
+						continue;
+					}
+				}
+
+				// exclude
+				if (excludePattern != null)
+				{
+					if (excludePattern.matcher(entryName).matches())
+					{
+						continue;
+					}
+				}
+
+				// swith per type
+				if (tarEntry.isDirectory())
+				{
+					// create dir if we don't flatten
+					if (!flat)
+					{
+						new File(destDir, entryName).mkdirs();
+					}
+				}
+				else
+				{
+					// create a file with the same name as the tarEntry
+					if (flat)
+					{
+						final int index = entryName.lastIndexOf('/');
+						if (index != -1)
+						{
+							entryName = entryName.substring(index + 1);
+						}
+					}
+
+					final File destFile = new File(destDir, entryName);
+					Log.d(Deployer.TAG, "Deploying in " + destFile.getCanonicalPath()); //$NON-NLS-1$
+
+					// create destination
+					destFile.createNewFile();
+
+					// copy
+					BufferedOutputStream bout = null;
+					try
+					{
+						bout = new BufferedOutputStream(new FileOutputStream(destFile));
+						final byte[] buffer = new byte[1024];
+						for (int len = tarIn.read(buffer); len != -1; len = tarIn.read(buffer))
+						{
+							bout.write(buffer, 0, len);
+						}
+					}
+					finally
+					{
+						if (bout != null)
+						{
+							bout.close();
+						}
+					}
+				}
+			}
+		}
+		finally
+		{
+			if (tarIn != null)
+			{
+				tarIn.close();
+			}
+		}
+		return destDir;
+	}
+}

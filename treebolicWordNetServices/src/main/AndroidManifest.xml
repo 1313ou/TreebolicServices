@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="org.treebolic.wordnet.service"
+    android:sharedUserId="org.treebolic.userId"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="23" />
+
+    <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:process="org.treebolic" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".MainActivity"
+            tools:ignore="UnusedAttribute" >
+        </activity>
+        <activity
+            android:name=".QueryProviderActivity"
+            android:label="@string/title_activity_query_file_provider"
+            android:parentActivityName=".MainActivity"
+            tools:ignore="UnusedAttribute" >
+        </activity>
+        <activity
+            android:name=".DownloadActivity"
+            android:label="@string/title_activity_download"
+            android:parentActivityName=".MainActivity"
+            tools:ignore="UnusedAttribute" >
+        </activity>
+
+        <service
+            android:name=".TreebolicWordNetIntentService"
+            android:description="@string/description_service_intent_service"
+            android:enabled="true"
+            android:exported="true"
+            android:icon="@drawable/ic_launcher"
+            android:label="@string/service_intent_service"
+            android:permission="android.permission.READ_EXTERNAL_STORAGE" >
+            <intent-filter>
+                <action android:name="org.treebolic.service.action.MAKE_MODEL" >
+                </action>
+            </intent-filter>
+        </service>
+        <!--
+        <service
+            android:name=".TreebolicWordNetBoundService"
+            android:description="@string/description_service_bound_service"
+            android:enabled="true"
+            android:exported="true"
+            android:icon="@drawable/ic_launcher"
+            android:label="@string/service_bound_service"
+            android:permission="android.permission.READ_EXTERNAL_STORAGE" >
+        </service>
+        -->
+        <service
+            android:name=".TreebolicWordNetAIDLBoundService"
+            android:description="@string/description_service_aidl_bound_service"
+            android:enabled="true"
+            android:exported="true"
+            android:icon="@drawable/ic_launcher"
+            android:label="@string/service_aidl_bound_service"
+            android:permission="android.permission.READ_EXTERNAL_STORAGE" >
+        </service>
+        <service
+            android:name=".TreebolicWordNetMessengerService"
+            android:description="@string/description_service_messenger_bound_service"
+            android:enabled="true"
+            android:exported="true"
+            android:icon="@drawable/ic_launcher"
+            android:label="@string/service_messenger_bound_service"
+            android:permission="android.permission.READ_EXTERNAL_STORAGE" >
+        </service>
+    </application>
+
+</manifest>
