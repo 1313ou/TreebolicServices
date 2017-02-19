@@ -20,7 +20,7 @@ abstract public class TreebolicClientActivityStub extends Activity implements IC
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "Treebolic Client Activity"; //$NON-NLS-1$
+	static private final String TAG = "TreebolicClientA"; //$NON-NLS-1$
 
 	/**
 	 * Client

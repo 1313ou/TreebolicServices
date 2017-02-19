@@ -1,14 +1,15 @@
 package org.treebolic.services;
 
-import org.treebolic.services.iface.IModelFactory;
-import org.treebolic.services.iface.ITreebolicService;
-
-import treebolic.model.Model;
 import android.app.IntentService;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.util.Log;
+
+import org.treebolic.services.iface.IModelFactory;
+import org.treebolic.services.iface.ITreebolicService;
+
+import treebolic.model.Model;
 
 /**
  * Treebolic service for handling asynchronous task requests in a service on a separate handler thread
@@ -18,7 +19,7 @@ abstract public class TreebolicIntentService extends IntentService implements IT
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "Treebolic Intent Service";
+	static private final String TAG = "TIntentS";
 
 	/**
 	 * Abstract: Model factory

@@ -20,7 +20,7 @@ public interface ITreebolicServiceBinder
 	 * @param modelListener
 	 *            listener model listener
 	 */
-	public void makeModel(final String source, final String base, final String imageBase, final String settings, final IModelListener modelListener);
+	void makeModel(final String source, final String base, final String imageBase, final String settings, final IModelListener modelListener);
 
 	/**
 	 * Make model from source and forward it to activity
@@ -36,5 +36,5 @@ public interface ITreebolicServiceBinder
 	 * @param forward
 	 *            forward intent
 	 */
-	public void makeModel(final String source, final String base, final String imageBase, final String settings, final Intent forward);
+	void makeModel(final String source, final String base, final String imageBase, final String settings, final Intent forward);
 }

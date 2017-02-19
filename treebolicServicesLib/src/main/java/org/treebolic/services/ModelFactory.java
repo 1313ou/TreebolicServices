@@ -1,6 +1,5 @@
 package org.treebolic.services;
 
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
@@ -84,7 +83,7 @@ public abstract class ModelFactory implements IModelFactory
 	 * @see org.treebolic.services.iface.IModelFactory#make(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public Model make(final String source, final String base, final String imageBase, final String settings) throws IOException
+	public Model make(final String source, final String base, final String imageBase, final String settings)
 	{
 		// provider
 		this.provider.setup(this.providerContext);

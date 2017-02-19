@@ -1,11 +1,5 @@
 package org.treebolic.clients;
 
-import org.treebolic.ParcelableModel;
-import org.treebolic.clients.iface.IConnectionListener;
-import org.treebolic.clients.iface.IModelListener;
-import org.treebolic.services.iface.ITreebolicService;
-
-import treebolic.model.Model;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +10,13 @@ import android.os.Parcelable;
 import android.os.ResultReceiver;
 import android.util.Log;
 import android.widget.Toast;
+
+import org.treebolic.ParcelableModel;
+import org.treebolic.clients.iface.IConnectionListener;
+import org.treebolic.clients.iface.IModelListener;
+import org.treebolic.services.iface.ITreebolicService;
+
+import treebolic.model.Model;
 
 /**
  * Treebolic intent service client
@@ -62,17 +63,12 @@ public class TreebolicIntentClient implements org.treebolic.clients.iface.ITreeb
 	/**
 	 * Constructor
 	 *
-	 * @param context0
-	 *            context
-	 * @param service0
-	 *            service full name (pkg/class)
-	 * @param connectionListener0
-	 *            connection listener
-	 * @param modelListener0
-	 *            model listener
+	 * @param context0            context
+	 * @param service0            service full name (pkg/class)
+	 * @param connectionListener0 connection listener
+	 * @param modelListener0      model listener
 	 */
-	public TreebolicIntentClient(final Context context0, final String service0, final IConnectionListener connectionListener0,
-			final IModelListener modelListener0)
+	public TreebolicIntentClient(final Context context0, final String service0, final IConnectionListener connectionListener0, final IModelListener modelListener0)
 	{
 		this.context = context0;
 		this.connectionListener = connectionListener0;
@@ -90,7 +86,7 @@ public class TreebolicIntentClient implements org.treebolic.clients.iface.ITreeb
 
 				final String urlScheme = resultData.getString(ITreebolicService.RESULT_URLSCHEME);
 				final boolean isSerialized = resultData.getBoolean(ITreebolicService.RESULT_SERIALIZED);
-				Model model;
+				Model model = null;
 				if (isSerialized)
 				{
 					model = (Model) resultData.getSerializable(ITreebolicService.RESULT_MODEL);
@@ -98,27 +94,30 @@ public class TreebolicIntentClient implements org.treebolic.clients.iface.ITreeb
 				else
 				{
 					Parcelable parcelable = resultData.getParcelable(ITreebolicService.RESULT_MODEL);
-					if (!ParcelableModel.class.equals(parcelable.getClass()))
+					if (parcelable != null)
 					{
-						Log.d(TreebolicIntentClient.TAG, "Parcel/Unparcel from source classloader " + parcelable.getClass().getClassLoader() //$NON-NLS-1$
-								+ " to target classloader " + ParcelableModel.class.getClassLoader()); //$NON-NLS-1$
+						if (!ParcelableModel.class.equals(parcelable.getClass()))
+						{
+							Log.d(TreebolicIntentClient.TAG, "Parcel/Unparcel from source classloader " + parcelable.getClass().getClassLoader() //$NON-NLS-1$
+									+ " to target classloader " + ParcelableModel.class.getClassLoader()); //$NON-NLS-1$
 
-						// obtain parcel
-						final Parcel parcel = Parcel.obtain();
+							// obtain parcel
+							final Parcel parcel = Parcel.obtain();
 
-						// write parcel
-						parcel.setDataPosition(0);
-						parcelable.writeToParcel(parcel, 0);
+							// write parcel
+							parcel.setDataPosition(0);
+							parcelable.writeToParcel(parcel, 0);
 
-						// read parcel
-						parcel.setDataPosition(0);
-						parcelable = new ParcelableModel(parcel);
+							// read parcel
+							parcel.setDataPosition(0);
+							parcelable = new ParcelableModel(parcel);
 
-						// recycle
-						parcel.recycle();
+							// recycle
+							parcel.recycle();
+						}
+						final ParcelableModel parcelModel = (ParcelableModel) parcelable;
+						model = parcelModel.getModel();
 					}
-					final ParcelableModel parcelModel = (ParcelableModel) parcelable;
-					model = parcelModel.getModel();
 				}
 				TreebolicIntentClient.this.modelListener.onModel(resultCode == 0 ? model : null, urlScheme);
 			}

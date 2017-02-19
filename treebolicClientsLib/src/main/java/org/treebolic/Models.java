@@ -1,20 +1,21 @@
 package org.treebolic;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.SystemClock;
+
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
 
 import treebolic.model.Model;
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.SystemClock;
 
 public class Models
 {
 	/**
 	 * Map of model references
 	 */
-	static private HashMap<Long, WeakReference<Model>> references = new HashMap<Long, WeakReference<Model>>();
+	static private final HashMap<Long, WeakReference<Model>> references = new HashMap<>();
 
 	// T O / F R O M I N T E N T
 
@@ -61,15 +62,14 @@ public class Models
 
 	static public void set(final Long key, final Model model)
 	{
-		final WeakReference<Model> reference = new WeakReference<Model>(model);
+		final WeakReference<Model> reference = new WeakReference<>(model);
 		Models.references.put(key, reference);
 	}
 
 	static public Model getUnguarded(final Long key)
 	{
 		final WeakReference<Model> reference = Models.references.get(key);
-		final Model model = reference.get();
-		return model;
+		return reference.get();
 	}
 
 	static public Model get(final Long key) throws NoSuchElementException

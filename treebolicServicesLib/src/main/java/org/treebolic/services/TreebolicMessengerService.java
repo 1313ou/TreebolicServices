@@ -1,12 +1,5 @@
 package org.treebolic.services;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.treebolic.services.iface.IModelFactory;
-import org.treebolic.services.iface.ITreebolicService;
-
-import treebolic.model.Model;
 import android.app.Service;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -18,6 +11,14 @@ import android.os.Messenger;
 import android.os.RemoteException;
 import android.util.Log;
 
+import org.treebolic.services.iface.IModelFactory;
+import org.treebolic.services.iface.ITreebolicService;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import treebolic.model.Model;
+
 /**
  * Treebolic messenger service
  *
@@ -28,7 +29,7 @@ abstract public class TreebolicMessengerService extends Service implements ITree
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "Treebolic Messenger Bound Service";
+	static private final String TAG = "TMessengerBoundS";
 
 	/**
 	 * Abstract: Model factory
@@ -103,7 +104,7 @@ abstract public class TreebolicMessengerService extends Service implements ITree
 	 */
 	public TreebolicMessengerService()
 	{
-		this.clients = new ArrayList<Messenger>();
+		this.clients = new ArrayList<>();
 		this.messenger = new Messenger(new IncomingHandler(this));
 	}
 
@@ -141,8 +142,7 @@ abstract public class TreebolicMessengerService extends Service implements ITree
 			@Override
 			protected Model doInBackground(final Void... args)
 			{
-				final Model model = TreebolicMessengerService.this.makeModel(source, base, imageBase, settings);
-				return model;
+				return TreebolicMessengerService.this.makeModel(source, base, imageBase, settings);
 			}
 
 			@SuppressWarnings("synthetic-access")
@@ -207,8 +207,7 @@ abstract public class TreebolicMessengerService extends Service implements ITree
 	{
 		try
 		{
-			final Model model = this.factory.make(source, base, imageBase, settings);
-			return model;
+			return this.factory.make(source, base, imageBase, settings);
 		}
 		catch (final Exception e)
 		{

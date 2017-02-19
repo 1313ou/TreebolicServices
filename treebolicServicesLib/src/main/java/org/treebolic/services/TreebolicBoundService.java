@@ -1,17 +1,18 @@
 package org.treebolic.services;
 
-import org.treebolic.clients.iface.IModelListener;
-import org.treebolic.services.iface.IModelFactory;
-import org.treebolic.services.iface.ITreebolicService;
-import org.treebolic.services.iface.ITreebolicServiceBinder;
-
-import treebolic.model.Model;
 import android.app.Service;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
+
+import org.treebolic.clients.iface.IModelListener;
+import org.treebolic.services.iface.IModelFactory;
+import org.treebolic.services.iface.ITreebolicService;
+import org.treebolic.services.iface.ITreebolicServiceBinder;
+
+import treebolic.model.Model;
 
 /**
  * Treebolic bound service for data
@@ -21,7 +22,7 @@ abstract public class TreebolicBoundService extends Service implements ITreeboli
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "Treebolic Bound Service";
+	static private final String TAG = "TBoundS";
 
 	/**
 	 * Model factory

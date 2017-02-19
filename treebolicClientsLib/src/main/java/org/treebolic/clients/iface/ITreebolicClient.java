@@ -12,12 +12,12 @@ public interface ITreebolicClient
 	/**
 	 * Connect
 	 */
-	public void connect();
+	void connect();
 
 	/**
 	 * Disconnect
 	 */
-	public void disconnect();
+	void disconnect();
 
 	/**
 	 * Request model from source
@@ -33,5 +33,5 @@ public interface ITreebolicClient
 	 * @param forward
 	 *            forward intent
 	 */
-	public void requestModel(String source, String base, String imageBase, String settings, Intent forward);
+	void requestModel(String source, String base, String imageBase, String settings, Intent forward);
 }
