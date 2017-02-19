@@ -1,10 +1,6 @@
 package org.treebolic.files.service;
 
-import java.io.File;
-
-import org.treebolic.TreebolicIface;
-import org.treebolic.storage.Storage;
-
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +8,11 @@ import android.content.SharedPreferences.Editor;
 import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
+
+import org.treebolic.TreebolicIface;
+import org.treebolic.storage.Storage;
+
+import java.io.File;
 
 /**
  * Settings
@@ -36,6 +37,7 @@ public class Settings
 	 * @param context
 	 *            context
 	 */
+	@SuppressLint("CommitPrefEdits")
 	static public void setDefaults(final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
@@ -65,8 +67,7 @@ public class Settings
 	static public String getStringPref(final Context context, final String key)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		final String result = sharedPref.getString(key, null);
-		return result;
+		return sharedPref.getString(key, null);
 	}
 
 	/**
@@ -79,6 +80,7 @@ public class Settings
 	 * @param value
 	 *            value
 	 */
+	@SuppressLint("CommitPrefEdits")
 	static public void putStringPref(final Context context, final String key, final String value)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);

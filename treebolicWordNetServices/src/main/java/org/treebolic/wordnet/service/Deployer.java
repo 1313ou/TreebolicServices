@@ -1,5 +1,11 @@
 package org.treebolic.wordnet.service;
 
+import android.util.Log;
+
+import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
+import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
+import org.apache.commons.compress.compressors.gzip.GzipCompressorInputStream;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -7,12 +13,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.regex.Pattern;
-
-import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
-import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
-import org.apache.commons.compress.compressors.gzip.GzipCompressorInputStream;
-
-import android.util.Log;
 
 /**
  * Source data deployer
@@ -24,7 +24,7 @@ public class Deployer
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "Treebolic WordNet deployer"; //$NON-NLS-1$
+	static private final String TAG = "TWordNetDeployer"; //$NON-NLS-1$
 
 	/**
 	 * Sub path in main directory
@@ -39,8 +39,7 @@ public class Deployer
 	/**
 	 * Constructor
 	 *
-	 * @param dir0
-	 *            parent dir to write data to
+	 * @param dir0 parent dir to write data to
 	 */
 	public Deployer(final File dir0)
 	{
@@ -71,37 +70,31 @@ public class Deployer
 	/**
 	 * Process input stream
 	 *
-	 * @param fin
-	 *            input stream
-	 * @param asTarGz
-	 *            process as tar.ge stream
+	 * @param fin     input stream
+	 * @param asTarGz process as tar.ge stream
 	 * @return File
 	 * @throws IOException
 	 */
 	public File process(final InputStream fin, final boolean asTarGz) throws IOException
 	{
 		if (asTarGz)
+		{
 			return Deployer.extractTarGz(fin, this.dir, true, ".*/?dic/?.*", ".*/?dbfiles/?.*"); //$NON-NLS-1$ //$NON-NLS-2$
+		}
 		return treebolic.provider.wordnet.jwi.DataManager.expand(fin, null, this.dir);
 	}
 
 	/**
 	 * Extract tar.gz stream
 	 *
-	 * @param fin
-	 *            input stream
-	 * @param destDir
-	 *            destination dir
-	 * @param flat
-	 *            flatten
-	 * @param include
-	 *            include regexp filter
-	 * @param exclude
-	 *            exclude regexp filter
+	 * @param fin     input stream
+	 * @param destDir destination dir
+	 * @param flat    flatten
+	 * @param include include regexp filter
+	 * @param exclude exclude regexp filter
 	 * @throws IOException
 	 */
-	private static File extractTarGz(final InputStream fin, final File destDir, final boolean flat, final String include, final String exclude)
-			throws IOException
+	private static File extractTarGz(final InputStream fin, final File destDir, final boolean flat, final String include, final String exclude) throws IOException
 	{
 		final Pattern includePattern = include == null ? null : Pattern.compile(include);
 		final Pattern excludePattern = exclude == null ? null : Pattern.compile(exclude);
@@ -138,7 +131,7 @@ public class Deployer
 					}
 				}
 
-				// swith per type
+				// switch as per type
 				if (tarEntry.isDirectory())
 				{
 					// create dir if we don't flatten
@@ -180,7 +173,13 @@ public class Deployer
 					{
 						if (bout != null)
 						{
-							bout.close();
+							try
+							{
+								bout.close();
+							}
+							catch (IOException ignored)
+							{
+							}
 						}
 					}
 				}
@@ -190,7 +189,13 @@ public class Deployer
 		{
 			if (tarIn != null)
 			{
-				tarIn.close();
+				try
+				{
+					tarIn.close();
+				}
+				catch (IOException ignored)
+				{
+				}
 			}
 		}
 		return destDir;

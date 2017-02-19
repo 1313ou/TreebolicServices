@@ -1,11 +1,12 @@
 package org.treebolic.owl.service;
 
-import java.net.MalformedURLException;
-import java.net.URL;
+import android.content.Context;
 
 import org.treebolic.services.Utils;
 
-import android.content.Context;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import treebolic.ILocator;
 import treebolic.provider.owl.owlapi.Provider;
 
@@ -26,8 +27,6 @@ public class ModelFactory extends org.treebolic.services.ModelFactory
 	 *
 	 * @param context
 	 *            context
-	 * @throws MalformedURLException
-	 * @throws Exception
 	 */
 	public ModelFactory(final Context context)
 	{
@@ -40,7 +39,7 @@ public class ModelFactory extends org.treebolic.services.ModelFactory
 		{
 			return new ILocator()
 			{
-				private URL thisBase = context.getFilesDir().toURI().toURL();
+				private final URL thisBase = context.getFilesDir().toURI().toURL();
 
 				@Override
 				public URL getBase()

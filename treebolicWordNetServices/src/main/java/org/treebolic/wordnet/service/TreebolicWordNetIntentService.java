@@ -1,8 +1,8 @@
 package org.treebolic.wordnet.service;
 
-import org.treebolic.services.TreebolicIntentService;
-
 import android.util.Log;
+
+import org.treebolic.services.TreebolicIntentService;
 
 /**
  * Treebolic WordNet intent service
@@ -12,14 +12,12 @@ public class TreebolicWordNetIntentService extends TreebolicIntentService
 	/**
 	 * Log tag
 	 */
-	private static final String TAG = "Treebolic WordNet IntentService"; //$NON-NLS-1$
+	private static final String TAG = "TWordNetIntentS"; //$NON-NLS-1$
 
 	/**
 	 * Constructor
-	 *
-	 * @throws Exception
 	 */
-	public TreebolicWordNetIntentService() throws Exception
+	public TreebolicWordNetIntentService()
 	{
 		super("TreebolicWordNetIntentService"); //$NON-NLS-1$
 	}

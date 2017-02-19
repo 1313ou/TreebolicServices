@@ -1,10 +1,13 @@
 package org.treebolic.owl.service;
 
+import android.annotation.SuppressLint;
+
 import org.treebolic.services.TreebolicBoundService;
 
 /**
  * Bound service for Owl data
  */
+@SuppressLint("Registered")
 public class TreebolicOwlBoundService extends TreebolicBoundService
 {
 	/**

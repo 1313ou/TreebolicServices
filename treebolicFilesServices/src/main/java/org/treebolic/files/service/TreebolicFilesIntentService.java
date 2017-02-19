@@ -9,10 +9,8 @@ public class TreebolicFilesIntentService extends TreebolicIntentService
 {
 	/**
 	 * Constructor
-	 *
-	 * @throws Exception
 	 */
-	public TreebolicFilesIntentService() throws Exception
+	public TreebolicFilesIntentService()
 	{
 		super("TreebolicFilesIntentService"); //$NON-NLS-1$
 	}

@@ -9,10 +9,8 @@ public class TreebolicFilesAIDLBoundService extends TreebolicAIDLBoundService
 {
 	/**
 	 * Constructor
-	 *
-	 * @throws Exception
 	 */
-	public TreebolicFilesAIDLBoundService() throws Exception
+	public TreebolicFilesAIDLBoundService()
 	{
 		super();
 	}

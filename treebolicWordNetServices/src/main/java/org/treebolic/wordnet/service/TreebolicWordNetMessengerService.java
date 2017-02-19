@@ -1,8 +1,8 @@
 package org.treebolic.wordnet.service;
 
-import org.treebolic.services.TreebolicMessengerService;
-
 import android.util.Log;
+
+import org.treebolic.services.TreebolicMessengerService;
 
 /**
  * Treebolic WordNet bound messenger service
@@ -14,14 +14,12 @@ public class TreebolicWordNetMessengerService extends TreebolicMessengerService
 	/**
 	 * Log tag
 	 */
-	private static final String TAG = "Treebolic WordNet messenger service"; //$NON-NLS-1$
+	private static final String TAG = "TWordNetMessengerS"; //$NON-NLS-1$
 
 	/**
 	 * Constructor
-	 *
-	 * @throws Exception
 	 */
-	public TreebolicWordNetMessengerService() throws Exception
+	public TreebolicWordNetMessengerService()
 	{
 		super();
 	}

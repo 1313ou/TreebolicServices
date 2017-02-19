@@ -1,11 +1,12 @@
 package org.treebolic.wordnet.service;
 
-import java.net.MalformedURLException;
-import java.net.URL;
+import android.content.Context;
 
 import org.treebolic.services.Utils;
 
-import android.content.Context;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import treebolic.ILocator;
 
 /**
@@ -37,6 +38,7 @@ public class ModelFactory extends org.treebolic.services.ModelFactory
 	 */
 	public ModelFactory(final Context context) throws Exception
 	{
+		//noinspection ConstantConditions
 		super(ModelFactory.SIMPLE ? new treebolic.provider.wordnet.jwi.simple.Provider() : new treebolic.provider.wordnet.jwi.full.Provider(),
 				Utils.makeLogProviderContext(ModelFactory.TAG), makeLocator(context));
 	}
@@ -47,7 +49,7 @@ public class ModelFactory extends org.treebolic.services.ModelFactory
 		{
 			return new ILocator()
 			{
-				private URL thisBase = context.getFilesDir().toURI().toURL();
+				private final URL thisBase = context.getFilesDir().toURI().toURL();
 
 				@Override
 				public URL getBase()

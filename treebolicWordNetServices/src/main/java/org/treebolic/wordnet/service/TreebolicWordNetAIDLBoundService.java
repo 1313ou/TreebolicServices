@@ -1,8 +1,8 @@
 package org.treebolic.wordnet.service;
 
-import org.treebolic.services.TreebolicAIDLBoundService;
-
 import android.util.Log;
+
+import org.treebolic.services.TreebolicAIDLBoundService;
 
 /**
  * Bound service for WordNet data
@@ -12,14 +12,12 @@ public class TreebolicWordNetAIDLBoundService extends TreebolicAIDLBoundService
 	/**
 	 * Log tag
 	 */
-	private static final String TAG = "Treebolic WordNet AIDL service"; //$NON-NLS-1$
+	private static final String TAG = "TWordNetAIDLS"; //$NON-NLS-1$
 
 	/**
 	 * Constructor
-	 *
-	 * @throws Exception
 	 */
-	public TreebolicWordNetAIDLBoundService() throws Exception
+	public TreebolicWordNetAIDLBoundService()
 	{
 		super();
 	}

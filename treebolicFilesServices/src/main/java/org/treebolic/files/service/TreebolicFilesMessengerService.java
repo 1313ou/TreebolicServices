@@ -11,10 +11,8 @@ public class TreebolicFilesMessengerService extends TreebolicMessengerService
 {
 	/**
 	 * Constructor
-	 *
-	 * @throws Exception
 	 */
-	public TreebolicFilesMessengerService() throws Exception
+	public TreebolicFilesMessengerService()
 	{
 		super();
 	}

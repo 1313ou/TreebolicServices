@@ -1,10 +1,5 @@
 package org.treebolic.wordnet.service;
 
-import java.io.FileDescriptor;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
@@ -19,6 +14,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
+
+import java.io.FileDescriptor;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  * Convenience class for provider to acquire database data from provider
@@ -114,18 +114,21 @@ public class QueryProviderActivity extends Activity
 					FileInputStream fin = null;
 
 					// try to open the file for "read" access using the returned URI. If the file isn't found, write to the error log and return.
+					//noinspection TryWithIdenticalCatches
 					try
 					{
 						// get the content resolver instance for this context, and use it to get a ParcelFileDescriptor for the file.
 						fileDescriptor = getContentResolver().openFileDescriptor(returnUri, "r"); //$NON-NLS-1$
+						if (fileDescriptor != null)
+						{
+							// get a regular file descriptor for the file
+							final FileDescriptor fd = fileDescriptor.getFileDescriptor();
 
-						// get a regular file descriptor for the file
-						final FileDescriptor fd = fileDescriptor.getFileDescriptor();
+							fin = new FileInputStream(fd);
+							this.deployer.process(fin, asTarGz);
 
-						fin = new FileInputStream(fd);
-						this.deployer.process(fin, asTarGz);
-
-						Toast.makeText(this, R.string.ok_data, Toast.LENGTH_SHORT).show();
+							Toast.makeText(this, R.string.ok_data, Toast.LENGTH_SHORT).show();
+						}
 					}
 					catch (final FileNotFoundException e)
 					{
@@ -174,8 +177,7 @@ public class QueryProviderActivity extends Activity
 	/**
 	 * Whether provider is available
 	 *
-	 * @param context
-	 *            context
+	 * @param context context
 	 * @return true if provider is available
 	 */
 	static public boolean isProviderAvailable(final Context context)
@@ -186,8 +188,7 @@ public class QueryProviderActivity extends Activity
 	/**
 	 * Provider info
 	 *
-	 * @param context
-	 *            context
+	 * @param context context
 	 * @return provider info
 	 */
 	static public ProviderInfo getProvider(final Context context)

@@ -1,7 +1,6 @@
 package org.treebolic.owl.service;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 
 /**
@@ -38,9 +37,8 @@ public class Deployer
 	 * @param fin
 	 *            file input stream
 	 * @return directory
-	 * @throws IOException
 	 */
-	public File process(final InputStream fin) throws IOException
+	public File process(final InputStream fin)
 	{
 		return this.dir;
 	}

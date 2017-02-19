@@ -1,17 +1,6 @@
 package org.treebolic.wordnet.service;
 
-import org.treebolic.ParcelableModel;
-import org.treebolic.TreebolicIface;
-import org.treebolic.clients.iface.IConnectionListener;
-import org.treebolic.clients.iface.IModelListener;
-import org.treebolic.clients.iface.ITreebolicClient;
-import org.treebolic.services.IntentFactory;
-import org.treebolic.wordnet.service.client.TreebolicWordNetAIDLBoundClient;
-import org.treebolic.wordnet.service.client.TreebolicWordNetBoundClient;
-import org.treebolic.wordnet.service.client.TreebolicWordNetIntentClient;
-import org.treebolic.wordnet.service.client.TreebolicWordNetMessengerClient;
-
-import treebolic.model.Model;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.ComponentName;
@@ -30,6 +19,19 @@ import android.view.ViewGroup;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import org.treebolic.ParcelableModel;
+import org.treebolic.TreebolicIface;
+import org.treebolic.clients.iface.IConnectionListener;
+import org.treebolic.clients.iface.IModelListener;
+import org.treebolic.clients.iface.ITreebolicClient;
+import org.treebolic.services.IntentFactory;
+import org.treebolic.wordnet.service.client.TreebolicWordNetAIDLBoundClient;
+import org.treebolic.wordnet.service.client.TreebolicWordNetBoundClient;
+import org.treebolic.wordnet.service.client.TreebolicWordNetIntentClient;
+import org.treebolic.wordnet.service.client.TreebolicWordNetMessengerClient;
+
+import treebolic.model.Model;
+
 /**
  * Treebolic WordNet main activity. The activity obtains a model from data and requests Treebolic server to visualize it.
  *
@@ -40,7 +42,7 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "Treebolic WordNet Activity"; //$NON-NLS-1$
+	static private final String TAG = "TreebolicWordNetA"; //$NON-NLS-1$
 
 	/**
 	 * Whether to forward model directly to activity
@@ -72,11 +74,6 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 	 */
 	private MenuItem dataButton;
 
-	/**
-	 * Fragment
-	 */
-	private PlaceholderFragment fragment;
-
 	// L I F E C Y C L E
 
 	/*
@@ -101,8 +98,8 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 		// saved instance
 		if (savedInstanceState == null)
 		{
-			this.fragment = new PlaceholderFragment();
-			getFragmentManager().beginTransaction().add(R.id.container, this.fragment).commit();
+			PlaceholderFragment fragment = new PlaceholderFragment();
+			getFragmentManager().beginTransaction().add(R.id.container, fragment).commit();
 		}
 	}
 
@@ -262,6 +259,7 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 	/**
 	 * Initialize
 	 */
+	@SuppressLint("CommitPrefEdits")
 	private void initialize()
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
@@ -398,7 +396,7 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 			Toast.makeText(MainActivity.this, R.string.fail_nullclient, Toast.LENGTH_SHORT).show();
 			return false;
 		}
-		final Intent forward = MainActivity.FORWARD ? IntentFactory.makeTreebolicIntentSkeleton(new Intent(this,
+		@SuppressWarnings("ConstantConditions") final Intent forward = MainActivity.FORWARD ? IntentFactory.makeTreebolicIntentSkeleton(new Intent(this,
 				org.treebolic.wordnet.service.MainActivity.class), base, imageBase, settings) : null;
 		MainActivity.this.client.requestModel(query, base, imageBase, settings, forward);
 		return true;
@@ -422,7 +420,6 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 			{
 				query = query.substring(8);
 				query(query);
-				return;
 			}
 		}
 	}
@@ -509,8 +506,7 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 		@Override
 		public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 		{
-			final View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-			return rootView;
+			return inflater.inflate(R.layout.fragment_main, container, false);
 		}
 	}
 }

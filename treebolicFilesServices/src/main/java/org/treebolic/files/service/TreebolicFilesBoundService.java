@@ -1,18 +1,19 @@
 package org.treebolic.files.service;
 
+import android.annotation.SuppressLint;
+
 import org.treebolic.services.TreebolicBoundService;
 
 /**
  * Bound service for Files data
  */
+@SuppressLint("Registered")
 public class TreebolicFilesBoundService extends TreebolicBoundService
 {
 	/**
 	 * Constructor
-	 *
-	 * @throws Exception
 	 */
-	public TreebolicFilesBoundService() throws Exception
+	public TreebolicFilesBoundService()
 	{
 		super();
 	}

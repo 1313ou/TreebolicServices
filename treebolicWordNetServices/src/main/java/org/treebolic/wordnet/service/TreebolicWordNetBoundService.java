@@ -1,25 +1,25 @@
 package org.treebolic.wordnet.service;
 
-import org.treebolic.services.TreebolicBoundService;
-
+import android.annotation.SuppressLint;
 import android.util.Log;
+
+import org.treebolic.services.TreebolicBoundService;
 
 /**
  * Bound service for WordNet data
  */
+@SuppressLint("Registered")
 public class TreebolicWordNetBoundService extends TreebolicBoundService
 {
 	/**
 	 * Log tag
 	 */
-	private static final String TAG = "Treebolic WordNet bound service"; //$NON-NLS-1$
+	private static final String TAG = "TWordNetBoundS"; //$NON-NLS-1$
 
 	/**
 	 * Constructor
-	 *
-	 * @throws Exception
 	 */
-	public TreebolicWordNetBoundService() throws Exception
+	public TreebolicWordNetBoundService()
 	{
 		super();
 	}
