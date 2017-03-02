@@ -1,8 +1,9 @@
 package org.treebolic.wordnet.service;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -16,7 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SearchView;
+import android.support.v7.widget.SearchView;
 import android.widget.Toast;
 
 import org.treebolic.ParcelableModel;
@@ -37,12 +38,12 @@ import treebolic.model.Model;
  *
  * @author Bernard Bou
  */
-public class MainActivity extends Activity implements IConnectionListener, IModelListener
+public class MainActivity extends AppCompatActivity implements IConnectionListener, IModelListener
 {
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "TreebolicWordNetA"; //$NON-NLS-1$
+	static private final String TAG = "TreebolicWordNetA";
 
 	/**
 	 * Whether to forward model directly to activity
@@ -76,11 +77,6 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 
 	// L I F E C Y C L E
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Activity#onCreate(android.os.Bundle)
-	 */
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{
@@ -99,15 +95,10 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 		if (savedInstanceState == null)
 		{
 			PlaceholderFragment fragment = new PlaceholderFragment();
-			getFragmentManager().beginTransaction().add(R.id.container, fragment).commit();
+			getSupportFragmentManager().beginTransaction().add(R.id.container, fragment).commit();
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Activity#onResume()
-	 */
 	@Override
 	protected void onResume()
 	{
@@ -122,11 +113,6 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 		super.onResume();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Activity#onPause()
-	 */
 	@Override
 	protected void onPause()
 	{
@@ -134,11 +120,6 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 		super.onPause();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
-	 */
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{
@@ -146,7 +127,8 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 		getMenuInflater().inflate(R.menu.main, menu);
 
 		// search view
-		this.searchView = (SearchView) menu.findItem(R.id.searchView).getActionView();
+		final MenuItem menuItem = menu.findItem(R.id.action_search);
+		this.searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
 		this.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
 		{
 			@SuppressWarnings("synthetic-access")
@@ -154,7 +136,7 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 			public boolean onQueryTextSubmit(final String query)
 			{
 				MainActivity.this.searchView.clearFocus();
-				MainActivity.this.searchView.setQuery("", false); //$NON-NLS-1$
+				MainActivity.this.searchView.setQuery("", false);
 				return query(query);
 			}
 
@@ -166,7 +148,7 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 		});
 
 		// data status
-		this.dataButton = menu.findItem(R.id.status_data);
+		this.dataButton = menu.findItem(R.id.action_status_data);
 		final boolean ok = MainActivity.this.deployer.status();
 		this.dataButton.setIcon(ok ? R.drawable.ic_action_done : R.drawable.ic_action_error);
 		this.dataButton.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener()
@@ -183,11 +165,6 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
-	 */
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item)
 	{
@@ -216,7 +193,7 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 			return true;
 
 		case R.id.action_demo:
-			query("love"); //$NON-NLS-1$
+			query("love");
 			return true;
 
 		case R.id.action_settings:
@@ -224,7 +201,7 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 			return true;
 
 		case R.id.action_app_settings:
-			Settings.applicationSettings(this, "org.treebolic.wordnet.service"); //$NON-NLS-1$
+			Settings.applicationSettings(this, "org.treebolic.wordnet.service");
 			return true;
 
 		case R.id.action_finish:
@@ -241,11 +218,6 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 		return super.onOptionsItemSelected(item);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Activity#onPrepareOptionsMenu(android.view.Menu)
-	 */
 	@Override
 	public boolean onPrepareOptionsMenu(final Menu menu)
 	{
@@ -282,7 +254,7 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 	protected void onActivityResult(final int requestCode, final int resultCode, final Intent returnIntent)
 	{
 		// handle selection of target by other activity which returns selected target
-		if (resultCode == Activity.RESULT_OK)
+		if (resultCode == AppCompatActivity.RESULT_OK)
 		{
 			switch (requestCode)
 			{
@@ -310,19 +282,19 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 	{
 		// client
 		final String serviceType = Settings.getStringPref(this, Settings.PREF_SERVICE);
-		if ("IntentService".equals(serviceType)) //$NON-NLS-1$
+		if ("IntentService".equals(serviceType))
 		{
 			this.client = new TreebolicWordNetIntentClient(this, this, this);
 		}
-		else if ("Messenger".equals(serviceType)) //$NON-NLS-1$
+		else if ("Messenger".equals(serviceType))
 		{
 			this.client = new TreebolicWordNetMessengerClient(this, this, this);
 		}
-		else if ("AIDLBound".equals(serviceType)) //$NON-NLS-1$
+		else if ("AIDLBound".equals(serviceType))
 		{
 			this.client = new TreebolicWordNetAIDLBoundClient(this, this, this);
 		}
-		else if ("Bound".equals(serviceType)) //$NON-NLS-1$
+		else if ("Bound".equals(serviceType))
 		{
 			this.client = new TreebolicWordNetBoundClient(this, this, this);
 		}
@@ -404,11 +376,6 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 
 	// M O D E L C O N S U M E R
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.treebolic.services.iface.IConnectionListener#onConnected(boolean)
-	 */
 	@Override
 	public void onConnected(final boolean flag)
 	{
@@ -416,7 +383,7 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 		String query = getIntent().getStringExtra(TreebolicIface.ARG_SOURCE);
 		if (query != null)
 		{
-			if (query.startsWith("wordnet:")) //$NON-NLS-1$
+			if (query.startsWith("wordnet:"))
 			{
 				query = query.substring(8);
 				query(query);
@@ -426,11 +393,6 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 
 	// M O D E L L I S T E N E R
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.treebolic.clients.iface.IModelListener#onModel(treebolic.model.Model, java.lang.String)
-	 */
 	@Override
 	public void onModel(final Model model, final String urlScheme0)
 	{
@@ -438,7 +400,7 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 		{
 			final Intent intent = MainActivity.makeTreebolicIntent(this, model, null, null);
 
-			Log.d(MainActivity.TAG, "Starting Treebolic"); //$NON-NLS-1$
+			Log.d(MainActivity.TAG, "Starting Treebolic");
 			this.startActivity(intent);
 		}
 	}
@@ -478,7 +440,7 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 		intent.putExtra(TreebolicIface.ARG_BASE, base);
 		intent.putExtra(TreebolicIface.ARG_IMAGEBASE, imageBase);
 		intent.putExtra(TreebolicIface.ARG_PARENTACTIVITY, parentIntent);
-		intent.putExtra(TreebolicIface.ARG_URLSCHEME, "wordnet:"); //$NON-NLS-1$
+		intent.putExtra(TreebolicIface.ARG_URLSCHEME, "wordnet:");
 
 		return intent;
 	}
@@ -498,11 +460,6 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 			//
 		}
 
-		/*
-		 * (non-Javadoc)
-		 *
-		 * @see android.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
-		 */
 		@Override
 		public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 		{

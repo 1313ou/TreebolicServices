@@ -25,7 +25,7 @@ public class TreebolicFilesMessengerClient extends TreebolicMessengerClient
 	 */
 	public TreebolicFilesMessengerClient(final Context context, final IConnectionListener connectionListener, final IModelListener modelListener)
 	{
-		super(context, "org.treebolic.files.service" + '/' + org.treebolic.files.service.TreebolicFilesMessengerService.class.getName(), connectionListener, //$NON-NLS-1$
+		super(context, "org.treebolic.files.service" + '/' + org.treebolic.files.service.TreebolicFilesMessengerService.class.getName(), connectionListener,
 				modelListener);
 	}
 }

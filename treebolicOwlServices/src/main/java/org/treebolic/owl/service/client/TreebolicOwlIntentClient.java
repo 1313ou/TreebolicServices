@@ -25,7 +25,7 @@ public class TreebolicOwlIntentClient extends TreebolicIntentClient
 	 */
 	public TreebolicOwlIntentClient(final Context context, final IConnectionListener connectionListener, final IModelListener modelListener)
 	{
-		super(context, "org.treebolic.owl.service" + '/' + org.treebolic.owl.service.TreebolicOwlIntentService.class.getName(), connectionListener, //$NON-NLS-1$
+		super(context, "org.treebolic.owl.service" + '/' + org.treebolic.owl.service.TreebolicOwlIntentService.class.getName(), connectionListener,
 				modelListener);
 	}
 }

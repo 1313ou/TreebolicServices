@@ -25,7 +25,7 @@ public class TreebolicWordNetIntentClient extends TreebolicIntentClient
 	 */
 	public TreebolicWordNetIntentClient(final Context context, final IConnectionListener connectionListener, final IModelListener modelListener)
 	{
-		super(context, "org.treebolic.wordnet.service" + '/' + org.treebolic.wordnet.service.TreebolicWordNetIntentService.class.getName(), connectionListener, //$NON-NLS-1$
+		super(context, "org.treebolic.wordnet.service" + '/' + org.treebolic.wordnet.service.TreebolicWordNetIntentService.class.getName(), connectionListener,
 				modelListener);
 	}
 }

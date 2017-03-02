@@ -23,10 +23,10 @@ android {
 dependencies {
     compile project(':treebolicServicesLib')
     compile project(':treebolicClientsLib')
-
     compile project(':downloadLib')
     compile project(':preferenceLib')
-
     compile files('libs/commons-compress-proguard-1.8.1.jar')
     compile files('libs/treebolic-provider-wordnet-jwi-nodata.jar')
+    compile 'com.android.support:appcompat-v7:25.2.0'
+    compile 'com.android.support:support-v4:25.2.0'
 }

@@ -18,11 +18,6 @@ public class DownloadActivity extends org.treebolic.download.DownloadActivity
 	 */
 	private boolean asTarGz;
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.treebolic.download.DownloadActivity#onCreate(android.os.Bundle)
-	 */
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{
@@ -35,34 +30,19 @@ public class DownloadActivity extends org.treebolic.download.DownloadActivity
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.treebolic.download.DownloadActivity#start()
-	 */
 	@Override
 	public void start()
 	{
-		this.asTarGz = this.downloadUrl.endsWith(".tar.gz"); //$NON-NLS-1$
+		this.asTarGz = this.downloadUrl.endsWith(".tar.gz");
 		super.start(R.string.wordnet);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.treebolic.download.DownloadActivity#doProcessing()
-	 */
 	@Override
 	protected boolean doProcessing()
 	{
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.treebolic.download.DownloadActivity#process(java.io.InputStream)
-	 */
 	@Override
 	protected boolean process(final InputStream inputStream) throws IOException
 	{

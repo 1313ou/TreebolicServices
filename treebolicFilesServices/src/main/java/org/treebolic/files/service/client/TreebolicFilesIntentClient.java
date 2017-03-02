@@ -25,7 +25,7 @@ public class TreebolicFilesIntentClient extends TreebolicIntentClient
 	 */
 	public TreebolicFilesIntentClient(final Context context, final IConnectionListener connectionListener, final IModelListener modelListener)
 	{
-		super(context, "org.treebolic.files.service" + '/' + org.treebolic.files.service.TreebolicFilesIntentService.class.getName(), connectionListener, //$NON-NLS-1$
+		super(context, "org.treebolic.files.service" + '/' + org.treebolic.files.service.TreebolicFilesIntentService.class.getName(), connectionListener,
 				modelListener);
 	}
 }

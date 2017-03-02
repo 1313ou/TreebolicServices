@@ -13,7 +13,7 @@ public class Deployer
 	/**
 	 * Directory path
 	 */
-	static private final String PATH = "treebolic"; //$NON-NLS-1$
+	static private final String PATH = "treebolic";
 
 	/**
 	 * Parent directory

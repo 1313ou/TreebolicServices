@@ -15,11 +15,6 @@ public class TreebolicOwlAIDLBoundService extends TreebolicAIDLBoundService
 		super();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Service#onCreate()
-	 */
 	@Override
 	public void onCreate()
 	{
@@ -27,14 +22,9 @@ public class TreebolicOwlAIDLBoundService extends TreebolicAIDLBoundService
 		this.factory = new ModelFactory(this);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.treebolic.services.iface.ITreebolicService#getUrlScheme()
-	 */
 	@Override
 	public String getUrlScheme()
 	{
-		return "owl:"; //$NON-NLS-1$
+		return "owl:";
 	}
 }

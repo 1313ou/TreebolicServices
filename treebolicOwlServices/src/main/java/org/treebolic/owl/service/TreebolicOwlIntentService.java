@@ -12,14 +12,9 @@ public class TreebolicOwlIntentService extends TreebolicIntentService
 	 */
 	public TreebolicOwlIntentService()
 	{
-		super("TreebolicOwlIntentService"); //$NON-NLS-1$
+		super("TreebolicOwlIntentService");
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.IntentService#onCreate()
-	 */
 	@Override
 	public void onCreate()
 	{
@@ -27,14 +22,9 @@ public class TreebolicOwlIntentService extends TreebolicIntentService
 		this.factory = new ModelFactory(this);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.treebolic.services.iface.ITreebolicService#getUrlScheme()
-	 */
 	@Override
 	public String getUrlScheme()
 	{
-		return "owl:"; //$NON-NLS-1$
+		return "owl:";
 	}
 }

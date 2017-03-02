@@ -77,11 +77,6 @@ public abstract class ModelFactory implements IModelFactory
 		return false;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.treebolic.services.iface.IModelFactory#make(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
-	 */
 	@Override
 	public Model make(final String source, final String base, final String imageBase, final String settings)
 	{

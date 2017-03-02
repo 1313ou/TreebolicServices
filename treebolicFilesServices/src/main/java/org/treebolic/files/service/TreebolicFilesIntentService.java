@@ -12,14 +12,9 @@ public class TreebolicFilesIntentService extends TreebolicIntentService
 	 */
 	public TreebolicFilesIntentService()
 	{
-		super("TreebolicFilesIntentService"); //$NON-NLS-1$
+		super("TreebolicFilesIntentService");
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.IntentService#onCreate()
-	 */
 	@Override
 	public void onCreate()
 	{
@@ -27,14 +22,9 @@ public class TreebolicFilesIntentService extends TreebolicIntentService
 		this.factory = new ModelFactory(this);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.treebolic.services.iface.ITreebolicService#getUrlScheme()
-	 */
 	@Override
 	public String getUrlScheme()
 	{
-		return "directory:"; //$NON-NLS-1$
+		return "directory:";
 	}
 }

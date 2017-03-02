@@ -1,6 +1,6 @@
 package org.treebolic.wordnet.service;
 
-import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -25,27 +25,27 @@ import java.io.IOException;
  *
  * @author Bernard Bou
  */
-public class QueryProviderActivity extends Activity
+public class QueryProviderActivity extends AppCompatActivity
 {
 	/**
 	 * Log tag
 	 */
-	private static final String TAG = "QueryProviderActivity"; //$NON-NLS-1$
+	private static final String TAG = "QueryProviderActivity";
 
 	/**
 	 * Android provider package for wordnet data
 	 */
-	private static final String PROVIDER_PKG = "org.wordnet.provider"; //$NON-NLS-1$
+	private static final String PROVIDER_PKG = "org.wordnet.provider";
 
 	/**
 	 * Android provider name for wordnet data
 	 */
-	private static final String PROVIDER_NAME = "android.support.v4.content.FileProvider"; //$NON-NLS-1$
+	private static final String PROVIDER_NAME = "android.support.v4.content.FileProvider";
 
 	/**
 	 * Android provider activity for wordnet data
 	 */
-	private static final String PROVIDER_ACTIVITY = "org.wordnet.provider.FileProviderActivity"; //$NON-NLS-1$
+	private static final String PROVIDER_ACTIVITY = "org.wordnet.provider.FileProviderActivity";
 
 	/**
 	 * Request code
@@ -57,11 +57,6 @@ public class QueryProviderActivity extends Activity
 	 */
 	private Deployer deployer;
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Activity#onCreate(android.os.Bundle)
-	 */
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{
@@ -77,11 +72,6 @@ public class QueryProviderActivity extends Activity
 		final Button closeButton = (Button) findViewById(R.id.button);
 		closeButton.setOnClickListener(new OnClickListener()
 		{
-			/*
-			 * (non-Javadoc)
-			 *
-			 * @see android.view.View.OnClickListener#onClick(android.view.View)
-			 */
 			@Override
 			public void onClick(final View v)
 			{
@@ -93,23 +83,18 @@ public class QueryProviderActivity extends Activity
 		});
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Activity#onActivityResult(int, int, android.content.Intent)
-	 */
 	@Override
 	protected void onActivityResult(final int requestCode, final int resultCode, final Intent returnIntent)
 	{
 		if (requestCode == QueryProviderActivity.REQUEST_CODE)
 		{
-			if (resultCode == Activity.RESULT_OK)
+			if (resultCode == AppCompatActivity.RESULT_OK)
 			{
 				// retrieve arguments
 				final Uri returnUri = returnIntent.getData();
 				if (returnUri != null)
 				{
-					final boolean asTarGz = returnUri.getPath().endsWith(".tar.gz"); //$NON-NLS-1$
+					final boolean asTarGz = returnUri.getPath().endsWith(".tar.gz");
 					ParcelFileDescriptor fileDescriptor = null;
 					FileInputStream fin = null;
 
@@ -118,7 +103,7 @@ public class QueryProviderActivity extends Activity
 					try
 					{
 						// get the content resolver instance for this context, and use it to get a ParcelFileDescriptor for the file.
-						fileDescriptor = getContentResolver().openFileDescriptor(returnUri, "r"); //$NON-NLS-1$
+						fileDescriptor = getContentResolver().openFileDescriptor(returnUri, "r");
 						if (fileDescriptor != null)
 						{
 							// get a regular file descriptor for the file
@@ -132,12 +117,12 @@ public class QueryProviderActivity extends Activity
 					}
 					catch (final FileNotFoundException e)
 					{
-						Log.e(QueryProviderActivity.TAG, "provider data " + returnUri, e); //$NON-NLS-1$
+						Log.e(QueryProviderActivity.TAG, "provider data " + returnUri, e);
 						Toast.makeText(this, R.string.fail_data, Toast.LENGTH_SHORT).show();
 					}
 					catch (final IOException e)
 					{
-						Log.e(QueryProviderActivity.TAG, "provider data " + returnUri, e); //$NON-NLS-1$
+						Log.e(QueryProviderActivity.TAG, "provider data " + returnUri, e);
 						Toast.makeText(this, R.string.fail_data, Toast.LENGTH_SHORT).show();
 					}
 					finally

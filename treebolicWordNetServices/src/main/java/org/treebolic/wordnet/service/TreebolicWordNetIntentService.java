@@ -12,21 +12,16 @@ public class TreebolicWordNetIntentService extends TreebolicIntentService
 	/**
 	 * Log tag
 	 */
-	private static final String TAG = "TWordNetIntentS"; //$NON-NLS-1$
+	private static final String TAG = "TWordNetIntentS";
 
 	/**
 	 * Constructor
 	 */
 	public TreebolicWordNetIntentService()
 	{
-		super("TreebolicWordNetIntentService"); //$NON-NLS-1$
+		super("TreebolicWordNetIntentService");
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.IntentService#onCreate()
-	 */
 	@Override
 	public void onCreate()
 	{
@@ -37,18 +32,13 @@ public class TreebolicWordNetIntentService extends TreebolicIntentService
 		}
 		catch (final Exception e)
 		{
-			Log.e(TreebolicWordNetIntentService.TAG, "Model factory constructor failed", e); //$NON-NLS-1$
+			Log.e(TreebolicWordNetIntentService.TAG, "Model factory constructor failed", e);
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.treebolic.services.iface.ITreebolicService#getUrlScheme()
-	 */
 	@Override
 	public String getUrlScheme()
 	{
-		return "wordnet:"; //$NON-NLS-1$
+		return "wordnet:";
 	}
 }

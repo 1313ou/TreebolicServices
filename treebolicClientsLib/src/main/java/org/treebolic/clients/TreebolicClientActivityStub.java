@@ -1,26 +1,26 @@
 package org.treebolic.clients;
 
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.widget.Toast;
+
 import org.treebolic.TreebolicIface;
 import org.treebolic.clients.iface.IConnectionListener;
 import org.treebolic.clients.iface.IModelListener;
 import org.treebolic.clients.iface.ITreebolicClient;
-
-import android.app.Activity;
-import android.content.Intent;
-import android.util.Log;
-import android.widget.Toast;
 
 /**
  * Treebolic server. Produces Treebolic model from data. Acts as client to service.
  *
  * @author Bernard Bou
  */
-abstract public class TreebolicClientActivityStub extends Activity implements IConnectionListener, IModelListener
+abstract public class TreebolicClientActivityStub extends AppCompatActivity implements IConnectionListener, IModelListener
 {
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "TreebolicClientA"; //$NON-NLS-1$
+	static private final String TAG = "TreebolicClientA";
 
 	/**
 	 * Client
@@ -34,11 +34,6 @@ abstract public class TreebolicClientActivityStub extends Activity implements IC
 
 	// L I F E C Y C L E
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Activity#onResume()
-	 */
 	@Override
 	protected void onResume()
 	{
@@ -50,11 +45,6 @@ abstract public class TreebolicClientActivityStub extends Activity implements IC
 	// @Override
 	// public void onModel(Model model){}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Activity#onPause()
-	 */
 	@Override
 	protected void onPause()
 	{
@@ -74,7 +64,7 @@ abstract public class TreebolicClientActivityStub extends Activity implements IC
 		this.client = getClient();
 		if (this.client != null)
 		{
-			Log.d(TreebolicClientActivityStub.TAG, "Connecting client-service"); //$NON-NLS-1$
+			Log.d(TreebolicClientActivityStub.TAG, "Connecting client-service");
 			this.client.connect();
 		}
 	}
@@ -86,7 +76,7 @@ abstract public class TreebolicClientActivityStub extends Activity implements IC
 	{
 		if (this.client != null)
 		{
-			Log.d(TreebolicClientActivityStub.TAG, "Disconnecting client-service"); //$NON-NLS-1$
+			Log.d(TreebolicClientActivityStub.TAG, "Disconnecting client-service");
 			this.client.disconnect();
 			this.client = null;
 		}
@@ -124,11 +114,6 @@ abstract public class TreebolicClientActivityStub extends Activity implements IC
 
 	// C O N N E C T I O N L I S T E N E R
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.treebolic.clients.iface.IConnectionListener#onConnected(boolean)
-	 */
 	@Override
 	public void onConnected(final boolean flag)
 	{

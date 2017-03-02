@@ -24,12 +24,12 @@ public class Settings
 	/**
 	 * Initialized preference name
 	 */
-	public static final String PREF_INITIALIZED = "pref_initialized"; //$NON-NLS-1$
+	public static final String PREF_INITIALIZED = "pref_initialized";
 
 	/**
 	 * Service type preference name
 	 */
-	public static final String PREF_SERVICE = "pref_service"; //$NON-NLS-1$
+	public static final String PREF_SERVICE = "pref_service";
 
 	/**
 	 * Set default initial settings
@@ -48,7 +48,7 @@ public class Settings
 		final String treebolicBase = uri.toString() + '/';
 
 		final Editor editor = sharedPref.edit();
-		editor.putString(Settings.PREF_SERVICE, "IntentService"); //$NON-NLS-1$
+		editor.putString(Settings.PREF_SERVICE, "IntentService");
 		editor.putString(TreebolicIface.PREF_SOURCE, externalStorage);
 		editor.putString(TreebolicIface.PREF_BASE, treebolicBase);
 		editor.putString(TreebolicIface.PREF_IMAGEBASE, treebolicBase);
@@ -105,14 +105,14 @@ public class Settings
 		if (apiLevel >= 9)
 		{
 			intent.setAction(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-			intent.setData(Uri.parse("package:" + pkgName)); //$NON-NLS-1$
+			intent.setData(Uri.parse("package:" + pkgName));
 		}
 		else
 		{
-			final String appPkgName = apiLevel == 8 ? "pkg" : "com.android.settings.ApplicationPkgName"; //$NON-NLS-1$ //$NON-NLS-2$
+			final String appPkgName = apiLevel == 8 ? "pkg" : "com.android.settings.ApplicationPkgName";
 
 			intent.setAction(Intent.ACTION_VIEW);
-			intent.setClassName("com.android.settings", "com.android.settings.InstalledAppDetails"); //$NON-NLS-1$ //$NON-NLS-2$
+			intent.setClassName("com.android.settings", "com.android.settings.InstalledAppDetails");
 			intent.putExtra(appPkgName, pkgName);
 		}
 

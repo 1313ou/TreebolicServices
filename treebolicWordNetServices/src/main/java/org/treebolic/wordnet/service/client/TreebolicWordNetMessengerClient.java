@@ -25,7 +25,7 @@ public class TreebolicWordNetMessengerClient extends TreebolicMessengerClient
 	 */
 	public TreebolicWordNetMessengerClient(final Context context, final IConnectionListener connectionListener, final IModelListener modelListener)
 	{
-		super(context, "org.treebolic.wordnet.service" + '/' + org.treebolic.wordnet.service.TreebolicWordNetMessengerService.class.getName(), //$NON-NLS-1$
+		super(context, "org.treebolic.wordnet.service" + '/' + org.treebolic.wordnet.service.TreebolicWordNetMessengerService.class.getName(),
 				connectionListener, modelListener);
 	}
 }

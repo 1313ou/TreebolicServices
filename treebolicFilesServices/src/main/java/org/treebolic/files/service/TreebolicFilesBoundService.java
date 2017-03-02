@@ -18,11 +18,6 @@ public class TreebolicFilesBoundService extends TreebolicBoundService
 		super();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Service#onCreate()
-	 */
 	@Override
 	public void onCreate()
 	{
@@ -30,14 +25,9 @@ public class TreebolicFilesBoundService extends TreebolicBoundService
 		this.factory = new ModelFactory(this);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.treebolic.services.iface.ITreebolicService#getUrlScheme()
-	 */
 	@Override
 	public String getUrlScheme()
 	{
-		return "directory:"; //$NON-NLS-1$
+		return "directory:";
 	}
 }

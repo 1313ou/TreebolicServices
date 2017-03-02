@@ -25,7 +25,7 @@ public class TreebolicOwlBoundClient extends TreebolicBoundClient
 	 */
 	public TreebolicOwlBoundClient(final Context context, final IConnectionListener connectionListener, final IModelListener modelListener)
 	{
-		super(context, "org.treebolic.owl.service" + '/' + org.treebolic.owl.service.TreebolicOwlBoundService.class.getName(), connectionListener, //$NON-NLS-1$
+		super(context, "org.treebolic.owl.service" + '/' + org.treebolic.owl.service.TreebolicOwlBoundService.class.getName(), connectionListener,
 				modelListener);
 	}
 }

@@ -17,11 +17,6 @@ public class TreebolicFilesMessengerService extends TreebolicMessengerService
 		super();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Service#onCreate()
-	 */
 	@Override
 	public void onCreate()
 	{
@@ -29,14 +24,9 @@ public class TreebolicFilesMessengerService extends TreebolicMessengerService
 		this.factory = new ModelFactory(this);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.treebolic.services.iface.ITreebolicService#getUrlScheme()
-	 */
 	@Override
 	public String getUrlScheme()
 	{
-		return "directory:"; //$NON-NLS-1$
+		return "directory:";
 	}
 }

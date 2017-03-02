@@ -25,7 +25,7 @@ public class TreebolicWordNetAIDLBoundClient extends TreebolicAIDLBoundClient
 	 */
 	public TreebolicWordNetAIDLBoundClient(final Context context, final IConnectionListener connectionListener, final IModelListener modelListener)
 	{
-		super(context, "org.treebolic.wordnet.service" + '/' + org.treebolic.wordnet.service.TreebolicWordNetAIDLBoundService.class.getName(), //$NON-NLS-1$
+		super(context, "org.treebolic.wordnet.service" + '/' + org.treebolic.wordnet.service.TreebolicWordNetAIDLBoundService.class.getName(),
 				connectionListener, modelListener);
 	}
 }

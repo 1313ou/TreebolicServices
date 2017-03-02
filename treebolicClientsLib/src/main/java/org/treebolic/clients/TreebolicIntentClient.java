@@ -28,7 +28,7 @@ public class TreebolicIntentClient implements org.treebolic.clients.iface.ITreeb
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "Treebolic Intent Client"; //$NON-NLS-1$
+	static private final String TAG = "Treebolic Intent Client";
 
 	/**
 	 * Abstract: Service package
@@ -73,7 +73,7 @@ public class TreebolicIntentClient implements org.treebolic.clients.iface.ITreeb
 		this.context = context0;
 		this.connectionListener = connectionListener0;
 		this.modelListener = modelListener0;
-		final String[] serviceNameComponents = service0.split("/"); //$NON-NLS-1$
+		final String[] serviceNameComponents = service0.split("/");
 		this.servicePackage = serviceNameComponents[0];
 		this.serviceName = serviceNameComponents[1];
 		this.receiver = new ResultReceiver(new Handler())
@@ -98,8 +98,8 @@ public class TreebolicIntentClient implements org.treebolic.clients.iface.ITreeb
 					{
 						if (!ParcelableModel.class.equals(parcelable.getClass()))
 						{
-							Log.d(TreebolicIntentClient.TAG, "Parcel/Unparcel from source classloader " + parcelable.getClass().getClassLoader() //$NON-NLS-1$
-									+ " to target classloader " + ParcelableModel.class.getClassLoader()); //$NON-NLS-1$
+							Log.d(TreebolicIntentClient.TAG, "Parcel/Unparcel from source classloader " + parcelable.getClass().getClassLoader()
+									+ " to target classloader " + ParcelableModel.class.getClassLoader());
 
 							// obtain parcel
 							final Parcel parcel = Parcel.obtain();
@@ -124,38 +124,22 @@ public class TreebolicIntentClient implements org.treebolic.clients.iface.ITreeb
 		};
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.treebolic.clients.iface.ITreebolicClient#connect()
-	 */
 	@Override
 	public void connect()
 	{
-		Log.d(TreebolicIntentClient.TAG, "Service connected"); //$NON-NLS-1$
+		Log.d(TreebolicIntentClient.TAG, "Service connected");
 
 		// signal connected immediately
 		this.connectionListener.onConnected(true);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.treebolic.clients.iface.ITreebolicClient#disconnect()
-	 */
 	@Override
 	public void disconnect()
 	{
-		Log.d(TreebolicIntentClient.TAG, "Service disconnected"); //$NON-NLS-1$
+		Log.d(TreebolicIntentClient.TAG, "Service disconnected");
 		// Toast.makeText(this.context, R.string.disconnected, Toast.LENGTH_SHORT).show();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.treebolic.clients.iface.ITreebolicClient#requestModel(java.lang.String, java.lang.String, java.lang.String, java.lang.String,
-	 * android.content.Intent)
-	 */
 	@Override
 	public void requestModel(final String source, final String base, final String imageBase, final String settings, final Intent forward)
 	{
@@ -170,7 +154,7 @@ public class TreebolicIntentClient implements org.treebolic.clients.iface.ITreeb
 		intent.putExtra(ITreebolicService.EXTRA_FORWARD_RESULT_TO, forward);
 		if (this.context.startService(intent) == null)
 		{
-			Log.e(TreebolicIntentClient.TAG, "Intent service failed to start " + this.servicePackage + '/' + this.serviceName); //$NON-NLS-1$
+			Log.e(TreebolicIntentClient.TAG, "Intent service failed to start " + this.servicePackage + '/' + this.serviceName);
 			Toast.makeText(this.context, R.string.fail_start, Toast.LENGTH_LONG).show();
 		}
 	}

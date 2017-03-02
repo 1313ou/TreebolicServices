@@ -1,10 +1,5 @@
 package org.treebolic.clients;
 
-import org.treebolic.clients.iface.IConnectionListener;
-import org.treebolic.clients.iface.IModelListener;
-import org.treebolic.clients.iface.ITreebolicClient;
-import org.treebolic.services.iface.ITreebolicServiceBinder;
-
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +7,11 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
+
+import org.treebolic.clients.iface.IConnectionListener;
+import org.treebolic.clients.iface.IModelListener;
+import org.treebolic.clients.iface.ITreebolicClient;
+import org.treebolic.services.iface.ITreebolicServiceBinder;
 
 /**
  * Treebolic bound client
@@ -23,7 +23,7 @@ public class TreebolicBoundClient implements ITreebolicClient
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "Treebolic Bound Client"; //$NON-NLS-1$
+	static private final String TAG = "Treebolic Bound Client";
 
 	/**
 	 * Abstract: Service package
@@ -83,33 +83,23 @@ public class TreebolicBoundClient implements ITreebolicClient
 		this.context = context0;
 		this.modelListener = modelListener0;
 		this.connectionListener = connectionListener0;
-		final String[] serviceNameComponents = service0.split("/"); //$NON-NLS-1$
+		final String[] serviceNameComponents = service0.split("/");
 		this.servicePackage = serviceNameComponents[0];
 		this.serviceName = serviceNameComponents[1];
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.treebolic.clients.iface.ITreebolicClient#connect()
-	 */
 	@Override
 	public void connect()
 	{
 		bind();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.treebolic.clients.iface.ITreebolicClient#disconnect()
-	 */
 	@Override
 	public void disconnect()
 	{
 		if (this.isBound)
 		{
-			Log.d(TreebolicBoundClient.TAG, "Service disconnected"); //$NON-NLS-1$
+			Log.d(TreebolicBoundClient.TAG, "Service disconnected");
 			// Toast.makeText(this.context, R.string.disconnected, Toast.LENGTH_SHORT).show();
 
 			// detach our existing connection.
@@ -129,7 +119,7 @@ public class TreebolicBoundClient implements ITreebolicClient
 			@Override
 			public void onServiceConnected(final ComponentName name, final IBinder binder0)
 			{
-				Log.d(TreebolicBoundClient.TAG, "Service connected"); //$NON-NLS-1$
+				Log.d(TreebolicBoundClient.TAG, "Service connected");
 				TreebolicBoundClient.this.isBound = true;
 				TreebolicBoundClient.this.binder = (ITreebolicServiceBinder) binder0;
 
@@ -137,11 +127,6 @@ public class TreebolicBoundClient implements ITreebolicClient
 				TreebolicBoundClient.this.connectionListener.onConnected(true);
 			}
 
-			/*
-			 * (non-Javadoc)
-			 *
-			 * @see android.content.ServiceConnection#onServiceDisconnected(android.content.ComponentName)
-			 */
 			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onServiceDisconnected(final ComponentName name)
@@ -154,17 +139,11 @@ public class TreebolicBoundClient implements ITreebolicClient
 		intent.setComponent(new ComponentName(this.servicePackage, this.serviceName));
 		if (!this.context.bindService(intent, this.connection, Context.BIND_AUTO_CREATE))
 		{
-			Log.e(TreebolicBoundClient.TAG, "Service failed to bind"); //$NON-NLS-1$
+			Log.e(TreebolicBoundClient.TAG, "Service failed to bind");
 			Toast.makeText(this.context, R.string.fail_bind, Toast.LENGTH_LONG).show();
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.treebolic.clients.iface.ITreebolicClient#requestModel(java.lang.String, java.lang.String, java.lang.String, java.lang.String,
-	 * android.content.Intent)
-	 */
 	@Override
 	public void requestModel(final String source, final String base, final String imageBase, final String settings, final Intent forward)
 	{

@@ -21,14 +21,12 @@ android {
 
 dependencies {
     compile files('libs/treebolic-service-iface.jar')
-
-    compile files('libs/treebolic-iface.jar')
-
-    compile files('libs/treebolic-parcel.jar')
-    compile files('libs/treebolic-glue.jar')
-
-    compile files('libs/treebolic-provider.jar')
-
+    provided files('libs/treebolic-iface.jar')
+    provided files('libs/treebolic-parcel.jar')
+    provided files('libs/treebolic-provider.jar')
+    compile 'com.android.support:appcompat-v7:25.2.0'
+    compile 'com.android.support:support-v4:25.2.0'
+    provided files('libs/treebolic-glue.jar')
     testCompile 'junit:junit:4.12'
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'

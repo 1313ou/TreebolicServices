@@ -22,7 +22,7 @@ public class ModelFactory extends org.treebolic.services.ModelFactory
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "WordNet Model Factory"; //$NON-NLS-1$
+	static private final String TAG = "WordNet Model Factory";
 
 	/**
 	 * Type of provider
@@ -71,25 +71,15 @@ public class ModelFactory extends org.treebolic.services.ModelFactory
 		return null;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.treebolic.services.ModelFactory#useFilesDir()
-	 */
 	@Override
 	protected boolean useFilesDir()
 	{
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.treebolic.services.ModelFactory#getSourceAliases()
-	 */
 	@Override
 	protected String[] getSourceAliases()
 	{
-		return new String[] { "word" }; //$NON-NLS-1$
+		return new String[] { "word" };
 	}
 }

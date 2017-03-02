@@ -1,8 +1,6 @@
 package org.treebolic.owl.service;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.Fragment;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +9,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Process;
 import android.preference.PreferenceManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -46,12 +47,12 @@ import treebolic.model.Model;
  *
  * @author Bernard Bou
  */
-public class MainActivity extends Activity implements IConnectionListener, IModelListener
+public class MainActivity extends AppCompatActivity implements IConnectionListener, IModelListener
 {
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "Treebolic Owl Activity"; //$NON-NLS-1$
+	static private final String TAG = "Treebolic Owl Activity";
 
 	/**
 	 * File request code
@@ -70,11 +71,6 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 
 	// L I F E C Y C L E
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Activity#onCreate(android.os.Bundle)
-	 */
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{
@@ -90,15 +86,10 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 		if (savedInstanceState == null)
 		{
 			PlaceholderFragment fragment = new PlaceholderFragment();
-			getFragmentManager().beginTransaction().add(R.id.container, fragment).commit();
+			getSupportFragmentManager().beginTransaction().add(R.id.container, fragment).commit();
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Activity#onResume()
-	 */
 	@Override
 	protected void onResume()
 	{
@@ -108,11 +99,6 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 		super.onResume();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Activity#onPause()
-	 */
 	@Override
 	protected void onPause()
 	{
@@ -120,11 +106,6 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 		super.onPause();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
-	 */
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{
@@ -134,11 +115,6 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
-	 */
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item)
 	{
@@ -148,44 +124,44 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 		final int id = item.getItemId();
 		switch (id)
 		{
-		case R.id.action_query:
-			query();
-			return true;
+			case R.id.action_query:
+				query();
+				return true;
 
-		case R.id.action_choose:
-			requestSource();
-			return true;
+			case R.id.action_choose:
+				requestSource();
+				return true;
 
-		case R.id.action_download:
-			startActivity(new Intent(this, DownloadActivity.class));
-			return true;
+			case R.id.action_download:
+				startActivity(new Intent(this, DownloadActivity.class));
+				return true;
 
-		case R.id.action_app_settings:
-			Settings.applicationSettings(this, "org.treebolic.owl.service"); //$NON-NLS-1$
-			return true;
+			case R.id.action_app_settings:
+				Settings.applicationSettings(this, "org.treebolic.owl.service");
+				return true;
 
-		case R.id.action_settings:
-			startActivity(new Intent(this, SettingsActivity.class));
-			return true;
+			case R.id.action_settings:
+				startActivity(new Intent(this, SettingsActivity.class));
+				return true;
 
-		case R.id.action_demo:
-			final Uri archiveFileUri = Storage.copyAssetFile(this, Settings.DEMOZIP);
-			if (archiveFileUri != null)
-			{
-				queryBundle(archiveFileUri);
-			}
-			return true;
+			case R.id.action_demo:
+				final Uri archiveFileUri = Storage.copyAssetFile(this, Settings.DEMOZIP);
+				if (archiveFileUri != null)
+				{
+					queryBundle(archiveFileUri);
+				}
+				return true;
 
-		case R.id.action_finish:
-			finish();
-			return true;
+			case R.id.action_finish:
+				finish();
+				return true;
 
-		case R.id.action_kill:
-			Process.killProcess(Process.myPid());
-			return true;
+			case R.id.action_kill:
+				Process.killProcess(Process.myPid());
+				return true;
 
-		default:
-			break;
+			default:
+				break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -201,7 +177,9 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 		// test if initialized
 		final boolean result = sharedPref.getBoolean(Settings.PREF_INITIALIZED, false);
 		if (result)
+		{
 			return;
+		}
 
 		// default settings
 		Settings.setDefaults(this);
@@ -222,19 +200,19 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 	{
 		// client
 		final String serviceType = Settings.getStringPref(this, Settings.PREF_SERVICE);
-		if ("IntentService".equals(serviceType)) //$NON-NLS-1$
+		if ("IntentService".equals(serviceType))
 		{
 			this.client = new TreebolicOwlIntentClient(this, this, this);
 		}
-		else if ("Messenger".equals(serviceType)) //$NON-NLS-1$
+		else if ("Messenger".equals(serviceType))
 		{
 			this.client = new TreebolicOwlMessengerClient(this, this, this);
 		}
-		else if ("AIDLBound".equals(serviceType)) //$NON-NLS-1$
+		else if ("AIDLBound".equals(serviceType))
 		{
 			this.client = new TreebolicOwlAIDLBoundClient(this, this, this);
 		}
-		else if ("Bound".equals(serviceType)) //$NON-NLS-1$
+		else if ("Bound".equals(serviceType))
 		{
 			this.client = new TreebolicOwlBoundClient(this, this, this);
 		}
@@ -270,26 +248,20 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 	/**
 	 * Query request
 	 *
-	 * @param source
-	 *            source
+	 * @param source source
 	 */
 	private boolean query(final String source)
 	{
-		return query(source, Settings.getStringPref(this, TreebolicIface.PREF_BASE), Settings.getStringPref(this, TreebolicIface.PREF_IMAGEBASE),
-				Settings.getStringPref(this, TreebolicIface.PREF_SETTINGS));
+		return query(source, Settings.getStringPref(this, TreebolicIface.PREF_BASE), Settings.getStringPref(this, TreebolicIface.PREF_IMAGEBASE), Settings.getStringPref(this, TreebolicIface.PREF_SETTINGS));
 	}
 
 	/**
 	 * Query request
 	 *
-	 * @param source
-	 *            source
-	 * @param base
-	 *            doc base
-	 * @param imageBase
-	 *            image base
-	 * @param settings
-	 *            settings
+	 * @param source    source
+	 * @param base      doc base
+	 * @param imageBase image base
+	 * @param settings  settings
 	 * @return true if query was made
 	 */
 	protected boolean query(final String source, final String base, final String imageBase, final String settings)
@@ -304,8 +276,7 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 			Toast.makeText(MainActivity.this, R.string.fail_nullclient, Toast.LENGTH_SHORT).show();
 			return false;
 		}
-		@SuppressWarnings("ConstantConditions") final Intent forward = MainActivity.FORWARD ? IntentFactory.makeTreebolicIntentSkeleton(new Intent(this, org.treebolic.owl.service.MainActivity.class),
-				base, imageBase, settings) : null;
+		@SuppressWarnings("ConstantConditions") final Intent forward = MainActivity.FORWARD ? IntentFactory.makeTreebolicIntentSkeleton(new Intent(this, org.treebolic.owl.service.MainActivity.class), base, imageBase, settings) : null;
 		MainActivity.this.client.requestModel(source, base, imageBase, settings, forward);
 		return true;
 	}
@@ -313,8 +284,7 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 	/**
 	 * Query request from zipped bundle file
 	 *
-	 * @param archiveUri
-	 *            archive uri
+	 * @param archiveUri archive uri
 	 */
 	private void queryBundle(final Uri archiveUri)
 	{
@@ -326,25 +296,19 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 				@Override
 				public void onSelect(final String zipEntry)
 				{
-					final String base = "jar:" + archiveUri.toString() + "!/"; //$NON-NLS-1$ //$NON-NLS-2$
-					query(zipEntry, base, Settings.getStringPref(MainActivity.this, TreebolicIface.PREF_IMAGEBASE),
-							Settings.getStringPref(MainActivity.this, TreebolicIface.PREF_SETTINGS));
+					final String base = "jar:" + archiveUri.toString() + "!/";
+					query(zipEntry, base, Settings.getStringPref(MainActivity.this, TreebolicIface.PREF_IMAGEBASE), Settings.getStringPref(MainActivity.this, TreebolicIface.PREF_SETTINGS));
 				}
 			});
 		}
 		catch (final IOException e)
 		{
-			Log.d(MainActivity.TAG, "Failed to start treebolic from bundle uri " + archiveUri, e); //$NON-NLS-1$
+			Log.d(MainActivity.TAG, "Failed to start treebolic from bundle uri " + archiveUri, e);
 		}
 	}
 
 	// C O N N E C T I O N L I S T E N E R
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.treebolic.services.iface.IConnectionListener#onConnected(boolean)
-	 */
 	@Override
 	public void onConnected(final boolean flag)
 	{
@@ -352,7 +316,7 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 		String query = getIntent().getStringExtra(TreebolicIface.ARG_SOURCE);
 		if (query != null)
 		{
-			if (query.startsWith("owl:")) //$NON-NLS-1$
+			if (query.startsWith("owl:"))
 			{
 				query = query.substring(8);
 				query(query);
@@ -362,11 +326,6 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 
 	// M O D E L L I S T E N E R
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.treebolic.clients.iface.IModelListener#onModel(treebolic.model.Model, java.lang.String)
-	 */
 	@Override
 	public void onModel(final Model model, final String urlScheme0)
 	{
@@ -374,7 +333,7 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 		{
 			final Intent intent = MainActivity.makeTreebolicIntent(this, model, null, null);
 
-			Log.d(MainActivity.TAG, "Starting Treebolic"); //$NON-NLS-1$
+			Log.d(MainActivity.TAG, "Starting Treebolic");
 			this.startActivity(intent);
 		}
 	}
@@ -382,14 +341,10 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 	/**
 	 * Make Treebolic intent
 	 *
-	 * @param context
-	 *            content
-	 * @param model
-	 *            model
-	 * @param base
-	 *            base
-	 * @param imageBase
-	 *            image base
+	 * @param context   content
+	 * @param model     model
+	 * @param base      base
+	 * @param imageBase image base
 	 * @return intent
 	 */
 	static public Intent makeTreebolicIntent(final Context context, final Model model, final String base, final String imageBase)
@@ -433,41 +388,36 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 
 	// S P E C I F I C R E T U R N S
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Activity#onActivityResult(int, int, android.content.Intent)
-	 */
 	@Override
 	protected void onActivityResult(final int requestCode, final int resultCode, final Intent returnIntent)
 	{
 		switch (requestCode)
 		{
-		case REQUEST_FILE_CODE:
-			if (resultCode == Activity.RESULT_OK)
-			{
-				final Uri fileUri = returnIntent.getData();
-				if (fileUri == null)
+			case REQUEST_FILE_CODE:
+				if (resultCode == AppCompatActivity.RESULT_OK)
 				{
-					break;
-				}
+					final Uri fileUri = returnIntent.getData();
+					if (fileUri == null)
+					{
+						break;
+					}
 
-				Toast.makeText(this, fileUri.toString(), Toast.LENGTH_SHORT).show();
-				final File file = new File(fileUri.getPath());
-				final String parent = file.getParent();
-				final File parentFile = new File(parent);
-				final Uri parentUri = Uri.fromFile(parentFile);
-				final String query = file.getName();
-				String base = parentUri.toString();
-				if (base != null && !base.endsWith("/")) //$NON-NLS-1$
-				{
-					base += '/';
+					Toast.makeText(this, fileUri.toString(), Toast.LENGTH_SHORT).show();
+					final File file = new File(fileUri.getPath());
+					final String parent = file.getParent();
+					final File parentFile = new File(parent);
+					final Uri parentUri = Uri.fromFile(parentFile);
+					final String query = file.getName();
+					String base = parentUri.toString();
+					if (base != null && !base.endsWith("/"))
+					{
+						base += '/';
+					}
+					Settings.save(this, query, base);
 				}
-				Settings.save(this, query, base);
-			}
-			break;
-		default:
-			break;
+				break;
+			default:
+				break;
 		}
 		super.onActivityResult(requestCode, resultCode, returnIntent);
 	}
@@ -478,9 +428,9 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 	private void requestSource()
 	{
 		final Intent intent = new Intent(this, org.treebolic.filechooser.FileChooserActivity.class);
-		intent.setType("application/rdf+xml"); //$NON-NLS-1$
+		intent.setType("application/rdf+xml");
 		intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_INITIAL_DIR, Settings.getStringPref(this, TreebolicIface.PREF_BASE));
-		intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_EXTENSION_FILTER, new String[] { "owl", "rdf" }); //$NON-NLS-1$ //$NON-NLS-2$
+		intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_EXTENSION_FILTER, new String[]{"owl", "rdf"});
 		intent.addCategory(Intent.CATEGORY_OPENABLE);
 		startActivityForResult(intent, MainActivity.REQUEST_FILE_CODE);
 	}
@@ -506,7 +456,7 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 		{
 			final File baseFile = base == null ? null : new File(Uri.parse(base).getPath());
 			final File file = new File(baseFile, source);
-			Log.d(MainActivity.TAG, "file=" + file); //$NON-NLS-1$
+			Log.d(MainActivity.TAG, "file=" + file);
 			return file.exists();
 		}
 		return false;
@@ -537,27 +487,17 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 			//
 		}
 
-		/*
-		 * (non-Javadoc)
-		 *
-		 * @see android.app.Fragment#onActivityCreated(android.os.Bundle)
-		 */
 		@Override
 		public void onActivityCreated(final Bundle savedInstanceState)
 		{
 			super.onActivityCreated(savedInstanceState);
 
-			final Activity activity = getActivity();
+			final FragmentActivity activity = getActivity();
 
 			// get handle to button
 			this.queryButton = (Button) activity.findViewById(R.id.queryButton);
 			this.queryButton.setOnClickListener(new View.OnClickListener()
 			{
-				/*
-				 * (non-Javadoc)
-				 *
-				 * @see android.view.View.OnClickListener#onClick(android.view.View)
-				 */
 				@SuppressWarnings("synthetic-access")
 				@Override
 				public void onClick(final View v)
@@ -570,11 +510,6 @@ public class MainActivity extends Activity implements IConnectionListener, IMode
 			this.progressBar = (ProgressBar) activity.findViewById(R.id.progressBar);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 *
-		 * @see android.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
-		 */
 		@Override
 		public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 		{

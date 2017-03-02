@@ -35,12 +35,6 @@ abstract public class TreebolicAIDLBoundService extends Service implements ITree
 	 */
 	private final ITreebolicAIDLService.Stub binder = new ITreebolicAIDLService.Stub()
 	{
-		/*
-		 * (non-Javadoc)
-		 *
-		 * @see org.treebolic.services.iface.ITreebolicAIDLService#makeModel(java.lang.String, java.lang.String, java.lang.String, java.lang.String,
-		 * android.os.ResultReceiver)
-		 */
 		@Override
 		public void makeModel(final String source, final String base, final String imageBase, final String settings, final ResultReceiver resultReceiver)
 				throws RemoteException
@@ -77,12 +71,6 @@ abstract public class TreebolicAIDLBoundService extends Service implements ITree
 			}.execute();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 *
-		 * @see org.treebolic.services.iface.ITreebolicAIDLServiceBinder#makeAndForwardModel(java.lang.String, java.lang.String, java.lang.String,
-		 * java.lang.String, android.content.Intent)
-		 */
 		@Override
 		public void makeAndForwardModel(final String source, final String base, final String imageBase, final String settings, final Intent forward)
 				throws RemoteException
@@ -128,11 +116,6 @@ abstract public class TreebolicAIDLBoundService extends Service implements ITree
 
 	/**
 	 * When binding to the service, we return an interface to the service
-	 */
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Service#onBind(android.content.Intent)
 	 */
 	@Override
 	public IBinder onBind(final Intent intent)

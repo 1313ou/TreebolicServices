@@ -33,7 +33,7 @@ public class TreebolicAIDLBoundClient implements ITreebolicClient
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "TAIDLBoundC"; //$NON-NLS-1$
+	static private final String TAG = "TAIDLBoundC";
 
 	/**
 	 * Abstract: Service package
@@ -93,7 +93,7 @@ public class TreebolicAIDLBoundClient implements ITreebolicClient
 		this.context = context0;
 		this.modelListener = modelListener0;
 		this.connectionListener = connectionListener0;
-		final String[] serviceNameComponents = service0.split("/"); //$NON-NLS-1$
+		final String[] serviceNameComponents = service0.split("/");
 		this.servicePackage = serviceNameComponents[0];
 		this.serviceName = serviceNameComponents[1];
 		this.receiver = new ResultReceiver(new Handler())
@@ -121,8 +121,8 @@ public class TreebolicAIDLBoundClient implements ITreebolicClient
 					{
 						if (!ParcelableModel.class.equals(parcelable.getClass()))
 						{
-							Log.d(TreebolicAIDLBoundClient.TAG, "Parcel/Unparcel from source classloader " + parcelable.getClass().getClassLoader() //$NON-NLS-1$
-									+ " to target classloader " + ParcelableModel.class.getClassLoader()); //$NON-NLS-1$
+							Log.d(TreebolicAIDLBoundClient.TAG, "Parcel/Unparcel from source classloader " + parcelable.getClass().getClassLoader()
+									+ " to target classloader " + ParcelableModel.class.getClassLoader());
 
 							// obtain parcel
 							final Parcel parcel = Parcel.obtain();
@@ -147,28 +147,18 @@ public class TreebolicAIDLBoundClient implements ITreebolicClient
 		};
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.treebolic.clients.iface.ITreebolicClient#connect()
-	 */
 	@Override
 	public void connect()
 	{
 		bind();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.treebolic.clients.iface.ITreebolicClient#disconnect()
-	 */
 	@Override
 	public void disconnect()
 	{
 		if (this.isBound)
 		{
-			Log.d(TreebolicAIDLBoundClient.TAG, "Service disconnected"); //$NON-NLS-1$
+			Log.d(TreebolicAIDLBoundClient.TAG, "Service disconnected");
 			// Toast.makeText(this.context, R.string.disconnected, Toast.LENGTH_SHORT).show();
 
 			// detach our existing connection.
@@ -188,7 +178,7 @@ public class TreebolicAIDLBoundClient implements ITreebolicClient
 			@Override
 			public void onServiceConnected(final ComponentName name, final IBinder binder0)
 			{
-				Log.d(TreebolicAIDLBoundClient.TAG, "Service connected"); //$NON-NLS-1$
+				Log.d(TreebolicAIDLBoundClient.TAG, "Service connected");
 				TreebolicAIDLBoundClient.this.isBound = true;
 				TreebolicAIDLBoundClient.this.binder = ITreebolicAIDLService.Stub.asInterface(binder0);
 
@@ -196,11 +186,6 @@ public class TreebolicAIDLBoundClient implements ITreebolicClient
 				TreebolicAIDLBoundClient.this.connectionListener.onConnected(true);
 			}
 
-			/*
-			 * (non-Javadoc)
-			 *
-			 * @see android.content.ServiceConnection#onServiceDisconnected(android.content.ComponentName)
-			 */
 			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onServiceDisconnected(final ComponentName name)
@@ -213,17 +198,11 @@ public class TreebolicAIDLBoundClient implements ITreebolicClient
 		intent.setComponent(new ComponentName(this.servicePackage, this.serviceName));
 		if (!this.context.bindService(intent, this.connection, Context.BIND_AUTO_CREATE))
 		{
-			Log.e(TreebolicAIDLBoundClient.TAG, "Service failed to bind " + this.servicePackage + '/' + this.serviceName); //$NON-NLS-1$
+			Log.e(TreebolicAIDLBoundClient.TAG, "Service failed to bind " + this.servicePackage + '/' + this.serviceName);
 			Toast.makeText(this.context, R.string.fail_bind, Toast.LENGTH_LONG).show();
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.treebolic.clients.iface.ITreebolicClient#requestModel(java.lang.String, java.lang.String, java.lang.String, java.lang.String,
-	 * android.content.Intent)
-	 */
 	@Override
 	public void requestModel(final String source, final String base, final String imageBase, final String settings, final Intent forward)
 	{
@@ -235,7 +214,7 @@ public class TreebolicAIDLBoundClient implements ITreebolicClient
 			}
 			catch (final RemoteException e)
 			{
-				Log.e(TreebolicAIDLBoundClient.TAG, "Service request failed", e); //$NON-NLS-1$
+				Log.e(TreebolicAIDLBoundClient.TAG, "Service request failed", e);
 			}
 		}
 		else
@@ -246,7 +225,7 @@ public class TreebolicAIDLBoundClient implements ITreebolicClient
 			}
 			catch (final RemoteException e)
 			{
-				Log.e(TreebolicAIDLBoundClient.TAG, "Service request failed", e); //$NON-NLS-1$
+				Log.e(TreebolicAIDLBoundClient.TAG, "Service request failed", e);
 			}
 		}
 	}

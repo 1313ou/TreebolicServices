@@ -1,34 +1,35 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
     tools:context="org.treebolic.files.service.MainActivity" >
 
     <item
         android:id="@+id/action_query"
-        android:showAsAction="never"
+        app:showAsAction="never"
         android:title="@string/title_query"/>
     <item
         android:id="@+id/action_choose"
-        android:showAsAction="never"
+        app:showAsAction="never"
         android:title="@string/title_choose"/>
     <item
         android:id="@+id/action_demo"
-        android:showAsAction="never"
+        app:showAsAction="never"
         android:title="@string/title_demo"/>
     <item
         android:id="@+id/action_finish"
-        android:showAsAction="never"
+        app:showAsAction="never"
         android:title="@string/title_finish"/>
     <item
         android:id="@+id/action_kill"
-        android:showAsAction="never"
+        app:showAsAction="never"
         android:title="@string/title_kill"/>
     <item
         android:id="@+id/action_settings"
-        android:showAsAction="never"
+        app:showAsAction="never"
         android:title="@string/title_settings"/>
     <item
         android:id="@+id/action_app_settings"
-        android:showAsAction="never"
+        app:showAsAction="never"
         android:title="@string/title_activity_app_settings"/>
 
 </menu>

@@ -25,7 +25,7 @@ public class TreebolicFilesAIDLBoundClient extends TreebolicAIDLBoundClient
 	 */
 	public TreebolicFilesAIDLBoundClient(final Context context, final IConnectionListener connectionListener, final IModelListener modelListener)
 	{
-		super(context, "org.treebolic.files.service" + '/' + org.treebolic.files.service.TreebolicFilesAIDLBoundService.class.getName(), connectionListener, //$NON-NLS-1$
+		super(context, "org.treebolic.files.service" + '/' + org.treebolic.files.service.TreebolicFilesAIDLBoundService.class.getName(), connectionListener,
 				modelListener);
 	}
 }

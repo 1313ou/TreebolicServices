@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "TreebolicFilesA"; //$NON-NLS-1$
+	static private final String TAG = "TreebolicFilesA";
 
 	/**
 	 * Dir request code
@@ -68,11 +68,6 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 
 	// L I F E C Y C L E
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Activity#onCreate(android.os.Bundle)
-	 */
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{
@@ -92,11 +87,6 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Activity#onResume()
-	 */
 	@Override
 	protected void onResume()
 	{
@@ -106,11 +96,6 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 		super.onResume();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Activity#onPause()
-	 */
 	@Override
 	protected void onPause()
 	{
@@ -118,11 +103,6 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 		super.onPause();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
-	 */
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{
@@ -132,11 +112,6 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
-	 */
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item)
 	{
@@ -152,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 
 			case R.id.action_choose:
 				final Intent intent = new Intent(this, org.treebolic.filechooser.FileChooserActivity.class);
-				intent.setType("inode/directory"); //$NON-NLS-1$
+				intent.setType("inode/directory");
 				intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_INITIAL_DIR, Storage.getExternalStorage());
 				intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_CHOOSE_DIR, true);
 				intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_EXTENSION_FILTER, new String[]{});
@@ -165,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 				return true;
 
 			case R.id.action_app_settings:
-				Settings.applicationSettings(this, "org.treebolic.files.service"); //$NON-NLS-1$
+				Settings.applicationSettings(this, "org.treebolic.files.service");
 				return true;
 
 			case R.id.action_settings:
@@ -210,11 +185,6 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 
 	// S P E C I F I C R E T U R N S
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Activity#onActivityResult(int, int, android.content.Intent)
-	 */
 	@Override
 	protected void onActivityResult(final int requestCode, final int resultCode, final Intent returnIntent)
 	{
@@ -247,19 +217,19 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 	{
 		// client
 		final String serviceType = Settings.getStringPref(this, Settings.PREF_SERVICE);
-		if ("IntentService".equals(serviceType)) //$NON-NLS-1$
+		if ("IntentService".equals(serviceType))
 		{
 			this.client = new TreebolicFilesIntentClient(this, this, this);
 		}
-		else if ("Messenger".equals(serviceType)) //$NON-NLS-1$
+		else if ("Messenger".equals(serviceType))
 		{
 			this.client = new TreebolicFilesMessengerClient(this, this, this);
 		}
-		else if ("AIDLBound".equals(serviceType)) //$NON-NLS-1$
+		else if ("AIDLBound".equals(serviceType))
 		{
 			this.client = new TreebolicFilesAIDLBoundClient(this, this, this);
 		}
-		else if ("Bound".equals(serviceType)) //$NON-NLS-1$
+		else if ("Bound".equals(serviceType))
 		{
 			this.client = new TreebolicFilesBoundClient(this, this, this);
 		}
@@ -332,11 +302,6 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 
 	// M O D E L L I S T E N E R
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.treebolic.services.iface.IConnectionListener#onConnected(boolean)
-	 */
 	@Override
 	public void onConnected(final boolean flag)
 	{
@@ -344,7 +309,7 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 		String query = getIntent().getStringExtra(TreebolicIface.ARG_SOURCE);
 		if (query != null)
 		{
-			if (query.startsWith("directory:")) //$NON-NLS-1$
+			if (query.startsWith("directory:"))
 			{
 				query = query.substring(8);
 				query(query);
@@ -354,11 +319,6 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 
 	// M O D E L L I S T E N E R
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.treebolic.clients.iface.IModelListener#onModel(treebolic.model.Model, java.lang.String)
-	 */
 	@Override
 	public void onModel(final Model model, final String urlScheme0)
 	{
@@ -366,7 +326,7 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 		{
 			final Intent intent = MainActivity.makeTreebolicIntent(this, model, null, null);
 
-			Log.d(MainActivity.TAG, "Starting treebolic"); //$NON-NLS-1$
+			Log.d(MainActivity.TAG, "Starting treebolic");
 			this.startActivity(intent);
 		}
 	}
@@ -438,7 +398,7 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 		if (source != null && !source.isEmpty())
 		{
 			final File file = new File(source);
-			Log.d(MainActivity.TAG, "file=" + file); //$NON-NLS-1$
+			Log.d(MainActivity.TAG, "file=" + file);
 			return file.exists();
 		}
 		return false;
@@ -464,11 +424,6 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 			//
 		}
 
-		/*
-		 * (non-Javadoc)
-		 *
-		 * @see android.app.Fragment#onActivityCreated(android.os.Bundle)
-		 */
 		@Override
 		public void onActivityCreated(final Bundle savedInstanceState)
 		{
@@ -480,11 +435,6 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 			this.queryButton = (Button) activity.findViewById(R.id.queryButton);
 			this.queryButton.setOnClickListener(new View.OnClickListener()
 			{
-				/*
-				 * (non-Javadoc)
-				 *
-				 * @see android.view.View.OnClickListener#onClick(android.view.View)
-				 */
 				@SuppressWarnings("synthetic-access")
 				@Override
 				public void onClick(final View v)
@@ -495,11 +445,6 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 			});
 		}
 
-		/*
-		 * (non-Javadoc)
-		 *
-		 * @see android.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
-		 */
 		@Override
 		public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 		{

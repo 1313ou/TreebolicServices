@@ -1,7 +1,8 @@
 package org.treebolic.services;
 
-import treebolic.provider.IProviderContext;
 import android.util.Log;
+
+import treebolic.provider.IProviderContext;
 
 public class Utils
 {
@@ -14,11 +15,6 @@ public class Utils
 	{
 		return new IProviderContext()
 		{
-			/*
-			 * (non-Javadoc)
-			 *
-			 * @see treebolic.provider.IProviderContext#message(java.lang.String)
-			 */
 			@Override
 			public void message(final String text)
 			{
@@ -26,11 +22,6 @@ public class Utils
 				// Toast.makeText(locator, text, Toast.LENGTH_LONG).show();
 			}
 
-			/*
-			 * (non-Javadoc)
-			 *
-			 * @see treebolic.provider.IProviderContext#putProgress(java.lang.String, boolean)
-			 */
 			@Override
 			public void progress(final String text, final boolean fail)
 			{
@@ -38,11 +29,6 @@ public class Utils
 				// Toast.makeText(locator, text, Toast.LENGTH_LONG).show();
 			}
 
-			/*
-			 * (non-Javadoc)
-			 *
-			 * @see treebolic.provider.IProviderContext#warn(java.lang.String)
-			 */
 			@Override
 			public void warn(final String text)
 			{

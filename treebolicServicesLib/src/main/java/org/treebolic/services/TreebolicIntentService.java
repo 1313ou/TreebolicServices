@@ -34,11 +34,6 @@ abstract public class TreebolicIntentService extends IntentService implements IT
 		super(name);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.IntentService#onHandleIntent(android.content.Intent)
-	 */
 	@Override
 	protected void onHandleIntent(final Intent intent)
 	{

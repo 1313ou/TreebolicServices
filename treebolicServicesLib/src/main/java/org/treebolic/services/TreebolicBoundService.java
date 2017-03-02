@@ -42,11 +42,6 @@ abstract public class TreebolicBoundService extends Service implements ITreeboli
 			//
 		}
 
-		/*
-		 * (non-Javadoc)
-		 *
-		 * @see org.treebolic.services.iface.ITreebolicServiceBinder#makeModel(java.lang.String, java.lang.String, org.treebolic.services.iface.IModelListener)
-		 */
 		@Override
 		public void makeModel(final String source, final String base, final String imageBase, final String settings, final IModelListener modelListener)
 		{
@@ -76,11 +71,6 @@ abstract public class TreebolicBoundService extends Service implements ITreeboli
 			}.execute();
 		}
 
-		/*
-		 * (non-Javadoc)
-		 *
-		 * @see org.treebolic.services.iface.ITreebolicServiceBinder#makeModel(java.lang.String, java.lang.String, android.content.Intent)
-		 */
 		@Override
 		public void makeModel(final String source, final String base, final String imageBase, final String settings, final Intent forward)
 		{
@@ -129,11 +119,6 @@ abstract public class TreebolicBoundService extends Service implements ITreeboli
 
 	/**
 	 * When binding to the service, we return an interface to the service
-	 */
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Service#onBind(android.content.Intent)
 	 */
 	@Override
 	public IBinder onBind(final Intent intent)

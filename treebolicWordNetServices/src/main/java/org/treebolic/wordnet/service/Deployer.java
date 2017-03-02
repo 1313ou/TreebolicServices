@@ -24,12 +24,12 @@ public class Deployer
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "TWordNetDeployer"; //$NON-NLS-1$
+	static private final String TAG = "TWordNetDeployer";
 
 	/**
 	 * Sub path in main directory
 	 */
-	static private final String PATH = "wordnet"; //$NON-NLS-1$
+	static private final String PATH = "wordnet";
 
 	/**
 	 * Dir to write data to
@@ -79,7 +79,7 @@ public class Deployer
 	{
 		if (asTarGz)
 		{
-			return Deployer.extractTarGz(fin, this.dir, true, ".*/?dic/?.*", ".*/?dbfiles/?.*"); //$NON-NLS-1$ //$NON-NLS-2$
+			return Deployer.extractTarGz(fin, this.dir, true, ".*/?dic/?.*", ".*/?dbfiles/?.*");
 		}
 		return treebolic.provider.wordnet.jwi.DataManager.expand(fin, null, this.dir);
 	}
@@ -153,7 +153,7 @@ public class Deployer
 					}
 
 					final File destFile = new File(destDir, entryName);
-					Log.d(Deployer.TAG, "Deploying in " + destFile.getCanonicalPath()); //$NON-NLS-1$
+					Log.d(Deployer.TAG, "Deploying in " + destFile.getCanonicalPath());
 
 					// create destination
 					destFile.createNewFile();

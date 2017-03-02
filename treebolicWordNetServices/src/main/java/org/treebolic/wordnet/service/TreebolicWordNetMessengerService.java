@@ -14,7 +14,7 @@ public class TreebolicWordNetMessengerService extends TreebolicMessengerService
 	/**
 	 * Log tag
 	 */
-	private static final String TAG = "TWordNetMessengerS"; //$NON-NLS-1$
+	private static final String TAG = "TWordNetMessengerS";
 
 	/**
 	 * Constructor
@@ -24,11 +24,6 @@ public class TreebolicWordNetMessengerService extends TreebolicMessengerService
 		super();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.IntentService#onCreate()
-	 */
 	@Override
 	public void onCreate()
 	{
@@ -39,18 +34,13 @@ public class TreebolicWordNetMessengerService extends TreebolicMessengerService
 		}
 		catch (final Exception e)
 		{
-			Log.e(TreebolicWordNetMessengerService.TAG, "Model factory constructor failed", e); //$NON-NLS-1$
+			Log.e(TreebolicWordNetMessengerService.TAG, "Model factory constructor failed", e);
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.treebolic.services.iface.ITreebolicService#getUrlScheme()
-	 */
 	@Override
 	public String getUrlScheme()
 	{
-		return "wordnet:"; //$NON-NLS-1$
+		return "wordnet:";
 	}
 }

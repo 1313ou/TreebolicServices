@@ -58,11 +58,6 @@ abstract public class TreebolicMessengerService extends Service implements ITree
 			this.service = service0;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 *
-		 * @see android.os.Handler#handleMessage(android.os.Message)
-		 */
 		@SuppressWarnings("synthetic-access")
 		@Override
 		public void handleMessage(final Message msg)
@@ -108,11 +103,6 @@ abstract public class TreebolicMessengerService extends Service implements ITree
 		this.messenger = new Messenger(new IncomingHandler(this));
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Service#onBind(android.content.Intent)
-	 */
 	@Override
 	public IBinder onBind(final Intent intent)
 	{

@@ -33,7 +33,7 @@ public class TreebolicMessengerClient implements ITreebolicClient
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "TMessengerBoundC"; //$NON-NLS-1$
+	static private final String TAG = "TMessengerBoundC";
 
 	/**
 	 * Handler of incoming messages (results) from service
@@ -56,11 +56,6 @@ public class TreebolicMessengerClient implements ITreebolicClient
 			this.client = client0;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 *
-		 * @see android.os.Handler#handleMessage(android.os.Message)
-		 */
 		@SuppressWarnings("synthetic-access")
 		@Override
 		public void handleMessage(final Message msg)
@@ -84,8 +79,8 @@ public class TreebolicMessengerClient implements ITreebolicClient
 						{
 							if (!ParcelableModel.class.equals(parcelable.getClass()))
 							{
-								Log.d(TreebolicMessengerClient.TAG, "Parcel/Unparcel from source classloader " + parcelable.getClass().getClassLoader() //$NON-NLS-1$
-										+ " to target classloader " + ParcelableModel.class.getClassLoader()); //$NON-NLS-1$
+								Log.d(TreebolicMessengerClient.TAG, "Parcel/Unparcel from source classloader " + parcelable.getClass().getClassLoader()
+										+ " to target classloader " + ParcelableModel.class.getClassLoader());
 
 								// obtain parcel
 								final Parcel parcel = Parcel.obtain();
@@ -172,33 +167,23 @@ public class TreebolicMessengerClient implements ITreebolicClient
 		this.context = context0;
 		this.connectionListener = connectionListener0;
 		this.modelListener = modelListener0;
-		final String[] serviceNameComponents = service0.split("/"); //$NON-NLS-1$
+		final String[] serviceNameComponents = service0.split("/");
 		this.servicePackage = serviceNameComponents[0];
 		this.serviceName = serviceNameComponents[1];
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.treebolic.clients.iface.ITreebolicClient#connect()
-	 */
 	@Override
 	public void connect()
 	{
 		bind();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.treebolic.clients.iface.ITreebolicClient#disconnect()
-	 */
 	@Override
 	public void disconnect()
 	{
 		if (this.isBound)
 		{
-			Log.d(TreebolicMessengerClient.TAG, "Service disconnected"); //$NON-NLS-1$
+			Log.d(TreebolicMessengerClient.TAG, "Service disconnected");
 			// Toast.makeText(this.context, R.string.disconnected, Toast.LENGTH_SHORT).show();
 
 			// if we have received the service, and hence registered with it
@@ -235,7 +220,7 @@ public class TreebolicMessengerClient implements ITreebolicClient
 			@Override
 			public void onServiceConnected(final ComponentName name, final IBinder binder0)
 			{
-				Log.d(TreebolicMessengerClient.TAG, "Service bound"); //$NON-NLS-1$
+				Log.d(TreebolicMessengerClient.TAG, "Service bound");
 				TreebolicMessengerClient.this.isBound = true;
 
 				// pass service in-messenger to post results to
@@ -248,18 +233,13 @@ public class TreebolicMessengerClient implements ITreebolicClient
 				}
 				catch (final RemoteException e)
 				{
-					Log.e(TreebolicMessengerClient.TAG, "Send error", e); //$NON-NLS-1$
+					Log.e(TreebolicMessengerClient.TAG, "Send error", e);
 				}
 
 				// signal connected
 				TreebolicMessengerClient.this.connectionListener.onConnected(true);
 			}
 
-			/*
-			 * (non-Javadoc)
-			 *
-			 * @see android.content.ServiceConnection#onServiceDisconnected(android.content.ComponentName)
-			 */
 			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onServiceDisconnected(final ComponentName name)
@@ -273,17 +253,11 @@ public class TreebolicMessengerClient implements ITreebolicClient
 		intent.setComponent(new ComponentName(this.servicePackage, this.serviceName));
 		if (!this.context.bindService(intent, this.connection, Context.BIND_AUTO_CREATE))
 		{
-			Log.e(TreebolicMessengerClient.TAG, "Service failed to bind"); //$NON-NLS-1$
+			Log.e(TreebolicMessengerClient.TAG, "Service failed to bind");
 			Toast.makeText(this.context, R.string.fail_bind, Toast.LENGTH_LONG).show();
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.treebolic.clients.iface.ITreebolicClient#requestModel(java.lang.String, java.lang.String, java.lang.String, java.lang.String,
-	 * android.content.Intent)
-	 */
 	@Override
 	public void requestModel(final String source, final String base, final String imageBase, final String settings, final Intent forward)
 	{
@@ -308,7 +282,7 @@ public class TreebolicMessengerClient implements ITreebolicClient
 		}
 		catch (final RemoteException e)
 		{
-			Log.e(TreebolicMessengerClient.TAG, "Send error", e); //$NON-NLS-1$
+			Log.e(TreebolicMessengerClient.TAG, "Send error", e);
 		}
 	}
 }

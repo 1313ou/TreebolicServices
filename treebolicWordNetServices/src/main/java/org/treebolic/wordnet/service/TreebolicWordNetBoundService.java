@@ -14,7 +14,7 @@ public class TreebolicWordNetBoundService extends TreebolicBoundService
 	/**
 	 * Log tag
 	 */
-	private static final String TAG = "TWordNetBoundS"; //$NON-NLS-1$
+	private static final String TAG = "TWordNetBoundS";
 
 	/**
 	 * Constructor
@@ -24,11 +24,6 @@ public class TreebolicWordNetBoundService extends TreebolicBoundService
 		super();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Service#onCreate()
-	 */
 	@Override
 	public void onCreate()
 	{
@@ -39,18 +34,13 @@ public class TreebolicWordNetBoundService extends TreebolicBoundService
 		}
 		catch (final Exception e)
 		{
-			Log.e(TreebolicWordNetBoundService.TAG, "Model factory constructor failed", e); //$NON-NLS-1$
+			Log.e(TreebolicWordNetBoundService.TAG, "Model factory constructor failed", e);
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.treebolic.services.iface.ITreebolicService#getUrlScheme()
-	 */
 	@Override
 	public String getUrlScheme()
 	{
-		return "wordnet:"; //$NON-NLS-1$
+		return "wordnet:";
 	}
 }
