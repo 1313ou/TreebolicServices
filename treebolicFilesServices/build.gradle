@@ -22,7 +22,8 @@ android {
 
 dependencies {
     compile project(':treebolicServicesLib')
-    compile project(':treebolicClientsLib')
+    //compile project(':treebolicClientsLib')
+
     compile project(':storageLib')
     compile project(':fileChooserLib')
     compile project(':searchLib')
