@@ -73,7 +73,7 @@ public class Deployer
 	 * @param fin     input stream
 	 * @param asTarGz process as tar.ge stream
 	 * @return File
-	 * @throws IOException
+	 * @throws IOException io exception
 	 */
 	public File process(final InputStream fin, final boolean asTarGz) throws IOException
 	{
@@ -92,7 +92,7 @@ public class Deployer
 	 * @param flat    flatten
 	 * @param include include regexp filter
 	 * @param exclude exclude regexp filter
-	 * @throws IOException
+	 * @throws IOException io exception
 	 */
 	private static File extractTarGz(final InputStream fin, final File destDir, final boolean flat, final String include, final String exclude) throws IOException
 	{

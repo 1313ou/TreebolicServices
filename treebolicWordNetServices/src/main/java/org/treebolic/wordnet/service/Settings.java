@@ -39,7 +39,7 @@ public class Settings
 	 * @param context
 	 *            context
 	 */
-	@SuppressLint("CommitPrefEdits")
+	@SuppressLint({"CommitPrefEdits", "ApplySharedPref"})
 	static public void setDefaults(final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);

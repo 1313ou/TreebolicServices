@@ -25,7 +25,5 @@
 	<item name="accent" type="color">@color/pink_color</item>
 
 	<!-- button -->
-	<item name="button_color" type="color">#FF808080</item>
-	<item name="button_border_color" type="color">#FF909090</item>
 
 </resources>

@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 	/**
 	 * Initialize
 	 */
-	@SuppressLint("CommitPrefEdits")
+	@SuppressLint({"CommitPrefEdits", "ApplySharedPref"})
 	private void initialize()
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);

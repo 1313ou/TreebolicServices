@@ -14,9 +14,6 @@ import treebolic.ILocator;
  *
  * @author Bernard Bou
  */
-/**
- * @author bbou
- */
 public class ModelFactory extends org.treebolic.services.ModelFactory
 {
 	/**
@@ -34,7 +31,7 @@ public class ModelFactory extends org.treebolic.services.ModelFactory
 	 *
 	 * @param context
 	 *            context
-	 * @throws Exception
+	 * @throws Exception exception
 	 */
 	public ModelFactory(final Context context) throws Exception
 	{
