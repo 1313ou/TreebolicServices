@@ -17,47 +17,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a100a9b-3ef1-4dc3-be16-85b31a60a80e" name="Default" comment="">
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/animated_vector_drawable_25_2_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/appcompat_v7_25_2_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/support_annotations_25_2_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/support_compat_25_2_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/support_core_ui_25_2_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/support_core_utils_25_2_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/support_fragment_25_2_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/support_media_compat_25_2_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/support_v13_25_2_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/support_v4_25_2_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/support_vector_drawable_25_2_0.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicClientsLib/libs/treebolic-parcel.jar" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicClientsLib/libs/treebolic-parcel.jar" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicServicesLib/libs/treebolic-parcel.jar" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicServicesLib/libs/treebolic-parcel.jar" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/espresso_core_2_2_2.xml" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/espresso_core_2_2_2.xml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/espresso_idling_resource_2_2_2.xml" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/espresso_idling_resource_2_2_2.xml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/exposed_instrumentation_api_publish_0_5.xml" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/exposed_instrumentation_api_publish_0_5.xml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/rules_0_5.xml" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/rules_0_5.xml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/runner_0_5.xml" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/runner_0_5.xml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/misc.xml" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/commons-compress-proguard-1.8.1.jar" />
+      <change type="NEW" beforePath="" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/animated_vector_drawable_25_3_1.xml" />
+      <change type="NEW" beforePath="" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/appcompat_v7_25_3_1.xml" />
+      <change type="NEW" beforePath="" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/support_annotations_25_3_1.xml" />
+      <change type="NEW" beforePath="" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/support_compat_25_3_1.xml" />
+      <change type="NEW" beforePath="" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/support_core_ui_25_3_1.xml" />
+      <change type="NEW" beforePath="" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/support_core_utils_25_3_1.xml" />
+      <change type="NEW" beforePath="" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/support_fragment_25_3_1.xml" />
+      <change type="NEW" beforePath="" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/support_media_compat_25_3_1.xml" />
+      <change type="NEW" beforePath="" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/support_v13_25_3_1.xml" />
+      <change type="NEW" beforePath="" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/support_v4_25_3_1.xml" />
+      <change type="NEW" beforePath="" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/support_vector_drawable_25_3_1.xml" />
+      <change type="NEW" beforePath="" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicClientsLib/treebolicClientsLib.iml" />
       <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/workspace.xml" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicFilesServices/build.gradle" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicFilesServices/build.gradle" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicFilesServices/src/main/java/org/treebolic/files/service/MainActivity.java" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicFilesServices/src/main/java/org/treebolic/files/service/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicFilesServices/src/main/java/org/treebolic/files/service/Settings.java" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicFilesServices/src/main/java/org/treebolic/files/service/Settings.java" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicFilesServices/src/main/res/layout/fragment_main.xml" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicFilesServices/src/main/res/layout/fragment_main.xml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicFilesServices/src/main/res/values/colors.xml" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicFilesServices/src/main/res/values/colors.xml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicFilesServices/treebolicFilesServices.iml" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicFilesServices/treebolicFilesServices.iml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicOwlServices/build.gradle" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicOwlServices/build.gradle" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicOwlServices/src/main/java/org/treebolic/owl/service/MainActivity.java" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicOwlServices/src/main/java/org/treebolic/owl/service/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicOwlServices/src/main/java/org/treebolic/owl/service/Settings.java" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicOwlServices/src/main/java/org/treebolic/owl/service/Settings.java" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicOwlServices/src/main/res/layout/fragment_main.xml" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicOwlServices/src/main/res/layout/fragment_main.xml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicOwlServices/src/main/res/values/colors.xml" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicOwlServices/src/main/res/values/colors.xml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicOwlServices/treebolicOwlServices.iml" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicOwlServices/treebolicOwlServices.iml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicServicesLib/treebolicServicesLib.iml" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicServicesLib/treebolicServicesLib.iml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/build.gradle" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/build.gradle" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/Deployer.java" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/Deployer.java" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/MainActivity.java" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/ModelFactory.java" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/ModelFactory.java" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/Settings.java" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/Settings.java" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/src/main/res/layout/fragment_main.xml" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/src/main/res/layout/fragment_main.xml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/src/main/res/values/colors.xml" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/src/main/res/values/colors.xml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/treebolicWordNetServices.iml" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/treebolicWordNetServices.iml" />
     </list>
     <ignored path="TreebolicFilesServices.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -11762,12 +11735,19 @@
       <option name="project" value="LOCAL" />
       <updated>1490772259366</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="fixed">
+      <created>1490862073111</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1490862073111</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="49" y="24" width="1871" height="1176" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3265504" sideWeight="0.49367785" order="12" side_tool="false" content_ui="tabs" />
@@ -11775,8 +11755,8 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3273453" sideWeight="0.50632215" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34716982" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2509434" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34716982" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2509434" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -11827,7 +11807,8 @@
     <MESSAGE value="appcompat fixes" />
     <MESSAGE value="theming treebolic" />
     <MESSAGE value="getting services to work" />
-    <option name="LAST_COMMIT_MESSAGE" value="getting services to work" />
+    <MESSAGE value="fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
