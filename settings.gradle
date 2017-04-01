@@ -1,5 +1,5 @@
 // CORE
-/*
+
 include ':treebolicLib'
 project(':treebolicLib').projectDir = new File('../TreebolicLib/treebolicLib/')
 
@@ -20,7 +20,6 @@ project(':treebolicGlueIface').projectDir = new File('../TreebolicLib/treebolicG
 
 include ':treebolicIface'
 project(':treebolicIface').projectDir = new File('../TreebolicLib/treebolicIface/')
-*/
 
 // LIBS
 
@@ -49,6 +48,10 @@ project(':storageLib').projectDir = new File('../TreebolicSupportLibs/storageLib
 
 // include ':treebolicClientsLib'
 include ':treebolicServicesLib'
+
+// PARCEL
+
+include ':treebolicParcel'
 
 // APPS
 

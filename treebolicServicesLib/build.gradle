@@ -20,16 +20,15 @@ android {
 }
 
 dependencies {
+    compile project(':treebolicParcel')
+    compile project(':treebolicIface')
+    compile project(':treebolicGlueIface')
+    compile project(':treebolicGlue')
+    compile project(':treebolicGraph')
+    compile project(':treebolicMutable')
+
     compile files('libs/treebolic-client-lib.jar')
 
-    compile files('libs/treebolic-iface.jar')
-    compile files('libs/treebolic-parcel.jar')
-    compile files('libs/treebolic-glue.jar')
-    compile files('libs/treebolic-glue-iface.jar')
-    compile files('libs/treebolic-provider.jar')
-    compile files('libs/treebolic-graph.jar')
-    compile files('libs/treebolic-mutable.jar')
-    
     testCompile 'junit:junit:4.12'
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'

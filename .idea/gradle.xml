@@ -7,9 +7,17 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
+            <option value="/mnt/data2/devel/android-treebolic-as/TreebolicLib/treebolicGlue" />
+            <option value="/mnt/data2/devel/android-treebolic-as/TreebolicLib/treebolicGlueIface" />
+            <option value="/mnt/data2/devel/android-treebolic-as/TreebolicLib/treebolicGraph" />
+            <option value="/mnt/data2/devel/android-treebolic-as/TreebolicLib/treebolicIface" />
+            <option value="/mnt/data2/devel/android-treebolic-as/TreebolicLib/treebolicLib" />
+            <option value="/mnt/data2/devel/android-treebolic-as/TreebolicLib/treebolicMutable" />
+            <option value="/mnt/data2/devel/android-treebolic-as/TreebolicLib/treebolicPortable" />
             <option value="/mnt/data2/devel/android-treebolic-as/TreebolicServices" />
             <option value="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicFilesServices" />
             <option value="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicOwlServices" />
+            <option value="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicParcel" />
             <option value="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicServicesLib" />
             <option value="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices" />
             <option value="/mnt/data2/devel/android-treebolic-as/TreebolicSupportLibs/downloadLib" />
