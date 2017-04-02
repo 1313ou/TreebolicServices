@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.util.Log;
 
-import org.treebolic.services.iface.IModelFactory;
 import org.treebolic.services.iface.ITreebolicService;
 
 import treebolic.model.Model;

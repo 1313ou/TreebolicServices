@@ -8,7 +8,6 @@ import android.os.IBinder;
 import android.util.Log;
 
 import org.treebolic.clients.iface.IModelListener;
-import org.treebolic.services.iface.IModelFactory;
 import org.treebolic.services.iface.ITreebolicService;
 import org.treebolic.services.iface.ITreebolicServiceBinder;
 

@@ -9,7 +9,6 @@ import android.os.RemoteException;
 import android.os.ResultReceiver;
 import android.util.Log;
 
-import org.treebolic.services.iface.IModelFactory;
 import org.treebolic.services.iface.ITreebolicAIDLService;
 import org.treebolic.services.iface.ITreebolicService;
 

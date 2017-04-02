@@ -1,13 +1,14 @@
 package org.treebolic.services;
 
+import android.content.ComponentName;
+import android.content.Intent;
+import android.os.Bundle;
+
 import org.treebolic.ParcelableModel;
 import org.treebolic.TreebolicIface;
 import org.treebolic.services.iface.ITreebolicService;
 
 import treebolic.model.Model;
-import android.content.ComponentName;
-import android.content.Intent;
-import android.os.Bundle;
 
 public class IntentFactory
 {
@@ -16,16 +17,11 @@ public class IntentFactory
 	/**
 	 * Make intent
 	 *
-	 * @param model
-	 *            model
-	 * @param parentIntent
-	 *            parent activity to return to
-	 * @param base
-	 *            base
-	 * @param imageBase
-	 *            image base
-	 * @param settings
-	 *            settings
+	 * @param model        model
+	 * @param parentIntent parent activity to return to
+	 * @param base         base
+	 * @param imageBase    image base
+	 * @param settings     settings
 	 * @return intent
 	 */
 	static public Intent makeTreebolicIntent(final Model model, final Intent parentIntent, final String base, final String imageBase, final String settings)
@@ -38,14 +34,10 @@ public class IntentFactory
 	/**
 	 * Treebolic skeleton intent without model)
 	 *
-	 * @param parentIntent
-	 *            parent activity to return to
-	 * @param base
-	 *            base
-	 * @param imageBase
-	 *            image base
-	 * @param settings
-	 *            settings
+	 * @param parentIntent parent activity to return to
+	 * @param base         base
+	 * @param imageBase    image base
+	 * @param settings     settings
 	 * @return treebolic model activity intent
 	 */
 	static public Intent makeTreebolicIntentSkeleton(final Intent parentIntent, final String base, final String imageBase, final String settings)
@@ -62,12 +54,9 @@ public class IntentFactory
 	/**
 	 * Put model in activity intent
 	 *
-	 * @param bundle
-	 *            bundle
-	 * @param model
-	 *            model to forward
-	 * @param urlScheme
-	 *            url scheme
+	 * @param bundle    bundle
+	 * @param model     model to forward
+	 * @param urlScheme url scheme
 	 */
 	static public void putModelResult(final Bundle bundle, final Model model, final String urlScheme)
 	{
@@ -87,12 +76,9 @@ public class IntentFactory
 	/**
 	 * Put model in activity intent
 	 *
-	 * @param bundle
-	 *            bundle
-	 * @param model
-	 *            model to forward
-	 * @param urlScheme
-	 *            url scheme
+	 * @param bundle    bundle
+	 * @param model     model to forward
+	 * @param urlScheme url scheme
 	 */
 	static public void putModelArg(final Bundle bundle, final Model model, final String urlScheme)
 	{
@@ -112,10 +98,8 @@ public class IntentFactory
 	/**
 	 * Put model in activity intent as argument
 	 *
-	 * @param forwardIntent
-	 *            forward intent
-	 * @param model
-	 *            model to forward
+	 * @param forwardIntent forward intent
+	 * @param model         model to forward
 	 */
 	static public void putModelArg(final Intent forwardIntent, final Model model, final String urlScheme)
 	{

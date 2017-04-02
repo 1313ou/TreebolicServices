@@ -11,7 +11,6 @@ import android.os.Messenger;
 import android.os.RemoteException;
 import android.util.Log;
 
-import org.treebolic.services.iface.IModelFactory;
 import org.treebolic.services.iface.ITreebolicService;
 
 import java.util.ArrayList;

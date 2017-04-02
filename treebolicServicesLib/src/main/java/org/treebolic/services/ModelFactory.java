@@ -1,14 +1,13 @@
 package org.treebolic.services;
 
+import android.util.Log;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
 
-import org.treebolic.services.iface.IModelFactory;
-
-import android.util.Log;
-import treebolic.model.Model;
 import treebolic.ILocator;
+import treebolic.model.Model;
 import treebolic.provider.IProvider;
 import treebolic.provider.IProviderContext;
 

@@ -21,8 +21,10 @@ android {
 }
 
 dependencies {
+    compile project(':treebolicServicesIface')
     compile project(':treebolicServicesLib')
-    //compile project(':treebolicClientsLib')
+    compile project(':treebolicClientsIface')
+    compile project(':treebolicClientsLib')
 
     compile project(':storageLib')
     compile project(':fileChooserLib')

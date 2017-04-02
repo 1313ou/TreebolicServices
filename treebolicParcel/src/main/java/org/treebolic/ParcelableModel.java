@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import treebolic.control.Controller;
 import treebolic.glue.Color;
 import treebolic.glue.Image;
 import treebolic.model.IEdge;
@@ -22,6 +21,8 @@ import treebolic.model.MutableEdge;
 import treebolic.model.MutableNode;
 import treebolic.model.Settings;
 import treebolic.model.Tree;
+import treebolic.model.Types.MatchMode;
+import treebolic.model.Types.MatchScope;
 
 /**
  * Convenience class to parcel model
@@ -941,10 +942,10 @@ public class ParcelableModel implements Parcelable
 		menuItem.theMatchTarget = ParcelableModel.readString(parcel);
 		// match mode
 		ordinal = parcel.readInt();
-		menuItem.theMatchScope = ordinal == -1 ? null : Controller.MatchScope.values()[ordinal];
+		menuItem.theMatchScope = ordinal == -1 ? null : MatchScope.values()[ordinal];
 		// match scope
 		ordinal = parcel.readInt();
-		menuItem.theMatchMode = ordinal == -1 ? null : Controller.MatchMode.values()[ordinal];
+		menuItem.theMatchMode = ordinal == -1 ? null : MatchMode.values()[ordinal];
 		return menuItem;
 	}
 
