@@ -62,7 +62,7 @@ public class TreebolicMessengerClient implements ITreebolicClient
 		{
 			switch (msg.what)
 			{
-				case ITreebolicService.MSG_REQUEST_MODEL:
+				case ITreebolicService.MSG_RESULT_MODEL:
 					final Bundle resultData = msg.getData();
 					resultData.setClassLoader(ParcelableModel.class.getClassLoader());
 					final String urlScheme = resultData.getString(ITreebolicService.RESULT_URLSCHEME);
