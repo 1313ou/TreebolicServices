@@ -20,9 +20,6 @@
         <!-- action bar -->
         <item name="android:actionBarStyle">@style/ActionBarAppTheme</item>
 
-        <!-- activated background indicator -->
-        <item name="android:actionButtonStyle">@style/ActionButtonStyle</item>
-
         <!-- T R E E B O L I C -->
 
         <!-- treebolic action bar colors -->

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.os.RemoteException;
 import android.os.ResultReceiver;
 import android.util.Log;
 
@@ -36,7 +35,6 @@ abstract public class TreebolicAIDLBoundService extends Service implements ITree
 	{
 		@Override
 		public void makeModel(final String source, final String base, final String imageBase, final String settings, final ResultReceiver resultReceiver)
-				throws RemoteException
 		{
 			// make model
 			new AsyncTask<Void, Void, Model>()
@@ -72,7 +70,6 @@ abstract public class TreebolicAIDLBoundService extends Service implements ITree
 
 		@Override
 		public void makeAndForwardModel(final String source, final String base, final String imageBase, final String settings, final Intent forward)
-				throws RemoteException
 		{
 			// make model
 			new AsyncTask<Void, Void, Model>()

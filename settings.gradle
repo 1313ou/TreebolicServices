@@ -1,6 +1,6 @@
 // CORE
 
-include ':treebolicLib', ':treebolicServicesIface', ':treebolicClientsIface'
+include ':treebolicLib'
 project(':treebolicLib').projectDir = new File('../TreebolicLib/treebolicLib/')
 
 include ':treebolicLibModel'
@@ -49,8 +49,11 @@ project(':storageLib').projectDir = new File('../TreebolicSupportLibs/storageLib
 
 // LIB
 
+include ':treebolicAidl'
 include ':treebolicClientsLib'
 include ':treebolicServicesLib'
+include ':treebolicServicesIface'
+include ':treebolicClientsIface'
 
 // PARCEL
 

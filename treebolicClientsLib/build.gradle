@@ -20,16 +20,15 @@ android {
 }
 
 dependencies {
+    compile project(':treebolicAidl')
     compile project(':treebolicServicesIface')
     compile project(':treebolicClientsIface')
     compile project(':treebolicLibModel')
     compile project(':treebolicParcel')
     compile project(':treebolicIface')
     compile project(':treebolicGlue')
-
-    compile 'com.android.support:appcompat-v7:25.2.0'
-    compile 'com.android.support:support-v4:25.2.0'
-
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:support-v4:25.3.1'
     testCompile 'junit:junit:4.12'
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
