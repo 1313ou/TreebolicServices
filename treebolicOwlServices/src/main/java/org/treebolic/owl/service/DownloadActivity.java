@@ -1,6 +1,7 @@
 package org.treebolic.owl.service;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import org.treebolic.download.Deploy;
@@ -21,6 +22,8 @@ public class DownloadActivity extends org.treebolic.download.DownloadActivity
 	protected void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+
+		this.expandArchiveCheckbox.setVisibility(View.VISIBLE);
 		this.destDir = Storage.getTreebolicStorage(this);
 		this.downloadUrl = Settings.getStringPref(this, Settings.PREF_DOWNLOAD);
 		if (this.downloadUrl == null || this.downloadUrl.isEmpty())
@@ -47,6 +50,11 @@ public class DownloadActivity extends org.treebolic.download.DownloadActivity
 	@Override
 	protected boolean process(final InputStream inputStream) throws IOException
 	{
+		if(this.expandArchive)
+		{
+			Deploy.expand(inputStream, Storage.getTreebolicStorage(this), false);
+			return true;
+		}
 		Deploy.copy(inputStream, new File(Storage.getTreebolicStorage(this), this.destUri.getLastPathSegment()));
 		return true;
 	}

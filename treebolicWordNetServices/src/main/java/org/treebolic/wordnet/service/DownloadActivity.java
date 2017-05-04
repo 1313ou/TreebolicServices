@@ -1,10 +1,10 @@
 package org.treebolic.wordnet.service;
 
-import java.io.IOException;
-import java.io.InputStream;
-
 import android.os.Bundle;
 import android.widget.Toast;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * WordNet download activity
@@ -22,6 +22,7 @@ public class DownloadActivity extends org.treebolic.download.DownloadActivity
 	protected void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+
 		this.downloadUrl = Settings.getStringPref(this, Settings.PREF_DOWNLOAD);
 		if (this.downloadUrl == null || this.downloadUrl.isEmpty())
 		{
@@ -36,6 +37,8 @@ public class DownloadActivity extends org.treebolic.download.DownloadActivity
 		this.asTarGz = this.downloadUrl.endsWith(".tar.gz");
 		super.start(R.string.wordnet);
 	}
+
+	// P O S T P R O C E S S I N G
 
 	@Override
 	protected boolean doProcessing()
