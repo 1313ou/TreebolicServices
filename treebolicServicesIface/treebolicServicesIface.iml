@@ -106,9 +106,9 @@
     <orderEntry type="library" exported="" scope="TEST" name="javax.inject-1" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="hamcrest-integration-1.3" level="project" />
     <orderEntry type="library" exported="" name="support-core-ui-25.3.1" level="project" />
+    <orderEntry type="library" exported="" name="support-v13-25.3.1" level="project" />
     <orderEntry type="library" exported="" name="support-v4-25.3.1" level="project" />
     <orderEntry type="library" exported="" name="support-media-compat-25.3.1" level="project" />
-    <orderEntry type="library" exported="" name="support-v13-25.3.1" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="javawriter-2.1.1" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="hamcrest-core-1.3" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="junit-4.12" level="project" />
@@ -123,13 +123,10 @@
     <orderEntry type="module" module-name="treebolicGlue" exported="" />
     <orderEntry type="module" module-name="treebolicParcel" exported="" />
     <orderEntry type="module" module-name="treebolicAidl" exported="" />
-    <orderEntry type="module" module-name="treebolicLib" exported="" />
     <orderEntry type="module" module-name="treebolicClientsIface" exported="" />
     <orderEntry type="module" module-name="treebolicGlueIface" exported="" />
-    <orderEntry type="module" module-name="treebolicLibView" exported="" />
     <orderEntry type="module" module-name="treebolicLibModel" exported="" />
     <orderEntry type="module" module-name="treebolicMutable" exported="" />
-    <orderEntry type="module" module-name="treebolicGraph" exported="" />
     <orderEntry type="module" module-name="treebolicIface" exported="" />
   </component>
 </module>

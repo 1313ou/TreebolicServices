@@ -29,6 +29,7 @@ dependencies {
     compile project(':treebolicAidl')
     compile project(':treebolicServicesIface')
     compile project(':treebolicClientsIface')
+
     testCompile 'junit:junit:4.12'
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
