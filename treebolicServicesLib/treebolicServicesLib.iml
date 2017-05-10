@@ -129,6 +129,5 @@
     <orderEntry type="module" module-name="treebolicMutable" exported="" />
     <orderEntry type="module" module-name="treebolicGraph" exported="" />
     <orderEntry type="module" module-name="treebolicIface" exported="" />
-    <orderEntry type="library" exported="" name="support-annotations-25.3.1" level="project" />
   </component>
 </module>

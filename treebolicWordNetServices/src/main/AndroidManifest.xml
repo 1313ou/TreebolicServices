@@ -14,9 +14,9 @@
 		android:allowBackup="true"
 		android:icon="@drawable/ic_launcher"
 		android:label="@string/app_name"
-		android:process="org.treebolic"
 		android:theme="@style/CompatAppTheme"
 		tools:ignore="AllowBackup">
+
 		<activity
 			android:name=".MainActivity"
 			android:label="@string/app_name">
@@ -26,18 +26,21 @@
 				<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
 		</activity>
+
 		<activity
 			android:name=".SettingsActivity"
 			android:label="@string/title_activity_settings"
 			android:parentActivityName=".MainActivity"
 			tools:ignore="UnusedAttribute">
 		</activity>
+
 		<activity
 			android:name=".QueryProviderActivity"
 			android:label="@string/title_activity_query_file_provider"
 			android:parentActivityName=".MainActivity"
 			tools:ignore="UnusedAttribute">
 		</activity>
+
 		<activity
 			android:name=".DownloadActivity"
 			android:label="@string/title_activity_download"
@@ -47,6 +50,7 @@
 
 		<service
 			android:name=".TreebolicWordNetIntentService"
+			android:process="org.treebolic"
 			android:description="@string/description_service_intent_service"
 			android:enabled="true"
 			android:exported="true"
@@ -58,9 +62,11 @@
 				</action>
 			</intent-filter>
 		</service>
+
 		<!--
 		<service
 			android:name=".TreebolicWordNetBoundService"
+			android:process="org.treebolic"
 			android:description="@string/description_service_bound_service"
 			android:enabled="true"
 			android:exported="true"
@@ -69,8 +75,10 @@
 			android:permission="android.permission.READ_EXTERNAL_STORAGE" >
 		</service>
 		-->
+
 		<service
 			android:name=".TreebolicWordNetAIDLBoundService"
+			android:process="org.treebolic"
 			android:description="@string/description_service_aidl_bound_service"
 			android:enabled="true"
 			android:exported="true"
@@ -78,6 +86,7 @@
 			android:label="@string/service_aidl_bound_service"
 			android:permission="android.permission.READ_EXTERNAL_STORAGE">
 		</service>
+
 		<service
 			android:name=".TreebolicWordNetMessengerService"
 			android:description="@string/description_service_messenger_bound_service"
@@ -87,6 +96,7 @@
 			android:label="@string/service_messenger_bound_service"
 			android:permission="android.permission.READ_EXTERNAL_STORAGE">
 		</service>
+
 	</application>
 
 </manifest>

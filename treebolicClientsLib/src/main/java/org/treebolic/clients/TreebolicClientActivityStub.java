@@ -54,14 +54,14 @@ abstract public class TreebolicClientActivityStub extends AppCompatActivity impl
 
 	// C L I E N T M A N A G E M E N T
 
-	abstract protected ITreebolicClient getClient();
+	abstract protected ITreebolicClient makeClient();
 
 	/**
 	 * Start client
 	 */
 	private void start()
 	{
-		this.client = getClient();
+		this.client = makeClient();
 		if (this.client != null)
 		{
 			Log.d(TreebolicClientActivityStub.TAG, "Connecting client-service");
