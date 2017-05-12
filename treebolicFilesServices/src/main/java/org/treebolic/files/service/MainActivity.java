@@ -178,20 +178,17 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 	@SuppressLint({"CommitPrefEdits", "ApplySharedPref"})
 	private void initialize()
 	{
-		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-
 		// test if initialized
-		final boolean result = sharedPref.getBoolean(Settings.PREF_INITIALIZED, false);
-		if (result)
+		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+		final boolean initialized = sharedPref.getBoolean(Settings.PREF_INITIALIZED, false);
+		if (!initialized)
 		{
-			return;
+			// default settings
+			Settings.setDefaults(this);
+
+			// flag as initialized
+			sharedPref.edit().putBoolean(Settings.PREF_INITIALIZED, true).commit();
 		}
-
-		// default settings
-		Settings.setDefaults(this);
-
-		// flag as initialized
-		sharedPref.edit().putBoolean(Settings.PREF_INITIALIZED, true).commit();
 	}
 
 	// R E Q U E S T (choose source)
@@ -421,8 +418,8 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 	/**
 	 * Make Treebolic intent
 	 *
-	 * @param context   content
-	 * @param model     model
+	 * @param context content
+	 * @param model   model
 	 * @return intent
 	 */
 	static public Intent makeTreebolicIntent(final Context context, final Model model)
@@ -455,8 +452,8 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 		}
 
 		// other parameters passing
-		intent.putExtra(TreebolicIface.ARG_BASE, (String)null);
-		intent.putExtra(TreebolicIface.ARG_IMAGEBASE, (String)null);
+		intent.putExtra(TreebolicIface.ARG_BASE, (String) null);
+		intent.putExtra(TreebolicIface.ARG_IMAGEBASE, (String) null);
 
 		// parent passing
 		intent.putExtra(TreebolicIface.ARG_PARENTACTIVITY, parentIntent);

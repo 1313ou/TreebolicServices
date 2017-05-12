@@ -258,20 +258,17 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 	@SuppressLint({"CommitPrefEdits", "ApplySharedPref"})
 	private void initialize()
 	{
-		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-
 		// test if initialized
-		final boolean result = sharedPref.getBoolean(Settings.PREF_INITIALIZED, false);
-		if (result)
+		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+		final boolean initialized = sharedPref.getBoolean(Settings.PREF_INITIALIZED, false);
+		if (!initialized)
 		{
-			return;
+			// default settings
+			Settings.setDefaults(this);
+
+			// flag as initialized
+			sharedPref.edit().putBoolean(Settings.PREF_INITIALIZED, true).commit();
 		}
-
-		// default settings
-		Settings.setDefaults(this);
-
-		// flag as initialized
-		sharedPref.edit().putBoolean(Settings.PREF_INITIALIZED, true).commit();
 	}
 
 	// C L I E N T   O P E R A T I O N

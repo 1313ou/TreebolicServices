@@ -183,23 +183,28 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 	@SuppressLint({"CommitPrefEdits", "ApplySharedPref"})
 	private void initialize()
 	{
-		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-
 		// test if initialized
-		final boolean result = sharedPref.getBoolean(Settings.PREF_INITIALIZED, false);
-		if (result)
+		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+		final boolean initialized = sharedPref.getBoolean(Settings.PREF_INITIALIZED, false);
+		if (!initialized)
 		{
-			return;
+			// default settings
+			Settings.setDefaults(this);
+
+			// flag as initialized
+			sharedPref.edit().putBoolean(Settings.PREF_INITIALIZED, true).commit();
 		}
 
-		// default settings
-		Settings.setDefaults(this);
-
 		// deploy
-		Storage.expandZipAssetFile(this, Settings.DEMOZIP);
-
-		// flag as initialized
-		sharedPref.edit().putBoolean(Settings.PREF_INITIALIZED, true).commit();
+		final File dir = Storage.getTreebolicStorage(this);
+		if (dir.isDirectory())
+		{
+			if (dir.list().length == 0)
+			{
+				// deploy
+				Storage.expandZipAssetFile(this, Settings.DEMOZIP);
+			}
+		}
 	}
 
 	// C L I E N T   O P E R A T I O N
