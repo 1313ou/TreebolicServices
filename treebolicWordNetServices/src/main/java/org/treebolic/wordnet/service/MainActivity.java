@@ -3,23 +3,29 @@ package org.treebolic.wordnet.service;
 import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Process;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.treebolic.ParcelableModel;
@@ -120,6 +126,7 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 		{
 			this.dataButton.setIcon(ok ? R.drawable.ic_action_done : R.drawable.ic_action_error);
 		}
+		updateButton();
 
 		stop();
 		start();
@@ -132,6 +139,8 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 		stop();
 		super.onPause();
 	}
+
+	// M E N U
 
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu)
@@ -187,46 +196,46 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 		final int id = item.getItemId();
 		switch (id)
 		{
-		case R.id.action_query:
-			query();
-			return true;
+			case R.id.action_query:
+				query();
+				return true;
 
-		case R.id.action_query_file_provider:
-			QueryProviderActivity.isProviderAvailable(this);
-			startActivity(new Intent(this, QueryProviderActivity.class));
-			return true;
+			case R.id.action_source:
+				requestSource();
+				return true;
 
-		case R.id.action_download:
-			startActivityForResult(new Intent(this, DownloadActivity.class), MainActivity.REQUEST_DATA_FROM_DOWNLOADER);
-			return true;
+			case R.id.action_query_file_provider:
+				QueryProviderActivity.isProviderAvailable(this);
+				startActivity(new Intent(this, QueryProviderActivity.class));
+				return true;
 
-		case R.id.action_cleanup:
-			this.deployer.cleanup();
-			this.dataButton.setIcon(MainActivity.this.deployer.status() ? R.drawable.ic_action_done : R.drawable.ic_action_error);
-			return true;
+			case R.id.action_download:
+				requestDownload();
+				return true;
 
-		case R.id.action_demo:
-			query("love");
-			return true;
+			case R.id.action_cleanup:
+				this.deployer.cleanup();
+				this.dataButton.setIcon(MainActivity.this.deployer.status() ? R.drawable.ic_action_done : R.drawable.ic_action_error);
+				return true;
 
-		case R.id.action_settings:
-			startActivity(new Intent(this, SettingsActivity.class));
-			return true;
+			case R.id.action_demo:
+				query("love");
+				return true;
 
-		case R.id.action_app_settings:
-			Settings.applicationSettings(this, "org.treebolic.wordnet.service");
-			return true;
+			case R.id.action_settings:
+				startActivity(new Intent(this, SettingsActivity.class));
+				return true;
 
-		case R.id.action_finish:
-			finish();
-			return true;
+			case R.id.action_app_settings:
+				Settings.applicationSettings(this, "org.treebolic.wordnet.service");
+				return true;
 
-		case R.id.action_kill:
-			Process.killProcess(Process.myPid());
-			return true;
+			case R.id.action_finish:
+				finish();
+				return true;
 
-		default:
-			break;
+			default:
+				break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -241,6 +250,8 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 		return true;
 	}
 
+	// I N I T I A L I Z E
+
 	/**
 	 * Initialize
 	 */
@@ -252,7 +263,9 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 		// test if initialized
 		final boolean result = sharedPref.getBoolean(Settings.PREF_INITIALIZED, false);
 		if (result)
+		{
 			return;
+		}
 
 		// default settings
 		Settings.setDefaults(this);
@@ -261,32 +274,7 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 		sharedPref.edit().putBoolean(Settings.PREF_INITIALIZED, true).commit();
 	}
 
-	// R E Q U E S T D A T A R E S U L T
-
-	@Override
-	protected void onActivityResult(final int requestCode, final int resultCode, final Intent returnIntent)
-	{
-		// handle selection of target by other activity which returns selected target
-		if (resultCode == AppCompatActivity.RESULT_OK)
-		{
-			switch (requestCode)
-			{
-			case REQUEST_DATA_FROM_DOWNLOADER:
-				boolean downloadDataAvailable = returnIntent.getBooleanExtra(org.treebolic.download.DownloadActivity.RESULT_DOWNLOAD_DATA_AVAILABLE, false);
-				if (downloadDataAvailable)
-				{
-					downloadDataAvailable = this.deployer.status();
-				}
-				this.dataButton.setIcon(downloadDataAvailable ? R.drawable.ic_action_done : R.drawable.ic_action_error);
-				break;
-			default:
-				break;
-			}
-			super.onActivityResult(requestCode, resultCode, returnIntent);
-		}
-	}
-
-	// C L I E N T O P E R A T I O N
+	// C L I E N T   O P E R A T I O N
 
 	/**
 	 * Start client
@@ -328,6 +316,25 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 		}
 	}
 
+	// C O N N E C T I O N   L I S T E N E R
+
+	@Override
+	public void onConnected(final boolean flag)
+	{
+		// url hook
+		String query = getIntent().getStringExtra(TreebolicIface.ARG_SOURCE);
+		if (query != null)
+		{
+			if (query.startsWith("wordnet:"))
+			{
+				query = query.substring(8);
+				query(query);
+			}
+		}
+	}
+
+	// Q U E R Y
+
 	/**
 	 * Query request
 	 */
@@ -347,26 +354,20 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 	/**
 	 * Query request
 	 *
-	 * @param source
-	 *            source
+	 * @param source source
 	 */
 	private boolean query(final String source)
 	{
-		return query(source, Settings.getStringPref(this, TreebolicIface.PREF_BASE), Settings.getStringPref(this, TreebolicIface.PREF_IMAGEBASE),
-				Settings.getStringPref(this, TreebolicIface.PREF_SETTINGS));
+		return query(source, Settings.getStringPref(this, TreebolicIface.PREF_BASE), Settings.getStringPref(this, TreebolicIface.PREF_IMAGEBASE), Settings.getStringPref(this, TreebolicIface.PREF_SETTINGS));
 	}
 
 	/**
 	 * Query request
 	 *
-	 * @param query
-	 *            query
-	 * @param base
-	 *            doc base
-	 * @param imageBase
-	 *            image base
-	 * @param settings
-	 *            settings
+	 * @param query     query
+	 * @param base      doc base
+	 * @param imageBase image base
+	 * @param settings  settings
 	 * @return true if query was made
 	 */
 	protected boolean query(final String query, final String base, final String imageBase, final String settings)
@@ -381,30 +382,65 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 			Toast.makeText(MainActivity.this, R.string.fail_nullclient, Toast.LENGTH_SHORT).show();
 			return false;
 		}
-		@SuppressWarnings("ConstantConditions") final Intent forward = MainActivity.FORWARD ? IntentFactory.makeTreebolicIntentSkeleton(new Intent(this,
-				org.treebolic.wordnet.service.MainActivity.class), base, imageBase, settings) : null;
+		@SuppressWarnings("ConstantConditions") final Intent forward = MainActivity.FORWARD ? IntentFactory.makeTreebolicIntentSkeleton(new Intent(this, org.treebolic.wordnet.service.MainActivity.class), base, imageBase, settings) : null;
 		MainActivity.this.client.requestModel(query, base, imageBase, settings, forward);
 		return true;
 	}
 
-	// M O D E L C O N S U M E R
-
-	@Override
-	public void onConnected(final boolean flag)
+	/**
+	 * Request source
+	 */
+	private void requestSource()
 	{
-		// url hook
-		String query = getIntent().getStringExtra(TreebolicIface.ARG_SOURCE);
-		if (query != null)
+		final AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+		alert.setTitle(R.string.title_choose);
+		alert.setMessage(R.string.title_choose_source);
+		final EditText input = new EditText(this);
+		input.setMaxLines(1);
+		input.setInputType(InputType.TYPE_CLASS_TEXT);
+		alert.setView(input);
+
+		alert.setPositiveButton(R.string.action_ok, new DialogInterface.OnClickListener()
 		{
-			if (query.startsWith("wordnet:"))
+			public void onClick(DialogInterface dialog, int whichButton)
 			{
-				query = query.substring(8);
-				query(query);
+				String value = input.getText().toString();
+				Settings.putStringPref(MainActivity.this, TreebolicIface.PREF_SOURCE, value);
+
+				updateButton();
+
+				// query
+				// query();
 			}
-		}
+		});
+
+		alert.setNegativeButton(R.string.action_cancel, new DialogInterface.OnClickListener()
+		{
+			public void onClick(DialogInterface dialog, int whichButton)
+			{
+				// canceled.
+			}
+		});
+
+		final AlertDialog dialog = alert.create();
+		input.setOnEditorActionListener(new EditText.OnEditorActionListener()
+		{
+			@Override
+			public boolean onEditorAction(final TextView view, final int actionId, final KeyEvent event)
+			{
+				if (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)
+				{
+					dialog.getButton(DialogInterface.BUTTON_POSITIVE).performClick();
+					return true;
+				}
+				return false;
+			}
+		});
+		dialog.show();
 	}
 
-	// M O D E L L I S T E N E R
+	// M O D E L   L I S T E N E R
 
 	@Override
 	public void onModel(final Model model, final String urlScheme0)
@@ -418,17 +454,43 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 		}
 	}
 
+	// D O W N L O A D
+
+	private void requestDownload()
+	{
+		startActivityForResult(new Intent(this, DownloadActivity.class), MainActivity.REQUEST_DATA_FROM_DOWNLOADER);
+	}
+
+	@Override
+	protected void onActivityResult(final int requestCode, final int resultCode, final Intent returnIntent)
+	{
+		// handle selection of target by other activity which returns selected target
+		if (resultCode == AppCompatActivity.RESULT_OK)
+		{
+			switch (requestCode)
+			{
+				case REQUEST_DATA_FROM_DOWNLOADER:
+					boolean downloadDataAvailable = returnIntent.getBooleanExtra(org.treebolic.download.DownloadActivity.RESULT_DOWNLOAD_DATA_AVAILABLE, false);
+					if (downloadDataAvailable)
+					{
+						downloadDataAvailable = this.deployer.status();
+					}
+					this.dataButton.setIcon(downloadDataAvailable ? R.drawable.ic_action_done : R.drawable.ic_action_error);
+					break;
+				default:
+					break;
+			}
+			super.onActivityResult(requestCode, resultCode, returnIntent);
+		}
+	}
+
 	/**
 	 * Make Treebolic intent
 	 *
-	 * @param context
-	 *            content
-	 * @param model
-	 *            model
-	 * @param base
-	 *            base
-	 * @param imageBase
-	 *            image base
+	 * @param context   content
+	 * @param model     model
+	 * @param base      base
+	 * @param imageBase image base
 	 * @return intent
 	 */
 	static public Intent makeTreebolicIntent(final Context context, final Model model, final String base, final String imageBase)
@@ -458,6 +520,44 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 		return intent;
 	}
 
+	// H E L P E R
+
+	private void updateButton()
+	{
+		final ImageButton button = (ImageButton) findViewById(R.id.queryButton);
+		final TextView sourceText = (TextView) findViewById(R.id.querySource);
+		final String source = Settings.getStringPref(this, TreebolicIface.PREF_SOURCE);
+		final boolean qualifies = sourceQualifies(source);
+		button.setVisibility(qualifies ? View.VISIBLE : View.INVISIBLE);
+		sourceText.setVisibility(qualifies ? View.VISIBLE : View.INVISIBLE);
+		if (qualifies)
+		{
+			sourceText.setText(source);
+		}
+	}
+
+	/**
+	 * Whether source qualifies
+	 *
+	 * @return true if source qualifies
+	 */
+	private boolean sourceQualifies(final String source)
+	{
+		return source != null && !source.isEmpty();
+	}
+
+	// C L I C K
+
+	/**
+	 * Click listener
+	 *
+	 * @param view view
+	 */
+	public void onClick(final View view)
+	{
+		query();
+	}
+
 	// F R A G M E N T
 
 	/**
@@ -465,14 +565,6 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 	 */
 	public static class PlaceholderFragment extends Fragment
 	{
-		/**
-		 * Constructor
-		 */
-		public PlaceholderFragment()
-		{
-			//
-		}
-
 		@Override
 		public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 		{

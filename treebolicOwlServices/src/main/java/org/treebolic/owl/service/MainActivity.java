@@ -7,10 +7,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Process;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -20,8 +18,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ProgressBar;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.treebolic.Models;
@@ -119,6 +117,8 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 		super.onPause();
 	}
 
+	// M E N U
+
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{
@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 				query();
 				return true;
 
-			case R.id.action_choose:
+			case R.id.action_source:
 				requestSource();
 				return true;
 
@@ -169,15 +169,13 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 				finish();
 				return true;
 
-			case R.id.action_kill:
-				Process.killProcess(Process.myPid());
-				return true;
-
 			default:
 				break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
+
+	// I N I T I A L I Z E
 
 	/**
 	 * Initialize
@@ -204,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 		sharedPref.edit().putBoolean(Settings.PREF_INITIALIZED, true).commit();
 	}
 
-	// C L I E N T O P E R A T I O N
+	// C L I E N T   O P E R A T I O N
 
 	/**
 	 * Start client
@@ -243,6 +241,23 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 		{
 			this.client.disconnect();
 			this.client = null;
+		}
+	}
+
+	// C O N N E C T I O N   L I S T E N E R
+
+	@Override
+	public void onConnected(final boolean flag)
+	{
+		// url hook
+		String query = getIntent().getStringExtra(TreebolicIface.ARG_SOURCE);
+		if (query != null)
+		{
+			if (query.startsWith("owl:"))
+			{
+				query = query.substring(8);
+				query(query);
+			}
 		}
 	}
 
@@ -320,24 +335,7 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 		}
 	}
 
-	// C O N N E C T I O N L I S T E N E R
-
-	@Override
-	public void onConnected(final boolean flag)
-	{
-		// url hook
-		String query = getIntent().getStringExtra(TreebolicIface.ARG_SOURCE);
-		if (query != null)
-		{
-			if (query.startsWith("owl:"))
-			{
-				query = query.substring(8);
-				query(query);
-			}
-		}
-	}
-
-	// M O D E L L I S T E N E R
+	// M O D E L   L I S T E N E R
 
 	@Override
 	public void onModel(final Model model, final String urlScheme0)
@@ -399,7 +397,20 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 		return intent;
 	}
 
-	// S P E C I F I C R E T U R N S
+	// R E Q U E S T (choose source)
+
+	/**
+	 * Request Owl source
+	 */
+	private void requestSource()
+	{
+		final Intent intent = new Intent(this, org.treebolic.filechooser.FileChooserActivity.class);
+		intent.setType("application/rdf+xml");
+		intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_INITIAL_DIR, Settings.getStringPref(this, TreebolicIface.PREF_BASE));
+		intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_EXTENSION_FILTER, new String[]{"owl", "rdf"});
+		intent.addCategory(Intent.CATEGORY_OPENABLE);
+		startActivityForResult(intent, MainActivity.REQUEST_FILE_CODE);
+	}
 
 	@Override
 	protected void onActivityResult(final int requestCode, final int resultCode, final Intent returnIntent)
@@ -428,6 +439,11 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 					}
 					Settings.save(this, query, base);
 				}
+
+				updateButton();
+
+				// query
+				// query();
 				break;
 			default:
 				break;
@@ -435,35 +451,29 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 		super.onActivityResult(requestCode, resultCode, returnIntent);
 	}
 
-	/**
-	 * Request source
-	 */
-	private void requestSource()
-	{
-		final Intent intent = new Intent(this, org.treebolic.filechooser.FileChooserActivity.class);
-		intent.setType("application/rdf+xml");
-		intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_INITIAL_DIR, Settings.getStringPref(this, TreebolicIface.PREF_BASE));
-		intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_EXTENSION_FILTER, new String[]{"owl", "rdf"});
-		intent.addCategory(Intent.CATEGORY_OPENABLE);
-		startActivityForResult(intent, MainActivity.REQUEST_FILE_CODE);
-	}
-
 	// H E L P E R
 
 	private void updateButton()
 	{
-		final Button button = (Button) findViewById(R.id.queryButton);
-		button.setVisibility(sourceSet() ? View.VISIBLE : View.INVISIBLE);
+		final ImageButton button = (ImageButton) findViewById(R.id.queryButton);
+		final TextView sourceText = (TextView) findViewById(R.id.querySource);
+		final String source = Settings.getStringPref(this, TreebolicIface.PREF_SOURCE);
+		final boolean qualifies = sourceQualifies(source);
+		button.setVisibility(qualifies ? View.VISIBLE : View.INVISIBLE);
+		sourceText.setVisibility(qualifies ? View.VISIBLE : View.INVISIBLE);
+		if (qualifies)
+		{
+			sourceText.setText(source);
+		}
 	}
 
 	/**
-	 * Whether source is set
+	 * Whether source qualifies
 	 *
-	 * @return true if source is set
+	 * @return true if source qualifies
 	 */
-	private boolean sourceSet()
+	private boolean sourceQualifies(final String source)
 	{
-		final String source = Settings.getStringPref(this, TreebolicIface.PREF_SOURCE);
 		final String base = Settings.getStringPref(this, TreebolicIface.PREF_BASE);
 		if (source != null && !source.isEmpty())
 		{
@@ -475,6 +485,18 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 		return false;
 	}
 
+	// C L I C K
+
+	/**
+	 * Click listener
+	 *
+	 * @param view view
+	 */
+	public void onClick(final View view)
+	{
+		query();
+	}
+
 	// F R A G M E N T
 
 	/**
@@ -482,47 +504,6 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 	 */
 	public static class PlaceholderFragment extends Fragment
 	{
-		/**
-		 * Progress bar
-		 */
-		ProgressBar progressBar;
-
-		/**
-		 * Query button
-		 */
-		private Button queryButton;
-
-		/**
-		 * Constructor
-		 */
-		public PlaceholderFragment()
-		{
-			//
-		}
-
-		@Override
-		public void onActivityCreated(final Bundle savedInstanceState)
-		{
-			super.onActivityCreated(savedInstanceState);
-
-			final FragmentActivity activity = getActivity();
-
-			// get handle to button
-			this.queryButton = (Button) activity.findViewById(R.id.queryButton);
-			this.queryButton.setOnClickListener(new View.OnClickListener()
-			{
-				@SuppressWarnings("synthetic-access")
-				@Override
-				public void onClick(final View v)
-				{
-					final MainActivity mainActivity = (MainActivity) activity;
-					mainActivity.query();
-				}
-			});
-			// get handle to progress bar, and button
-			this.progressBar = (ProgressBar) activity.findViewById(R.id.progressBar);
-		}
-
 		@Override
 		public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 		{

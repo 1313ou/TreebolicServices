@@ -1,4 +1,2 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="org.treebolic.services.iface.aidl"
->
+<manifest package="org.treebolic.services.iface.aidl">
 </manifest>

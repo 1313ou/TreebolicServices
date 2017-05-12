@@ -51,6 +51,23 @@ public class Settings
 	}
 
 	/**
+	 * Put string preference
+	 *
+	 * @param context
+	 *            context
+	 * @param key
+	 *            key
+	 * @param value
+	 *            value
+	 */
+	@SuppressLint({"CommitPrefEdits", "ApplySharedPref"})
+	static public void putStringPref(final Context context, final String key, final String value)
+	{
+		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+		sharedPref.edit().putString(key, value).commit();
+	}
+
+	/**
 	 * Get string preference
 	 *
 	 * @param context

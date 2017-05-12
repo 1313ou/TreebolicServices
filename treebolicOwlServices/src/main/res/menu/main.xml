@@ -8,8 +8,8 @@
 		android:title="@string/title_query"
 		app:showAsAction="never"/>
 	<item
-		android:id="@+id/action_choose"
-		android:title="@string/title_choose"
+		android:id="@+id/action_source"
+		android:title="@string/title_source"
 		app:showAsAction="never"/>
 	<item
 		android:id="@+id/action_download"
@@ -22,10 +22,6 @@
 	<item
 		android:id="@+id/action_finish"
 		android:title="@string/title_finish"
-		app:showAsAction="never"/>
-	<item
-		android:id="@+id/action_kill"
-		android:title="@string/title_kill"
 		app:showAsAction="never"/>
 	<item
 		android:id="@+id/action_settings"

@@ -1,26 +1,30 @@
 package org.treebolic.files.service;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Process;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.treebolic.Models;
@@ -116,6 +120,8 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 		super.onPause();
 	}
 
+	// M E N U
+
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{
@@ -138,18 +144,12 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 				query();
 				return true;
 
-			case R.id.action_choose:
-				final Intent intent = new Intent(this, org.treebolic.filechooser.FileChooserActivity.class);
-				intent.setType("inode/directory");
-				intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_INITIAL_DIR, Storage.getExternalStorage());
-				intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_CHOOSE_DIR, true);
-				intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_EXTENSION_FILTER, new String[]{});
-				intent.addCategory(Intent.CATEGORY_OPENABLE);
-				startActivityForResult(intent, MainActivity.REQUEST_DIR_CODE);
+			case R.id.action_source:
+				requestSource();
 				return true;
 
 			case R.id.action_demo:
-				query(Storage.getExternalStorage() + '/');
+				chooseAndTryStartTreebolic();
 				return true;
 
 			case R.id.action_app_settings:
@@ -164,15 +164,13 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 				finish();
 				return true;
 
-			case R.id.action_kill:
-				Process.killProcess(Process.myPid());
-				return true;
-
 			default:
 				break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
+
+	// I N I T I A L I Z E
 
 	/**
 	 * Initialize
@@ -196,7 +194,21 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 		sharedPref.edit().putBoolean(Settings.PREF_INITIALIZED, true).commit();
 	}
 
-	// S P E C I F I C R E T U R N S
+	// R E Q U E S T (choose source)
+
+	/**
+	 * Request directory source
+	 */
+	private void requestSource()
+	{
+		final Intent intent = new Intent(this, org.treebolic.filechooser.FileChooserActivity.class);
+		intent.setType("inode/directory");
+		intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_INITIAL_DIR, Storage.getExternalStorage());
+		intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_CHOOSE_DIR, true);
+		intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_EXTENSION_FILTER, new String[]{});
+		intent.addCategory(Intent.CATEGORY_OPENABLE);
+		startActivityForResult(intent, MainActivity.REQUEST_DIR_CODE);
+	}
 
 	@Override
 	protected void onActivityResult(final int requestCode, final int resultCode, final Intent returnIntent)
@@ -212,6 +224,11 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 				{
 					case REQUEST_DIR_CODE:
 						Settings.putStringPref(this, TreebolicIface.PREF_SOURCE, fileUri.getPath());
+
+						updateButton();
+
+						// query
+						// query());
 						break;
 					default:
 						break;
@@ -221,7 +238,76 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 		super.onActivityResult(requestCode, resultCode, returnIntent);
 	}
 
-	// C L I E N T O P E R A T I O N
+	/**
+	 * Choose dir to scan
+	 */
+	private void chooseAndTryStartTreebolic()
+	{
+		final Pair<CharSequence[], CharSequence[]> result = Storage.getDirectoriesTypesValues(this);
+		final CharSequence[] types = result.first;
+		final CharSequence[] values = result.second;
+
+		final AlertDialog.Builder alert = new AlertDialog.Builder(this);
+		alert.setTitle(R.string.title_choose);
+		alert.setMessage(R.string.title_choose_directory);
+
+		final RadioGroup input = new RadioGroup(this);
+		for (int i = 0; i < types.length && i < values.length; i++)
+		{
+			final CharSequence type = types[i];
+			final CharSequence value = values[i];
+			final File dir = new File(value.toString());
+			if (dir.exists())
+			{
+				final RadioButton radioButton = new RadioButton(this);
+				radioButton.setText(dir.getAbsolutePath() + ' ' + '[' + type + ']');
+				radioButton.setTag(dir.getAbsolutePath());
+				input.addView(radioButton);
+			}
+		}
+		alert.setView(input);
+		alert.setPositiveButton(R.string.action_ok, new DialogInterface.OnClickListener()
+		{
+			@Override
+			public void onClick(DialogInterface dialog, int whichButton)
+			{
+				dialog.dismiss();
+
+				int childCount = input.getChildCount();
+				for (int i = 0; i < childCount; i++)
+				{
+					final RadioButton radioButton = (RadioButton) input.getChildAt(i);
+					if (radioButton.getId() == input.getCheckedRadioButtonId())
+					{
+						final String sourceFile = radioButton.getTag().toString();
+						final File sourceDir = new File(sourceFile);
+						if (sourceDir.exists() && sourceDir.isDirectory())
+						{
+							query(sourceFile + File.separatorChar);
+						}
+						else
+						{
+							final AlertDialog.Builder alert2 = new AlertDialog.Builder(MainActivity.this);
+							alert2.setTitle(sourceFile) //
+									.setMessage(getString(R.string.status_fail)) //
+									.show();
+						}
+					}
+				}
+			}
+		});
+		alert.setNegativeButton(R.string.action_cancel, new DialogInterface.OnClickListener()
+		{
+			@Override
+			public void onClick(DialogInterface dialog, int whichButton)
+			{
+				// canceled.
+			}
+		});
+		alert.show();
+	}
+
+	// C L I E N T   O P E R A T I O N
 
 	/**
 	 * Start client
@@ -267,6 +353,25 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 		}
 	}
 
+	// C O N N E C T I O N   L I S T E N E R
+
+	@Override
+	public void onConnected(final boolean flag)
+	{
+		// url hook
+		String query = getIntent().getStringExtra(TreebolicIface.ARG_SOURCE);
+		if (query != null)
+		{
+			if (query.startsWith("directory:"))
+			{
+				query = query.substring(8);
+				query(query);
+			}
+		}
+	}
+
+	// Q U E R Y
+
 	/**
 	 * Query request
 	 */
@@ -284,20 +389,6 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 	 */
 	private boolean query(final String source)
 	{
-		return query(source, Settings.getStringPref(this, TreebolicIface.PREF_BASE), Settings.getStringPref(this, TreebolicIface.PREF_IMAGEBASE), Settings.getStringPref(this, TreebolicIface.PREF_SETTINGS));
-	}
-
-	/**
-	 * Query request
-	 *
-	 * @param source    source
-	 * @param base      doc base
-	 * @param imageBase image base
-	 * @param settings  settings
-	 * @return true if query was successfully made
-	 */
-	protected boolean query(final String source, final String base, final String imageBase, final String settings)
-	{
 		if (source == null || source.isEmpty())
 		{
 			Toast.makeText(MainActivity.this, R.string.fail_nullquery, Toast.LENGTH_SHORT).show();
@@ -308,36 +399,19 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 			Toast.makeText(MainActivity.this, R.string.fail_nullclient, Toast.LENGTH_SHORT).show();
 			return false;
 		}
-		@SuppressWarnings("ConstantConditions") final Intent forward = MainActivity.FORWARD ? IntentFactory.makeTreebolicIntentSkeleton(new Intent(this, org.treebolic.files.service.MainActivity.class), base, imageBase, settings) : null;
-		MainActivity.this.client.requestModel(source, base, imageBase, settings, forward);
+		@SuppressWarnings("ConstantConditions") final Intent forward = MainActivity.FORWARD ? IntentFactory.makeTreebolicIntentSkeleton(new Intent(this, org.treebolic.files.service.MainActivity.class), null, null, null) : null;
+		MainActivity.this.client.requestModel(source, null, null, null, forward);
 		return true;
 	}
 
-	// M O D E L L I S T E N E R
-
-	@Override
-	public void onConnected(final boolean flag)
-	{
-		// url hook
-		String query = getIntent().getStringExtra(TreebolicIface.ARG_SOURCE);
-		if (query != null)
-		{
-			if (query.startsWith("directory:"))
-			{
-				query = query.substring(8);
-				query(query);
-			}
-		}
-	}
-
-	// M O D E L L I S T E N E R
+	// M O D E L   L I S T E N E R
 
 	@Override
 	public void onModel(final Model model, final String urlScheme0)
 	{
 		if (model != null)
 		{
-			final Intent intent = MainActivity.makeTreebolicIntent(this, model, null, null);
+			final Intent intent = MainActivity.makeTreebolicIntent(this, model);
 
 			Log.d(MainActivity.TAG, "Starting treebolic");
 			this.startActivity(intent);
@@ -349,11 +423,9 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 	 *
 	 * @param context   content
 	 * @param model     model
-	 * @param base      base
-	 * @param imageBase image base
 	 * @return intent
 	 */
-	static public Intent makeTreebolicIntent(final Context context, final Model model, final String base, final String imageBase)
+	static public Intent makeTreebolicIntent(final Context context, final Model model)
 	{
 		// parent activity to return to
 		final Intent parentIntent = new Intent();
@@ -383,8 +455,8 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 		}
 
 		// other parameters passing
-		intent.putExtra(TreebolicIface.ARG_BASE, base);
-		intent.putExtra(TreebolicIface.ARG_IMAGEBASE, imageBase);
+		intent.putExtra(TreebolicIface.ARG_BASE, (String)null);
+		intent.putExtra(TreebolicIface.ARG_IMAGEBASE, (String)null);
 
 		// parent passing
 		intent.putExtra(TreebolicIface.ARG_PARENTACTIVITY, parentIntent);
@@ -396,25 +468,44 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 
 	private void updateButton()
 	{
-		final Button button = (Button) findViewById(R.id.queryButton);
-		button.setVisibility(sourceSet() ? View.VISIBLE : View.INVISIBLE);
+		final ImageButton button = (ImageButton) findViewById(R.id.queryButton);
+		final TextView sourceText = (TextView) findViewById(R.id.querySource);
+		final String source = Settings.getStringPref(this, TreebolicIface.PREF_SOURCE);
+		final boolean qualifies = sourceQualifies(source);
+		button.setVisibility(qualifies ? View.VISIBLE : View.INVISIBLE);
+		sourceText.setVisibility(qualifies ? View.VISIBLE : View.INVISIBLE);
+		if (qualifies)
+		{
+			sourceText.setText(source);
+		}
 	}
 
 	/**
-	 * Whether source is set
+	 * Whether source qualifies
 	 *
-	 * @return true if source is set
+	 * @return true if source qualifies
 	 */
-	private boolean sourceSet()
+	private boolean sourceQualifies(final String source)
 	{
-		final String source = Settings.getStringPref(this, TreebolicIface.PREF_SOURCE);
 		if (source != null && !source.isEmpty())
 		{
 			final File file = new File(source);
 			Log.d(MainActivity.TAG, "file=" + file);
-			return file.exists();
+			return file.exists() && file.isDirectory();
 		}
 		return false;
+	}
+
+	// C L I C K
+
+	/**
+	 * Click listener
+	 *
+	 * @param view view
+	 */
+	public void onClick(final View view)
+	{
+		query();
 	}
 
 	// F R A G M E N T
@@ -424,40 +515,6 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 	 */
 	public static class PlaceholderFragment extends Fragment
 	{
-		/**
-		 * Query button
-		 */
-		private Button queryButton;
-
-		/**
-		 * Constructor
-		 */
-		public PlaceholderFragment()
-		{
-			//
-		}
-
-		@Override
-		public void onActivityCreated(final Bundle savedInstanceState)
-		{
-			super.onActivityCreated(savedInstanceState);
-
-			final FragmentActivity activity = getActivity();
-
-			// get handle to button
-			this.queryButton = (Button) activity.findViewById(R.id.queryButton);
-			this.queryButton.setOnClickListener(new View.OnClickListener()
-			{
-				@SuppressWarnings("synthetic-access")
-				@Override
-				public void onClick(final View v)
-				{
-					final MainActivity mainActivity = (MainActivity) activity;
-					mainActivity.query();
-				}
-			});
-		}
-
 		@Override
 		public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 		{

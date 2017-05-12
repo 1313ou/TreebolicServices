@@ -3,7 +3,7 @@
     <string name="owl" translatable="false">Owl</string>
 
     <!-- default -->
-    <string name="pref_default_source" translatable="false">test.owl</string>
+    <string name="pref_default_source" translatable="false">pizza.owl</string>
     <string name="pref_default_base" translatable="false">file:///mnt/sdcard/owl/</string>
     <string name="pref_default_imagebase" translatable="false">file:///storage/sdcard/owl/images/</string>
     <string name="pref_default_service" translatable="false">IntentService</string>

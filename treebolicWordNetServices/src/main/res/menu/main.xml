@@ -19,6 +19,14 @@
 		android:title="@string/title_query"
 		app:showAsAction="never"/>
 	<item
+		android:id="@+id/action_source"
+		android:title="@string/title_source"
+		app:showAsAction="never"/>
+	<item
+		android:id="@+id/action_demo"
+		android:title="@string/title_demo"
+		app:showAsAction="never"/>
+	<item
 		android:id="@+id/action_download"
 		android:title="@string/title_download"
 		app:showAsAction="never"/>
@@ -35,18 +43,9 @@
 			android:title="@string/title_cleanup"
 			app:showAsAction="never"/>
 	</group>
-
-	<item
-		android:id="@+id/action_demo"
-		android:title="@string/title_demo"
-		app:showAsAction="never"/>
 	<item
 		android:id="@+id/action_finish"
 		android:title="@string/title_finish"
-		app:showAsAction="never"/>
-	<item
-		android:id="@+id/action_kill"
-		android:title="@string/title_kill"
 		app:showAsAction="never"/>
 	<item
 		android:id="@+id/action_settings"

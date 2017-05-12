@@ -1,41 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Treebolic WordNet Services</string>
-    <string name="wordnet">WordNet</string>
+	<string name="app_name">Treebolic WordNet Services</string>
+	<string name="wordnet">WordNet</string>
 
-    <!-- services -->
-    <string name="service_intent_service">Treebolic WordNet Intent Service</string>
-    <string name="service_aidl_bound_service">Treebolic WordNet AIDL-based Bound Service</string>
-    <string name="service_messenger_bound_service">Treebolic WordNet Messenger Bound Service</string>
+	<!-- services -->
+	<string name="service_intent_service">Treebolic WordNet Intent Service</string>
+	<string name="service_aidl_bound_service">Treebolic WordNet AIDL-based Bound Service</string>
+	<string name="service_messenger_bound_service">Treebolic WordNet Messenger Bound Service</string>
 
-    <!-- service descriptions -->
-    <string name="description_service_intent_service">Produit un modèle Treebolic à partir des données WordNet sous la forme d\'un Intent Service</string>
-    <string name="description_service_aidl_bound_service">Produit un modèle Treebolic à partir des données WordNet sous la forme d\'un AIDL-based Bound Service</string>
-    <string name="description_service_messenger_bound_service">Produit un modèle Treebolic à partir des données WordNet sous la forme d\'un Messenger Bound Service</string>
+	<!-- service descriptions -->
+	<string name="description_service_intent_service">Produit un modèle Treebolic à partir des données WordNet sous la forme d\'un Intent Service</string>
+	<string name="description_service_aidl_bound_service">Produit un modèle Treebolic à partir des données WordNet sous la forme d\'un AIDL-based Bound Service</string>
+	<string name="description_service_messenger_bound_service">Produit un modèle Treebolic à partir des données WordNet sous la forme d\'un Messenger Bound Service</string>
 
-    <!-- title -->
-    <string name="title_search">Recherche</string>
-    <string name="title_query">Query</string>
-    <string name="title_activity_query_file_provider">Obtenir les données à partir de la source WordNet Provider</string>
-    <string name="title_query_file_provider">Obtenir les données à partir de la source</string>
-    <string name="title_download">Téléchargement</string>
-    <string name="title_cleanup">Effacer les données</string>
-    <string name="title_demo">Démo</string>
-    <string name="title_finish">Finir</string>
-    <string name="title_kill">Terminer</string>
-    <string name="title_settings">Paramètres</string>
-    <string name="title_activity_app_settings">Application</string>
+	<!-- title -->
+	<string name="title_search">Recherche</string>
+	<string name="title_query">Requête</string>
+	<string name="title_source">Source</string>
+	<string name="title_activity_query_file_provider">Obtenir les données à partir de la source WordNet Provider</string>
+	<string name="title_query_file_provider">Obtenir les données WordNet à partir de la source</string>
+	<string name="title_download">Téléchargement de WordNet</string>
+	<string name="title_cleanup">Effacer les données WordNet</string>
+	<string name="title_demo">Démo</string>
+	<string name="title_finish">Finir</string>
+	<string name="title_settings">Paramètres</string>
+	<string name="title_activity_app_settings">Application</string>
 	<string name="title_activity_download">Téléchargement</string>
-    <string name="title_status_data_available">État de disponibilité des données</string>
+	<string name="title_status_data_available">État de disponibilité des données</string>
+	<string name="title_choose">Choisir</string>
+	<string name="title_choose_source">Choisir mot source</string>
 
-    <!-- button -->
-    <string name="get_data">Obtenir les données</string>
+	<!-- actions -->
+	<string name="action_ok">OK</string>
+	<string name="action_cancel">Annuler</string>
 
-    <!-- ok/error -->
-    <string name="ok_data">Les données sont disponibles</string>
-    <string name="fail_data">Les données ne sont pas disponibles</string>
-    <string name="fail_nullquery">Requête nulle</string>
-    <string name="fail_nullclient">Client null</string>
+	<!-- button -->
+	<string name="get_data">Obtenir les données</string>
+
+	<!-- ok/error -->
+	<string name="ok_data">Les données sont disponibles</string>
+	<string name="fail_data">Les données ne sont pas disponibles</string>
+	<string name="fail_nullquery">Requête nulle</string>
+	<string name="fail_nullclient">Client null</string>
 
 </resources>

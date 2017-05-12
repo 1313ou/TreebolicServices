@@ -185,8 +185,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 
 			// bind
 			SettingsActivity.bind(findPreference(TreebolicIface.PREF_SOURCE));
-			SettingsActivity.bind(findPreference(TreebolicIface.PREF_BASE));
-			SettingsActivity.bind(findPreference(TreebolicIface.PREF_IMAGEBASE));
 			SettingsActivity.bind(findPreference(Settings.PREF_SERVICE));
 		}
 	}

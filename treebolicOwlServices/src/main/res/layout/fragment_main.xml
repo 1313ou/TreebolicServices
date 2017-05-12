@@ -9,26 +9,11 @@
     tools:context="org.treebolic.owl.service.MainActivity$PlaceholderFragment" >
 
     <ImageView
-	    android:layout_width="match_parent"
+	    android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:contentDescription="@string/owl"
+	    android:layout_centerHorizontal="true"
+	    android:layout_centerVertical="true"
+	    android:contentDescription="@string/owl"
         android:src="@drawable/ic_splash" />
-    
-    <Button
-        android:id="@+id/queryButton"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="25dp"
-        android:background="@drawable/bg_button"
-        android:contentDescription="@string/title_query"
-        android:drawableTop="@drawable/ic_treebolic"
-        android:visibility="invisible" />
-    
+
 </RelativeLayout>
