@@ -4,8 +4,8 @@
 
     <!-- default -->
     <string name="pref_default_source" translatable="false">pizza.owl</string>
-    <string name="pref_default_base" translatable="false">file:///mnt/sdcard/owl/</string>
-    <string name="pref_default_imagebase" translatable="false">file:///storage/sdcard/owl/images/</string>
+    <string name="pref_default_base" translatable="false">file:///storage/extSdCard/Owl/</string>
+    <string name="pref_default_imagebase" translatable="false">file:///storage/extSdCard/Owl/images/</string>
     <string name="pref_default_service" translatable="false">IntentService</string>
 
     <string-array name="pref_services_list_values" translatable="false">
@@ -20,7 +20,7 @@
     <string-array name="pref_download_urls" translatable="false" tools:ignore="InconsistentArrays">
         <item>@string/pref_download_url_default</item>
         <item>http://treebolic.sourceforge.net/data/owl/pizza.owl</item>
-        <item>http://treebolic.sourceforge.net/data/owl/pizza.owl</item>
+        <item>http://treebolic.sourceforge.net/data/owl/collaborativePizza.owl</item>
         <item>http://treebolic.sourceforge.net/data/owl/sumo.owl</item>
         <item>http://treebolic.sourceforge.net/data/owl/koala.owl</item>
     </string-array>
