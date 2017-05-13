@@ -110,6 +110,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 		{
 			// Load the legacy preferences headers
 			addPreferencesFromResource(R.xml.pref_headers_legacy);
+
+			// bind
+			bind(findPreference(TreebolicIface.PREF_SOURCE));
+			bind(findPreference(Settings.PREF_SERVICE));
 		}
 	}
 

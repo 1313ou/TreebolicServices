@@ -90,6 +90,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 
 		// Add 'general' preferences.
 		addPreferencesFromResource(R.xml.pref_general);
+
+		// bind
+		bind(findPreference(TreebolicIface.PREF_SOURCE));
+		bind(findPreference(Settings.PREF_SERVICE));
 	}
 
 	@Override
