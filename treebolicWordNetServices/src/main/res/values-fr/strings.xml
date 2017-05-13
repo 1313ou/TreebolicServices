@@ -20,13 +20,11 @@
 	<string name="title_source">Source</string>
 	<string name="title_activity_query_file_provider">Obtenir les données à partir de la source WordNet Provider</string>
 	<string name="title_query_file_provider">Obtenir les données WordNet à partir de la source</string>
-	<string name="title_download">Téléchargement de WordNet</string>
 	<string name="title_cleanup">Effacer les données WordNet</string>
 	<string name="title_demo">Démo</string>
 	<string name="title_finish">Finir</string>
 	<string name="title_settings">Paramètres</string>
 	<string name="title_activity_app_settings">Application</string>
-	<string name="title_activity_download">Téléchargement</string>
 	<string name="title_status_data_available">État de disponibilité des données</string>
 	<string name="title_choose">Choisir</string>
 	<string name="title_choose_source">Choisir mot source</string>

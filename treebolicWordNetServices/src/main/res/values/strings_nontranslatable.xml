@@ -1,6 +1,14 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="pref_default_source" translatable="false">love</string>
+
+    <!-- download -->
+    <string name="pref_download_url_default" translatable="false">http://wordnetcode.princeton.edu/wn3.1.dict.tar.gz</string>
+    <string-array name="pref_download_urls" translatable="false" tools:ignore="InconsistentArrays">
+        <item>@string/pref_download_url_default</item>
+        <item>http://treebolic.sourceforge.net/data/wordnet/wn3.1.dict.tar.gz</item>
+        <item>http://treebolic.sourceforge.net/data/wordnet/wordnet31.zip</item>
+    </string-array>
 
     <!-- service -->
     <string name="pref_default_service" translatable="false">IntentService</string>

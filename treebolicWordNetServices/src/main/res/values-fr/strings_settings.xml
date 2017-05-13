@@ -28,8 +28,4 @@
         <item>Messenger bound service</item>
     </string-array>
 
-    <!-- download -->
-    <string name="pref_title_download">Adresse de téléchargement</string>
-    <string name="pref_description_download">Adresse (URL) de téléchargement de données supplémentaires</string>
-
 </resources>
