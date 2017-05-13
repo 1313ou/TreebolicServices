@@ -1,31 +1,35 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
-    tools:context="org.treebolic.files.service.MainActivity" >
+      tools:context="org.treebolic.files.service.MainActivity">
 
-    <item
-        android:id="@+id/action_query"
-        app:showAsAction="never"
-        android:title="@string/title_query"/>
-    <item
-        android:id="@+id/action_source"
-        app:showAsAction="never"
-        android:title="@string/title_source"/>
-    <item
-        android:id="@+id/action_demo"
-        app:showAsAction="never"
-        android:title="@string/title_demo"/>
-    <item
-        android:id="@+id/action_finish"
-        app:showAsAction="never"
-        android:title="@string/title_finish"/>
-    <item
-        android:id="@+id/action_settings"
-        app:showAsAction="never"
-        android:title="@string/title_settings"/>
-    <item
-        android:id="@+id/action_app_settings"
-        app:showAsAction="never"
-        android:title="@string/title_activity_app_settings"/>
+	<item
+		android:id="@+id/action_places"
+		android:title="@string/title_places"
+		app:showAsAction="ifRoom"/>
+	<item
+		android:id="@+id/action_run"
+		android:title="@string/title_run"
+		app:showAsAction="never"/>
+	<item
+		android:id="@+id/action_source"
+		android:title="@string/title_source"
+		app:showAsAction="never"/>
+	<item
+		android:id="@+id/action_demo"
+		android:title="@string/title_demo"
+		app:showAsAction="never"/>
+	<item
+		android:id="@+id/action_finish"
+		android:title="@string/title_finish"
+		app:showAsAction="never"/>
+	<item
+		android:id="@+id/action_settings"
+		android:title="@string/title_settings"
+		app:showAsAction="never"/>
+	<item
+		android:id="@+id/action_app_settings"
+		android:title="@string/title_activity_app_settings"
+		app:showAsAction="never"/>
 
 </menu>

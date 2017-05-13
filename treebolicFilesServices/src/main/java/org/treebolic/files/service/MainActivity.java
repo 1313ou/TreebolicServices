@@ -46,7 +46,7 @@ import java.io.File;
 import treebolic.model.Model;
 
 /**
- * Treebolic Files main activity. The activity obtains a model from data and requests Treebolic server to visualize it.
+ * Treebolic Files main activity. The activity obtains a model from source and requests Treebolic server to visualize it.
  *
  * @author Bernard Bou
  */
@@ -140,7 +140,11 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 		final int id = item.getItemId();
 		switch (id)
 		{
-			case R.id.action_query:
+			case R.id.action_places:
+				chooseAndSave();
+				return true;
+
+			case R.id.action_run:
 				query();
 				return true;
 
@@ -178,6 +182,9 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 	@SuppressLint({"CommitPrefEdits", "ApplySharedPref"})
 	private void initialize()
 	{
+		// permissions
+		Permissions.check(this);
+
 		// test if initialized
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 		final boolean initialized = sharedPref.getBoolean(Settings.PREF_INITIALIZED, false);
@@ -235,10 +242,49 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 		super.onActivityResult(requestCode, resultCode, returnIntent);
 	}
 
+	abstract class Runnable1
+	{
+		abstract public void run(final String arg);
+	}
+
 	/**
-	 * Choose dir to scan
+	 * Choose dir and scan
 	 */
 	private void chooseAndTryStartTreebolic()
+	{
+		choosePlace(new Runnable1()
+		{
+			@Override
+			public void run(final String arg)
+			{
+				query(arg + File.separatorChar);
+			}
+		});
+	}
+
+	/**
+	 * Choose dir and save
+	 */
+	private void chooseAndSave()
+	{
+		choosePlace(new Runnable1()
+		{
+			@Override
+			public void run(final String arg)
+			{
+				Settings.putStringPref(MainActivity.this, TreebolicIface.PREF_SOURCE, arg);
+				updateButton();
+			}
+		});
+	}
+
+	/**
+	 * Choose dir to scan
+	 *
+	 * @param runnable1 what to do
+	 */
+
+	private void choosePlace(final Runnable1 runnable1)
 	{
 		final Pair<CharSequence[], CharSequence[]> result = Storage.getDirectoriesTypesValues(this);
 		final CharSequence[] types = result.first;
@@ -280,7 +326,7 @@ public class MainActivity extends AppCompatActivity implements IConnectionListen
 						final File sourceDir = new File(sourceFile);
 						if (sourceDir.exists() && sourceDir.isDirectory())
 						{
-							query(sourceFile + File.separatorChar);
+							runnable1.run(sourceFile + File.separatorChar);
 						}
 						else
 						{

@@ -5,8 +5,9 @@
 	<string name="files">Fichiers</string>
 
 	<!-- title -->
-	<string name="title_query">Lancer</string>
+	<string name="title_run">Lancer</string>
 	<string name="title_source">Source</string>
+	<string name="title_places">Emplacements</string>
 	<string name="title_demo">Démo</string>
 	<string name="title_finish">Finir</string>
 	<string name="title_settings">Paramètres</string>
