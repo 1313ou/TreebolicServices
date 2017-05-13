@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+	<string name="title_download">Téléchargement de WordNet</string>
+	<string name="title_activity_download">Téléchargement</string>
+
+	<!-- pref -->
+	<string name="pref_title_download">Adresse de téléchargement</string>
+	<string name="pref_description_download">Adresse (URL) de téléchargement de données supplémentaires</string>
+
+	<string-array name="pref_download_labels" tools:ignore="InconsistentArrays">
+		<item>Tar Gz WordNet 3.1 (Princeton)</item>
+		<item>Tar Gz WordNet 3.1</item>
+		<item>Zip WordNet 3.1</item>
+	</string-array>
+
+</resources>
