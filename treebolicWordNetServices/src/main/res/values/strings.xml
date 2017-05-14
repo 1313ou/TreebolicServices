@@ -16,7 +16,7 @@
 
 	<!-- title -->
 	<string name="title_search">Search</string>
-	<string name="title_query">Query</string>
+	<string name="title_query">Run</string>
 	<string name="title_source">Source</string>
 	<string name="title_activity_query_file_provider">Read WordNet Provider</string>
 	<string name="title_query_file_provider">Read WordNet provider</string>

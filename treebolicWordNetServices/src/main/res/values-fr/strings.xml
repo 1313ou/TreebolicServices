@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="app_name">Treebolic WordNet Services</string>
+	<string name="app_name">Treebolic Services WordNet</string>
 	<string name="wordnet">WordNet</string>
 
 	<!-- services -->
@@ -16,7 +16,7 @@
 
 	<!-- title -->
 	<string name="title_search">Recherche</string>
-	<string name="title_query">Requête</string>
+	<string name="title_query">Lancer</string>
 	<string name="title_source">Source</string>
 	<string name="title_activity_query_file_provider">Obtenir les données à partir de la source WordNet Provider</string>
 	<string name="title_query_file_provider">Obtenir les données WordNet à partir de la source</string>

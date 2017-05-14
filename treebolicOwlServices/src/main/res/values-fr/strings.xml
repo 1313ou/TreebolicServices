@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Treebolic OWL Services</string>
+    <string name="app_name">Treebolic Services OWL</string>
 
     <!-- services -->
     <string name="service_intent_service">Treebolic OWL Intent Service</string>

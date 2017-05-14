@@ -98,22 +98,24 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 			int id = -1;
 			if (action.equals(SettingsActivity.ACTION_GENERAL))
 			{
-				id = R.xml.pref_general;
+				addPreferencesFromResource(R.xml.pref_general);
+
+				// bind
+				bind(findPreference(TreebolicIface.PREF_SOURCE));
+				bind(findPreference(Settings.PREF_DOWNLOAD));
 			}
 			else if (action.equals(SettingsActivity.ACTION_SERVICE))
 			{
-				id = R.xml.pref_service;
+				addPreferencesFromResource(R.xml.pref_service);
+
+				// bind
+				bind(findPreference(Settings.PREF_SERVICE));
 			}
-			addPreferencesFromResource(id);
 		}
 		else
 		{
 			// Load the legacy preferences headers
 			addPreferencesFromResource(R.xml.pref_headers_legacy);
-
-			// bind
-			bind(findPreference(TreebolicIface.PREF_SOURCE));
-			bind(findPreference(Settings.PREF_SERVICE));
 		}
 	}
 

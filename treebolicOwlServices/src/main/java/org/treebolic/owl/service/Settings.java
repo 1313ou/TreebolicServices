@@ -29,7 +29,7 @@ public class Settings
 	/**
 	 * Demo
 	 */
-	public static final String DEMO = "sumo.owl";
+	public static final String DEMO = "pizza.owl";
 
 	/**
 	 * Initialized preference name
