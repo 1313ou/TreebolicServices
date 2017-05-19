@@ -7,9 +7,9 @@ import treebolic.provider.IProviderContext;
 public class Utils
 {
 	/**
-	 * Make provider locator
+	 * Make provider locatorContext
 	 *
-	 * @return provider locator
+	 * @return provider locatorContext
 	 */
 	public static IProviderContext makeLogProviderContext(final String tag)
 	{
@@ -19,21 +19,21 @@ public class Utils
 			public void message(final String text)
 			{
 				Log.d(tag, "Message:" + text);
-				// Toast.makeText(locator, text, Toast.LENGTH_LONG).show();
+				// Toast.makeText(locatorContext, text, Toast.LENGTH_LONG).show();
 			}
 
 			@Override
 			public void progress(final String text, final boolean fail)
 			{
 				Log.d(tag, "Progress:" + text);
-				// Toast.makeText(locator, text, Toast.LENGTH_LONG).show();
+				// Toast.makeText(locatorContext, text, Toast.LENGTH_LONG).show();
 			}
 
 			@Override
 			public void warn(final String text)
 			{
 				Log.d(tag, "Warn:" + text);
-				// Toast.makeText(locator, text, Toast.LENGTH_LONG).show();
+				// Toast.makeText(locatorContext, text, Toast.LENGTH_LONG).show();
 			}
 		};
 	}

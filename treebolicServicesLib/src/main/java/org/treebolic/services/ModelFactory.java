@@ -1,5 +1,6 @@
 package org.treebolic.services;
 
+import android.content.Context;
 import android.util.Log;
 
 import java.net.MalformedURLException;
@@ -29,31 +30,35 @@ public abstract class ModelFactory implements IModelFactory
 	final IProvider provider;
 
 	/**
-	 * Provider locator
+	 * Provider locatorContext
 	 */
 	final IProviderContext providerContext;
 
 	/**
 	 * Context
 	 */
-	final ILocator locator;
+	final ILocator locatorContext;
+
+	/**
+	 * Context
+	 */
+	final Context applicationContext;
 
 	/**
 	 * Constructor
 	 *
-	 * @param provider0
-	 *            provider
-	 * @param providerContext0
-	 *            provider locator
-	 * @param locator0
-	 *            locator
+	 * @param provider0           provider
+	 * @param providerContext0    provider context
+	 * @param locatorContext0     locator context
+	 * @param applicationContext0 application context
 	 */
-	public ModelFactory(final IProvider provider0, final IProviderContext providerContext0, final ILocator locator0)
+	public ModelFactory(final IProvider provider0, final IProviderContext providerContext0, final ILocator locatorContext0, final Context applicationContext0)
 	{
 		super();
 		this.provider = provider0;
 		this.providerContext = providerContext0;
-		this.locator = locator0;
+		this.locatorContext = locatorContext0;
+		this.applicationContext = applicationContext0;
 	}
 
 	/**
@@ -67,9 +72,9 @@ public abstract class ModelFactory implements IModelFactory
 	}
 
 	/**
-	 * What is returned by provider locator getDataDir()
+	 * What is returned by provider locatorContext getDataDir()
 	 *
-	 * @return true if locator.getFilesDir, false if base
+	 * @return true if locatorContext.getFilesDir, false if base
 	 */
 	protected boolean useFilesDir()
 	{
@@ -80,8 +85,9 @@ public abstract class ModelFactory implements IModelFactory
 	public Model make(final String source, final String base, final String imageBase, final String settings)
 	{
 		// provider
-		this.provider.setup(this.providerContext);
-		this.provider.setup(this.locator);
+		this.provider.setContext(this.providerContext);
+		this.provider.setLocator(this.locatorContext);
+		this.provider.setHandle(this.applicationContext);
 
 		// model
 		final Model model = this.provider.makeModel(source, ModelFactory.makeBaseURL(base), makeParameters(source, base, imageBase, settings));
@@ -92,8 +98,7 @@ public abstract class ModelFactory implements IModelFactory
 	/**
 	 * Make base URL
 	 *
-	 * @param base
-	 *            base
+	 * @param base base
 	 * @return base URL
 	 */
 	private static URL makeBaseURL(final String base)
@@ -112,14 +117,10 @@ public abstract class ModelFactory implements IModelFactory
 	/**
 	 * Make parameters
 	 *
-	 * @param source
-	 *            source
-	 * @param base
-	 *            base
-	 * @param imageBase
-	 *            image base
-	 * @param settings
-	 *            settings
+	 * @param source    source
+	 * @param base      base
+	 * @param imageBase image base
+	 * @param settings  settings
 	 * @return parameters
 	 */
 	private Properties makeParameters(final String source, final String base, final String imageBase, final String settings)

@@ -37,7 +37,7 @@ public class ModelFactory extends org.treebolic.services.ModelFactory
 	{
 		//noinspection ConstantConditions
 		super(ModelFactory.SIMPLE ? new treebolic.provider.wordnet.jwi.simple.Provider() : new treebolic.provider.wordnet.jwi.full.Provider(),
-				Utils.makeLogProviderContext(ModelFactory.TAG), makeLocator(context));
+				Utils.makeLogProviderContext(ModelFactory.TAG), makeLocator(context), null);
 	}
 
 	static private ILocator makeLocator(final Context context)
