@@ -32,7 +32,7 @@ public class ParcelableModel implements Parcelable
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "Model parcelization";
+	static private final String TAG = "ModelParceliz";
 
 	/**
 	 * Whether model is marshaled with standard Java mechanism or android parcelization
@@ -245,13 +245,15 @@ public class ParcelableModel implements Parcelable
 		if (children == null)
 		{
 			parcel.writeInt(-1);
-			return;
 		}
-		final int n = children.size();
-		parcel.writeInt(n);
-		for (int i = 0; i < n; i++)
+		else
 		{
-			ParcelableModel.writeToParcel(parcel, children.get(i));
+			final int n = children.size();
+			parcel.writeInt(n);
+			for (int i = 0; i < n; i++)
+			{
+				ParcelableModel.writeToParcel(parcel, children.get(i));
+			}
 		}
 	}
 
@@ -516,25 +518,27 @@ public class ParcelableModel implements Parcelable
 		parcel.writeFloat(f);
 	}
 
-	// /**
-	// * Write double to parcel
-	// *
-	// * @param parcel
-	// * parcel to write to
-	// * @param d
-	// * double
-	// */
-	// @SuppressWarnings("boxing")
-	// private static void writeToParcel(final Parcel parcel, final Double d)
-	// {
-	// if (d == null)
-	// {
-	// parcel.writeInt(0);
-	// return;
-	// }
-	// parcel.writeInt(1);
-	// parcel.writeDouble(d);
-	// }
+	// @formatter:off
+	/*
+	 * Write double to parcel
+	 *
+	 * @param parcel parcel to write to
+	 * @param d      double
+	 */
+	/*
+	@SuppressWarnings("boxing")
+	private static void writeToParcel(final Parcel parcel, final Double d)
+	{
+		if (d == null)
+		{
+			parcel.writeInt(0);
+			return;
+		}
+		parcel.writeInt(1);
+		parcel.writeDouble(d);
+	}
+	*/
+	// @formatter:on
 
 	/**
 	 * Write float array to parcel
@@ -744,15 +748,20 @@ public class ParcelableModel implements Parcelable
 
 		// child recursion
 		final int n = parcel.readInt();
-		if (n == -1)
+		if (n != -1)
 		{
-			return null;
-		}
-		final List<INode> children = node.getChildren();
-		for (int i = 0; i < n; i++)
-		{
-			final INode child = ParcelableModel.readNode(parcel);
-			children.add(child);
+			final List<INode> children = node.getChildren();
+			for (int i = 0; i < n; i++)
+			{
+				/*final INode child =*/
+				ParcelableModel.readNode(parcel);
+				// added to parent by Constructor
+				// children.add(child);
+			}
+			if (children.size() != n)
+			{
+				throw new IllegalArgumentException("parcelled different child size expected=" + n + " real=" + children.size());
+			}
 		}
 		return node;
 	}

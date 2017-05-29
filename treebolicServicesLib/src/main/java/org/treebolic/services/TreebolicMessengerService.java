@@ -151,6 +151,7 @@ abstract public class TreebolicMessengerService extends Service implements ITree
 					msg.setData(bundle);
 
 					// send message to all clients
+					Log.d(TreebolicMessengerService.TAG, TreebolicMessengerService.this.clients.size() + " clients");
 					for (int i = TreebolicMessengerService.this.clients.size() - 1; i >= 0; i--)
 					{
 						try

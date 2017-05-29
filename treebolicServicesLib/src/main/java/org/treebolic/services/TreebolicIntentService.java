@@ -9,6 +9,7 @@ import android.util.Log;
 import org.treebolic.services.iface.ITreebolicService;
 
 import treebolic.model.Model;
+import treebolic.model.ModelDump;
 
 /**
  * Treebolic service for handling asynchronous task requests in a service on a separate handler thread
@@ -50,6 +51,7 @@ abstract public class TreebolicIntentService extends IntentService implements IT
 				try
 				{
 					final Model model = this.factory.make(source, base, imageBase, settings);
+					Log.d(TAG, "model(service)=" + ModelDump.toString(model));
 
 					// return/ forward
 					if (forward == null)

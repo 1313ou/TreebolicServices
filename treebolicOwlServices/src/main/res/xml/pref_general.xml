@@ -34,7 +34,6 @@
         android:summary="@string/pref_description_imagebase"
         android:title="@string/pref_title_imagebase" />
 
-
     <ListPreference
         android:defaultValue="@string/pref_default_service"
         android:entries="@array/pref_services_list_titles"
