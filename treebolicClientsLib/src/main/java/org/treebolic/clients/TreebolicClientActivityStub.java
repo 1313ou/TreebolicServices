@@ -1,10 +1,10 @@
 package org.treebolic.clients;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.treebolic.AppCompatCommonActivity;
 import org.treebolic.TreebolicIface;
 import org.treebolic.clients.iface.IConnectionListener;
 import org.treebolic.clients.iface.IModelListener;
@@ -15,7 +15,7 @@ import org.treebolic.clients.iface.ITreebolicClient;
  *
  * @author Bernard Bou
  */
-abstract public class TreebolicClientActivityStub extends AppCompatActivity implements IConnectionListener, IModelListener
+abstract public class TreebolicClientActivityStub extends AppCompatCommonActivity implements IConnectionListener, IModelListener
 {
 	/**
 	 * Log tag

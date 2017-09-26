@@ -1,24 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<!-- R A W -->
-
-	<!-- pink -->
-	<item name="orange_color" type="color">#FFEF7C00</item>
-
-	<!-- blue -->
-	<item name="dark_purple_color" type="color">#FF673ab7</item>
-	<item name="purple_color" type="color">#FF7e57c2</item>
-
-	<!-- MAIN -->
-
-	<!-- app branding color for the app bar -->
-	<item name="primary" type="color">@color/purple_color</item>
-
-	<!-- darker variant for the status bar and contextual app bars -->
-	<item name="primary_dark" type="color">@color/dark_purple_color</item>
-
-	<!-- theme UI controls like checkboxes and text fields -->
-	<item name="accent" type="color">@color/orange_color</item>
+	<color name="default_primaryColor">#FF7e57c2</color>
+	<color name="default_primaryDarkColor">#FF673ab7</color>
+	<color name="default_secondaryColor">#FFef7c00</color>
 
 </resources>

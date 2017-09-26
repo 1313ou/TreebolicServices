@@ -28,6 +28,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.treebolic.AppCompatCommonActivity;
 import org.treebolic.ParcelableModel;
 import org.treebolic.TreebolicIface;
 import org.treebolic.clients.iface.IConnectionListener;
@@ -46,7 +47,7 @@ import treebolic.model.Model;
  *
  * @author Bernard Bou
  */
-public class MainActivity extends AppCompatActivity implements IConnectionListener, IModelListener
+public class MainActivity extends AppCompatCommonActivity implements IConnectionListener, IModelListener
 {
 	/**
 	 * Log tag

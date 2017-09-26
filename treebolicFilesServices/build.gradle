@@ -1,11 +1,9 @@
 apply plugin: 'com.android.application'
 
-//noinspection GroovyMissingReturnStatement
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
 
-    //noinspection GroovyMissingReturnStatement
     defaultConfig {
         applicationId "org.treebolic.files.service"
         minSdkVersion 14
@@ -28,6 +26,7 @@ dependencies {
 
     compile files('libs/treebolic-provider-files.jar')
 
+    compile project(':commonLib')
     compile project(':storageLib')
     compile project(':fileChooserLib')
     compile project(':preferenceLib')

@@ -1,6 +1,5 @@
 package org.treebolic.wordnet.service;
 
-import android.support.v7.app.AppCompatActivity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -9,11 +8,14 @@ import android.content.pm.ProviderInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
+
+import org.treebolic.AppCompatCommonActivity;
 
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
@@ -25,7 +27,7 @@ import java.io.IOException;
  *
  * @author Bernard Bou
  */
-public class QueryProviderActivity extends AppCompatActivity
+public class QueryProviderActivity extends AppCompatCommonActivity
 {
 	/**
 	 * Log tag
