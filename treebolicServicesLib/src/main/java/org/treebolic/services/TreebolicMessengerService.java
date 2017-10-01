@@ -86,7 +86,7 @@ abstract public class TreebolicMessengerService extends Service implements ITree
 	/**
 	 * Target we publish for clients to send messages to
 	 */
-	final Messenger messenger;
+	final private Messenger messenger;
 
 	/**
 	 * List of clients

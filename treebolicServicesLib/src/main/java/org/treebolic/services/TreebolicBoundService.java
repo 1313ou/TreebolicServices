@@ -36,7 +36,7 @@ abstract public class TreebolicBoundService extends Service implements ITreeboli
 		/**
 		 * Constructor
 		 */
-		TreebolicServiceBinder(@SuppressWarnings("unused") final TreebolicBoundService service0)
+		TreebolicServiceBinder(@SuppressWarnings({"unused", "UnusedParameters"}) final TreebolicBoundService service0)
 		{
 			//
 		}

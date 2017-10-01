@@ -70,6 +70,7 @@ public class TreebolicIntentClient implements org.treebolic.clients.iface.ITreeb
 	 * @param connectionListener0 connection listener
 	 * @param modelListener0      model listener
 	 */
+	@SuppressWarnings("WeakerAccess")
 	public TreebolicIntentClient(final Context context0, final String service0, final IConnectionListener connectionListener0, final IModelListener modelListener0)
 	{
 		this.context = context0;

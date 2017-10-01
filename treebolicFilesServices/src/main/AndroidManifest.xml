@@ -29,24 +29,24 @@
 			android:name=".SettingsActivity"
 			android:label="@string/title_activity_settings"
 			android:parentActivityName=".MainActivity"
-			tools:ignore="UnusedAttribute">
+			tools:targetApi="jelly_bean">
 		</activity>
 
 		<activity
 			android:name="org.treebolic.filechooser.FileChooserActivity"
-			android:exported="false"
-			tools:ignore="MissingRegistered">
+			android:parentActivityName=".MainActivity"
+			tools:targetApi="jelly_bean">
 		</activity>
 
 		<service
 			android:name=".TreebolicFilesIntentService"
-			android:process="org.treebolic"
 			android:description="@string/description_service_intent_service"
 			android:enabled="true"
 			android:exported="true"
 			android:icon="@drawable/ic_launcher"
 			android:label="@string/service_intent_service"
-			android:permission="android.permission.READ_EXTERNAL_STORAGE">
+			android:permission="android.permission.READ_EXTERNAL_STORAGE"
+			android:process="org.treebolic">
 			<intent-filter>
 				<action android:name="org.treebolic.service.action.MAKE_MODEL">
 				</action>
@@ -55,24 +55,24 @@
 
 		<service
 			android:name=".TreebolicFilesAIDLBoundService"
-			android:process="org.treebolic"
 			android:description="@string/description_service_aidl_bound_service"
 			android:enabled="true"
 			android:exported="true"
 			android:icon="@drawable/ic_launcher"
 			android:label="@string/service_aidl_bound_service"
-			android:permission="android.permission.READ_EXTERNAL_STORAGE">
+			android:permission="android.permission.READ_EXTERNAL_STORAGE"
+			android:process="org.treebolic">
 		</service>
 
 		<service
 			android:name=".TreebolicFilesMessengerService"
-			android:process="org.treebolic"
 			android:description="@string/description_service_messenger_bound_service"
 			android:enabled="true"
 			android:exported="true"
 			android:icon="@drawable/ic_launcher"
 			android:label="@string/service_messenger_bound_service"
-			android:permission="android.permission.READ_EXTERNAL_STORAGE">
+			android:permission="android.permission.READ_EXTERNAL_STORAGE"
+			android:process="org.treebolic">
 		</service>
 
 	</application>

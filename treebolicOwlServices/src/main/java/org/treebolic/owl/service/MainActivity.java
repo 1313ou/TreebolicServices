@@ -216,6 +216,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	/**
 	 * Start client
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected void start()
 	{
 		// client
@@ -244,6 +245,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	/**
 	 * Stop client
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected void stop()
 	{
 		if (this.client != null)
@@ -287,6 +289,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	 *
 	 * @param source source
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	private boolean query(final String source)
 	{
 		return query(source, Settings.getStringPref(this, TreebolicIface.PREF_BASE), Settings.getStringPref(this, TreebolicIface.PREF_IMAGEBASE), Settings.getStringPref(this, TreebolicIface.PREF_SETTINGS));
@@ -301,6 +304,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	 * @param settings  settings
 	 * @return true if query was made
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected boolean query(final String source, final String base, final String imageBase, final String settings)
 	{
 		if (source == null || source.isEmpty())
@@ -367,7 +371,8 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	 * @param imageBase image base
 	 * @return intent
 	 */
-	static public Intent makeTreebolicIntent(final Context context, final Model model, final String base, final String imageBase)
+	@SuppressWarnings("WeakerAccess")
+	static public Intent makeTreebolicIntent(final Context context, final Model model, @SuppressWarnings("SameParameterValue") final String base, @SuppressWarnings("SameParameterValue") final String imageBase)
 	{
 		// parent activity to return to
 		final Intent parentIntent = new Intent();
@@ -501,7 +506,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	 *
 	 * @param view view
 	 */
-	public void onClick(final View view)
+	public void onClick(@SuppressWarnings("UnusedParameters") final View view)
 	{
 		query();
 	}

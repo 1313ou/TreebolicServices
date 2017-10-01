@@ -27,22 +27,26 @@ public abstract class ModelFactory implements IModelFactory
 	/**
 	 * Provider
 	 */
-	final IProvider provider;
+	@SuppressWarnings("WeakerAccess")
+	final protected IProvider provider;
 
 	/**
 	 * Provider locatorContext
 	 */
-	final IProviderContext providerContext;
+	@SuppressWarnings("WeakerAccess")
+	final protected IProviderContext providerContext;
 
 	/**
 	 * Context
 	 */
-	final ILocator locatorContext;
+	@SuppressWarnings("WeakerAccess")
+	final protected ILocator locatorContext;
 
 	/**
 	 * Context
 	 */
-	final Context applicationContext;
+	@SuppressWarnings("WeakerAccess")
+	final protected Context applicationContext;
 
 	/**
 	 * Constructor
@@ -52,7 +56,7 @@ public abstract class ModelFactory implements IModelFactory
 	 * @param locatorContext0     locator context
 	 * @param applicationContext0 application context
 	 */
-	public ModelFactory(final IProvider provider0, final IProviderContext providerContext0, final ILocator locatorContext0, final Context applicationContext0)
+	public ModelFactory(final IProvider provider0, final IProviderContext providerContext0, final ILocator locatorContext0, @SuppressWarnings("SameParameterValue") final Context applicationContext0)
 	{
 		super();
 		this.provider = provider0;

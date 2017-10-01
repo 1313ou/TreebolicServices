@@ -90,6 +90,7 @@ public class TreebolicAIDLBoundClient implements ITreebolicClient
 	 * @param connectionListener0 connectionListener
 	 * @param modelListener0      modelListener
 	 */
+	@SuppressWarnings("WeakerAccess")
 	public TreebolicAIDLBoundClient(final Context context0, final String service0, final IConnectionListener connectionListener0, final IModelListener modelListener0)
 	{
 		this.context = context0;

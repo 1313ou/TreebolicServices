@@ -4,8 +4,6 @@
 	<string name="title_activity_download">Téléchargement</string>
 
 	<!-- pref -->
-	<string name="pref_header_download">Download</string>
-	<string name="pref_summary_header_download">Download URL for data</string>
 	<string name="pref_title_download">Adresse de téléchargement</string>
 	<string name="pref_description_download">Adresse (URL) de téléchargement de données supplémentaires</string>
 

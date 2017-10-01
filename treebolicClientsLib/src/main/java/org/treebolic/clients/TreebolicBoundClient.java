@@ -79,6 +79,7 @@ public class TreebolicBoundClient implements ITreebolicClient
 	 * @param modelListener0
 	 *            model listener
 	 */
+	@SuppressWarnings("WeakerAccess")
 	public TreebolicBoundClient(final Context context0, final String service0, final IConnectionListener connectionListener0,
 			final IModelListener modelListener0)
 	{

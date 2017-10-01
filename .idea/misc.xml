@@ -1,7 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="EntryPointsManager">
-    <entry_points version="2.0" />
+    <entry_points version="2.0">
+      <entry_point TYPE="method" FQNAME="org.treebolic.owl.service.Deployer Deployer(java.io.File parentDir)" />
+      <entry_point TYPE="class" FQNAME="org.treebolic.owl.service.Deployer" />
+      <entry_point TYPE="implicit.constructor" FQNAME="org.treebolic.wordnet.service.DownloadActivity" />
+      <entry_point TYPE="implicit.constructor" FQNAME="org.treebolic.owl.service.DownloadActivity" />
+      <entry_point TYPE="method" FQNAME="org.treebolic.services.IntentFactory android.content.Intent makeTreebolicIntent(treebolic.model.Model model, android.content.Intent parentIntent, java.lang.String base, java.lang.String imageBase, java.lang.String settings)" />
+      <entry_point TYPE="implicit.constructor" FQNAME="org.treebolic.services.IntentFactory" />
+      <entry_point TYPE="method" FQNAME="org.treebolic.wordnet.service.MainActivity void onClick(android.view.View view)" />
+      <entry_point TYPE="implicit.constructor" FQNAME="org.treebolic.wordnet.service.MainActivity" />
+      <entry_point TYPE="method" FQNAME="org.treebolic.owl.service.MainActivity void onClick(android.view.View view)" />
+      <entry_point TYPE="implicit.constructor" FQNAME="org.treebolic.owl.service.MainActivity" />
+      <entry_point TYPE="method" FQNAME="org.treebolic.files.service.MainActivity void onClick(android.view.View view)" />
+      <entry_point TYPE="implicit.constructor" FQNAME="org.treebolic.files.service.MainActivity" />
+      <entry_point TYPE="method" FQNAME="org.treebolic.services.ModelFactory boolean useFilesDir()" />
+      <entry_point TYPE="method" FQNAME="org.treebolic.services.ModelFactory ModelFactory(treebolic.provider.IProvider provider0, treebolic.provider.IProviderContext providerContext0, treebolic.ILocator locatorContext0, android.content.Context applicationContext0)" />
+      <entry_point TYPE="class" FQNAME="org.treebolic.services.ModelFactory" />
+      <entry_point TYPE="method" FQNAME="org.treebolic.Models treebolic.model.Model get(android.os.Bundle bundle)" />
+      <entry_point TYPE="method" FQNAME="org.treebolic.Models void set(treebolic.model.Model model, android.os.Bundle bundle)" />
+      <entry_point TYPE="method" FQNAME="org.treebolic.Models treebolic.model.Model get(android.content.Intent intent)" />
+      <entry_point TYPE="implicit.constructor" FQNAME="org.treebolic.Models" />
+      <entry_point TYPE="method" FQNAME="org.treebolic.ParcelableModel treebolic.model.Model readSerializableModel(android.os.Parcel parcel)" />
+      <entry_point TYPE="method" FQNAME="org.treebolic.ParcelableModel void writeSerializableToParcel(android.os.Parcel parcel, treebolic.model.Model model)" />
+      <entry_point TYPE="field" FQNAME="org.treebolic.ParcelableModel CREATOR" />
+      <entry_point TYPE="implicit.constructor" FQNAME="org.treebolic.ParcelableModel.ImageMarshaling" />
+      <entry_point TYPE="method" FQNAME="org.treebolic.ParcelableModel ParcelableModel()" />
+      <entry_point TYPE="method" FQNAME="org.treebolic.ParcelableModel ParcelableModel(treebolic.model.Model model)" />
+      <entry_point TYPE="method" FQNAME="org.treebolic.ParcelableModel ParcelableModel(android.os.Parcel parcel)" />
+      <entry_point TYPE="class" FQNAME="org.treebolic.ParcelableModel" />
+      <entry_point TYPE="implicit.constructor" FQNAME="org.treebolic.wordnet.service.QueryProviderActivity" />
+      <entry_point TYPE="implicit.constructor" FQNAME="org.treebolic.wordnet.service.SettingsActivity" />
+      <entry_point TYPE="implicit.constructor" FQNAME="org.treebolic.owl.service.SettingsActivity" />
+      <entry_point TYPE="implicit.constructor" FQNAME="org.treebolic.files.service.SettingsActivity" />
+      <entry_point TYPE="method" FQNAME="org.treebolic.services.TreebolicAIDLBoundService TreebolicAIDLBoundService()" />
+      <entry_point TYPE="class" FQNAME="org.treebolic.services.TreebolicAIDLBoundService" />
+      <entry_point TYPE="method" FQNAME="org.treebolic.services.TreebolicBoundService TreebolicBoundService()" />
+      <entry_point TYPE="class" FQNAME="org.treebolic.services.TreebolicBoundService" />
+      <entry_point TYPE="implicit.constructor" FQNAME="org.treebolic.clients.TreebolicClientActivityStub" />
+      <entry_point TYPE="method" FQNAME="org.treebolic.files.service.TreebolicFilesAIDLBoundService TreebolicFilesAIDLBoundService()" />
+      <entry_point TYPE="class" FQNAME="org.treebolic.files.service.TreebolicFilesAIDLBoundService" />
+      <entry_point TYPE="method" FQNAME="org.treebolic.files.service.TreebolicFilesBoundService TreebolicFilesBoundService()" />
+      <entry_point TYPE="class" FQNAME="org.treebolic.files.service.TreebolicFilesBoundService" />
+      <entry_point TYPE="method" FQNAME="org.treebolic.files.service.TreebolicFilesIntentService TreebolicFilesIntentService()" />
+      <entry_point TYPE="class" FQNAME="org.treebolic.files.service.TreebolicFilesIntentService" />
+      <entry_point TYPE="method" FQNAME="org.treebolic.files.service.TreebolicFilesMessengerService TreebolicFilesMessengerService()" />
+      <entry_point TYPE="class" FQNAME="org.treebolic.files.service.TreebolicFilesMessengerService" />
+      <entry_point TYPE="method" FQNAME="org.treebolic.services.TreebolicIntentService TreebolicIntentService(java.lang.String name)" />
+      <entry_point TYPE="class" FQNAME="org.treebolic.services.TreebolicIntentService" />
+      <entry_point TYPE="method" FQNAME="org.treebolic.services.TreebolicMessengerService TreebolicMessengerService()" />
+      <entry_point TYPE="class" FQNAME="org.treebolic.services.TreebolicMessengerService" />
+      <entry_point TYPE="method" FQNAME="org.treebolic.owl.service.TreebolicOwlAIDLBoundService TreebolicOwlAIDLBoundService()" />
+      <entry_point TYPE="class" FQNAME="org.treebolic.owl.service.TreebolicOwlAIDLBoundService" />
+      <entry_point TYPE="method" FQNAME="org.treebolic.owl.service.TreebolicOwlBoundService TreebolicOwlBoundService()" />
+      <entry_point TYPE="class" FQNAME="org.treebolic.owl.service.TreebolicOwlBoundService" />
+      <entry_point TYPE="method" FQNAME="org.treebolic.owl.service.TreebolicOwlIntentService TreebolicOwlIntentService()" />
+      <entry_point TYPE="class" FQNAME="org.treebolic.owl.service.TreebolicOwlIntentService" />
+      <entry_point TYPE="method" FQNAME="org.treebolic.owl.service.TreebolicOwlMessengerService TreebolicOwlMessengerService()" />
+      <entry_point TYPE="class" FQNAME="org.treebolic.owl.service.TreebolicOwlMessengerService" />
+      <entry_point TYPE="method" FQNAME="org.treebolic.wordnet.service.TreebolicWordNetAIDLBoundService TreebolicWordNetAIDLBoundService()" />
+      <entry_point TYPE="class" FQNAME="org.treebolic.wordnet.service.TreebolicWordNetAIDLBoundService" />
+      <entry_point TYPE="method" FQNAME="org.treebolic.wordnet.service.TreebolicWordNetBoundService TreebolicWordNetBoundService()" />
+      <entry_point TYPE="class" FQNAME="org.treebolic.wordnet.service.TreebolicWordNetBoundService" />
+      <entry_point TYPE="method" FQNAME="org.treebolic.wordnet.service.TreebolicWordNetIntentService TreebolicWordNetIntentService()" />
+      <entry_point TYPE="class" FQNAME="org.treebolic.wordnet.service.TreebolicWordNetIntentService" />
+      <entry_point TYPE="method" FQNAME="org.treebolic.wordnet.service.TreebolicWordNetMessengerService TreebolicWordNetMessengerService()" />
+      <entry_point TYPE="class" FQNAME="org.treebolic.wordnet.service.TreebolicWordNetMessengerService" />
+      <entry_point TYPE="method" FQNAME="org.treebolic.owl.service.Deployer java.io.File process(java.io.InputStream fin)" />
+    </entry_points>
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="android.support.annotation.Nullable" />

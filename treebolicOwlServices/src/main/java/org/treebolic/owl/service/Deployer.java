@@ -38,7 +38,7 @@ public class Deployer
 	 *            file input stream
 	 * @return directory
 	 */
-	public File process(final InputStream fin)
+	public File process(@SuppressWarnings("UnusedParameters") final InputStream fin)
 	{
 		return this.dir;
 	}

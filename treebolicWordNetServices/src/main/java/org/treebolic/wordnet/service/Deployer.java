@@ -19,6 +19,7 @@ import java.util.regex.Pattern;
  *
  * @author Bernard Bou
  */
+@SuppressWarnings("WeakerAccess")
 public class Deployer
 {
 	/**
@@ -63,6 +64,7 @@ public class Deployer
 	{
 		for (final File file : this.dir.listFiles())
 		{
+			//noinspection ResultOfMethodCallIgnored
 			file.delete();
 		}
 	}
@@ -75,6 +77,7 @@ public class Deployer
 	 * @return File
 	 * @throws IOException io exception
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	public File process(final InputStream fin, final boolean asTarGz) throws IOException
 	{
 		if (asTarGz)
@@ -94,12 +97,14 @@ public class Deployer
 	 * @param exclude exclude regexp filter
 	 * @throws IOException io exception
 	 */
-	private static File extractTarGz(final InputStream fin, final File destDir, final boolean flat, final String include, final String exclude) throws IOException
+	@SuppressWarnings("ConstantConditions")
+	private static File extractTarGz(final InputStream fin, final File destDir, @SuppressWarnings("SameParameterValue") final boolean flat, @SuppressWarnings("SameParameterValue") final String include, @SuppressWarnings("SameParameterValue") final String exclude) throws IOException
 	{
 		final Pattern includePattern = include == null ? null : Pattern.compile(include);
 		final Pattern excludePattern = exclude == null ? null : Pattern.compile(exclude);
 
 		// prepare destination
+		//noinspection ResultOfMethodCallIgnored
 		destDir.mkdirs();
 
 		// input stream
@@ -137,6 +142,7 @@ public class Deployer
 					// create dir if we don't flatten
 					if (!flat)
 					{
+						//noinspection ResultOfMethodCallIgnored
 						new File(destDir, entryName).mkdirs();
 					}
 				}
@@ -156,6 +162,7 @@ public class Deployer
 					Log.d(Deployer.TAG, "Deploying in " + destFile.getCanonicalPath());
 
 					// create destination
+					//noinspection ResultOfMethodCallIgnored
 					destFile.createNewFile();
 
 					// copy

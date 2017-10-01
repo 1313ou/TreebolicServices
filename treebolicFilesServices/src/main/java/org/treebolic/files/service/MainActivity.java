@@ -287,7 +287,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 
 	private void choosePlace(final Runnable1 runnable1)
 	{
-		final Pair<CharSequence[], CharSequence[]> result = Storage.getDirectoriesTypesValues(this);
+		final Pair<CharSequence[], CharSequence[]> result = Storage.getDirectoriesTypesValues();
 		final CharSequence[] types = result.first;
 		final CharSequence[] values = result.second;
 
@@ -356,6 +356,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	/**
 	 * Start client
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected void start()
 	{
 		// client
@@ -388,6 +389,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	/**
 	 * Stop client
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected void stop()
 	{
 		if (this.client != null)
@@ -431,6 +433,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	 *
 	 * @param source source
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	private boolean query(final String source)
 	{
 		if (source == null || source.isEmpty())
@@ -469,6 +472,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	 * @param model   model
 	 * @return intent
 	 */
+	@SuppressWarnings("WeakerAccess")
 	static public Intent makeTreebolicIntent(final Context context, final Model model)
 	{
 		// parent activity to return to
@@ -547,7 +551,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	 *
 	 * @param view view
 	 */
-	public void onClick(final View view)
+	public void onClick(@SuppressWarnings("UnusedParameters") final View view)
 	{
 		query();
 	}

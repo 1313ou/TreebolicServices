@@ -25,12 +25,8 @@ abstract public class TreebolicClientActivityStub extends AppCompatCommonActivit
 	/**
 	 * Client
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected ITreebolicClient client;
-
-	/**
-	 * Url scheme
-	 */
-	protected String urlScheme;
 
 	// L I F E C Y C L E
 
