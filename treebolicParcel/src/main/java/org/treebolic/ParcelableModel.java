@@ -32,7 +32,7 @@ public class ParcelableModel implements Parcelable
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "ModelParceliz";
+	static private final String TAG = "ModelParcelab";
 
 	/**
 	 * Whether model is marshaled with standard Java mechanism or android parcelization
@@ -160,7 +160,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to write to
 	 * @param model  model
 	 */
-	public static void writeToParcel(final Parcel parcel, final Model model)
+	private static void writeToParcel(final Parcel parcel, final Model model)
 	{
 		if (model == null)
 		{
@@ -403,7 +403,7 @@ public class ParcelableModel implements Parcelable
 	 * @param menuItem menu item
 	 * @param flags    flags
 	 */
-	private static void writeToParcel(final Parcel parcel, final MenuItem menuItem, final int flags)
+	private static void writeToParcel(final Parcel parcel, final MenuItem menuItem, @SuppressWarnings({"SameParameterValue", "UnusedParameters"}) final int flags)
 	{
 		ParcelableModel.writeToParcel(parcel, menuItem.theAction);
 		ParcelableModel.writeToParcel(parcel, menuItem.theLabel);
@@ -627,7 +627,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to read from
 	 * @return model
 	 */
-	public static Model readModel(final Parcel parcel)
+	private static Model readModel(final Parcel parcel)
 	{
 		Log.d(ParcelableModel.TAG, "parcel read size=" + parcel.dataSize() + " pos=" + parcel.dataPosition());
 		final int isNotNull = parcel.readInt();

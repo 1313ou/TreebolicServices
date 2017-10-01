@@ -40,6 +40,7 @@ public class IntentFactory
 	 * @param settings     settings
 	 * @return treebolic model activity intent
 	 */
+	@SuppressWarnings("WeakerAccess")
 	static public Intent makeTreebolicIntentSkeleton(final Intent parentIntent, final String base, final String imageBase, final String settings)
 	{
 		final Intent intent = new Intent();
@@ -80,6 +81,7 @@ public class IntentFactory
 	 * @param model     model to forward
 	 * @param urlScheme url scheme
 	 */
+	@SuppressWarnings("WeakerAccess")
 	static public void putModelArg(final Bundle bundle, final Model model, final String urlScheme)
 	{
 		if (ParcelableModel.SERIALIZE)

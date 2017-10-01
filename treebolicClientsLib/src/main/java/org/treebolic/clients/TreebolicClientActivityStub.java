@@ -72,6 +72,7 @@ abstract public class TreebolicClientActivityStub extends AppCompatCommonActivit
 	/**
 	 * Stop client
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected void stop()
 	{
 		if (this.client != null)
@@ -85,6 +86,7 @@ abstract public class TreebolicClientActivityStub extends AppCompatCommonActivit
 	/**
 	 * Request model
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected void request()
 	{
 		// get query from activity intent

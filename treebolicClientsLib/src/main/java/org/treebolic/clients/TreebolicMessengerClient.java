@@ -117,11 +117,13 @@ public class TreebolicMessengerClient implements ITreebolicClient
 	/**
 	 * Service package
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected final String servicePackage;
 
 	/**
 	 * Service name
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected final String serviceName;
 
 	/**

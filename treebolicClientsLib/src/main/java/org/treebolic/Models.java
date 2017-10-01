@@ -1,5 +1,6 @@
 package org.treebolic;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -10,11 +11,13 @@ import java.util.NoSuchElementException;
 
 import treebolic.model.Model;
 
+@SuppressWarnings("WeakerAccess")
 public class Models
 {
 	/**
 	 * Map of model references
 	 */
+	@SuppressLint("UseSparseArrays")
 	static private final HashMap<Long, WeakReference<Model>> references = new HashMap<>();
 
 	// T O / F R O M I N T E N T

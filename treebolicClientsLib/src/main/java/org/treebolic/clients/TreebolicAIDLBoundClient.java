@@ -38,11 +38,13 @@ public class TreebolicAIDLBoundClient implements ITreebolicClient
 	/**
 	 * Abstract: Service package
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected final String servicePackage;
 
 	/**
 	 * Abstract: Service name
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected final String serviceName;
 
 	/**
