@@ -8,6 +8,7 @@ import java.io.InputStream;
  *
  * @author Bernard Bou
  */
+@SuppressWarnings("WeakerAccess")
 public class Deployer
 {
 	/**
