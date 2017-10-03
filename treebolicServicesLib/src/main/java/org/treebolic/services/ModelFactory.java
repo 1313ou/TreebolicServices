@@ -56,6 +56,7 @@ public abstract class ModelFactory implements IModelFactory
 	 * @param locatorContext0     locator context
 	 * @param applicationContext0 application context
 	 */
+	@SuppressWarnings("WeakerAccess")
 	public ModelFactory(final IProvider provider0, final IProviderContext providerContext0, final ILocator locatorContext0, @SuppressWarnings("SameParameterValue") final Context applicationContext0)
 	{
 		super();
