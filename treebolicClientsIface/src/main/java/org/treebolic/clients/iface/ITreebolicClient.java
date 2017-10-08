@@ -22,16 +22,11 @@ public interface ITreebolicClient
 	/**
 	 * Request model from source
 	 *
-	 * @param source
-	 *            source
-	 * @param base
-	 *            document base
-	 * @param imageBase
-	 *            base image base
-	 * @param settings
-	 *            settings
-	 * @param forward
-	 *            forward intent
+	 * @param source    source
+	 * @param base      document base
+	 * @param imageBase base image base
+	 * @param settings  settings
+	 * @param forward   forward intent
 	 */
 	void requestModel(String source, String base, String imageBase, String settings, Intent forward);
 }

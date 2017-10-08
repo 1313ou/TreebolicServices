@@ -10,8 +10,7 @@ public interface IConnectionListener
 	/**
 	 * Connected callback
 	 *
-	 * @param success
-	 *            whether connection is successful
+	 * @param success whether connection is successful
 	 */
 	void onConnected(@SuppressWarnings({"SameParameterValue", "UnusedParameters"}) boolean success);
 }
