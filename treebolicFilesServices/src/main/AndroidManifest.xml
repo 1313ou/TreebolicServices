@@ -30,12 +30,18 @@
 			android:label="@string/title_activity_settings"
 			android:parentActivityName=".MainActivity"
 			tools:targetApi="jelly_bean">
+			<meta-data
+				android:name="android.support.PARENT_ACTIVITY"
+				android:value=".MainActivity" />
 		</activity>
 
 		<activity
 			android:name="org.treebolic.filechooser.FileChooserActivity"
 			android:parentActivityName=".MainActivity"
 			tools:targetApi="jelly_bean">
+			<meta-data
+				android:name="android.support.PARENT_ACTIVITY"
+				android:value=".MainActivity" />
 		</activity>
 
 		<service

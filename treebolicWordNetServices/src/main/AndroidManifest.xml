@@ -32,6 +32,9 @@
 			android:label="@string/title_activity_settings"
 			android:parentActivityName=".MainActivity"
 			tools:targetApi="jelly_bean">
+			<meta-data
+				android:name="android.support.PARENT_ACTIVITY"
+				android:value=".MainActivity" />
 		</activity>
 
 		<activity
@@ -39,6 +42,9 @@
 			android:label="@string/title_activity_query_file_provider"
 			android:parentActivityName=".MainActivity"
 			tools:targetApi="jelly_bean">
+			<meta-data
+				android:name="android.support.PARENT_ACTIVITY"
+				android:value=".MainActivity" />
 		</activity>
 
 		<activity
@@ -46,6 +52,9 @@
 			android:label="@string/title_activity_download"
 			android:parentActivityName=".MainActivity"
 			tools:targetApi="jelly_bean">
+			<meta-data
+				android:name="android.support.PARENT_ACTIVITY"
+				android:value=".MainActivity" />
 		</activity>
 
 		<service
