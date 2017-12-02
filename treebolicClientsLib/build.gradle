@@ -25,8 +25,8 @@ dependencies {
     compile project(':treebolicIface')
     compile project(':treebolicGlue')
     compile project(':commonLib')
-    provided 'com.android.support:appcompat-v7:27.0.1'
-    provided 'com.android.support:support-v4:27.0.1'
+    provided 'com.android.support:appcompat-v7:27.0.2'
+    provided 'com.android.support:support-v4:27.0.2'
 
     testCompile 'junit:junit:4.12'
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
