@@ -8,8 +8,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		setContentView(R.layout.activity_main);
 
 		// toolbar
-		final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		final Toolbar toolbar = findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 
 		// set up the action bar
@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 
 		// search view
 		final MenuItem menuItem = menu.findItem(R.id.action_search);
-		this.searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
+		this.searchView = (SearchView) menuItem.getActionView();
 		this.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
 		{
 			@SuppressWarnings("synthetic-access")
@@ -529,8 +529,8 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 
 	private void updateButton()
 	{
-		final ImageButton button = (ImageButton) findViewById(R.id.queryButton);
-		final TextView sourceText = (TextView) findViewById(R.id.querySource);
+		final ImageButton button = findViewById(R.id.queryButton);
+		final TextView sourceText = findViewById(R.id.querySource);
 		final String source = Settings.getStringPref(this, TreebolicIface.PREF_SOURCE);
 		final boolean qualifies = sourceQualifies(source);
 		button.setVisibility(qualifies ? View.VISIBLE : View.INVISIBLE);
@@ -571,7 +571,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	public static class PlaceholderFragment extends Fragment
 	{
 		@Override
-		public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+		public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 		{
 			return inflater.inflate(R.layout.fragment_main, container, false);
 		}

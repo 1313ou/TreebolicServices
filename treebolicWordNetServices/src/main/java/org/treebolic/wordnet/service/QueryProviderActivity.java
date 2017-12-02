@@ -71,7 +71,7 @@ public class QueryProviderActivity extends AppCompatCommonActivity
 		this.deployer = new Deployer(getFilesDir());
 
 		// button
-		final Button closeButton = (Button) findViewById(R.id.button);
+		final Button closeButton = findViewById(R.id.button);
 		closeButton.setOnClickListener(new OnClickListener()
 		{
 			@Override
