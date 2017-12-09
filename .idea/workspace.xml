@@ -17,49 +17,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3de95a84-a2d4-4cab-94a9-8d526ba52e5a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/javax_annotation_javax_annotation_api_1_2_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/javax_inject_javax_inject_1_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/junit_junit_4_12_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/org_hamcrest_hamcrest_core_1_3_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/org_hamcrest_hamcrest_integration_1_3_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/org_hamcrest_hamcrest_library_1_3_jar.xml" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/design_25_3_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/espresso_core_2_2_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/espresso_idling_resource_2_2_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/exposed_instrumentation_api_publish_0_5.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/hamcrest_core_1_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/hamcrest_integration_1_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/hamcrest_library_1_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/javawriter_2_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/javax_annotation_api_1_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/javax_inject_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/jsr305_2_0_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/junit_4_12.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/nineoldandroids_2_2_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/recyclerview_v7_25_3_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/rules_0_5.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/runner_0_5.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/support_annotations_25_3_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/support_compat_25_3_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/support_core_ui_25_3_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/support_core_utils_25_3_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/support_fragment_25_3_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/support_media_compat_25_3_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/support_v13_25_3_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/support_v4_25_3_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/support_vector_drawable_25_3_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/transition_25_3_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/treebolic_provider_files.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/treebolic_provider_owl_owlapi_min.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/treebolic_provider_wordnet_jwi_nodata.xml" afterPath="" />
+      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/android_arch_lifecycle_common_1_0_0_jar.xml" afterPath="" />
+      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/android_arch_lifecycle_runtime_1_0_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/com_android_support_animated_vector_drawable_27_0_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/com_android_support_appcompat_v7_27_0_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/com_android_support_design_27_0_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/com_android_support_recyclerview_v7_27_0_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/com_android_support_support_annotations_27_0_1_jar.xml" afterPath="" />
+      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/com_android_support_support_compat_27_0_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/com_android_support_support_core_ui_27_0_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/com_android_support_support_core_utils_27_0_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/com_android_support_support_fragment_27_0_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/com_android_support_support_media_compat_27_0_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/com_android_support_support_v13_27_0_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/com_android_support_support_v4_27_0_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/com_android_support_support_vector_drawable_27_0_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/libraries/com_android_support_transition_27_0_1.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/workspace.xml" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicClientsIface/treebolicClientsIface.iml" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicClientsIface/treebolicClientsIface.iml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicClientsLib/treebolicClientsLib.iml" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicClientsLib/treebolicClientsLib.iml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicFilesServices/treebolicFilesServices.iml" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicFilesServices/treebolicFilesServices.iml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicOwlServices/treebolicOwlServices.iml" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicOwlServices/treebolicOwlServices.iml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicParcel/treebolicParcel.iml" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicParcel/treebolicParcel.iml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicServicesIface/treebolicServicesIface.iml" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicServicesIface/treebolicServicesIface.iml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicServicesLib/treebolicServicesLib.iml" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicServicesLib/treebolicServicesLib.iml" />
+      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicServicesLib/src/main/java/org/treebolic/services/TreebolicIntentService.java" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicServicesLib/src/main/java/org/treebolic/services/TreebolicIntentService.java" />
+      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/build.gradle" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/build.gradle" />
+      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/Settings.java" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/Settings.java" />
       <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/treebolicWordNetServices.iml" afterPath="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/treebolicWordNetServices.iml" />
     </list>
     <ignored path="TreebolicServices.iws" />
@@ -598,6 +575,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf />
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>positionsBuffer</find>
+      <find>f</find>
+      <find>for</find>
+      <find>forc</find>
+      <find>force</find>
+    </findStrings>
+    <dirStrings>
+      <dir>/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/src/main/res</dir>
+      <dir>/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices</dir>
+    </dirStrings>
   </component>
   <component name="GenerateSignedApkSettings">
     <option name="KEY_STORE_PATH" value="$PROJECT_DIR$/../dist/keystore/treebolic" />
@@ -20537,13 +20527,11 @@
         <option value="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicFilesServices/src/main/java/org/treebolic/files/service/ModelFactory.java" />
         <option value="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicOwlServices/src/main/java/org/treebolic/owl/service/ModelFactory.java" />
         <option value="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/ModelFactory.java" />
-        <option value="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicServicesLib/src/main/java/org/treebolic/services/TreebolicIntentService.java" />
         <option value="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicParcel/src/main/java/org/treebolic/ParcelableModel.java" />
         <option value="$PROJECT_DIR$/settings.gradle" />
         <option value="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicOwlServices/src/main/java/org/treebolic/owl/service/MainActivity.java" />
         <option value="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicFilesServices/src/main/java/org/treebolic/files/service/Settings.java" />
         <option value="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicOwlServices/src/main/java/org/treebolic/owl/service/Settings.java" />
-        <option value="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/Settings.java" />
         <option value="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicFilesServices/src/main/java/org/treebolic/files/service/MainActivity.java" />
         <option value="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicServicesLib/src/main/java/org/treebolic/services/ModelFactory.java" />
         <option value="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicClientsLib/src/main/java/org/treebolic/clients/TreebolicAIDLBoundClient.java" />
@@ -20558,10 +20546,12 @@
         <option value="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/src/main/AndroidManifest.xml" />
         <option value="/mnt/data2/devel/android-treebolic-as/TreebolicServices/build.gradle" />
         <option value="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicOwlServices/build.gradle" />
-        <option value="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/build.gradle" />
         <option value="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicFilesServices/build.gradle" />
         <option value="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/QueryProviderActivity.java" />
         <option value="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/MainActivity.java" />
+        <option value="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/build.gradle" />
+        <option value="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicServicesLib/src/main/java/org/treebolic/services/TreebolicIntentService.java" />
+        <option value="/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/Settings.java" />
       </list>
     </option>
   </component>
@@ -20597,8 +20587,80 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Gradle Scripts" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidBuildScriptsGroupNode" />
+              <option name="myItemId" value="treebolicWordNetServices" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TreebolicServices" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="treebolicWordNetServices" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="values" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TreebolicServices" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="treebolicWordNetServices" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="values" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="strings.xml" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidResGroupNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TreebolicServices" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="treebolicWordNetServices" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="service" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TreebolicServices" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="treebolicWordNetServices" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -20639,7 +20701,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="/mnt/data2/devel/android-treebolic-as/dist/releases/treebolicFilesServices-release.apk" />
-    <property name="ExportApk.ApkPath" value="/mnt/data2/devel/android-treebolic-as/dist/releases/service-owl" />
+    <property name="ExportApk.ApkPath" value="/mnt/data2/devel/android-treebolic-as/dist/releases/service-wordnet" />
     <property name="ExportApk.Flavors" value="" />
     <property name="ExportApk.BuildType" value="release" />
     <property name="ExportApk.SignV1" value="true" />
@@ -20679,7 +20741,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Android App.treebolicOwlServices">
+  <component name="RunManager" selected="Android App.treebolicWordNetServices">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -20750,7 +20812,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1512225220144" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1512839163503" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -20798,7 +20860,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1512225220144" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1512839163503" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -20830,6 +20892,27 @@
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
       <method />
     </configuration>
     <configuration default="true" type="JarApplication" factoryName="JAR Application">
@@ -20960,7 +21043,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1512225220144" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1512839163504" />
       </method>
     </configuration>
     <configuration default="false" name="treebolicOwlServices" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
@@ -21009,7 +21092,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1512225220144" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1512839163505" />
       </method>
     </configuration>
     <configuration default="false" name="treebolicWordNetServices" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
@@ -21058,7 +21141,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1512225220145" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1512839163505" />
       </method>
     </configuration>
     <list size="3">
@@ -21390,7 +21473,21 @@
       <option name="project" value="LOCAL" />
       <updated>1512225184954</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="new tools">
+      <created>1512225225708</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1512225225708</updated>
+    </task>
+    <task id="LOCAL-00044" summary="new tools">
+      <created>1512225264888</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1512225264888</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TodoView">
@@ -21405,23 +21502,24 @@
   <component name="ToolWindowManager">
     <frame x="51" y="27" width="1869" height="1173" extended-state="6" />
     <layout>
-      <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924527" sideWeight="0.4980864" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34215686" sideWeight="0.40613025" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924527" sideWeight="0.4980864" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34215686" sideWeight="0.40613025" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2637255" sideWeight="0.54679805" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2617647" sideWeight="0.5511768" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945737" sideWeight="0.49734646" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2637255" sideWeight="0.45320198" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924527" sideWeight="0.4980864" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2627451" sideWeight="0.4488232" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924527" sideWeight="0.4980864" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.51975685" sideWeight="0.50905216" order="14" side_tool="true" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.51975685" sideWeight="0.50905216" order="16" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15708812" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15708812" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32826748" sideWeight="0.4914803" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24986331" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -21431,8 +21529,8 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41033435" sideWeight="0.4909478" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="1.0" sideWeight="0.49807587" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41033435" sideWeight="0.4909478" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="1.0" sideWeight="0.49807587" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31176472" sideWeight="0.47673783" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19296317" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -21440,7 +21538,6 @@
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24330235" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32826748" sideWeight="0.4914803" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -21523,28 +21620,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/src/main/res/layout/toolbar.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="10" column="20" lean-forward="false" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicFilesServices/src/main/res/layout/toolbar.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="7" column="58" lean-forward="false" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="58" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/src/main/res/values/styles-app.xml" />
-    <entry file="file:///mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicFilesServices/src/main/res/values/styles-app.xml" />
     <entry file="file:///mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicOwlServices/src/main/res/values/strings_nontranslatable.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="130">
@@ -21590,23 +21665,23 @@
     </entry>
     <entry file="file:///mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/src/main/res/xml/pref_headers_legacy.xml" />
     <entry file="file:///mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/src/main/res/xml/pref_general.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file:///mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/src/main/res/xml/pref_service.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file:///mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/SettingsActivity.java">
@@ -21655,13 +21730,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="321">
           <caret line="71" column="39" lean-forward="false" selection-start-line="71" selection-start-column="20" selection-end-line="71" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicServicesLib/src/main/java/org/treebolic/services/TreebolicIntentService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="507">
-          <caret line="51" column="17" lean-forward="false" selection-start-line="51" selection-start-column="17" selection-end-line="51" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -21725,13 +21793,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="117">
           <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/Settings.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -21805,16 +21866,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicServicesLib/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13">
-          <caret line="1" column="11" lean-forward="false" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
-    </entry>
     <entry file="file:///mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicClientsLib/src/main/java/org/treebolic/clients/TreebolicClientActivityStub.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="212">
@@ -21823,36 +21874,34 @@
       </provider>
     </entry>
     <entry file="file:///mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicFilesServices/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="572">
           <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-          <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-manifest">
-        <state />
       </provider>
     </entry>
     <entry file="file:///mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1014">
-          <caret line="78" column="75" lean-forward="false" selection-start-line="78" selection-start-column="75" selection-end-line="78" selection-end-column="75" />
-          <folding />
-        </state>
-      </provider>
       <provider editor-type-id="android-manifest">
         <state />
       </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1014">
+          <caret line="78" column="75" lean-forward="false" selection-start-line="78" selection-start-column="75" selection-end-line="78" selection-end-column="75" />
+        </state>
+      </provider>
     </entry>
     <entry file="file:///mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicOwlServices/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="507">
           <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-manifest">
-        <state />
       </provider>
     </entry>
     <entry file="file:///mnt/data2/devel/android-treebolic-as/TreebolicServices/build.gradle">
@@ -21874,13 +21923,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="33" column="46" lean-forward="false" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicFilesServices/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="429">
@@ -21899,6 +21941,75 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="153" column="47" lean-forward="false" selection-start-line="153" selection-start-column="47" selection-end-line="153" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="27" column="42" lean-forward="false" selection-start-line="27" selection-start-column="42" selection-end-line="27" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-treebolic-as/TreebolicLib/treebolicLibModel/src/main/java/treebolic/model/ModelDump.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding>
+            <element signature="e#435#436#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicServicesLib/src/main/java/org/treebolic/services/TreebolicIntentService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="53" column="100" lean-forward="false" selection-start-line="53" selection-start-column="100" selection-end-line="53" selection-end-column="100" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicServicesLib/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13">
+          <caret line="1" column="11" lean-forward="false" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/src/main/res/values-fr/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/src/main/res/values/strings_nontranslatable.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="10" column="19" lean-forward="false" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/Settings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="47" column="58" lean-forward="false" selection-start-line="47" selection-start-column="58" selection-end-line="47" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicWordNetServices/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
