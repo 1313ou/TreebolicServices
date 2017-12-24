@@ -51,7 +51,7 @@ abstract public class TreebolicIntentService extends IntentService implements IT
 				try
 				{
 					final Model model = this.factory.make(source, base, imageBase, settings);
-					Log.d(TAG, "model(service)=" + model != null ? ModelDump.toString(model) : "null");
+					Log.d(TAG, "model(service)=" + (model != null ? ModelDump.toString(model) : "null"));
 
 					// return/ forward
 					if (forward == null)

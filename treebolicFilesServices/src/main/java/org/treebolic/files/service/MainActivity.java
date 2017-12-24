@@ -305,8 +305,10 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 			if (dir.exists())
 			{
 				final RadioButton radioButton = new RadioButton(this);
-				radioButton.setText(dir.getAbsolutePath() + ' ' + '[' + type + ']');
-				radioButton.setTag(dir.getAbsolutePath());
+				final String path = dir.getAbsolutePath();
+				final String str = path + ' ' + '[' + type + ']';
+				radioButton.setText(str);
+				radioButton.setTag(path);
 				input.addView(radioButton);
 			}
 		}
