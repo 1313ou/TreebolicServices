@@ -17,19 +17,20 @@ android {
 }
 
 dependencies {
-    compile project(':treebolicAidl')
-    compile project(':treebolicServicesIface')
-    compile project(':treebolicClientsIface')
-    compile project(':treebolicLibModel')
-    compile project(':treebolicParcel')
-    compile project(':treebolicIface')
-    compile project(':treebolicGlue')
-    compile project(':commonLib')
-    provided 'com.android.support:appcompat-v7:27.0.2'
-    provided 'com.android.support:support-v4:27.0.2'
+    implementation project(':treebolicAidl')
+    implementation project(':treebolicServicesIface')
+    implementation project(':treebolicClientsIface')
+    implementation project(':treebolicLibModel')
+    implementation project(':treebolicIface')
+    implementation project(':treebolicParcel')
 
-    testCompile 'junit:junit:4.12'
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation project(':commonLib')
+
+    compileOnly 'com.android.support:appcompat-v7:27.0.2'
+    compileOnly 'com.android.support:support-v4:27.0.2'
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 }

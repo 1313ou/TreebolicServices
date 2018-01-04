@@ -19,6 +19,6 @@ android {
 }
 
 dependencies {
-    compile project(':treebolicMutable')
-    compile project(':treebolicLibModel')
+    implementation project(':treebolicMutable')
+    implementation project(':treebolicLibModel')
 }
