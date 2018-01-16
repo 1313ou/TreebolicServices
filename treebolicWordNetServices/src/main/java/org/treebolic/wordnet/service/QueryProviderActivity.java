@@ -10,8 +10,6 @@ import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -72,16 +70,12 @@ public class QueryProviderActivity extends AppCompatCommonActivity
 
 		// button
 		final Button closeButton = findViewById(R.id.button);
-		closeButton.setOnClickListener(new OnClickListener()
+		closeButton.setOnClickListener(v ->
 		{
-			@Override
-			public void onClick(final View v)
-			{
-				final Intent requestFileIntent = new Intent();
-				requestFileIntent.setAction(Intent.ACTION_DEFAULT);
-				requestFileIntent.setComponent(new ComponentName(QueryProviderActivity.PROVIDER_PKG, QueryProviderActivity.PROVIDER_ACTIVITY));
-				startActivityForResult(requestFileIntent, QueryProviderActivity.REQUEST_CODE);
-			}
+			final Intent requestFileIntent = new Intent();
+			requestFileIntent.setAction(Intent.ACTION_DEFAULT);
+			requestFileIntent.setComponent(new ComponentName(QueryProviderActivity.PROVIDER_PKG, QueryProviderActivity.PROVIDER_ACTIVITY));
+			startActivityForResult(requestFileIntent, QueryProviderActivity.REQUEST_CODE);
 		});
 	}
 
@@ -101,7 +95,6 @@ public class QueryProviderActivity extends AppCompatCommonActivity
 					FileInputStream fin = null;
 
 					// try to open the file for "read" access using the returned URI. If the file isn't found, write to the error log and return.
-					//noinspection TryWithIdenticalCatches
 					try
 					{
 						// get the content resolver instance for this context, and use it to get a ParcelFileDescriptor for the file.
@@ -135,7 +128,7 @@ public class QueryProviderActivity extends AppCompatCommonActivity
 							{
 								fileDescriptor.close();
 							}
-							catch (final IOException e)
+							catch (final IOException ignored)
 							{
 								//
 							}
@@ -146,7 +139,7 @@ public class QueryProviderActivity extends AppCompatCommonActivity
 							{
 								fin.close();
 							}
-							catch (final IOException e)
+							catch (final IOException ignored)
 							{
 								//
 							}
@@ -190,7 +183,7 @@ public class QueryProviderActivity extends AppCompatCommonActivity
 			 */
 			return context.getPackageManager().getProviderInfo(new ComponentName(QueryProviderActivity.PROVIDER_PKG, QueryProviderActivity.PROVIDER_NAME), 0);
 		}
-		catch (final NameNotFoundException e)
+		catch (final NameNotFoundException ignored)
 		{
 			//
 		}

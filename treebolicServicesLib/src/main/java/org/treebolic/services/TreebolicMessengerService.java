@@ -1,6 +1,7 @@
 package org.treebolic.services;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.util.Log;
 
 import org.treebolic.services.iface.ITreebolicService;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +31,84 @@ abstract public class TreebolicMessengerService extends Service implements ITree
 	 * Log tag
 	 */
 	static private final String TAG = "TMessengerBoundS";
+
+	/**
+	 * Make model task
+	 */
+	static private class MakeTask extends AbstractMakeTask
+	{
+		private final Bundle bundle;
+		private final List<Messenger> clients;
+
+		private MakeTask(final String source, final String base, final String imageBase, final String settings, final String urlScheme, final IModelFactory factory, final Bundle bundle, final List<Messenger> clients)
+		{
+			super(source, base, imageBase, settings, urlScheme, factory);
+			this.bundle = bundle;
+			this.clients = clients;
+		}
+
+		@Override
+		protected void onPostExecute(final Model model)
+		{
+			// reuse bundle
+			this.bundle.clear();
+
+			// pack model into message bundle
+			IntentFactory.putModelResult(this.bundle, model, this.urlScheme);
+
+			// return model to clients as a message
+			final Message msg = Message.obtain(null, ITreebolicService.MSG_RESULT_MODEL, 0, 0);
+			msg.setData(this.bundle);
+
+			// send message to all clients
+			Log.d(TreebolicMessengerService.TAG, this.clients.size() + " clients");
+			for (int i = this.clients.size() - 1; i >= 0; i--)
+			{
+				try
+				{
+					Log.d(TreebolicMessengerService.TAG, "Returning model " + model);
+					this.clients.get(i).send(msg);
+				}
+				catch (final RemoteException ignored)
+				{
+					// The client is dead. Remove it from the list;
+					// we are going through the list from back to front
+					// so this is safe to do inside the loop.
+					this.clients.remove(i);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Make model and forward task
+	 */
+	static private class MakeTaskAndForward extends AbstractMakeTask
+	{
+		private final WeakReference<Context> contextWeakReference;
+		private final Intent forward;
+
+		private MakeTaskAndForward(final String source, final String base, final String imageBase, final String settings, final String urlScheme, final IModelFactory factory, final Context context, final Intent forward)
+		{
+			super(source, base, imageBase, settings, urlScheme, factory);
+			this.contextWeakReference = new WeakReference<>(context);
+			this.forward = forward;
+		}
+		
+		@Override
+		protected void onPostExecute(final Model model)
+		{
+			// do not return to client but forward it to service
+			IntentFactory.putModelArg(this.forward, model, this.urlScheme);
+			this.forward.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			Log.d(TreebolicMessengerService.TAG, "Forwarding model");
+			final Context context = this.contextWeakReference.get();
+			if (context != null)
+			{
+				context.startActivity(this.forward);
+			}
+		}
+	}
 
 	/**
 	 * Abstract: Model factory
@@ -48,36 +128,34 @@ abstract public class TreebolicMessengerService extends Service implements ITree
 		/**
 		 * Constructor
 		 *
-		 * @param service0
-		 *            service
+		 * @param service0 service
 		 */
-		public IncomingHandler(final TreebolicMessengerService service0)
+		private IncomingHandler(final TreebolicMessengerService service0)
 		{
 			super();
 			this.service = service0;
 		}
 
-		@SuppressWarnings("synthetic-access")
 		@Override
 		public void handleMessage(final Message msg)
 		{
 			switch (msg.what)
 			{
-			case ITreebolicService.MSG_REQUEST_MODEL:
-				final Bundle bundle = msg.getData();
-				this.service.makeModel(bundle);
-				break;
+				case ITreebolicService.MSG_REQUEST_MODEL:
+					final Bundle bundle = msg.getData();
+					this.service.makeModel(bundle);
+					break;
 
-			case ITreebolicService.MSG_REGISTER_CLIENT:
-				this.service.clients.add(msg.replyTo);
-				break;
+				case ITreebolicService.MSG_REGISTER_CLIENT:
+					this.service.clients.add(msg.replyTo);
+					break;
 
-			case ITreebolicService.MSG_UNREGISTER_CLIENT:
-				this.service.clients.remove(msg.replyTo);
-				break;
+				case ITreebolicService.MSG_UNREGISTER_CLIENT:
+					this.service.clients.remove(msg.replyTo);
+					break;
 
-			default:
-				super.handleMessage(msg);
+				default:
+					super.handleMessage(msg);
 			}
 		}
 
@@ -113,8 +191,7 @@ abstract public class TreebolicMessengerService extends Service implements ITree
 	/**
 	 * Make model
 	 *
-	 * @param bundle
-	 *            data
+	 * @param bundle data
 	 */
 	private void makeModel(final Bundle bundle)
 	{
@@ -125,84 +202,9 @@ abstract public class TreebolicMessengerService extends Service implements ITree
 		final Intent forward = bundle.getParcelable(ITreebolicService.EXTRA_FORWARD_RESULT_TO);
 
 		// make model
-		new AsyncTask<Void, Void, Model>()
-		{
-			@SuppressWarnings("synthetic-access")
-			@Override
-			protected Model doInBackground(final Void... args)
-			{
-				return TreebolicMessengerService.this.makeModel(source, base, imageBase, settings);
-			}
-
-			@SuppressWarnings("synthetic-access")
-			@Override
-			protected void onPostExecute(final Model model)
-			{
-				if (forward == null)
-				{
-					// reuse bundle
-					bundle.clear();
-
-					// pack model into message bundle
-					IntentFactory.putModelResult(bundle, model, getUrlScheme());
-
-					// return model to clients as a message
-					final Message msg = Message.obtain(null, ITreebolicService.MSG_RESULT_MODEL, 0, 0);
-					msg.setData(bundle);
-
-					// send message to all clients
-					Log.d(TreebolicMessengerService.TAG, TreebolicMessengerService.this.clients.size() + " clients");
-					for (int i = TreebolicMessengerService.this.clients.size() - 1; i >= 0; i--)
-					{
-						try
-						{
-							Log.d(TreebolicMessengerService.TAG, "Returning model " + model);
-							TreebolicMessengerService.this.clients.get(i).send(msg);
-						}
-						catch (final RemoteException e)
-						{
-							// The client is dead. Remove it from the list;
-							// we are going through the list from back to front
-							// so this is safe to do inside the loop.
-							TreebolicMessengerService.this.clients.remove(i);
-						}
-					}
-				}
-				else
-				{
-					// do not return to client but forward it to activity
-					IntentFactory.putModelArg(forward, model, getUrlScheme());
-					forward.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-					Log.d(TreebolicMessengerService.TAG, "Forwarding model");
-					startActivity(forward);
-				}
-			}
-		}.execute();
-	}
-
-	/**
-	 * Make model (guarded)
-	 *
-	 * @param source
-	 *            source
-	 * @param base
-	 *            base
-	 * @param imageBase
-	 *            image base
-	 * @param settings
-	 *            settings
-	 * @return model
-	 */
-	private Model makeModel(final String source, final String base, final String imageBase, final String settings)
-	{
-		try
-		{
-			return this.factory.make(source, base, imageBase, settings);
-		}
-		catch (final Exception e)
-		{
-			Log.e(TreebolicMessengerService.TAG, "Model factory error", e);
-		}
-		return null;
+		final AsyncTask<Void, Void, Model> task = forward == null ? //
+				new MakeTask(source, base, imageBase, settings, getUrlScheme(), this.factory, bundle, this.clients) : //
+				new MakeTaskAndForward(source, base, imageBase, settings, getUrlScheme(), this.factory, this, forward);
+		task.execute();
 	}
 }

@@ -67,7 +67,7 @@ abstract public class TreebolicIntentService extends IntentService implements IT
 					}
 					else
 					{
-						// do not return to client but forward it to activity
+						// do not return to client but forward it to service
 						IntentFactory.putModelArg(forward, model, getUrlScheme());
 						forward.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
 						Log.d(TreebolicIntentService.TAG, "Forwarding model");

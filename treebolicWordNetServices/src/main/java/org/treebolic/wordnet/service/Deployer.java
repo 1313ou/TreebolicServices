@@ -97,7 +97,6 @@ public class Deployer
 	 * @param exclude exclude regexp filter
 	 * @throws IOException io exception
 	 */
-	@SuppressWarnings("ConstantConditions")
 	private static File extractTarGz(final InputStream fin, final File destDir, @SuppressWarnings("SameParameterValue") final boolean flat, @SuppressWarnings("SameParameterValue") final String include, @SuppressWarnings("SameParameterValue") final String exclude) throws IOException
 	{
 		final Pattern includePattern = include == null ? null : Pattern.compile(include);

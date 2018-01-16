@@ -154,7 +154,6 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		this.searchView = (SearchView) menuItem.getActionView();
 		this.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
 		{
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public boolean onQueryTextSubmit(final String query)
 			{
@@ -174,16 +173,11 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		this.dataButton = menu.findItem(R.id.action_status_data);
 		final boolean ok = MainActivity.this.deployer.status();
 		this.dataButton.setIcon(ok ? R.drawable.ic_action_done : R.drawable.ic_action_error);
-		this.dataButton.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener()
+		this.dataButton.setOnMenuItemClickListener(item ->
 		{
-			@SuppressWarnings("synthetic-access")
-			@Override
-			public boolean onMenuItemClick(final MenuItem item)
-			{
-				final boolean ok2 = MainActivity.this.deployer.status();
-				Toast.makeText(MainActivity.this, ok2 ? R.string.ok_data : R.string.fail_data, Toast.LENGTH_SHORT).show();
-				return true;
-			}
+			final boolean ok2 = MainActivity.this.deployer.status();
+			Toast.makeText(MainActivity.this, ok2 ? R.string.ok_data : R.string.fail_data, Toast.LENGTH_SHORT).show();
+			return true;
 		});
 		return true;
 	}
@@ -386,7 +380,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 			Toast.makeText(MainActivity.this, R.string.fail_nullclient, Toast.LENGTH_SHORT).show();
 			return false;
 		}
-		@SuppressWarnings("ConstantConditions") final Intent forward = MainActivity.FORWARD ? IntentFactory.makeTreebolicIntentSkeleton(new Intent(this, org.treebolic.wordnet.service.MainActivity.class), base, imageBase, settings) : null;
+		final Intent forward = MainActivity.FORWARD ? IntentFactory.makeTreebolicIntentSkeleton(new Intent(this, org.treebolic.wordnet.service.MainActivity.class), base, imageBase, settings) : null;
 		MainActivity.this.client.requestModel(query, base, imageBase, settings, forward);
 		return true;
 	}
@@ -405,41 +399,31 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		input.setInputType(InputType.TYPE_CLASS_TEXT);
 		alert.setView(input);
 
-		alert.setPositiveButton(R.string.action_ok, new DialogInterface.OnClickListener()
+		alert.setPositiveButton(R.string.action_ok, (dialog, whichButton) ->
 		{
-			public void onClick(DialogInterface dialog, int whichButton)
-			{
-				String value = input.getText().toString();
-				Settings.putStringPref(MainActivity.this, TreebolicIface.PREF_SOURCE, value);
+			String value = input.getText().toString();
+			Settings.putStringPref(MainActivity.this, TreebolicIface.PREF_SOURCE, value);
 
-				updateButton();
+			updateButton();
 
-				// query
-				// query();
-			}
+			// query
+			// query();
 		});
 
-		alert.setNegativeButton(R.string.action_cancel, new DialogInterface.OnClickListener()
+		alert.setNegativeButton(R.string.action_cancel, (dialog, whichButton) ->
 		{
-			public void onClick(DialogInterface dialog, int whichButton)
-			{
-				// canceled.
-			}
+			// canceled.
 		});
 
 		final AlertDialog dialog = alert.create();
-		input.setOnEditorActionListener(new EditText.OnEditorActionListener()
+		input.setOnEditorActionListener((view, actionId, event) ->
 		{
-			@Override
-			public boolean onEditorAction(final TextView view, final int actionId, final KeyEvent event)
+			if (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)
 			{
-				if (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)
-				{
-					dialog.getButton(DialogInterface.BUTTON_POSITIVE).performClick();
-					return true;
-				}
-				return false;
+				dialog.getButton(DialogInterface.BUTTON_POSITIVE).performClick();
+				return true;
 			}
+			return false;
 		});
 		dialog.show();
 	}
@@ -558,7 +542,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	 *
 	 * @param view view
 	 */
-	public void onClick(@SuppressWarnings("UnusedParameters") final View view)
+	public void onClick(final View view)
 	{
 		query();
 	}

@@ -52,9 +52,9 @@ public abstract class ModelFactory implements IModelFactory
 	 * Constructor
 	 *
 	 * @param provider0           provider
-	 * @param providerContext0    provider context
-	 * @param locatorContext0     locator context
-	 * @param applicationContext0 application context
+	 * @param providerContext0    provider contextWeakReference
+	 * @param locatorContext0     locator contextWeakReference
+	 * @param applicationContext0 application contextWeakReference
 	 */
 	@SuppressWarnings("WeakerAccess")
 	public ModelFactory(final IProvider provider0, final IProviderContext providerContext0, final ILocator locatorContext0, @SuppressWarnings("SameParameterValue") final Context applicationContext0)
@@ -112,7 +112,7 @@ public abstract class ModelFactory implements IModelFactory
 		{
 			return new URL(base != null && !base.endsWith("/") ? base + "/" : base);
 		}
-		catch (final MalformedURLException e)
+		catch (final MalformedURLException ignored)
 		{
 			//
 		}
