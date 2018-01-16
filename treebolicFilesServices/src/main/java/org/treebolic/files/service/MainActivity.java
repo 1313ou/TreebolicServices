@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -71,12 +72,13 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	/**
 	 * Client
 	 */
+	@Nullable
 	private ITreebolicClient client;
 
 	// L I F E C Y C L E
 
 	@Override
-	protected void onCreate(final Bundle savedInstanceState)
+	protected void onCreate(@Nullable final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 
@@ -133,7 +135,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(final MenuItem item)
+	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
 	{
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
@@ -216,7 +218,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	}
 
 	@Override
-	protected void onActivityResult(final int requestCode, final int resultCode, final Intent returnIntent)
+	protected void onActivityResult(final int requestCode, final int resultCode, @NonNull final Intent returnIntent)
 	{
 		// handle selection of target by other activity which returns selected target
 		if (resultCode == AppCompatActivity.RESULT_OK)
@@ -285,7 +287,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	 * @param runnable1 what to do
 	 */
 
-	private void choosePlace(final Runnable1 runnable1)
+	private void choosePlace(@NonNull final Runnable1 runnable1)
 	{
 		final Pair<CharSequence[], CharSequence[]> result = Storage.getDirectoriesTypesValues();
 		final CharSequence[] types = result.first;
@@ -428,7 +430,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	 * @param source source
 	 */
 	@SuppressWarnings("UnusedReturnValue")
-	private boolean query(final String source)
+	private boolean query(@Nullable final String source)
 	{
 		if (source == null || source.isEmpty())
 		{
@@ -448,7 +450,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	// M O D E L   L I S T E N E R
 
 	@Override
-	public void onModel(final Model model, final String urlScheme0)
+	public void onModel(@Nullable final Model model, final String urlScheme0)
 	{
 		if (model != null)
 		{
@@ -466,8 +468,9 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	 * @param model   model
 	 * @return intent
 	 */
+	@NonNull
 	@SuppressWarnings("WeakerAccess")
-	static public Intent makeTreebolicIntent(final Context context, final Model model)
+	static public Intent makeTreebolicIntent(@NonNull final Context context, final Model model)
 	{
 		// parent activity to return to
 		final Intent parentIntent = new Intent();
@@ -527,7 +530,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	 *
 	 * @return true if source qualifies
 	 */
-	private boolean sourceQualifies(final String source)
+	private boolean sourceQualifies(@Nullable final String source)
 	{
 		if (source != null && !source.isEmpty())
 		{

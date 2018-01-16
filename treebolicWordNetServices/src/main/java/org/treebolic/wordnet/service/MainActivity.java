@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	/**
 	 * Client
 	 */
+	@Nullable
 	private ITreebolicClient client;
 
 	/**
@@ -87,7 +89,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	// L I F E C Y C L E
 
 	@Override
-	protected void onCreate(final Bundle savedInstanceState)
+	protected void onCreate(@Nullable final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 
@@ -144,7 +146,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	// M E N U
 
 	@Override
-	public boolean onCreateOptionsMenu(final Menu menu)
+	public boolean onCreateOptionsMenu(@NonNull final Menu menu)
 	{
 		// inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
@@ -183,7 +185,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(final MenuItem item)
+	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
 	{
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
@@ -236,7 +238,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	}
 
 	@Override
-	public boolean onPrepareOptionsMenu(final Menu menu)
+	public boolean onPrepareOptionsMenu(@NonNull final Menu menu)
 	{
 		final boolean providerAvailable = QueryProviderActivity.isProviderAvailable(this);
 		menu.setGroupEnabled(R.id.provider_available, providerAvailable);
@@ -297,6 +299,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		}
 
 		// connect
+		assert this.client != null;
 		this.client.connect();
 	}
 
@@ -368,7 +371,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	 * @return true if query was made
 	 */
 	@SuppressWarnings("WeakerAccess")
-	protected boolean query(final String query, final String base, final String imageBase, final String settings)
+	protected boolean query(@Nullable final String query, final String base, final String imageBase, final String settings)
 	{
 		if (query == null || query.isEmpty())
 		{
@@ -431,7 +434,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	// M O D E L   L I S T E N E R
 
 	@Override
-	public void onModel(final Model model, final String urlScheme0)
+	public void onModel(@Nullable final Model model, final String urlScheme0)
 	{
 		if (model != null)
 		{
@@ -450,7 +453,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	}
 
 	@Override
-	protected void onActivityResult(final int requestCode, final int resultCode, final Intent returnIntent)
+	protected void onActivityResult(final int requestCode, final int resultCode, @NonNull final Intent returnIntent)
 	{
 		// handle selection of target by other activity which returns selected target
 		if (resultCode == AppCompatActivity.RESULT_OK)
@@ -481,8 +484,9 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	 * @param imageBase image base
 	 * @return intent
 	 */
+	@NonNull
 	@SuppressWarnings("WeakerAccess")
-	static public Intent makeTreebolicIntent(final Context context, final Model model, @SuppressWarnings("SameParameterValue") final String base, @SuppressWarnings("SameParameterValue") final String imageBase)
+	static public Intent makeTreebolicIntent(@NonNull final Context context, final Model model, @SuppressWarnings("SameParameterValue") final String base, @SuppressWarnings("SameParameterValue") final String imageBase)
 	{
 		// parent activity to return to
 		final Intent parentIntent = new Intent();
@@ -530,7 +534,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	 *
 	 * @return true if source qualifies
 	 */
-	private boolean sourceQualifies(final String source)
+	private boolean sourceQualifies(@Nullable final String source)
 	{
 		return source != null && !source.isEmpty();
 	}

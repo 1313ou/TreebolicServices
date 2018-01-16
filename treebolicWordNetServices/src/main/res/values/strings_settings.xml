@@ -1,29 +1,29 @@
 <resources>
 
-    <string name="title_activity_settings">Settings</string>
+	<string name="title_activity_settings">Settings</string>
 
-    <!-- General settings -->
-    <string name="pref_header_general">General</string>
+	<!-- General settings -->
+	<string name="pref_header_general">General</string>
 
 	<!-- source -->
-    <string name="pref_title_source">Source</string>
-    <string name="pref_description_source">Source word</string>
+	<string name="pref_title_source">Source</string>
+	<string name="pref_description_source">Source word</string>
 
-    <!-- forwarding -->
-    <string name="pref_title_forwarding">Forwarding</string>
+	<!-- forwarding -->
+	<string name="pref_title_forwarding">Forwarding</string>
 
-    <!-- service settings -->
-    <string name="pref_header_service">Service</string>
+	<!-- service settings -->
+	<string name="pref_header_service">Service</string>
 
 	<!-- service -->
-    <string name="pref_title_service">Service</string>
-    <string name="pref_description_services">WordNet Service type</string>
+	<string name="pref_title_service">Service</string>
+	<string name="pref_description_services">WordNet Service type</string>
 
-    <string-array name="pref_services_list_titles">
-        <item>Intent service</item>
-        <item>Bound service</item>
-        <item>AIDL Bound service</item>
-        <item>Messenger bound service</item>
-    </string-array>
+	<string-array name="pref_services_list_titles">
+		<item>Intent service</item>
+		<item>Bound service</item>
+		<item>AIDL Bound service</item>
+		<item>Messenger bound service</item>
+	</string-array>
 
 </resources>

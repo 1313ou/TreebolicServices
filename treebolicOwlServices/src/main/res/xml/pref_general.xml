@@ -1,60 +1,60 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" >
+                  xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <EditTextPreference
-        android:capitalize="none"
-        android:defaultValue="@string/pref_default_source"
-        android:inputType="text"
-        android:key="pref_source"
-        android:maxLines="1"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:summary="@string/pref_description_source"
-        android:title="@string/pref_title_source" />
+	<EditTextPreference
+		android:capitalize="none"
+		android:defaultValue="@string/pref_default_source"
+		android:inputType="text"
+		android:key="pref_source"
+		android:maxLines="1"
+		android:selectAllOnFocus="true"
+		android:singleLine="true"
+		android:summary="@string/pref_description_source"
+		android:title="@string/pref_title_source"/>
 
-    <EditTextPreference
-        android:capitalize="none"
-        android:defaultValue="@string/pref_default_base"
-        android:inputType="textUri"
-        android:key="pref_base"
-        android:maxLines="1"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:summary="@string/pref_description_base"
-        android:title="@string/pref_title_base" />
+	<EditTextPreference
+		android:capitalize="none"
+		android:defaultValue="@string/pref_default_base"
+		android:inputType="textUri"
+		android:key="pref_base"
+		android:maxLines="1"
+		android:selectAllOnFocus="true"
+		android:singleLine="true"
+		android:summary="@string/pref_description_base"
+		android:title="@string/pref_title_base"/>
 
-    <EditTextPreference
-        android:capitalize="none"
-        android:defaultValue="@string/pref_default_imagebase"
-        android:inputType="textUri"
-        android:key="pref_imagebase"
-        android:maxLines="1"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:summary="@string/pref_description_imagebase"
-        android:title="@string/pref_title_imagebase" />
+	<EditTextPreference
+		android:capitalize="none"
+		android:defaultValue="@string/pref_default_imagebase"
+		android:inputType="textUri"
+		android:key="pref_imagebase"
+		android:maxLines="1"
+		android:selectAllOnFocus="true"
+		android:singleLine="true"
+		android:summary="@string/pref_description_imagebase"
+		android:title="@string/pref_title_imagebase"/>
 
-    <ListPreference
-        android:defaultValue="@string/pref_default_service"
-        android:entries="@array/pref_services_list_titles"
-        android:entryValues="@array/pref_services_list_values"
-        android:key="pref_service"
-        android:negativeButtonText="@null"
-        android:positiveButtonText="@null"
-        android:summary="@string/pref_description_services"
-        android:title="@string/pref_title_service" />
+	<ListPreference
+		android:defaultValue="@string/pref_default_service"
+		android:entries="@array/pref_services_list_titles"
+		android:entryValues="@array/pref_services_list_values"
+		android:key="pref_service"
+		android:negativeButtonText="@null"
+		android:positiveButtonText="@null"
+		android:summary="@string/pref_description_services"
+		android:title="@string/pref_title_service"/>
 
-    <org.treebolic.preference.OpenEditTextPreference
-        android:defaultValue="@string/pref_download_url_default"
-        android:key="pref_download"
-        android:summary="@string/pref_description_download"
-        android:title="@string/pref_title_download"
-        app:labels="@array/pref_download_labels"
-        app:values="@array/pref_download_urls"/>
+	<org.treebolic.preference.OpenEditTextPreference
+		android:defaultValue="@string/pref_download_url_default"
+		android:key="pref_download"
+		android:summary="@string/pref_description_download"
+		android:title="@string/pref_title_download"
+		app:labels="@array/pref_download_labels"
+		app:values="@array/pref_download_urls"/>
 
-    <CheckBoxPreference
-        android:defaultValue="true"
-        android:key="pref_forward"
-        android:title="@string/pref_title_forwarding" />
+	<CheckBoxPreference
+		android:defaultValue="true"
+		android:key="pref_forward"
+		android:title="@string/pref_title_forwarding"/>
 
 </PreferenceScreen>

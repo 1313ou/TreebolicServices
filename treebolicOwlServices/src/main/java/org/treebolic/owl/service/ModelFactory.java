@@ -1,6 +1,7 @@
 package org.treebolic.owl.service;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import org.treebolic.services.Utils;
 
@@ -25,15 +26,14 @@ public class ModelFactory extends org.treebolic.services.ModelFactory
 	/**
 	 * Constructor
 	 *
-	 * @param context
-	 *            context
+	 * @param context context
 	 */
-	public ModelFactory(final Context context)
+	public ModelFactory(@NonNull final Context context)
 	{
 		super(new Provider(), Utils.makeLogProviderContext(ModelFactory.TAG), makeLocator(context), null);
 	}
 
-	static private ILocator makeLocator(final Context context)
+	static private ILocator makeLocator(@NonNull final Context context)
 	{
 		try
 		{
@@ -61,9 +61,10 @@ public class ModelFactory extends org.treebolic.services.ModelFactory
 		return null;
 	}
 
+	@NonNull
 	@Override
 	protected String[] getSourceAliases()
 	{
-		return new String[] { "owl" };
+		return new String[]{"owl"};
 	}
 }

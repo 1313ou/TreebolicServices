@@ -1,5 +1,7 @@
 package org.treebolic.owl.service;
 
+import android.support.annotation.NonNull;
+
 import java.io.File;
 import java.io.InputStream;
 
@@ -19,13 +21,13 @@ public class Deployer
 	/**
 	 * Parent directory
 	 */
+	@NonNull
 	private final File dir;
 
 	/**
 	 * Constructor
 	 *
-	 * @param parentDir
-	 *            parent directory
+	 * @param parentDir parent directory
 	 */
 	public Deployer(final File parentDir)
 	{
@@ -35,10 +37,10 @@ public class Deployer
 	/**
 	 * Process download stream (such as expanding download zipped stream, copy file, etc)
 	 *
-	 * @param fin
-	 *            file input stream
+	 * @param fin file input stream
 	 * @return directory
 	 */
+	@NonNull
 	public File process(final InputStream fin)
 	{
 		return this.dir;

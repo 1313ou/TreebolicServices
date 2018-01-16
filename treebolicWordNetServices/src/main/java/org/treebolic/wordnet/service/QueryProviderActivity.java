@@ -8,6 +8,7 @@ import android.content.pm.ProviderInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Button;
@@ -80,7 +81,7 @@ public class QueryProviderActivity extends AppCompatCommonActivity
 	}
 
 	@Override
-	protected void onActivityResult(final int requestCode, final int resultCode, final Intent returnIntent)
+	protected void onActivityResult(final int requestCode, final int resultCode, @NonNull final Intent returnIntent)
 	{
 		if (requestCode == QueryProviderActivity.REQUEST_CODE)
 		{
@@ -110,12 +111,12 @@ public class QueryProviderActivity extends AppCompatCommonActivity
 							Toast.makeText(this, R.string.ok_data, Toast.LENGTH_SHORT).show();
 						}
 					}
-					catch (final FileNotFoundException e)
+					catch (@NonNull final FileNotFoundException e)
 					{
 						Log.e(QueryProviderActivity.TAG, "provider data " + returnUri, e);
 						Toast.makeText(this, R.string.fail_data, Toast.LENGTH_SHORT).show();
 					}
-					catch (final IOException e)
+					catch (@NonNull final IOException e)
 					{
 						Log.e(QueryProviderActivity.TAG, "provider data " + returnUri, e);
 						Toast.makeText(this, R.string.fail_data, Toast.LENGTH_SHORT).show();
@@ -128,7 +129,7 @@ public class QueryProviderActivity extends AppCompatCommonActivity
 							{
 								fileDescriptor.close();
 							}
-							catch (final IOException ignored)
+							catch (@NonNull final IOException ignored)
 							{
 								//
 							}
@@ -139,7 +140,7 @@ public class QueryProviderActivity extends AppCompatCommonActivity
 							{
 								fin.close();
 							}
-							catch (final IOException ignored)
+							catch (@NonNull final IOException ignored)
 							{
 								//
 							}
@@ -160,7 +161,7 @@ public class QueryProviderActivity extends AppCompatCommonActivity
 	 * @param context context
 	 * @return true if provider is available
 	 */
-	static public boolean isProviderAvailable(final Context context)
+	static public boolean isProviderAvailable(@NonNull final Context context)
 	{
 		return QueryProviderActivity.getProvider(context) != null;
 	}
@@ -172,7 +173,7 @@ public class QueryProviderActivity extends AppCompatCommonActivity
 	 * @return provider info
 	 */
 	@SuppressWarnings("WeakerAccess")
-	static public ProviderInfo getProvider(final Context context)
+	static public ProviderInfo getProvider(@NonNull final Context context)
 	{
 		try
 		{
@@ -183,7 +184,7 @@ public class QueryProviderActivity extends AppCompatCommonActivity
 			 */
 			return context.getPackageManager().getProviderInfo(new ComponentName(QueryProviderActivity.PROVIDER_PKG, QueryProviderActivity.PROVIDER_NAME), 0);
 		}
-		catch (final NameNotFoundException ignored)
+		catch (@NonNull final NameNotFoundException ignored)
 		{
 			//
 		}

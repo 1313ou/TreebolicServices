@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Treebolic Services OWL</string>
+	<string name="app_name">Treebolic Services OWL</string>
 
-    <!-- services -->
-    <string name="service_intent_service">Treebolic OWL Intent Service</string>
-    <string name="service_aidl_bound_service">Treebolic OWL AIDL-based Bound Service</string>
-    <string name="service_messenger_bound_service">Treebolic OWL Messenger Bound Service</string>
+	<!-- services -->
+	<string name="service_intent_service">Treebolic OWL Intent Service</string>
+	<string name="service_aidl_bound_service">Treebolic OWL AIDL-based Bound Service</string>
+	<string name="service_messenger_bound_service">Treebolic OWL Messenger Bound Service</string>
 
-    <!-- service descriptions -->
-    <string name="description_service_intent_service">Produit un modèle Treebolic à partir de  données OWL (Intent Service)</string>
-    <string name="description_service_aidl_bound_service">Produit un modèle Treebolic à partir de données OWL (AIDL-based Bound Service)</string>
-    <string name="description_service_messenger_bound_service">Produit un modèle Treebolic à partir de données OWL (Messenger Bound Service)</string>
+	<!-- service descriptions -->
+	<string name="description_service_intent_service">Produit un modèle Treebolic à partir de  données OWL (Intent Service)</string>
+	<string name="description_service_aidl_bound_service">Produit un modèle Treebolic à partir de données OWL (AIDL-based Bound Service)</string>
+	<string name="description_service_messenger_bound_service">Produit un modèle Treebolic à partir de données OWL (Messenger Bound Service)</string>
 
-    <!-- title -->
-    <string name="title_settings">Paramètres</string>
-    <string name="title_activity_app_settings">Application</string>
-    <string name="title_query">Lancer</string>
-    <string name="title_source">Source</string>
-    <string name="title_demo">Démo</string>
-    <string name="title_finish">Finir</string>
+	<!-- title -->
+	<string name="title_settings">Paramètres</string>
+	<string name="title_activity_app_settings">Application</string>
+	<string name="title_query">Lancer</string>
+	<string name="title_source">Source</string>
+	<string name="title_demo">Démo</string>
+	<string name="title_finish">Finir</string>
 
-    <!-- ok/errors -->
-    <string name="fail_nullquery">Requête nulle</string>
-    <string name="fail_nullclient">Client nul</string>
+	<!-- ok/errors -->
+	<string name="fail_nullquery">Requête nulle</string>
+	<string name="fail_nullclient">Client nul</string>
 
 </resources>

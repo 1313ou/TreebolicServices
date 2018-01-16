@@ -1,5 +1,6 @@
 package org.treebolic.wordnet.service;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.treebolic.services.TreebolicIntentService;
@@ -30,12 +31,13 @@ public class TreebolicWordNetIntentService extends TreebolicIntentService
 		{
 			this.factory = new ModelFactory(this);
 		}
-		catch (final Exception e)
+		catch (@NonNull final Exception e)
 		{
 			Log.e(TreebolicWordNetIntentService.TAG, "Model factory constructor failed", e);
 		}
 	}
 
+	@NonNull
 	@Override
 	public String getUrlScheme()
 	{

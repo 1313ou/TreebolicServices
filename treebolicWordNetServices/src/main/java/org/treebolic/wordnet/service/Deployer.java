@@ -1,5 +1,7 @@
 package org.treebolic.wordnet.service;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
@@ -35,6 +37,7 @@ public class Deployer
 	/**
 	 * Dir to write data to
 	 */
+	@NonNull
 	private final File dir;
 
 	/**
@@ -78,7 +81,7 @@ public class Deployer
 	 * @throws IOException io exception
 	 */
 	@SuppressWarnings("UnusedReturnValue")
-	public File process(final InputStream fin, final boolean asTarGz) throws IOException
+	public File process(@NonNull final InputStream fin, final boolean asTarGz) throws IOException
 	{
 		if (asTarGz)
 		{
@@ -97,7 +100,8 @@ public class Deployer
 	 * @param exclude exclude regexp filter
 	 * @throws IOException io exception
 	 */
-	private static File extractTarGz(final InputStream fin, final File destDir, @SuppressWarnings("SameParameterValue") final boolean flat, @SuppressWarnings("SameParameterValue") final String include, @SuppressWarnings("SameParameterValue") final String exclude) throws IOException
+	@NonNull
+	private static File extractTarGz(@NonNull final InputStream fin, @NonNull final File destDir, @SuppressWarnings("SameParameterValue") final boolean flat, @Nullable @SuppressWarnings("SameParameterValue") final String include, @Nullable @SuppressWarnings("SameParameterValue") final String exclude) throws IOException
 	{
 		final Pattern includePattern = include == null ? null : Pattern.compile(include);
 		final Pattern excludePattern = exclude == null ? null : Pattern.compile(exclude);

@@ -1,6 +1,8 @@
 package org.treebolic.services;
 
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import treebolic.model.Model;
@@ -32,6 +34,7 @@ abstract class AbstractMakeTask extends AsyncTask<Void, Void, Model>
 		this.urlScheme = urlScheme;
 	}
 
+	@Nullable
 	@Override
 	protected Model doInBackground(final Void... args)
 	{
@@ -39,7 +42,7 @@ abstract class AbstractMakeTask extends AsyncTask<Void, Void, Model>
 		{
 			return this.factory.make(this.source, this.base, this.imageBase, this.settings);
 		}
-		catch (final Exception e)
+		catch (@NonNull final Exception e)
 		{
 			Log.e(TAG, "Error making model", e);
 		}

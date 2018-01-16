@@ -1,6 +1,7 @@
 package org.treebolic.wordnet.service;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import org.treebolic.services.Utils;
 
@@ -29,18 +30,16 @@ public class ModelFactory extends org.treebolic.services.ModelFactory
 	/**
 	 * Constructor
 	 *
-	 * @param context
-	 *            context
+	 * @param context context
 	 * @throws Exception exception
 	 */
-	public ModelFactory(final Context context) throws Exception
+	public ModelFactory(@NonNull final Context context) throws Exception
 	{
 		//noinspection ConstantConditions
-		super(ModelFactory.SIMPLE ? new treebolic.provider.wordnet.jwi.simple.Provider() : new treebolic.provider.wordnet.jwi.full.Provider(),
-				Utils.makeLogProviderContext(ModelFactory.TAG), makeLocator(context), null);
+		super(ModelFactory.SIMPLE ? new treebolic.provider.wordnet.jwi.simple.Provider() : new treebolic.provider.wordnet.jwi.full.Provider(), Utils.makeLogProviderContext(ModelFactory.TAG), makeLocator(context), null);
 	}
 
-	static private ILocator makeLocator(final Context context)
+	static private ILocator makeLocator(@NonNull final Context context)
 	{
 		try
 		{
@@ -74,9 +73,10 @@ public class ModelFactory extends org.treebolic.services.ModelFactory
 		return true;
 	}
 
+	@NonNull
 	@Override
 	protected String[] getSourceAliases()
 	{
-		return new String[] { "word" };
+		return new String[]{"word"};
 	}
 }

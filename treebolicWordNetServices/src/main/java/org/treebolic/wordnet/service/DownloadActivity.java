@@ -1,6 +1,7 @@
 package org.treebolic.wordnet.service;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -34,6 +35,7 @@ public class DownloadActivity extends org.treebolic.download.DownloadActivity
 	@Override
 	public void start()
 	{
+		assert this.downloadUrl != null;
 		this.asTarGz = this.downloadUrl.endsWith(".tar.gz");
 		super.start(R.string.wordnet);
 	}
@@ -47,7 +49,7 @@ public class DownloadActivity extends org.treebolic.download.DownloadActivity
 	}
 
 	@Override
-	protected boolean process(final InputStream inputStream) throws IOException
+	protected boolean process(@NonNull final InputStream inputStream) throws IOException
 	{
 		new Deployer(DownloadActivity.this.getFilesDir()).process(inputStream, this.asTarGz);
 		return true;

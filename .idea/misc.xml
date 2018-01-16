@@ -68,6 +68,11 @@
       <entry_point TYPE="class" FQNAME="org.treebolic.wordnet.service.TreebolicWordNetMessengerService" />
       <entry_point TYPE="method" FQNAME="org.treebolic.owl.service.Deployer java.io.File process(java.io.InputStream fin)" />
     </entry_points>
+    <pattern value="org.treebolic.clients.iface.IConnectionListener" method="onConnected" />
+    <pattern value="org.treebolic.clients.iface.IModelListener" method="onModel" />
+    <pattern value="org.treebolic.clients.iface.IModelListener" />
+    <pattern value="org.treebolic.ParcelableModel" method="writeToParcel" />
+    <pattern value="org.treebolic.ParcelableModel" />
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="android.support.annotation.Nullable" />

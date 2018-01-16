@@ -1,6 +1,7 @@
 package org.treebolic.files.service;
 
 import android.annotation.SuppressLint;
+import android.support.annotation.NonNull;
 
 import org.treebolic.services.TreebolicBoundService;
 
@@ -25,6 +26,7 @@ public class TreebolicFilesBoundService extends TreebolicBoundService
 		this.factory = new ModelFactory(this);
 	}
 
+	@NonNull
 	@Override
 	public String getUrlScheme()
 	{

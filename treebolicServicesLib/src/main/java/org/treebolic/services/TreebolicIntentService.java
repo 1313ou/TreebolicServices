@@ -4,6 +4,8 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.ResultReceiver;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.treebolic.services.iface.ITreebolicService;
@@ -35,7 +37,7 @@ abstract public class TreebolicIntentService extends IntentService implements IT
 	}
 
 	@Override
-	protected void onHandleIntent(final Intent intent)
+	protected void onHandleIntent(@Nullable final Intent intent)
 	{
 		if (intent != null)
 		{
@@ -74,7 +76,7 @@ abstract public class TreebolicIntentService extends IntentService implements IT
 						startActivity(forward);
 					}
 				}
-				catch (final Exception e)
+				catch (@NonNull final Exception e)
 				{
 					Log.d(TreebolicIntentService.TAG, "Model factory error", e);
 				}

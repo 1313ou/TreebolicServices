@@ -1,5 +1,7 @@
 package org.treebolic.owl.service;
 
+import android.support.annotation.NonNull;
+
 import org.treebolic.services.TreebolicAIDLBoundService;
 
 /**
@@ -22,6 +24,7 @@ public class TreebolicOwlAIDLBoundService extends TreebolicAIDLBoundService
 		this.factory = new ModelFactory(this);
 	}
 
+	@NonNull
 	@Override
 	public String getUrlScheme()
 	{

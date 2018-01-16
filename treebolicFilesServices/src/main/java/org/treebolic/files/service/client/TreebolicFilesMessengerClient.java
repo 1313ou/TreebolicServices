@@ -16,16 +16,12 @@ public class TreebolicFilesMessengerClient extends TreebolicMessengerClient
 	/**
 	 * Constructor
 	 *
-	 * @param context
-	 *            context
-	 * @param connectionListener
-	 *            connection listener
-	 * @param modelListener
-	 *            model listener
+	 * @param context            context
+	 * @param connectionListener connection listener
+	 * @param modelListener      model listener
 	 */
 	public TreebolicFilesMessengerClient(final Context context, final IConnectionListener connectionListener, final IModelListener modelListener)
 	{
-		super(context, "org.treebolic.files.service" + '/' + org.treebolic.files.service.TreebolicFilesMessengerService.class.getName(), connectionListener,
-				modelListener);
+		super(context, "org.treebolic.files.service" + '/' + org.treebolic.files.service.TreebolicFilesMessengerService.class.getName(), connectionListener, modelListener);
 	}
 }

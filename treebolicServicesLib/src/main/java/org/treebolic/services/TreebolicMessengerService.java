@@ -10,6 +10,7 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.treebolic.services.iface.ITreebolicService;
@@ -69,7 +70,7 @@ abstract public class TreebolicMessengerService extends Service implements ITree
 					Log.d(TreebolicMessengerService.TAG, "Returning model " + model);
 					this.clients.get(i).send(msg);
 				}
-				catch (final RemoteException ignored)
+				catch (@NonNull final RemoteException ignored)
 				{
 					// The client is dead. Remove it from the list;
 					// we are going through the list from back to front
@@ -85,6 +86,7 @@ abstract public class TreebolicMessengerService extends Service implements ITree
 	 */
 	static private class MakeTaskAndForward extends AbstractMakeTask
 	{
+		@NonNull
 		private final WeakReference<Context> contextWeakReference;
 		private final Intent forward;
 
@@ -137,7 +139,7 @@ abstract public class TreebolicMessengerService extends Service implements ITree
 		}
 
 		@Override
-		public void handleMessage(final Message msg)
+		public void handleMessage(@NonNull final Message msg)
 		{
 			switch (msg.what)
 			{
@@ -164,11 +166,13 @@ abstract public class TreebolicMessengerService extends Service implements ITree
 	/**
 	 * Target we publish for clients to send messages to
 	 */
+	@NonNull
 	final private Messenger messenger;
 
 	/**
 	 * List of clients
 	 */
+	@NonNull
 	private final List<Messenger> clients;
 
 	/**
@@ -193,7 +197,7 @@ abstract public class TreebolicMessengerService extends Service implements ITree
 	 *
 	 * @param bundle data
 	 */
-	private void makeModel(final Bundle bundle)
+	private void makeModel(@NonNull final Bundle bundle)
 	{
 		final String source = bundle.getString(ITreebolicService.EXTRA_SOURCE);
 		final String base = bundle.getString(ITreebolicService.EXTRA_BASE);

@@ -1,5 +1,7 @@
 package org.treebolic.files.service;
 
+import android.support.annotation.NonNull;
+
 import org.treebolic.services.TreebolicMessengerService;
 
 /**
@@ -24,6 +26,7 @@ public class TreebolicFilesMessengerService extends TreebolicMessengerService
 		this.factory = new ModelFactory(this);
 	}
 
+	@NonNull
 	@Override
 	public String getUrlScheme()
 	{

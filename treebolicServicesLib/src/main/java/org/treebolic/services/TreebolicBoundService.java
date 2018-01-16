@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Binder;
 import android.os.IBinder;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.treebolic.clients.iface.IModelListener;
@@ -52,6 +53,7 @@ abstract public class TreebolicBoundService extends Service implements ITreeboli
 	 */
 	static private class MakeAndForwardTask extends AbstractMakeTask
 	{
+		@NonNull
 		private final WeakReference<Context> contextWeakReference;
 
 		private final Intent forward;
@@ -92,6 +94,7 @@ abstract public class TreebolicBoundService extends Service implements ITreeboli
 
 		private final String urlScheme;
 
+		@NonNull
 		private final WeakReference<Context> contextWeakReference;
 
 		/**

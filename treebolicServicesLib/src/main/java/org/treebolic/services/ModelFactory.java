@@ -1,6 +1,8 @@
 package org.treebolic.services;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import java.net.MalformedURLException;
@@ -71,6 +73,7 @@ public abstract class ModelFactory implements IModelFactory
 	 *
 	 * @return array of aliases for source
 	 */
+	@Nullable
 	protected String[] getSourceAliases()
 	{
 		return null;
@@ -86,6 +89,7 @@ public abstract class ModelFactory implements IModelFactory
 		return false;
 	}
 
+	@Nullable
 	@Override
 	public Model make(final String source, final String base, final String imageBase, final String settings)
 	{
@@ -106,13 +110,13 @@ public abstract class ModelFactory implements IModelFactory
 	 * @param base base
 	 * @return base URL
 	 */
-	private static URL makeBaseURL(final String base)
+	private static URL makeBaseURL(@Nullable final String base)
 	{
 		try
 		{
 			return new URL(base != null && !base.endsWith("/") ? base + "/" : base);
 		}
-		catch (final MalformedURLException ignored)
+		catch (@NonNull final MalformedURLException ignored)
 		{
 			//
 		}
@@ -128,7 +132,8 @@ public abstract class ModelFactory implements IModelFactory
 	 * @param settings  settings
 	 * @return parameters
 	 */
-	private Properties makeParameters(final String source, final String base, final String imageBase, final String settings)
+	@NonNull
+	private Properties makeParameters(@Nullable final String source, @Nullable final String base, @Nullable final String imageBase, @Nullable final String settings)
 	{
 		final Properties theseParameters = new Properties();
 		if (source != null)

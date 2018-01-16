@@ -1,26 +1,26 @@
 <resources>
 
-    <string name="title_activity_settings">Paramètres</string>
+	<string name="title_activity_settings">Paramètres</string>
 
-    <!-- General settings -->
-    <string name="pref_header_general">Général</string>
+	<!-- General settings -->
+	<string name="pref_header_general">Général</string>
 
-    <!-- source -->
-    <string name="pref_title_source">Source</string>
-    <string name="pref_description_source">Source (chaîne de caractères)</string>
+	<!-- source -->
+	<string name="pref_title_source">Source</string>
+	<string name="pref_description_source">Source (chaîne de caractères)</string>
 
-    <!-- forwarding -->
-    <string name="pref_title_forwarding">Redirection</string>
+	<!-- forwarding -->
+	<string name="pref_title_forwarding">Redirection</string>
 
-    <!-- service -->
-    <string name="pref_title_service">Service</string>
-    <string name="pref_description_services">Type du Service Fichiers</string>
+	<!-- service -->
+	<string name="pref_title_service">Service</string>
+	<string name="pref_description_services">Type du Service Fichiers</string>
 
-    <string-array name="pref_services_list_titles">
-        <item>Intent service</item>
-        <item>Bound service</item>
-        <item>AIDL Bound service</item>
-        <item>Messenger bound service</item>
-    </string-array>
+	<string-array name="pref_services_list_titles">
+		<item>Intent service</item>
+		<item>Bound service</item>
+		<item>AIDL Bound service</item>
+		<item>Messenger bound service</item>
+	</string-array>
 
 </resources>

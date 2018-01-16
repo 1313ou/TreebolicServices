@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -69,12 +70,13 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	/**
 	 * Client
 	 */
+	@Nullable
 	private ITreebolicClient client;
 
 	// L I F E C Y C L E
 
 	@Override
-	protected void onCreate(final Bundle savedInstanceState)
+	protected void onCreate(@Nullable final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 
@@ -131,7 +133,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(final MenuItem item)
+	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
 	{
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
@@ -240,6 +242,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		}
 
 		// connect
+		assert this.client != null;
 		this.client.connect();
 	}
 
@@ -306,7 +309,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	 * @return true if query was made
 	 */
 	@SuppressWarnings("WeakerAccess")
-	protected boolean query(final String source, final String base, final String imageBase, final String settings)
+	protected boolean query(@Nullable final String source, final String base, final String imageBase, final String settings)
 	{
 		if (source == null || source.isEmpty())
 		{
@@ -328,7 +331,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	 *
 	 * @param archiveUri archive uri
 	 */
-	private void queryBundle(final Uri archiveUri)
+	private void queryBundle(@NonNull final Uri archiveUri)
 	{
 		try
 		{
@@ -339,7 +342,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 				query(zipEntry, base, Settings.getStringPref(MainActivity.this, TreebolicIface.PREF_IMAGEBASE), Settings.getStringPref(MainActivity.this, TreebolicIface.PREF_SETTINGS));
 			});
 		}
-		catch (final IOException e)
+		catch (@NonNull final IOException e)
 		{
 			Log.d(MainActivity.TAG, "Failed to start treebolic from bundle uri " + archiveUri, e);
 		}
@@ -348,7 +351,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	// M O D E L   L I S T E N E R
 
 	@Override
-	public void onModel(final Model model, final String urlScheme0)
+	public void onModel(@Nullable final Model model, final String urlScheme0)
 	{
 		if (model != null)
 		{
@@ -368,8 +371,9 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	 * @param imageBase image base
 	 * @return intent
 	 */
+	@NonNull
 	@SuppressWarnings("WeakerAccess")
-	static public Intent makeTreebolicIntent(final Context context, final Model model, @SuppressWarnings("SameParameterValue") final String base, @SuppressWarnings("SameParameterValue") final String imageBase)
+	static public Intent makeTreebolicIntent(@NonNull final Context context, final Model model, @SuppressWarnings("SameParameterValue") final String base, @SuppressWarnings("SameParameterValue") final String imageBase)
 	{
 		// parent activity to return to
 		final Intent parentIntent = new Intent();
@@ -424,7 +428,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	}
 
 	@Override
-	protected void onActivityResult(final int requestCode, final int resultCode, final Intent returnIntent)
+	protected void onActivityResult(final int requestCode, final int resultCode, @NonNull final Intent returnIntent)
 	{
 		switch (requestCode)
 		{
@@ -483,7 +487,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	 *
 	 * @return true if source qualifies
 	 */
-	private boolean sourceQualifies(final String source)
+	private boolean sourceQualifies(@Nullable final String source)
 	{
 		final String base = Settings.getStringPref(this, TreebolicIface.PREF_BASE);
 		if (source != null && !source.isEmpty())
