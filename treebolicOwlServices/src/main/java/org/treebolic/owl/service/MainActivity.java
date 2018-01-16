@@ -318,7 +318,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 			Toast.makeText(MainActivity.this, R.string.fail_nullclient, Toast.LENGTH_SHORT).show();
 			return false;
 		}
-		@SuppressWarnings("ConstantConditions") final Intent forward = MainActivity.FORWARD ? IntentFactory.makeTreebolicIntentSkeleton(new Intent(this, org.treebolic.owl.service.MainActivity.class), base, imageBase, settings) : null;
+		final Intent forward = MainActivity.FORWARD ? IntentFactory.makeTreebolicIntentSkeleton(new Intent(this, org.treebolic.owl.service.MainActivity.class), base, imageBase, settings) : null;
 		MainActivity.this.client.requestModel(source, base, imageBase, settings, forward);
 		return true;
 	}
@@ -333,14 +333,10 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		try
 		{
 			// choose bundle entry
-			EntryChooser.choose(this, new File(archiveUri.getPath()), new EntryChooser.Callback()
+			EntryChooser.choose(this, new File(archiveUri.getPath()), zipEntry ->
 			{
-				@Override
-				public void onSelect(final String zipEntry)
-				{
-					final String base = "jar:" + archiveUri.toString() + "!/";
-					query(zipEntry, base, Settings.getStringPref(MainActivity.this, TreebolicIface.PREF_IMAGEBASE), Settings.getStringPref(MainActivity.this, TreebolicIface.PREF_SETTINGS));
-				}
+				final String base = "jar:" + archiveUri.toString() + "!/";
+				query(zipEntry, base, Settings.getStringPref(MainActivity.this, TreebolicIface.PREF_IMAGEBASE), Settings.getStringPref(MainActivity.this, TreebolicIface.PREF_SETTINGS));
 			});
 		}
 		catch (final IOException e)
@@ -507,7 +503,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	 *
 	 * @param view view
 	 */
-	public void onClick(@SuppressWarnings("UnusedParameters") final View view)
+	public void onClick(final View view)
 	{
 		query();
 	}

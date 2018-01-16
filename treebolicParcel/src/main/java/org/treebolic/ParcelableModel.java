@@ -3,6 +3,8 @@ package org.treebolic;
 import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -55,6 +57,7 @@ public class ParcelableModel implements Parcelable
 	/**
 	 * Wrapped model
 	 */
+	@Nullable
 	private final Model theModel;
 
 	// C O N S T R U C T O R
@@ -70,7 +73,7 @@ public class ParcelableModel implements Parcelable
 	/**
 	 * Constructor
 	 */
-	public ParcelableModel(final Model model)
+	public ParcelableModel(@Nullable final Model model)
 	{
 		this.theModel = model;
 	}
@@ -80,7 +83,7 @@ public class ParcelableModel implements Parcelable
 	 *
 	 * @param parcel parcel to build from
 	 */
-	public ParcelableModel(final Parcel parcel)
+	public ParcelableModel(@NonNull final Parcel parcel)
 	{
 		if (ParcelableModel.SERIALIZE)
 		{
@@ -97,6 +100,7 @@ public class ParcelableModel implements Parcelable
 	 *
 	 * @return model
 	 */
+	@Nullable
 	public Model getModel()
 	{
 		return this.theModel;
@@ -109,7 +113,7 @@ public class ParcelableModel implements Parcelable
 	}
 
 	@Override
-	public void writeToParcel(final Parcel parcel, final int flags)
+	public void writeToParcel(@NonNull final Parcel parcel, final int flags)
 	{
 		if (ParcelableModel.SERIALIZE)
 		{
@@ -127,7 +131,7 @@ public class ParcelableModel implements Parcelable
 	public static final Parcelable.Creator<ParcelableModel> CREATOR = new Parcelable.Creator<ParcelableModel>()
 	{
 		@Override
-		public ParcelableModel createFromParcel(final Parcel parcel)
+		public ParcelableModel createFromParcel(@NonNull final Parcel parcel)
 		{
 			return new ParcelableModel(parcel);
 		}
@@ -149,7 +153,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to write to
 	 * @param model  model
 	 */
-	public static void writeSerializableToParcel(final Parcel parcel, final Model model)
+	public static void writeSerializableToParcel(@NonNull final Parcel parcel, final Model model)
 	{
 		parcel.writeSerializable(model);
 	}
@@ -160,7 +164,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to write to
 	 * @param model  model
 	 */
-	private static void writeToParcel(final Parcel parcel, final Model model)
+	private static void writeToParcel(@NonNull final Parcel parcel, @Nullable final Model model)
 	{
 		if (model == null)
 		{
@@ -180,7 +184,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to write to
 	 * @param tree   tree
 	 */
-	private static void writeToParcel(final Parcel parcel, final Tree tree)
+	private static void writeToParcel(@NonNull final Parcel parcel, @NonNull final Tree tree)
 	{
 		ParcelableModel.writeToParcel(parcel, tree.getRoot());
 		ParcelableModel.writeEdgesToParcel(parcel, tree.getEdges());
@@ -194,7 +198,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to write to
 	 * @param node   node
 	 */
-	private static void writeToParcel(final Parcel parcel, final INode node)
+	private static void writeToParcel(@NonNull final Parcel parcel, @NonNull final INode node)
 	{
 		// volatile data:
 		// public double getWeight();
@@ -263,7 +267,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel     parcel to write to
 	 * @param mountPoint mount point
 	 */
-	private static void writeToParcel(final Parcel parcel, final MountPoint mountPoint)
+	private static void writeToParcel(@NonNull final Parcel parcel, @Nullable final MountPoint mountPoint)
 	{
 		if (mountPoint == null || !(mountPoint instanceof MountPoint.Mounting))
 		{
@@ -281,7 +285,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to write to
 	 * @param edges  edge list
 	 */
-	private static void writeEdgesToParcel(final Parcel parcel, final List<IEdge> edges)
+	private static void writeEdgesToParcel(@NonNull final Parcel parcel, @Nullable final List<IEdge> edges)
 	{
 		if (edges == null)
 		{
@@ -304,7 +308,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel
 	 * @param edge   edge
 	 */
-	private static void writeToParcel(final Parcel parcel, final IEdge edge)
+	private static void writeToParcel(@NonNull final Parcel parcel, @NonNull final IEdge edge)
 	{
 		// structural
 		final INode from = edge.getFrom();
@@ -334,7 +338,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel   parcel to write to
 	 * @param settings settings
 	 */
-	private static void writeToParcel(final Parcel parcel, final Settings settings)
+	private static void writeToParcel(@NonNull final Parcel parcel, @NonNull final Settings settings)
 	{
 		ParcelableModel.writeToParcel(parcel, settings.theBackColor);
 		ParcelableModel.writeToParcel(parcel, settings.theForeColor);
@@ -381,7 +385,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel    parcel to write to
 	 * @param menuItems menu items
 	 */
-	private static void writeMenuToParcel(final Parcel parcel, final List<MenuItem> menuItems)
+	private static void writeMenuToParcel(@NonNull final Parcel parcel, @Nullable final List<MenuItem> menuItems)
 	{
 		if (menuItems == null)
 		{
@@ -403,7 +407,7 @@ public class ParcelableModel implements Parcelable
 	 * @param menuItem menu item
 	 * @param flags    flags
 	 */
-	private static void writeToParcel(final Parcel parcel, final MenuItem menuItem, @SuppressWarnings({"SameParameterValue", "UnusedParameters"}) final int flags)
+	private static void writeToParcel(@NonNull final Parcel parcel, @NonNull final MenuItem menuItem, @SuppressWarnings("SameParameterValue") final int flags)
 	{
 		ParcelableModel.writeToParcel(parcel, menuItem.theAction);
 		ParcelableModel.writeToParcel(parcel, menuItem.theLabel);
@@ -416,7 +420,7 @@ public class ParcelableModel implements Parcelable
 
 	// IMAGES
 
-	private static void writeToParcel(final Parcel parcel, final Image[] images)
+	private static void writeToParcel(@NonNull final Parcel parcel, @Nullable final Image[] images)
 	{
 		if (images == null)
 		{
@@ -439,7 +443,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to write to
 	 * @param e      enum value
 	 */
-	private static void writeToParcel(final Parcel parcel, final Enum<?> e)
+	private static void writeToParcel(@NonNull final Parcel parcel, @Nullable final Enum<?> e)
 	{
 		if (e == null)
 		{
@@ -455,7 +459,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to write to
 	 * @param s      string
 	 */
-	private static void writeToParcel(final Parcel parcel, final String s)
+	private static void writeToParcel(@NonNull final Parcel parcel, @Nullable final String s)
 	{
 		if (s == null)
 		{
@@ -472,7 +476,7 @@ public class ParcelableModel implements Parcelable
 	 * @param n      integer
 	 */
 	@SuppressWarnings("boxing")
-	private static void writeToParcel(final Parcel parcel, final Integer n)
+	private static void writeToParcel(@NonNull final Parcel parcel, @Nullable final Integer n)
 	{
 		if (n == null)
 		{
@@ -490,7 +494,7 @@ public class ParcelableModel implements Parcelable
 	 * @param b      boolean
 	 */
 	@SuppressWarnings("boxing")
-	private static void writeToParcel(final Parcel parcel, final Boolean b)
+	private static void writeToParcel(@NonNull final Parcel parcel, @Nullable final Boolean b)
 	{
 		if (b == null)
 		{
@@ -507,7 +511,7 @@ public class ParcelableModel implements Parcelable
 	 * @param f      float
 	 */
 	@SuppressWarnings("boxing")
-	private static void writeToParcel(final Parcel parcel, final Float f)
+	private static void writeToParcel(@NonNull final Parcel parcel, @Nullable final Float f)
 	{
 		if (f == null)
 		{
@@ -546,7 +550,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to write to
 	 * @param f      float array
 	 */
-	private static void writeToParcel(final Parcel parcel, final float[] f)
+	private static void writeToParcel(@NonNull final Parcel parcel, final float[] f)
 	{
 		parcel.writeFloatArray(f);
 	}
@@ -557,7 +561,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to write to
 	 * @param image  image
 	 */
-	private static void writeToParcel(final Parcel parcel, final Image image)
+	private static void writeToParcel(@NonNull final Parcel parcel, @Nullable final Image image)
 	{
 		if (image == null || image.bitmap == null)
 		{
@@ -590,7 +594,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to write to
 	 * @param color  color
 	 */
-	private static void writeToParcel(final Parcel parcel, final Color color)
+	private static void writeToParcel(@NonNull final Parcel parcel, @Nullable final Color color)
 	{
 		if (color == null || color.isNull())
 		{
@@ -616,7 +620,8 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to read from
 	 * @return model
 	 */
-	public static Model readSerializableModel(final Parcel parcel)
+	@NonNull
+	public static Model readSerializableModel(@NonNull final Parcel parcel)
 	{
 		return (Model) parcel.readSerializable();
 	}
@@ -627,7 +632,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to read from
 	 * @return model
 	 */
-	private static Model readModel(final Parcel parcel)
+	private static Model readModel(@NonNull final Parcel parcel)
 	{
 		Log.d(ParcelableModel.TAG, "parcel read size=" + parcel.dataSize() + " pos=" + parcel.dataPosition());
 		final int isNotNull = parcel.readInt();
@@ -647,7 +652,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to read from
 	 * @return tree
 	 */
-	private static Tree readTree(final Parcel parcel)
+	private static Tree readTree(@NonNull final Parcel parcel)
 	{
 		ParcelableModel.id2node.clear();
 		final INode root = ParcelableModel.readNode(parcel);
@@ -663,8 +668,9 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to read from
 	 * @return node
 	 */
+	@NonNull
 	@SuppressWarnings("boxing")
-	private static INode readNode(final Parcel parcel)
+	private static INode readNode(@NonNull final Parcel parcel)
 	{
 		// structural
 		final String id = ParcelableModel.readString(parcel);
@@ -751,16 +757,19 @@ public class ParcelableModel implements Parcelable
 		if (n != -1)
 		{
 			final List<INode> children = node.getChildren();
-			for (int i = 0; i < n; i++)
+			if (children != null)
 			{
-				/*final INode child =*/
-				ParcelableModel.readNode(parcel);
-				// added to parent by Constructor
-				// children.add(child);
-			}
-			if (children.size() != n)
-			{
-				throw new IllegalArgumentException("parcelled different child size expected=" + n + " real=" + children.size());
+				for (int i = 0; i < n; i++)
+				{
+					/*final INode child =*/
+					ParcelableModel.readNode(parcel);
+					// added to parent by Constructor
+					// children.add(child);
+				}
+				if (children.size() != n)
+				{
+					throw new IllegalArgumentException("parcelled different child size expected=" + n + " real=" + children.size());
+				}
 			}
 		}
 		return node;
@@ -772,7 +781,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to read from
 	 * @return mount point
 	 */
-	private static MountPoint readMountPoint(final Parcel parcel)
+	private static MountPoint readMountPoint(@NonNull final Parcel parcel)
 	{
 		final String url = parcel.readString();
 		if (!url.isEmpty())
@@ -791,7 +800,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to read from
 	 * @return edge list
 	 */
-	private static List<IEdge> readEdges(final Parcel parcel)
+	private static List<IEdge> readEdges(@NonNull final Parcel parcel)
 	{
 		final int n = parcel.readInt();
 		if (n == -1)
@@ -815,8 +824,9 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to read from
 	 * @return edge
 	 */
+	@NonNull
 	@SuppressWarnings("boxing")
-	private static IEdge readEdge(final Parcel parcel)
+	private static IEdge readEdge(@NonNull final Parcel parcel)
 	{
 		// structural
 		final String fromId = ParcelableModel.readString(parcel);
@@ -863,7 +873,8 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to read from
 	 * @return settings
 	 */
-	private static Settings readSettings(final Parcel parcel)
+	@NonNull
+	private static Settings readSettings(@NonNull final Parcel parcel)
 	{
 		final Settings settings = new Settings();
 		settings.theBackColor = ParcelableModel.readColor(parcel);
@@ -912,7 +923,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to read from
 	 * @return menu
 	 */
-	private static List<MenuItem> readMenu(final Parcel parcel)
+	private static List<MenuItem> readMenu(@NonNull final Parcel parcel)
 	{
 		final int n = parcel.readInt();
 		if (n == -1)
@@ -934,7 +945,8 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to read from
 	 * @return menu item
 	 */
-	private static MenuItem readMenuItem(final Parcel parcel)
+	@NonNull
+	private static MenuItem readMenuItem(@NonNull final Parcel parcel)
 	{
 		final MenuItem menuItem = new MenuItem();
 		int ordinal;
@@ -960,7 +972,7 @@ public class ParcelableModel implements Parcelable
 
 	// IMAGES
 
-	private static Image[] readImages(final Parcel parcel)
+	private static Image[] readImages(@NonNull final Parcel parcel)
 	{
 		final int n = parcel.readInt();
 		if (n == -1)
@@ -983,7 +995,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to read from
 	 * @return string
 	 */
-	private static String readString(final Parcel parcel)
+	private static String readString(@NonNull final Parcel parcel)
 	{
 		final String s = parcel.readString();
 		if (!s.isEmpty())
@@ -1000,7 +1012,7 @@ public class ParcelableModel implements Parcelable
 	 * @return boolean
 	 */
 	@SuppressWarnings("boxing")
-	private static Boolean readBoolean(final Parcel parcel)
+	private static Boolean readBoolean(@NonNull final Parcel parcel)
 	{
 		final int value = parcel.readInt();
 		switch (value)
@@ -1021,7 +1033,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to read from
 	 * @return integer
 	 */
-	private static Integer readInteger(final Parcel parcel)
+	private static Integer readInteger(@NonNull final Parcel parcel)
 	{
 		final int isNotNull = parcel.readInt();
 		if (isNotNull != 0)
@@ -1055,7 +1067,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to read from
 	 * @return double
 	 */
-	private static Float readFloat(final Parcel parcel)
+	private static Float readFloat(@NonNull final Parcel parcel)
 	{
 		final int isNotNull = parcel.readInt();
 		if (isNotNull != 0)
@@ -1071,7 +1083,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to read from
 	 * @return array of floats
 	 */
-	private static float[] readFloats(final Parcel parcel)
+	private static float[] readFloats(@NonNull final Parcel parcel)
 	{
 		return parcel.createFloatArray();
 	}
@@ -1082,7 +1094,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to read from
 	 * @return image
 	 */
-	private static Image readImage(final Parcel parcel)
+	private static Image readImage(@NonNull final Parcel parcel)
 	{
 		final int isNotNull = parcel.readInt();
 		if (isNotNull != 0)
@@ -1099,7 +1111,7 @@ public class ParcelableModel implements Parcelable
 						image.setFromByteArray(imageByteArray);
 						return image;
 					}
-					catch (final Exception e)
+					catch (@NonNull final Exception ignored)
 					{
 						//
 					}
@@ -1120,7 +1132,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to read from
 	 * @return color
 	 */
-	private static Color readColor(final Parcel parcel)
+	private static Color readColor(@NonNull final Parcel parcel)
 	{
 		final int isNotNull = parcel.readInt();
 		if (isNotNull != 0)

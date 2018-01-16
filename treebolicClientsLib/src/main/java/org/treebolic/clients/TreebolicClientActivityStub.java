@@ -1,6 +1,7 @@
 package org.treebolic.clients;
 
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -25,6 +26,7 @@ abstract public class TreebolicClientActivityStub extends AppCompatCommonActivit
 	/**
 	 * Client
 	 */
+	@Nullable
 	@SuppressWarnings("WeakerAccess")
 	protected ITreebolicClient client;
 
@@ -56,6 +58,7 @@ abstract public class TreebolicClientActivityStub extends AppCompatCommonActivit
 
 	// C L I E N T M A N A G E M E N T
 
+	@Nullable
 	abstract protected ITreebolicClient makeClient();
 
 	/**

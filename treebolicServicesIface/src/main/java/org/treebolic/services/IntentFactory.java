@@ -3,6 +3,7 @@ package org.treebolic.services;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 
 import org.treebolic.ParcelableModel;
 import org.treebolic.TreebolicIface;
@@ -24,6 +25,7 @@ public class IntentFactory
 	 * @param settings     settings
 	 * @return intent
 	 */
+	@NonNull
 	static public Intent makeTreebolicIntent(final Model model, final Intent parentIntent, final String base, final String imageBase, final String settings)
 	{
 		final Intent intent = IntentFactory.makeTreebolicIntentSkeleton(parentIntent, base, imageBase, settings);
@@ -40,6 +42,7 @@ public class IntentFactory
 	 * @param settings     settings
 	 * @return treebolic model activity intent
 	 */
+	@NonNull
 	@SuppressWarnings("WeakerAccess")
 	static public Intent makeTreebolicIntentSkeleton(final Intent parentIntent, final String base, final String imageBase, final String settings)
 	{
@@ -59,7 +62,7 @@ public class IntentFactory
 	 * @param model     model to forward
 	 * @param urlScheme url scheme
 	 */
-	static public void putModelResult(final Bundle bundle, final Model model, final String urlScheme)
+	static public void putModelResult(@NonNull final Bundle bundle, final Model model, final String urlScheme)
 	{
 		if (ParcelableModel.SERIALIZE)
 		{
@@ -82,7 +85,7 @@ public class IntentFactory
 	 * @param urlScheme url scheme
 	 */
 	@SuppressWarnings("WeakerAccess")
-	static public void putModelArg(final Bundle bundle, final Model model, final String urlScheme)
+	static public void putModelArg(@NonNull final Bundle bundle, final Model model, final String urlScheme)
 	{
 		if (ParcelableModel.SERIALIZE)
 		{
@@ -103,7 +106,7 @@ public class IntentFactory
 	 * @param forwardIntent forward intent
 	 * @param model         model to forward
 	 */
-	static public void putModelArg(final Intent forwardIntent, final Model model, final String urlScheme)
+	static public void putModelArg(@NonNull final Intent forwardIntent, final Model model, final String urlScheme)
 	{
 		final Bundle forwardBundle = new Bundle();
 		IntentFactory.putModelArg(forwardBundle, model, urlScheme);

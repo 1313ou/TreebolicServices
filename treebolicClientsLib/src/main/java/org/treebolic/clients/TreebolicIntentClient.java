@@ -8,6 +8,8 @@ import android.os.Handler;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.ResultReceiver;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -60,6 +62,7 @@ public class TreebolicIntentClient implements org.treebolic.clients.iface.ITreeb
 	/**
 	 * Result receiver
 	 */
+	@Nullable
 	private final ResultReceiver receiver;
 
 	/**
@@ -71,7 +74,7 @@ public class TreebolicIntentClient implements org.treebolic.clients.iface.ITreeb
 	 * @param modelListener0      model listener
 	 */
 	@SuppressWarnings("WeakerAccess")
-	public TreebolicIntentClient(final Context context0, final String service0, final IConnectionListener connectionListener0, final IModelListener modelListener0)
+	public TreebolicIntentClient(final Context context0, @NonNull final String service0, final IConnectionListener connectionListener0, final IModelListener modelListener0)
 	{
 		this.context = context0;
 		this.connectionListener = connectionListener0;
@@ -81,9 +84,8 @@ public class TreebolicIntentClient implements org.treebolic.clients.iface.ITreeb
 		this.serviceName = serviceNameComponents[1];
 		this.receiver = new ResultReceiver(new Handler())
 		{
-			@SuppressWarnings("synthetic-access")
 			@Override
-			protected void onReceiveResult(final int resultCode, final Bundle resultData)
+			protected void onReceiveResult(final int resultCode, @NonNull final Bundle resultData)
 			{
 				resultData.setClassLoader(ParcelableModel.class.getClassLoader());
 
@@ -101,8 +103,7 @@ public class TreebolicIntentClient implements org.treebolic.clients.iface.ITreeb
 					{
 						if (!ParcelableModel.class.equals(parcelable.getClass()))
 						{
-							Log.d(TreebolicIntentClient.TAG, "Parcel/Unparcel from source classloader " + parcelable.getClass().getClassLoader()
-									+ " to target classloader " + ParcelableModel.class.getClassLoader());
+							Log.d(TreebolicIntentClient.TAG, "Parcel/Unparcel from source classloader " + parcelable.getClass().getClassLoader() + " to target classloader " + ParcelableModel.class.getClassLoader());
 
 							// obtain parcel
 							final Parcel parcel = Parcel.obtain();

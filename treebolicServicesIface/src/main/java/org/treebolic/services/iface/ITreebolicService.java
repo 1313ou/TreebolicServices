@@ -1,5 +1,7 @@
 package org.treebolic.services.iface;
 
+import android.support.annotation.NonNull;
+
 /**
  * Service interface used in client/service interaction
  *
@@ -48,5 +50,6 @@ public interface ITreebolicService
 	 *
 	 * @return service url scheme
 	 */
+	@NonNull
 	String getUrlScheme();
 }

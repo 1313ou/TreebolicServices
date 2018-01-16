@@ -54,7 +54,7 @@ public class ModelFactory extends org.treebolic.services.ModelFactory
 				}
 			};
 		}
-		catch (MalformedURLException e)
+		catch (MalformedURLException ignored)
 		{
 			//
 		}

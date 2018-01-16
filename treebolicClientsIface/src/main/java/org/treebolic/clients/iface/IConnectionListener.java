@@ -12,5 +12,5 @@ public interface IConnectionListener
 	 *
 	 * @param success whether connection is successful
 	 */
-	void onConnected(@SuppressWarnings({"SameParameterValue", "UnusedParameters"}) boolean success);
+	void onConnected(@SuppressWarnings("SameParameterValue") boolean success);
 }

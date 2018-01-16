@@ -12,6 +12,8 @@ import android.os.Messenger;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.RemoteException;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -56,9 +58,8 @@ public class TreebolicMessengerClient implements ITreebolicClient
 			this.client = client0;
 		}
 
-		@SuppressWarnings("synthetic-access")
 		@Override
-		public void handleMessage(final Message msg)
+		public void handleMessage(@NonNull final Message msg)
 		{
 			switch (msg.what)
 			{
@@ -79,8 +80,7 @@ public class TreebolicMessengerClient implements ITreebolicClient
 						{
 							if (!ParcelableModel.class.equals(parcelable.getClass()))
 							{
-								Log.d(TreebolicMessengerClient.TAG, "Parcel/Unparcel from source classloader " + parcelable.getClass().getClassLoader()
-										+ " to target classloader " + ParcelableModel.class.getClassLoader());
+								Log.d(TreebolicMessengerClient.TAG, "Parcel/Unparcel from source classloader " + parcelable.getClass().getClassLoader() + " to target classloader " + ParcelableModel.class.getClassLoader());
 
 								// obtain parcel
 								final Parcel parcel = Parcel.obtain();
@@ -139,6 +139,7 @@ public class TreebolicMessengerClient implements ITreebolicClient
 	/**
 	 * Connection
 	 */
+	@Nullable
 	private ServiceConnection connection;
 
 	/**
@@ -149,6 +150,7 @@ public class TreebolicMessengerClient implements ITreebolicClient
 	/**
 	 * Messenger returned by service when binding
 	 */
+	@Nullable
 	private Messenger service;
 
 	/**
@@ -165,7 +167,7 @@ public class TreebolicMessengerClient implements ITreebolicClient
 	 * @param modelListener0      model listener
 	 */
 	@SuppressWarnings("WeakerAccess")
-	public TreebolicMessengerClient(final Context context0, final String service0, final IConnectionListener connectionListener0, final IModelListener modelListener0)
+	public TreebolicMessengerClient(final Context context0, @NonNull final String service0, final IConnectionListener connectionListener0, final IModelListener modelListener0)
 	{
 		this.context = context0;
 		this.connectionListener = connectionListener0;
@@ -198,13 +200,14 @@ public class TreebolicMessengerClient implements ITreebolicClient
 					msg.replyTo = this.inMessenger;
 					this.service.send(msg);
 				}
-				catch (final RemoteException e)
+				catch (@NonNull final RemoteException ignored)
 				{
 					// there is nothing special we need to do if the service has crashed.
 				}
 			}
 
 			// detach our existing connection.
+			assert this.connection != null;
 			this.context.unbindService(this.connection);
 			this.isBound = false;
 		}
@@ -219,7 +222,6 @@ public class TreebolicMessengerClient implements ITreebolicClient
 		this.inMessenger = new Messenger(new IncomingHandler(this));
 		this.connection = new ServiceConnection()
 		{
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onServiceConnected(final ComponentName name, final IBinder binder0)
 			{
@@ -234,7 +236,7 @@ public class TreebolicMessengerClient implements ITreebolicClient
 				{
 					TreebolicMessengerClient.this.service.send(msg);
 				}
-				catch (final RemoteException e)
+				catch (@NonNull final RemoteException e)
 				{
 					Log.e(TreebolicMessengerClient.TAG, "Send error", e);
 				}
@@ -243,7 +245,6 @@ public class TreebolicMessengerClient implements ITreebolicClient
 				TreebolicMessengerClient.this.connectionListener.onConnected(true);
 			}
 
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onServiceDisconnected(final ComponentName name)
 			{
@@ -281,9 +282,10 @@ public class TreebolicMessengerClient implements ITreebolicClient
 		// send message
 		try
 		{
+			assert TreebolicMessengerClient.this.service != null;
 			TreebolicMessengerClient.this.service.send(msg);
 		}
-		catch (final RemoteException e)
+		catch (@NonNull final RemoteException e)
 		{
 			Log.e(TreebolicMessengerClient.TAG, "Send error", e);
 		}

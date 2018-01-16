@@ -11,6 +11,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.RemoteException;
 import android.os.ResultReceiver;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -65,6 +67,7 @@ public class TreebolicAIDLBoundClient implements ITreebolicClient
 	/**
 	 * Connection
 	 */
+	@Nullable
 	private ServiceConnection connection;
 
 	/**
@@ -75,11 +78,13 @@ public class TreebolicAIDLBoundClient implements ITreebolicClient
 	/**
 	 * Binder
 	 */
+	@Nullable
 	private ITreebolicAIDLService binder;
 
 	/**
 	 * Result receiver
 	 */
+	@NonNull
 	private final ResultReceiver receiver;
 
 	/**
@@ -91,7 +96,7 @@ public class TreebolicAIDLBoundClient implements ITreebolicClient
 	 * @param modelListener0      modelListener
 	 */
 	@SuppressWarnings("WeakerAccess")
-	public TreebolicAIDLBoundClient(final Context context0, final String service0, final IConnectionListener connectionListener0, final IModelListener modelListener0)
+	public TreebolicAIDLBoundClient(final Context context0, @NonNull final String service0, final IConnectionListener connectionListener0, final IModelListener modelListener0)
 	{
 		this.context = context0;
 		this.modelListener = modelListener0;
@@ -101,9 +106,8 @@ public class TreebolicAIDLBoundClient implements ITreebolicClient
 		this.serviceName = serviceNameComponents[1];
 		this.receiver = new ResultReceiver(new Handler())
 		{
-			@SuppressWarnings("synthetic-access")
 			@Override
-			protected void onReceiveResult(final int resultCode, final Bundle resultData)
+			protected void onReceiveResult(final int resultCode, @NonNull final Bundle resultData)
 			{
 				resultData.setClassLoader(ParcelableModel.class.getClassLoader());
 
@@ -124,8 +128,7 @@ public class TreebolicAIDLBoundClient implements ITreebolicClient
 					{
 						if (!ParcelableModel.class.equals(parcelable.getClass()))
 						{
-							Log.d(TreebolicAIDLBoundClient.TAG, "Parcel/Unparcel from source classloader " + parcelable.getClass().getClassLoader()
-									+ " to target classloader " + ParcelableModel.class.getClassLoader());
+							Log.d(TreebolicAIDLBoundClient.TAG, "Parcel/Unparcel from source classloader " + parcelable.getClass().getClassLoader() + " to target classloader " + ParcelableModel.class.getClassLoader());
 
 							// obtain parcel
 							final Parcel parcel = Parcel.obtain();
@@ -165,6 +168,7 @@ public class TreebolicAIDLBoundClient implements ITreebolicClient
 			// Toast.makeText(this.context, R.string.disconnected, Toast.LENGTH_SHORT).show();
 
 			// detach our existing connection.
+			assert this.connection != null;
 			this.context.unbindService(this.connection);
 			this.isBound = false;
 		}
@@ -177,7 +181,6 @@ public class TreebolicAIDLBoundClient implements ITreebolicClient
 	{
 		this.connection = new ServiceConnection()
 		{
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onServiceConnected(final ComponentName name, final IBinder binder0)
 			{
@@ -189,7 +192,6 @@ public class TreebolicAIDLBoundClient implements ITreebolicClient
 				TreebolicAIDLBoundClient.this.connectionListener.onConnected(true);
 			}
 
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onServiceDisconnected(final ComponentName name)
 			{
@@ -207,15 +209,16 @@ public class TreebolicAIDLBoundClient implements ITreebolicClient
 	}
 
 	@Override
-	public void requestModel(final String source, final String base, final String imageBase, final String settings, final Intent forward)
+	public void requestModel(final String source, final String base, final String imageBase, final String settings, @Nullable final Intent forward)
 	{
+		assert this.binder != null;
 		if (forward == null)
 		{
 			try
 			{
 				this.binder.makeModel(source, base, imageBase, settings, this.receiver);
 			}
-			catch (final RemoteException e)
+			catch (@NonNull final RemoteException e)
 			{
 				Log.e(TreebolicAIDLBoundClient.TAG, "Service request failed", e);
 			}
@@ -226,7 +229,7 @@ public class TreebolicAIDLBoundClient implements ITreebolicClient
 			{
 				this.binder.makeAndForwardModel(source, base, imageBase, settings, forward);
 			}
-			catch (final RemoteException e)
+			catch (@NonNull final RemoteException e)
 			{
 				Log.e(TreebolicAIDLBoundClient.TAG, "Service request failed", e);
 			}

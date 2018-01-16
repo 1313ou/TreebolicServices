@@ -15,5 +15,5 @@ public interface IModelListener
 	 * @param model     model
 	 * @param urlScheme url scheme
 	 */
-	void onModel(Model model, @SuppressWarnings("UnusedParameters") String urlScheme);
+	void onModel(Model model, String urlScheme);
 }

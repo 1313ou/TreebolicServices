@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -313,43 +312,35 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 			}
 		}
 		alert.setView(input);
-		alert.setPositiveButton(R.string.action_ok, new DialogInterface.OnClickListener()
+		alert.setPositiveButton(R.string.action_ok, (dialog, whichButton) ->
 		{
-			@Override
-			public void onClick(DialogInterface dialog, int whichButton)
-			{
-				dialog.dismiss();
+			dialog.dismiss();
 
-				int childCount = input.getChildCount();
-				for (int i = 0; i < childCount; i++)
+			int childCount = input.getChildCount();
+			for (int i = 0; i < childCount; i++)
+			{
+				final RadioButton radioButton = (RadioButton) input.getChildAt(i);
+				if (radioButton.getId() == input.getCheckedRadioButtonId())
 				{
-					final RadioButton radioButton = (RadioButton) input.getChildAt(i);
-					if (radioButton.getId() == input.getCheckedRadioButtonId())
+					final String sourceFile = radioButton.getTag().toString();
+					final File sourceDir = new File(sourceFile);
+					if (sourceDir.exists() && sourceDir.isDirectory())
 					{
-						final String sourceFile = radioButton.getTag().toString();
-						final File sourceDir = new File(sourceFile);
-						if (sourceDir.exists() && sourceDir.isDirectory())
-						{
-							runnable1.run(sourceFile + File.separatorChar);
-						}
-						else
-						{
-							final AlertDialog.Builder alert2 = new AlertDialog.Builder(MainActivity.this);
-							alert2.setTitle(sourceFile) //
-									.setMessage(getString(R.string.status_fail)) //
-									.show();
-						}
+						runnable1.run(sourceFile + File.separatorChar);
+					}
+					else
+					{
+						final AlertDialog.Builder alert2 = new AlertDialog.Builder(MainActivity.this);
+						alert2.setTitle(sourceFile) //
+								.setMessage(getString(R.string.status_fail)) //
+								.show();
 					}
 				}
 			}
 		});
-		alert.setNegativeButton(R.string.action_cancel, new DialogInterface.OnClickListener()
+		alert.setNegativeButton(R.string.action_cancel, (dialog, whichButton) ->
 		{
-			@Override
-			public void onClick(DialogInterface dialog, int whichButton)
-			{
-				// canceled.
-			}
+			// canceled.
 		});
 		alert.show();
 	}
@@ -449,7 +440,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 			Toast.makeText(MainActivity.this, R.string.fail_nullclient, Toast.LENGTH_SHORT).show();
 			return false;
 		}
-		@SuppressWarnings("ConstantConditions") final Intent forward = MainActivity.FORWARD ? IntentFactory.makeTreebolicIntentSkeleton(new Intent(this, org.treebolic.files.service.MainActivity.class), null, null, null) : null;
+		final Intent forward = MainActivity.FORWARD ? IntentFactory.makeTreebolicIntentSkeleton(new Intent(this, org.treebolic.files.service.MainActivity.class), null, null, null) : null;
 		MainActivity.this.client.requestModel(source, null, null, null, forward);
 		return true;
 	}
@@ -554,7 +545,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	 *
 	 * @param view view
 	 */
-	public void onClick(@SuppressWarnings("UnusedParameters") final View view)
+	public void onClick(final View view)
 	{
 		query();
 	}

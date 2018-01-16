@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -55,6 +57,7 @@ public class TreebolicBoundClient implements ITreebolicClient
 	/**
 	 * Connection
 	 */
+	@Nullable
 	private ServiceConnection connection;
 
 	/**
@@ -65,23 +68,19 @@ public class TreebolicBoundClient implements ITreebolicClient
 	/**
 	 * Binder
 	 */
+	@Nullable
 	private ITreebolicServiceBinder binder;
 
 	/**
 	 * Constructor
 	 *
-	 * @param context0
-	 *            context
-	 * @param service0
-	 *            service full name (pkg/class)
-	 * @param connectionListener0
-	 *            connection listener
-	 * @param modelListener0
-	 *            model listener
+	 * @param context0            context
+	 * @param service0            service full name (pkg/class)
+	 * @param connectionListener0 connection listener
+	 * @param modelListener0      model listener
 	 */
 	@SuppressWarnings("WeakerAccess")
-	public TreebolicBoundClient(final Context context0, final String service0, final IConnectionListener connectionListener0,
-			final IModelListener modelListener0)
+	public TreebolicBoundClient(final Context context0, @NonNull final String service0, final IConnectionListener connectionListener0, final IModelListener modelListener0)
 	{
 		this.context = context0;
 		this.modelListener = modelListener0;
@@ -106,6 +105,7 @@ public class TreebolicBoundClient implements ITreebolicClient
 			// Toast.makeText(this.context, R.string.disconnected, Toast.LENGTH_SHORT).show();
 
 			// detach our existing connection.
+			assert this.connection != null;
 			this.context.unbindService(this.connection);
 			this.isBound = false;
 		}
@@ -118,7 +118,6 @@ public class TreebolicBoundClient implements ITreebolicClient
 	{
 		this.connection = new ServiceConnection()
 		{
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onServiceConnected(final ComponentName name, final IBinder binder0)
 			{
@@ -130,7 +129,6 @@ public class TreebolicBoundClient implements ITreebolicClient
 				TreebolicBoundClient.this.connectionListener.onConnected(true);
 			}
 
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onServiceDisconnected(final ComponentName name)
 			{
@@ -148,8 +146,9 @@ public class TreebolicBoundClient implements ITreebolicClient
 	}
 
 	@Override
-	public void requestModel(final String source, final String base, final String imageBase, final String settings, final Intent forward)
+	public void requestModel(final String source, final String base, final String imageBase, final String settings, @Nullable final Intent forward)
 	{
+		assert this.binder != null;
 		if (forward == null)
 		{
 			this.binder.makeModel(source, base, imageBase, settings, this.modelListener);

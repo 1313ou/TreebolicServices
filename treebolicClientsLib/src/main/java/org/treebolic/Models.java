@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.support.annotation.NonNull;
 
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
@@ -22,14 +23,14 @@ public class Models
 
 	// T O / F R O M I N T E N T
 
-	static public void set(final Model model, final Intent intent)
+	static public void set(final Model model, @NonNull final Intent intent)
 	{
 		final Long key = Models.set(model);
 		intent.putExtra(TreebolicIface.ARG_MODEL_REFERENCE, key);
 	}
 
 	@SuppressWarnings("boxing")
-	static public Model get(final Intent intent)
+	static public Model get(@NonNull final Intent intent)
 	{
 		final Long key = intent.getLongExtra(TreebolicIface.ARG_MODEL_REFERENCE, -1);
 		return Models.get(key);
@@ -37,15 +38,14 @@ public class Models
 
 	// T O / F R O M B U N D L E
 
-	@SuppressWarnings("boxing")
-	static public void set(final Model model, final Bundle bundle)
+	static public void set(final Model model, @NonNull final Bundle bundle)
 	{
 		final Long key = Models.set(model);
 		bundle.putLong(TreebolicIface.ARG_MODEL_REFERENCE, key);
 	}
 
 	@SuppressWarnings("boxing")
-	static public Model get(final Bundle bundle)
+	static public Model get(@NonNull final Bundle bundle)
 	{
 		final Long key = bundle.getLong(TreebolicIface.ARG_MODEL_REFERENCE, -1);
 		return Models.get(key);
@@ -75,11 +75,13 @@ public class Models
 		return reference.get();
 	}
 
-	static public Model get(final Long key) throws NoSuchElementException
+	static public Model get(@NonNull final Long key) throws NoSuchElementException
 	{
 		final Model model = Models.getUnguarded(key);
 		if (model == null)
+		{
 			throw new NoSuchElementException(key.toString());
+		}
 		return model;
 	}
 }
