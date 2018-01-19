@@ -12,7 +12,7 @@
 	<application
 		android:allowBackup="true"
 		android:fullBackupContent="@xml/backup_descriptor"
-		android:icon="@drawable/ic_launcher"
+		android:icon="@mipmap/ic_launcher"
 		android:label="@string/app_name"
 		android:theme="@style/MyTheme"
 		tools:ignore="AllowBackup">
@@ -61,7 +61,7 @@
 			android:description="@string/description_service_intent_service"
 			android:enabled="true"
 			android:exported="true"
-			android:icon="@drawable/ic_launcher"
+			android:icon="@mipmap/ic_launcher"
 			android:label="@string/service_intent_service"
 			android:permission="android.permission.READ_EXTERNAL_STORAGE"
 			android:process="org.treebolic">
@@ -78,7 +78,7 @@
 			android:description="@string/description_service_bound_service"
 			android:enabled="true"
 			android:exported="true"
-			android:icon="@drawable/ic_launcher"
+			android:icon="@mipmap/ic_launcher"
 			android:label="@string/service_bound_service"
 			android:permission="android.permission.READ_EXTERNAL_STORAGE" >
 		</service>
@@ -89,7 +89,7 @@
 			android:description="@string/description_service_aidl_bound_service"
 			android:enabled="true"
 			android:exported="true"
-			android:icon="@drawable/ic_launcher"
+			android:icon="@mipmap/ic_launcher"
 			android:label="@string/service_aidl_bound_service"
 			android:permission="android.permission.READ_EXTERNAL_STORAGE"
 			android:process="org.treebolic">
@@ -100,7 +100,7 @@
 			android:description="@string/description_service_messenger_bound_service"
 			android:enabled="true"
 			android:exported="true"
-			android:icon="@drawable/ic_launcher"
+			android:icon="@mipmap/ic_launcher"
 			android:label="@string/service_messenger_bound_service"
 			android:permission="android.permission.READ_EXTERNAL_STORAGE">
 		</service>
