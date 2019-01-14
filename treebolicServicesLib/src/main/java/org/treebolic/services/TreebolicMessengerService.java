@@ -57,14 +57,15 @@ abstract public class TreebolicMessengerService extends Service implements ITree
 			// pack model into message bundle
 			IntentFactory.putModelResult(this.bundle, model, this.urlScheme);
 
-			// return model to clients as a message
-			final Message msg = Message.obtain(null, ITreebolicService.MSG_RESULT_MODEL, 0, 0);
-			msg.setData(this.bundle);
-
 			// send message to all clients
 			Log.d(TreebolicMessengerService.TAG, this.clients.size() + " clients");
 			for (int i = this.clients.size() - 1; i >= 0; i--)
 			{
+				// return model to clients as a message
+				final Message msg = Message.obtain();
+				msg.what = ITreebolicService.MSG_RESULT_MODEL;
+				msg.setData(this.bundle);
+
 				try
 				{
 					Log.d(TreebolicMessengerService.TAG, "Returning model " + model);
