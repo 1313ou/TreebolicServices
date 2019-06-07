@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Button;
@@ -71,8 +72,7 @@ public class QueryProviderActivity extends AppCompatCommonActivity
 
 		// button
 		final Button closeButton = findViewById(R.id.button);
-		closeButton.setOnClickListener(v ->
-		{
+		closeButton.setOnClickListener(v -> {
 			final Intent requestFileIntent = new Intent();
 			requestFileIntent.setAction(Intent.ACTION_DEFAULT);
 			requestFileIntent.setComponent(new ComponentName(QueryProviderActivity.PROVIDER_PKG, QueryProviderActivity.PROVIDER_ACTIVITY));
@@ -81,17 +81,18 @@ public class QueryProviderActivity extends AppCompatCommonActivity
 	}
 
 	@Override
-	protected void onActivityResult(final int requestCode, final int resultCode, @NonNull final Intent returnIntent)
+	protected void onActivityResult(final int requestCode, final int resultCode, @Nullable final Intent returnIntent)
 	{
 		if (requestCode == QueryProviderActivity.REQUEST_CODE)
 		{
-			if (resultCode == AppCompatActivity.RESULT_OK)
+			if (resultCode == AppCompatActivity.RESULT_OK && returnIntent != null)
 			{
 				// retrieve arguments
 				final Uri returnUri = returnIntent.getData();
 				if (returnUri != null)
 				{
-					final boolean asTarGz = returnUri.getPath().endsWith(".tar.gz");
+					final String path = returnUri.getPath();
+					final boolean asTarGz = path != null && path.endsWith(".tar.gz");
 					ParcelFileDescriptor fileDescriptor = null;
 					FileInputStream fin = null;
 

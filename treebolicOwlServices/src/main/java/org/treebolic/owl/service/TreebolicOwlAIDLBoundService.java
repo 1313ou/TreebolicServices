@@ -24,6 +24,7 @@ public class TreebolicOwlAIDLBoundService extends TreebolicAIDLBoundService
 		this.factory = new ModelFactory(this);
 	}
 
+	@SuppressWarnings("SameReturnValue")
 	@NonNull
 	@Override
 	public String getUrlScheme()

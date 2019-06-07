@@ -1,11 +1,194 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="EntryPointsManager">
+    <entry_points version="2.0">
+      <entry_point TYPE="field" FQNAME="org.treebolic.ParcelableModel CREATOR" />
+      <entry_point TYPE="field" FQNAME="org.treebolic.clients.TreebolicClientActivityStub urlScheme" />
+    </entry_points>
+    <pattern value="org.treebolic.owl.service.Deployer" />
+    <pattern value="org.treebolic.owl.service.Deployer" method="Deployer" />
+    <pattern value="org.treebolic.owl.service.DownloadActivity" />
+    <pattern value="org.treebolic.wordnet.service.DownloadActivity" />
+    <pattern value="org.treebolic.Models" method="get" />
+    <pattern value="org.treebolic.clients.iface.IConnectionListener" />
+    <pattern value="org.treebolic.clients.iface.IModelListener" />
+    <pattern value="org.treebolic.wordnet.service.MainActivity" />
+    <pattern value="org.treebolic.owl.service.MainActivity" />
+    <pattern value="org.treebolic.files.service.MainActivity" />
+    <pattern value="org.treebolic.wordnet.service.QueryProviderActivity" />
+    <pattern value="org.treebolic.wordnet.service.SettingsActivity" />
+    <pattern value="org.treebolic.owl.service.SettingsActivity" />
+    <pattern value="org.treebolic.files.service.SettingsActivity" />
+    <pattern value="org.treebolic.clients.TreebolicClientActivityStub" />
+    <pattern value="org.treebolic.services.IntentFactory" />
+    <pattern value="org.treebolic.services.IntentFactory" method="makeTreebolicIntent" />
+    <pattern value="org.treebolic.services.ModelFactory" />
+    <pattern value="org.treebolic.Models" />
+    <pattern value="org.treebolic.wordnet.service.MainActivity" method="onClick" />
+    <pattern value="org.treebolic.owl.service.MainActivity" method="onClick" />
+    <pattern value="org.treebolic.files.service.MainActivity" method="onClick" />
+    <pattern value="org.treebolic.clients.iface.IConnectionListener" method="onConnected" />
+    <pattern value="org.treebolic.clients.iface.IModelListener" method="onModel" />
+    <pattern value="org.treebolic.ParcelableModel" />
+    <pattern value="org.treebolic.owl.service.Deployer" method="process" />
+    <pattern value="org.treebolic.ParcelableModel" method="readSerializableModel" />
+    <pattern value="org.treebolic.Models" method="set" />
+    <pattern value="org.treebolic.services.TreebolicAIDLBoundService" />
+    <pattern value="org.treebolic.services.TreebolicAIDLBoundService" method="TreebolicAIDLBoundService" />
+    <pattern value="org.treebolic.services.TreebolicBoundService" />
+    <pattern value="org.treebolic.services.TreebolicBoundService" method="TreebolicBoundService" />
+    <pattern value="org.treebolic.files.service.TreebolicFilesAIDLBoundService" />
+    <pattern value="org.treebolic.files.service.TreebolicFilesAIDLBoundService" method="TreebolicFilesAIDLBoundService" />
+    <pattern value="org.treebolic.files.service.TreebolicFilesBoundService" />
+    <pattern value="org.treebolic.files.service.TreebolicFilesBoundService" method="TreebolicFilesBoundService" />
+    <pattern value="org.treebolic.files.service.TreebolicFilesIntentService" />
+    <pattern value="org.treebolic.files.service.TreebolicFilesIntentService" method="TreebolicFilesIntentService" />
+    <pattern value="org.treebolic.files.service.TreebolicFilesMessengerService" />
+    <pattern value="org.treebolic.files.service.TreebolicFilesMessengerService" method="TreebolicFilesMessengerService" />
+    <pattern value="org.treebolic.services.TreebolicIntentService" />
+    <pattern value="org.treebolic.services.TreebolicIntentService" method="TreebolicIntentService" />
+    <pattern value="org.treebolic.services.TreebolicMessengerService" />
+    <pattern value="org.treebolic.services.TreebolicMessengerService" method="TreebolicMessengerService" />
+    <pattern value="org.treebolic.owl.service.TreebolicOwlAIDLBoundService" />
+    <pattern value="org.treebolic.owl.service.TreebolicOwlAIDLBoundService" method="TreebolicOwlAIDLBoundService" />
+    <pattern value="org.treebolic.owl.service.TreebolicOwlBoundService" />
+    <pattern value="org.treebolic.owl.service.TreebolicOwlBoundService" method="TreebolicOwlBoundService" />
+    <pattern value="org.treebolic.owl.service.TreebolicOwlIntentService" />
+    <pattern value="org.treebolic.owl.service.TreebolicOwlIntentService" method="TreebolicOwlIntentService" />
+    <pattern value="org.treebolic.owl.service.TreebolicOwlMessengerService" />
+    <pattern value="org.treebolic.owl.service.TreebolicOwlMessengerService" method="TreebolicOwlMessengerService" />
+    <pattern value="org.treebolic.wordnet.service.TreebolicWordNetAIDLBoundService" />
+    <pattern value="org.treebolic.wordnet.service.TreebolicWordNetAIDLBoundService" method="TreebolicWordNetAIDLBoundService" />
+    <pattern value="org.treebolic.wordnet.service.TreebolicWordNetBoundService" />
+    <pattern value="org.treebolic.wordnet.service.TreebolicWordNetBoundService" method="TreebolicWordNetBoundService" />
+    <pattern value="org.treebolic.wordnet.service.TreebolicWordNetIntentService" />
+    <pattern value="org.treebolic.wordnet.service.TreebolicWordNetIntentService" method="TreebolicWordNetIntentService" />
+    <pattern value="org.treebolic.wordnet.service.TreebolicWordNetMessengerService" />
+    <pattern value="org.treebolic.wordnet.service.TreebolicWordNetMessengerService" method="TreebolicWordNetMessengerService" />
+    <pattern value="org.treebolic.services.ModelFactory" method="useFilesDir" />
+    <pattern value="org.treebolic.ParcelableModel" method="writeSerializableToParcel" />
+    <pattern value="org.treebolic.ParcelableModel" method="writeToParcel" />
+    <pattern value="org.treebolic.wordnet.service.Deployer" />
+    <pattern value="org.treebolic.wordnet.service.Deployer" method="Deployer" />
+    <pattern value="org.treebolic.ParcelableModel" method="describeContents" />
+    <pattern value="org.treebolic.wordnet.service.DownloadActivity" method="doProcessing" />
+    <pattern value="org.treebolic.owl.service.DownloadActivity" method="doProcessing" />
+    <pattern value="org.treebolic.files.service.SettingsActivity.GeneralPreferenceFragment" />
+    <pattern value="org.treebolic.owl.service.SettingsActivity.GeneralPreferenceFragment" />
+    <pattern value="org.treebolic.wordnet.service.SettingsActivity.GeneralPreferenceFragment" />
+    <pattern value="org.treebolic.files.service.TreebolicFilesAIDLBoundService" method="getUrlScheme" />
+    <pattern value="org.treebolic.files.service.TreebolicFilesBoundService" method="getUrlScheme" />
+    <pattern value="org.treebolic.files.service.TreebolicFilesIntentService" method="getUrlScheme" />
+    <pattern value="org.treebolic.files.service.TreebolicFilesMessengerService" method="getUrlScheme" />
+    <pattern value="org.treebolic.owl.service.TreebolicOwlAIDLBoundService" method="getUrlScheme" />
+    <pattern value="org.treebolic.owl.service.TreebolicOwlBoundService" method="getUrlScheme" />
+    <pattern value="org.treebolic.owl.service.TreebolicOwlIntentService" method="getUrlScheme" />
+    <pattern value="org.treebolic.owl.service.TreebolicOwlMessengerService" method="getUrlScheme" />
+    <pattern value="org.treebolic.wordnet.service.TreebolicWordNetAIDLBoundService" method="getUrlScheme" />
+    <pattern value="org.treebolic.wordnet.service.TreebolicWordNetBoundService" method="getUrlScheme" />
+    <pattern value="org.treebolic.wordnet.service.TreebolicWordNetIntentService" method="getUrlScheme" />
+    <pattern value="org.treebolic.wordnet.service.TreebolicWordNetMessengerService" method="getUrlScheme" />
+    <pattern value="org.treebolic.wordnet.service.MainActivity.PlaceholderFragment" />
+    <pattern value="org.treebolic.owl.service.MainActivity.PlaceholderFragment" />
+    <pattern value="org.treebolic.files.service.MainActivity.PlaceholderFragment" />
+    <pattern value="org.treebolic.files.service.MainActivity.Runnable1" />
+    <pattern value="org.treebolic.wordnet.service.SettingsActivity.ServicePreferenceFragment" />
+    <pattern value="org.treebolic.clients.TreebolicMessengerClient.IncomingHandler" />
+    <pattern value="org.treebolic.clients.TreebolicMessengerClient.IncomingHandler" method="IncomingHandler" />
+    <pattern value="org.treebolic.wordnet.service.SettingsActivity" method="isValidFragment" />
+    <pattern value="org.treebolic.owl.service.SettingsActivity" method="isValidFragment" />
+    <pattern value="org.treebolic.files.service.SettingsActivity" method="isValidFragment" />
+    <pattern value="org.treebolic.services.ModelFactory" method="make" />
+    <pattern value="org.treebolic.wordnet.service.ModelFactory" />
+    <pattern value="org.treebolic.services.ModelFactory" method="ModelFactory" />
+    <pattern value="org.treebolic.wordnet.service.MainActivity" method="onActivityResult" />
+    <pattern value="org.treebolic.owl.service.MainActivity" method="onActivityResult" />
+    <pattern value="org.treebolic.files.service.MainActivity" method="onActivityResult" />
+    <pattern value="org.treebolic.wordnet.service.QueryProviderActivity" method="onActivityResult" />
+    <pattern value="org.treebolic.services.TreebolicAIDLBoundService" method="onBind" />
+    <pattern value="org.treebolic.services.TreebolicBoundService" method="onBind" />
+    <pattern value="org.treebolic.services.TreebolicMessengerService" method="onBind" />
+    <pattern value="org.treebolic.wordnet.service.SettingsActivity" method="onBuildHeaders" />
+    <pattern value="org.treebolic.owl.service.SettingsActivity" method="onBuildHeaders" />
+    <pattern value="org.treebolic.files.service.SettingsActivity" method="onBuildHeaders" />
+    <pattern value="org.treebolic.wordnet.service.MainActivity" method="onConnected" />
+    <pattern value="org.treebolic.owl.service.MainActivity" method="onConnected" />
+    <pattern value="org.treebolic.files.service.MainActivity" method="onConnected" />
+    <pattern value="org.treebolic.clients.TreebolicClientActivityStub" method="onConnected" />
+    <pattern value="org.treebolic.files.service.TreebolicFilesAIDLBoundService" method="onCreate" />
+    <pattern value="org.treebolic.files.service.TreebolicFilesBoundService" method="onCreate" />
+    <pattern value="org.treebolic.files.service.TreebolicFilesIntentService" method="onCreate" />
+    <pattern value="org.treebolic.files.service.TreebolicFilesMessengerService" method="onCreate" />
+    <pattern value="org.treebolic.owl.service.TreebolicOwlAIDLBoundService" method="onCreate" />
+    <pattern value="org.treebolic.owl.service.TreebolicOwlBoundService" method="onCreate" />
+    <pattern value="org.treebolic.owl.service.TreebolicOwlIntentService" method="onCreate" />
+    <pattern value="org.treebolic.owl.service.TreebolicOwlMessengerService" method="onCreate" />
+    <pattern value="org.treebolic.wordnet.service.TreebolicWordNetAIDLBoundService" method="onCreate" />
+    <pattern value="org.treebolic.wordnet.service.TreebolicWordNetBoundService" method="onCreate" />
+    <pattern value="org.treebolic.wordnet.service.TreebolicWordNetIntentService" method="onCreate" />
+    <pattern value="org.treebolic.wordnet.service.TreebolicWordNetMessengerService" method="onCreate" />
+    <pattern value="org.treebolic.wordnet.service.DownloadActivity" method="onCreate" />
+    <pattern value="org.treebolic.owl.service.DownloadActivity" method="onCreate" />
+    <pattern value="org.treebolic.wordnet.service.MainActivity" method="onCreate" />
+    <pattern value="org.treebolic.owl.service.MainActivity" method="onCreate" />
+    <pattern value="org.treebolic.files.service.MainActivity" method="onCreate" />
+    <pattern value="org.treebolic.wordnet.service.QueryProviderActivity" method="onCreate" />
+    <pattern value="org.treebolic.wordnet.service.SettingsActivity" method="onCreate" />
+    <pattern value="org.treebolic.owl.service.SettingsActivity" method="onCreate" />
+    <pattern value="org.treebolic.files.service.SettingsActivity" method="onCreate" />
+    <pattern value="org.treebolic.wordnet.service.MainActivity" method="onCreateOptionsMenu" />
+    <pattern value="org.treebolic.owl.service.MainActivity" method="onCreateOptionsMenu" />
+    <pattern value="org.treebolic.files.service.MainActivity" method="onCreateOptionsMenu" />
+    <pattern value="org.treebolic.services.TreebolicIntentService" method="onHandleIntent" />
+    <pattern value="org.treebolic.wordnet.service.SettingsActivity" method="onIsMultiPane" />
+    <pattern value="org.treebolic.owl.service.SettingsActivity" method="onIsMultiPane" />
+    <pattern value="org.treebolic.files.service.SettingsActivity" method="onIsMultiPane" />
+    <pattern value="org.treebolic.wordnet.service.MainActivity" method="onModel" />
+    <pattern value="org.treebolic.owl.service.MainActivity" method="onModel" />
+    <pattern value="org.treebolic.files.service.MainActivity" method="onModel" />
+    <pattern value="org.treebolic.wordnet.service.MainActivity" method="onOptionsItemSelected" />
+    <pattern value="org.treebolic.owl.service.MainActivity" method="onOptionsItemSelected" />
+    <pattern value="org.treebolic.files.service.MainActivity" method="onOptionsItemSelected" />
+    <pattern value="org.treebolic.wordnet.service.SettingsActivity" method="onOptionsItemSelected" />
+    <pattern value="org.treebolic.owl.service.SettingsActivity" method="onOptionsItemSelected" />
+    <pattern value="org.treebolic.files.service.SettingsActivity" method="onOptionsItemSelected" />
+    <pattern value="org.treebolic.wordnet.service.MainActivity" method="onPause" />
+    <pattern value="org.treebolic.owl.service.MainActivity" method="onPause" />
+    <pattern value="org.treebolic.files.service.MainActivity" method="onPause" />
+    <pattern value="org.treebolic.clients.TreebolicClientActivityStub" method="onPause" />
+    <pattern value="org.treebolic.wordnet.service.MainActivity" method="onPrepareOptionsMenu" />
+    <pattern value="org.treebolic.wordnet.service.MainActivity" method="onResume" />
+    <pattern value="org.treebolic.owl.service.MainActivity" method="onResume" />
+    <pattern value="org.treebolic.files.service.MainActivity" method="onResume" />
+    <pattern value="org.treebolic.clients.TreebolicClientActivityStub" method="onResume" />
+    <pattern value="org.treebolic.ParcelableModel" method="ParcelableModel" />
+    <pattern value="org.treebolic.wordnet.service.DownloadActivity" method="process" />
+    <pattern value="org.treebolic.owl.service.DownloadActivity" method="process" />
+    <pattern value="org.treebolic.wordnet.service.DownloadActivity" method="start" />
+    <pattern value="org.treebolic.owl.service.DownloadActivity" method="start" />
+    <pattern value="org.treebolic.clients.TreebolicMessengerClient" />
+    <pattern value="org.treebolic.wordnet.service.ModelFactory" method="useFilesDir" />
+    <pattern value="org.treebolic.clients.TreebolicMessengerClient" method="connect" />
+    <pattern value="org.treebolic.clients.TreebolicMessengerClient" method="disconnect" />
+    <pattern value="org.treebolic.wordnet.service.ModelFactory" method="getSourceAliases" />
+    <pattern value="org.treebolic.clients.TreebolicMessengerClient.IncomingHandler" method="handleMessage" />
+    <pattern value="org.treebolic.wordnet.service.ModelFactory" method="ModelFactory" />
+    <pattern value="org.treebolic.wordnet.service.SettingsActivity.GeneralPreferenceFragment" method="onCreate" />
+    <pattern value="org.treebolic.wordnet.service.SettingsActivity.ServicePreferenceFragment" method="onCreate" />
+    <pattern value="org.treebolic.owl.service.SettingsActivity.GeneralPreferenceFragment" method="onCreate" />
+    <pattern value="org.treebolic.files.service.SettingsActivity.GeneralPreferenceFragment" method="onCreate" />
+    <pattern value="org.treebolic.wordnet.service.MainActivity.PlaceholderFragment" method="onCreateView" />
+    <pattern value="org.treebolic.owl.service.MainActivity.PlaceholderFragment" method="onCreateView" />
+    <pattern value="org.treebolic.files.service.MainActivity.PlaceholderFragment" method="onCreateView" />
+    <pattern value="org.treebolic.clients.TreebolicMessengerClient" method="requestModel" />
+    <pattern value="org.treebolic.clients.TreebolicMessengerClient" method="TreebolicMessengerClient" />
+  </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="android.support.annotation.Nullable" />
     <option name="myDefaultNotNull" value="android.support.annotation.NonNull" />
     <option name="myNullables">
       <value>
-        <list size="7">
+        <list size="10">
           <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.Nullable" />
           <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nullable" />
           <item index="2" class="java.lang.String" itemvalue="javax.annotation.CheckForNull" />
@@ -13,18 +196,24 @@
           <item index="4" class="java.lang.String" itemvalue="android.support.annotation.Nullable" />
           <item index="5" class="java.lang.String" itemvalue="androidx.annotation.Nullable" />
           <item index="6" class="java.lang.String" itemvalue="androidx.annotation.RecentlyNullable" />
+          <item index="7" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.qual.Nullable" />
+          <item index="8" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.compatqual.NullableDecl" />
+          <item index="9" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.compatqual.NullableType" />
         </list>
       </value>
     </option>
     <option name="myNotNulls">
       <value>
-        <list size="6">
+        <list size="9">
           <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.NotNull" />
           <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nonnull" />
           <item index="2" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.NonNull" />
           <item index="3" class="java.lang.String" itemvalue="android.support.annotation.NonNull" />
           <item index="4" class="java.lang.String" itemvalue="androidx.annotation.NonNull" />
           <item index="5" class="java.lang.String" itemvalue="androidx.annotation.RecentlyNonNull" />
+          <item index="6" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.qual.NonNull" />
+          <item index="7" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.compatqual.NonNullDecl" />
+          <item index="8" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.compatqual.NonNullType" />
         </list>
       </value>
     </option>

@@ -237,6 +237,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		return super.onOptionsItemSelected(item);
 	}
 
+	@SuppressWarnings("SameReturnValue")
 	@Override
 	public boolean onPrepareOptionsMenu(@NonNull final Menu menu)
 	{
@@ -453,23 +454,19 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	}
 
 	@Override
-	protected void onActivityResult(final int requestCode, final int resultCode, @NonNull final Intent returnIntent)
+	protected void onActivityResult(final int requestCode, final int resultCode, @Nullable final Intent returnIntent)
 	{
 		// handle selection of target by other activity which returns selected target
 		if (resultCode == AppCompatActivity.RESULT_OK)
 		{
-			switch (requestCode)
+			if (requestCode == REQUEST_DATA_FROM_DOWNLOADER && returnIntent != null)
 			{
-				case REQUEST_DATA_FROM_DOWNLOADER:
-					boolean downloadDataAvailable = returnIntent.getBooleanExtra(org.treebolic.download.DownloadActivity.RESULT_DOWNLOAD_DATA_AVAILABLE, false);
-					if (downloadDataAvailable)
-					{
-						downloadDataAvailable = this.deployer.status();
-					}
-					this.dataButton.setIcon(downloadDataAvailable ? R.drawable.ic_action_done : R.drawable.ic_action_error);
-					break;
-				default:
-					break;
+				boolean downloadDataAvailable = returnIntent.getBooleanExtra(org.treebolic.download.DownloadActivity.RESULT_DOWNLOAD_DATA_AVAILABLE, false);
+				if (downloadDataAvailable)
+				{
+					downloadDataAvailable = this.deployer.status();
+				}
+				this.dataButton.setIcon(downloadDataAvailable ? R.drawable.ic_action_done : R.drawable.ic_action_error);
 			}
 			super.onActivityResult(requestCode, resultCode, returnIntent);
 		}

@@ -72,7 +72,11 @@ public class Models
 	static public Model getUnguarded(final Long key)
 	{
 		final WeakReference<Model> reference = Models.references.get(key);
-		return reference.get();
+		if (reference != null)
+		{
+			return reference.get();
+		}
+		return null;
 	}
 
 	static public Model get(@NonNull final Long key) throws NoSuchElementException

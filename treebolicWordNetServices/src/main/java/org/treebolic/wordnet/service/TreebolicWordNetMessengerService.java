@@ -39,6 +39,7 @@ public class TreebolicWordNetMessengerService extends TreebolicMessengerService
 		}
 	}
 
+	@SuppressWarnings("SameReturnValue")
 	@NonNull
 	@Override
 	public String getUrlScheme()

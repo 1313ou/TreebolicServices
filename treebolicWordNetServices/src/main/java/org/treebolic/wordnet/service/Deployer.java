@@ -111,10 +111,8 @@ public class Deployer
 		destDir.mkdirs();
 
 		// input stream
-		TarArchiveInputStream tarIn = null;
-		try
+		try (TarArchiveInputStream tarIn = new TarArchiveInputStream(new GzipCompressorInputStream(new BufferedInputStream(fin))))
 		{
-			tarIn = new TarArchiveInputStream(new GzipCompressorInputStream(new BufferedInputStream(fin)));
 
 			// loop through entries
 			for (TarArchiveEntry tarEntry = tarIn.getNextTarEntry(); tarEntry != null; tarEntry = tarIn.getNextTarEntry())
@@ -169,42 +167,14 @@ public class Deployer
 					destFile.createNewFile();
 
 					// copy
-					BufferedOutputStream bout = null;
-					try
+					try (BufferedOutputStream bout = new BufferedOutputStream(new FileOutputStream(destFile)))
 					{
-						bout = new BufferedOutputStream(new FileOutputStream(destFile));
 						final byte[] buffer = new byte[1024];
 						for (int len = tarIn.read(buffer); len != -1; len = tarIn.read(buffer))
 						{
 							bout.write(buffer, 0, len);
 						}
 					}
-					finally
-					{
-						if (bout != null)
-						{
-							try
-							{
-								bout.close();
-							}
-							catch (IOException ignored)
-							{
-							}
-						}
-					}
-				}
-			}
-		}
-		finally
-		{
-			if (tarIn != null)
-			{
-				try
-				{
-					tarIn.close();
-				}
-				catch (IOException ignored)
-				{
 				}
 			}
 		}

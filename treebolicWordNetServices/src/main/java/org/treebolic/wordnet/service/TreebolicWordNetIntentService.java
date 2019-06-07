@@ -37,6 +37,7 @@ public class TreebolicWordNetIntentService extends TreebolicIntentService
 		}
 	}
 
+	@SuppressWarnings("SameReturnValue")
 	@NonNull
 	@Override
 	public String getUrlScheme()

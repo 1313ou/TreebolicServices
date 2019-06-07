@@ -35,7 +35,6 @@ public class ModelFactory extends org.treebolic.services.ModelFactory
 	 */
 	public ModelFactory(@NonNull final Context context) throws Exception
 	{
-		//noinspection ConstantConditions
 		super(ModelFactory.SIMPLE ? new treebolic.provider.wordnet.jwi.simple.Provider() : new treebolic.provider.wordnet.jwi.full.Provider(), Utils.makeLogProviderContext(ModelFactory.TAG), makeLocator(context), null);
 	}
 
@@ -67,6 +66,7 @@ public class ModelFactory extends org.treebolic.services.ModelFactory
 		return null;
 	}
 
+	@SuppressWarnings("SameReturnValue")
 	@Override
 	protected boolean useFilesDir()
 	{

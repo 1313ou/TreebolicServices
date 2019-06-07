@@ -26,6 +26,7 @@ public class TreebolicOwlMessengerService extends TreebolicMessengerService
 		this.factory = new ModelFactory(this);
 	}
 
+	@SuppressWarnings("SameReturnValue")
 	@NonNull
 	@Override
 	public String getUrlScheme()

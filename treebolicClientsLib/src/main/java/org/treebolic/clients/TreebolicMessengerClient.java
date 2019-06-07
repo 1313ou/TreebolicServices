@@ -52,6 +52,7 @@ public class TreebolicMessengerClient implements ITreebolicClient
 		 *
 		 * @param client0 client
 		 */
+		@SuppressWarnings("WeakerAccess")
 		public IncomingHandler(final TreebolicMessengerClient client0)
 		{
 			super();
@@ -61,50 +62,49 @@ public class TreebolicMessengerClient implements ITreebolicClient
 		@Override
 		public void handleMessage(@NonNull final Message msg)
 		{
-			switch (msg.what)
+			if (msg.what == ITreebolicService.MSG_RESULT_MODEL)
 			{
-				case ITreebolicService.MSG_RESULT_MODEL:
-					final Bundle resultData = msg.getData();
-					resultData.setClassLoader(ParcelableModel.class.getClassLoader());
-					final String urlScheme = resultData.getString(ITreebolicService.RESULT_URLSCHEME);
-					final boolean isSerialized = resultData.getBoolean(ITreebolicService.RESULT_SERIALIZED);
-					Model model = null;
-					if (isSerialized)
+				final Bundle resultData = msg.getData();
+				resultData.setClassLoader(ParcelableModel.class.getClassLoader());
+				final String urlScheme = resultData.getString(ITreebolicService.RESULT_URLSCHEME);
+				final boolean isSerialized = resultData.getBoolean(ITreebolicService.RESULT_SERIALIZED);
+				Model model = null;
+				if (isSerialized)
+				{
+					model = (Model) resultData.getSerializable(ITreebolicService.RESULT_MODEL);
+				}
+				else
+				{
+					Parcelable parcelable = resultData.getParcelable(ITreebolicService.RESULT_MODEL);
+					if (parcelable != null)
 					{
-						model = (Model) resultData.getSerializable(ITreebolicService.RESULT_MODEL);
-					}
-					else
-					{
-						Parcelable parcelable = resultData.getParcelable(ITreebolicService.RESULT_MODEL);
-						if (parcelable != null)
+						if (!ParcelableModel.class.equals(parcelable.getClass()))
 						{
-							if (!ParcelableModel.class.equals(parcelable.getClass()))
-							{
-								Log.d(TreebolicMessengerClient.TAG, "Parcel/Unparcel from source classloader " + parcelable.getClass().getClassLoader() + " to target classloader " + ParcelableModel.class.getClassLoader());
+							Log.d(TreebolicMessengerClient.TAG, "Parcel/Unparcel from source classloader " + parcelable.getClass().getClassLoader() + " to target classloader " + ParcelableModel.class.getClassLoader());
 
-								// obtain parcel
-								final Parcel parcel = Parcel.obtain();
+							// obtain parcel
+							final Parcel parcel = Parcel.obtain();
 
-								// write parcel
-								parcel.setDataPosition(0);
-								parcelable.writeToParcel(parcel, 0);
+							// write parcel
+							parcel.setDataPosition(0);
+							parcelable.writeToParcel(parcel, 0);
 
-								// read parcel
-								parcel.setDataPosition(0);
-								parcelable = new ParcelableModel(parcel);
+							// read parcel
+							parcel.setDataPosition(0);
+							parcelable = new ParcelableModel(parcel);
 
-								// recycle
-								parcel.recycle();
-							}
-							final ParcelableModel parcelModel = (ParcelableModel) parcelable;
-							model = parcelModel.getModel();
+							// recycle
+							parcel.recycle();
 						}
+						final ParcelableModel parcelModel = (ParcelableModel) parcelable;
+						model = parcelModel.getModel();
 					}
-					this.client.modelListener.onModel(model, urlScheme);
-					break;
-
-				default:
-					super.handleMessage(msg);
+				}
+				this.client.modelListener.onModel(model, urlScheme);
+			}
+			else
+			{
+				super.handleMessage(msg);
 			}
 		}
 	}

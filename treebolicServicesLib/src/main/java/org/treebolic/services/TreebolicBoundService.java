@@ -83,6 +83,7 @@ abstract public class TreebolicBoundService extends Service implements ITreeboli
 	/**
 	 * Model factory
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected IModelFactory factory;
 
 	/**
@@ -131,6 +132,7 @@ abstract public class TreebolicBoundService extends Service implements ITreeboli
 	/**
 	 * Binder that returns an interface to the service
 	 */
+	@SuppressWarnings("ConstantConditions")
 	private final IBinder binder = new TreebolicServiceBinder(this.factory, this.getUrlScheme(), this);
 
 	/**
@@ -138,7 +140,7 @@ abstract public class TreebolicBoundService extends Service implements ITreeboli
 	 */
 	public TreebolicBoundService()
 	{
-		//
+		super();
 	}
 
 	/**

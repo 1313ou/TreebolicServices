@@ -125,6 +125,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 
 	// M E N U
 
+	@SuppressWarnings("SameReturnValue")
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{
@@ -218,27 +219,23 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	}
 
 	@Override
-	protected void onActivityResult(final int requestCode, final int resultCode, @NonNull final Intent returnIntent)
+	protected void onActivityResult(final int requestCode, final int resultCode, @Nullable final Intent returnIntent)
 	{
 		// handle selection of target by other activity which returns selected target
-		if (resultCode == AppCompatActivity.RESULT_OK)
+		if (resultCode == AppCompatActivity.RESULT_OK && returnIntent != null)
 		{
 			final Uri fileUri = returnIntent.getData();
 			if (fileUri != null)
 			{
 				Toast.makeText(this, fileUri.toString(), Toast.LENGTH_SHORT).show();
-				switch (requestCode)
+				if (requestCode == REQUEST_DIR_CODE)
 				{
-					case REQUEST_DIR_CODE:
-						Settings.putStringPref(this, TreebolicIface.PREF_SOURCE, fileUri.getPath());
+					Settings.putStringPref(this, TreebolicIface.PREF_SOURCE, fileUri.getPath());
 
-						updateButton();
+					updateButton();
 
-						// query
-						// query());
-						break;
-					default:
-						break;
+					// query
+					// query());
 				}
 			}
 		}
@@ -247,6 +244,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 
 	abstract class Runnable1
 	{
+		@SuppressWarnings("WeakerAccess")
 		abstract public void run(final String arg);
 	}
 
@@ -314,8 +312,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 			}
 		}
 		alert.setView(input);
-		alert.setPositiveButton(R.string.action_ok, (dialog, whichButton) ->
-		{
+		alert.setPositiveButton(R.string.action_ok, (dialog, whichButton) -> {
 			dialog.dismiss();
 
 			int childCount = input.getChildCount();
@@ -340,8 +337,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 				}
 			}
 		});
-		alert.setNegativeButton(R.string.action_cancel, (dialog, whichButton) ->
-		{
+		alert.setNegativeButton(R.string.action_cancel, (dialog, whichButton) -> {
 			// canceled.
 		});
 		alert.show();

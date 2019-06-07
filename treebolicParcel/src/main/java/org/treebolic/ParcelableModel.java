@@ -34,7 +34,7 @@ public class ParcelableModel implements Parcelable
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "ModelParcelab";
+	static private final String TAG = "ModelParcel";
 
 	/**
 	 * Whether model is marshaled with standard Java mechanism or android parcelization
@@ -45,9 +45,7 @@ public class ParcelableModel implements Parcelable
 	 * Image marshaling types
 	 */
 	private enum ImageMarshaling
-	{
-		IMAGE_SERIALIZE, IMAGE_ASBYTEARRAY, IMAGE_PARCEL
-	}
+	{IMAGE_SERIALIZE, IMAGE_ASBYTEARRAY, IMAGE_PARCEL}
 
 	/**
 	 * Image marshaling
@@ -58,7 +56,7 @@ public class ParcelableModel implements Parcelable
 	 * Wrapped model
 	 */
 	@Nullable
-	private final Model theModel;
+	private final Model model;
 
 	// C O N S T R U C T O R
 
@@ -67,7 +65,7 @@ public class ParcelableModel implements Parcelable
 	 */
 	public ParcelableModel()
 	{
-		this.theModel = null;
+		this.model = null;
 	}
 
 	/**
@@ -75,7 +73,7 @@ public class ParcelableModel implements Parcelable
 	 */
 	public ParcelableModel(@Nullable final Model model)
 	{
-		this.theModel = model;
+		this.model = model;
 	}
 
 	/**
@@ -87,11 +85,11 @@ public class ParcelableModel implements Parcelable
 	{
 		if (ParcelableModel.SERIALIZE)
 		{
-			this.theModel = (Model) parcel.readSerializable();
+			this.model = (Model) parcel.readSerializable();
 		}
 		else
 		{
-			this.theModel = ParcelableModel.readModel(parcel);
+			this.model = ParcelableModel.readModel(parcel);
 		}
 	}
 
@@ -103,9 +101,10 @@ public class ParcelableModel implements Parcelable
 	@Nullable
 	public Model getModel()
 	{
-		return this.theModel;
+		return this.model;
 	}
 
+	@SuppressWarnings("SameReturnValue")
 	@Override
 	public int describeContents()
 	{
@@ -172,9 +171,9 @@ public class ParcelableModel implements Parcelable
 			return;
 		}
 		parcel.writeInt(1);
-		ParcelableModel.writeToParcel(parcel, model.theTree);
-		ParcelableModel.writeToParcel(parcel, model.theSettings);
-		ParcelableModel.writeToParcel(parcel, model.theImages);
+		ParcelableModel.writeToParcel(parcel, model.tree);
+		ParcelableModel.writeToParcel(parcel, model.settings);
+		ParcelableModel.writeToParcel(parcel, model.images);
 		Log.d(ParcelableModel.TAG, "parcel write size=" + parcel.dataSize() + " pos=" + parcel.dataPosition());
 	}
 
@@ -264,19 +263,19 @@ public class ParcelableModel implements Parcelable
 	/**
 	 * Write mount point to parcel
 	 *
-	 * @param parcel     parcel to write to
-	 * @param mountPoint mount point
+	 * @param parcel      parcel to write to
+	 * @param mountPoint0 mount point
 	 */
-	private static void writeToParcel(@NonNull final Parcel parcel, @Nullable final MountPoint mountPoint)
+	private static void writeToParcel(@NonNull final Parcel parcel, @Nullable final MountPoint mountPoint0)
 	{
-		if (mountPoint == null || !(mountPoint instanceof MountPoint.Mounting))
+		if (!(mountPoint0 instanceof MountPoint.Mounting))
 		{
 			parcel.writeString("");
 			return;
 		}
-		final MountPoint.Mounting thisMountPoint = (MountPoint.Mounting) mountPoint;
-		parcel.writeString(thisMountPoint.theURL);
-		ParcelableModel.writeToParcel(parcel, thisMountPoint.now);
+		final MountPoint.Mounting mountPoint = (MountPoint.Mounting) mountPoint0;
+		parcel.writeString(mountPoint.url);
+		ParcelableModel.writeToParcel(parcel, mountPoint.now);
 	}
 
 	/**
@@ -340,43 +339,43 @@ public class ParcelableModel implements Parcelable
 	 */
 	private static void writeToParcel(@NonNull final Parcel parcel, @NonNull final Settings settings)
 	{
-		ParcelableModel.writeToParcel(parcel, settings.theBackColor);
-		ParcelableModel.writeToParcel(parcel, settings.theForeColor);
-		ParcelableModel.writeToParcel(parcel, settings.theBackgroundImageFile);
-		ParcelableModel.writeToParcel(parcel, settings.theFontFace);
-		ParcelableModel.writeToParcel(parcel, settings.theFontSize);
-		ParcelableModel.writeToParcel(parcel, settings.theDownscaleFontsFlag);
-		ParcelableModel.writeToParcel(parcel, settings.theFontDownscaler);
-		ParcelableModel.writeToParcel(parcel, settings.theDownscaleImagesFlag);
-		ParcelableModel.writeToParcel(parcel, settings.theImageDownscaler);
-		ParcelableModel.writeToParcel(parcel, settings.theOrientation);
-		ParcelableModel.writeToParcel(parcel, settings.theExpansion);
-		ParcelableModel.writeToParcel(parcel, settings.theSweep);
-		ParcelableModel.writeToParcel(parcel, settings.thePreserveOrientationFlag);
-		ParcelableModel.writeToParcel(parcel, settings.theEdgesAsArcsFlag);
-		ParcelableModel.writeToParcel(parcel, settings.theBorderFlag);
-		ParcelableModel.writeToParcel(parcel, settings.theEllipsizeFlag);
-		ParcelableModel.writeToParcel(parcel, settings.theHasToolbarFlag);
-		ParcelableModel.writeToParcel(parcel, settings.theHasStatusbarFlag);
-		ParcelableModel.writeToParcel(parcel, settings.theHasPopUpMenuFlag);
-		ParcelableModel.writeToParcel(parcel, settings.theHasToolTipFlag);
-		ParcelableModel.writeToParcel(parcel, settings.theToolTipDisplaysContentFlag);
-		ParcelableModel.writeToParcel(parcel, settings.theFocusOnHoverFlag);
-		ParcelableModel.writeToParcel(parcel, settings.theFocus);
-		ParcelableModel.writeToParcel(parcel, settings.theXMoveTo);
-		ParcelableModel.writeToParcel(parcel, settings.theYMoveTo);
-		ParcelableModel.writeToParcel(parcel, settings.theXShift);
-		ParcelableModel.writeToParcel(parcel, settings.theYShift);
-		ParcelableModel.writeToParcel(parcel, settings.theNodeBackColor);
-		ParcelableModel.writeToParcel(parcel, settings.theNodeForeColor);
-		ParcelableModel.writeToParcel(parcel, settings.theDefaultNodeImage);
-		ParcelableModel.writeToParcel(parcel, settings.theTreeEdgeColor);
-		ParcelableModel.writeToParcel(parcel, settings.theTreeEdgeStyle);
-		ParcelableModel.writeToParcel(parcel, settings.theDefaultTreeEdgeImage);
-		ParcelableModel.writeToParcel(parcel, settings.theEdgeColor);
-		ParcelableModel.writeToParcel(parcel, settings.theEdgeStyle);
-		ParcelableModel.writeToParcel(parcel, settings.theDefaultEdgeImage);
-		ParcelableModel.writeMenuToParcel(parcel, settings.theMenu);
+		ParcelableModel.writeToParcel(parcel, settings.backColor);
+		ParcelableModel.writeToParcel(parcel, settings.foreColor);
+		ParcelableModel.writeToParcel(parcel, settings.backgroundImageFile);
+		ParcelableModel.writeToParcel(parcel, settings.fontFace);
+		ParcelableModel.writeToParcel(parcel, settings.fontSize);
+		ParcelableModel.writeToParcel(parcel, settings.downscaleFontsFlag);
+		ParcelableModel.writeToParcel(parcel, settings.fontDownscaler);
+		ParcelableModel.writeToParcel(parcel, settings.downscaleImagesFlag);
+		ParcelableModel.writeToParcel(parcel, settings.imageDownscaler);
+		ParcelableModel.writeToParcel(parcel, settings.orientation);
+		ParcelableModel.writeToParcel(parcel, settings.expansion);
+		ParcelableModel.writeToParcel(parcel, settings.sweep);
+		ParcelableModel.writeToParcel(parcel, settings.preserveOrientationFlag);
+		ParcelableModel.writeToParcel(parcel, settings.edgesAsArcsFlag);
+		ParcelableModel.writeToParcel(parcel, settings.borderFlag);
+		ParcelableModel.writeToParcel(parcel, settings.ellipsizeFlag);
+		ParcelableModel.writeToParcel(parcel, settings.hasToolbarFlag);
+		ParcelableModel.writeToParcel(parcel, settings.hasStatusbarFlag);
+		ParcelableModel.writeToParcel(parcel, settings.hasPopUpMenuFlag);
+		ParcelableModel.writeToParcel(parcel, settings.hasToolTipFlag);
+		ParcelableModel.writeToParcel(parcel, settings.toolTipDisplaysContentFlag);
+		ParcelableModel.writeToParcel(parcel, settings.focusOnHoverFlag);
+		ParcelableModel.writeToParcel(parcel, settings.focus);
+		ParcelableModel.writeToParcel(parcel, settings.xMoveTo);
+		ParcelableModel.writeToParcel(parcel, settings.yMoveTo);
+		ParcelableModel.writeToParcel(parcel, settings.xShift);
+		ParcelableModel.writeToParcel(parcel, settings.yShift);
+		ParcelableModel.writeToParcel(parcel, settings.nodeBackColor);
+		ParcelableModel.writeToParcel(parcel, settings.nodeForeColor);
+		ParcelableModel.writeToParcel(parcel, settings.defaultNodeImage);
+		ParcelableModel.writeToParcel(parcel, settings.treeEdgeColor);
+		ParcelableModel.writeToParcel(parcel, settings.treeEdgeStyle);
+		ParcelableModel.writeToParcel(parcel, settings.defaultTreeEdgeImage);
+		ParcelableModel.writeToParcel(parcel, settings.edgeColor);
+		ParcelableModel.writeToParcel(parcel, settings.edgeStyle);
+		ParcelableModel.writeToParcel(parcel, settings.defaultEdgeImage);
+		ParcelableModel.writeMenuToParcel(parcel, settings.menu);
 	}
 
 	/**
@@ -409,13 +408,13 @@ public class ParcelableModel implements Parcelable
 	 */
 	private static void writeToParcel(@NonNull final Parcel parcel, @NonNull final MenuItem menuItem, @SuppressWarnings("SameParameterValue") final int flags)
 	{
-		ParcelableModel.writeToParcel(parcel, menuItem.theAction);
-		ParcelableModel.writeToParcel(parcel, menuItem.theLabel);
-		ParcelableModel.writeToParcel(parcel, menuItem.theLink);
-		ParcelableModel.writeToParcel(parcel, menuItem.theTarget);
-		ParcelableModel.writeToParcel(parcel, menuItem.theMatchTarget);
-		ParcelableModel.writeToParcel(parcel, menuItem.theMatchMode);
-		ParcelableModel.writeToParcel(parcel, menuItem.theMatchScope);
+		ParcelableModel.writeToParcel(parcel, menuItem.action);
+		ParcelableModel.writeToParcel(parcel, menuItem.label);
+		ParcelableModel.writeToParcel(parcel, menuItem.link);
+		ParcelableModel.writeToParcel(parcel, menuItem.target);
+		ParcelableModel.writeToParcel(parcel, menuItem.matchTarget);
+		ParcelableModel.writeToParcel(parcel, menuItem.matchMode);
+		ParcelableModel.writeToParcel(parcel, menuItem.matchScope);
 	}
 
 	// IMAGES
@@ -475,7 +474,6 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to write to
 	 * @param n      integer
 	 */
-	@SuppressWarnings("boxing")
 	private static void writeToParcel(@NonNull final Parcel parcel, @Nullable final Integer n)
 	{
 		if (n == null)
@@ -493,7 +491,6 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to write to
 	 * @param b      boolean
 	 */
-	@SuppressWarnings("boxing")
 	private static void writeToParcel(@NonNull final Parcel parcel, @Nullable final Boolean b)
 	{
 		if (b == null)
@@ -510,7 +507,6 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to write to
 	 * @param f      float
 	 */
-	@SuppressWarnings("boxing")
 	private static void writeToParcel(@NonNull final Parcel parcel, @Nullable final Float f)
 	{
 		if (f == null)
@@ -620,7 +616,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to read from
 	 * @return model
 	 */
-	@NonNull
+	@Nullable
 	public static Model readSerializableModel(@NonNull final Parcel parcel)
 	{
 		return (Model) parcel.readSerializable();
@@ -669,11 +665,11 @@ public class ParcelableModel implements Parcelable
 	 * @return node
 	 */
 	@NonNull
-	@SuppressWarnings("boxing")
 	private static INode readNode(@NonNull final Parcel parcel)
 	{
 		// structural
 		final String id = ParcelableModel.readString(parcel);
+		assert id != null;
 		final String parentId = ParcelableModel.readString(parcel);
 		final INode parent = parentId == null ? null : ParcelableModel.id2node.get(parentId);
 		final MutableNode node = new MutableNode(parent, id);
@@ -784,10 +780,10 @@ public class ParcelableModel implements Parcelable
 	private static MountPoint readMountPoint(@NonNull final Parcel parcel)
 	{
 		final String url = parcel.readString();
-		if (!url.isEmpty())
+		if (url != null && !url.isEmpty())
 		{
 			final MountPoint.Mounting mountPoint = new MountPoint.Mounting();
-			mountPoint.theURL = url;
+			mountPoint.url = url;
 			mountPoint.now = ParcelableModel.readBoolean(parcel);
 			return mountPoint;
 		}
@@ -825,7 +821,6 @@ public class ParcelableModel implements Parcelable
 	 * @return edge
 	 */
 	@NonNull
-	@SuppressWarnings("boxing")
 	private static IEdge readEdge(@NonNull final Parcel parcel)
 	{
 		// structural
@@ -877,43 +872,43 @@ public class ParcelableModel implements Parcelable
 	private static Settings readSettings(@NonNull final Parcel parcel)
 	{
 		final Settings settings = new Settings();
-		settings.theBackColor = ParcelableModel.readColor(parcel);
-		settings.theForeColor = ParcelableModel.readColor(parcel);
-		settings.theBackgroundImageFile = ParcelableModel.readString(parcel);
-		settings.theFontFace = ParcelableModel.readString(parcel);
-		settings.theFontSize = ParcelableModel.readInteger(parcel);
-		settings.theDownscaleFontsFlag = ParcelableModel.readBoolean(parcel);
-		settings.theFontDownscaler = ParcelableModel.readFloats(parcel);
-		settings.theDownscaleImagesFlag = ParcelableModel.readBoolean(parcel);
-		settings.theImageDownscaler = ParcelableModel.readFloats(parcel);
-		settings.theOrientation = ParcelableModel.readString(parcel);
-		settings.theExpansion = ParcelableModel.readFloat(parcel);
-		settings.theSweep = ParcelableModel.readFloat(parcel);
-		settings.thePreserveOrientationFlag = ParcelableModel.readBoolean(parcel);
-		settings.theEdgesAsArcsFlag = ParcelableModel.readBoolean(parcel);
-		settings.theBorderFlag = ParcelableModel.readBoolean(parcel);
-		settings.theEllipsizeFlag = ParcelableModel.readBoolean(parcel);
-		settings.theHasToolbarFlag = ParcelableModel.readBoolean(parcel);
-		settings.theHasStatusbarFlag = ParcelableModel.readBoolean(parcel);
-		settings.theHasPopUpMenuFlag = ParcelableModel.readBoolean(parcel);
-		settings.theHasToolTipFlag = ParcelableModel.readBoolean(parcel);
-		settings.theToolTipDisplaysContentFlag = ParcelableModel.readBoolean(parcel);
-		settings.theFocusOnHoverFlag = ParcelableModel.readBoolean(parcel);
-		settings.theFocus = ParcelableModel.readString(parcel);
-		settings.theXMoveTo = ParcelableModel.readFloat(parcel);
-		settings.theYMoveTo = ParcelableModel.readFloat(parcel);
-		settings.theXShift = ParcelableModel.readFloat(parcel);
-		settings.theYShift = ParcelableModel.readFloat(parcel);
-		settings.theNodeBackColor = ParcelableModel.readColor(parcel);
-		settings.theNodeForeColor = ParcelableModel.readColor(parcel);
-		settings.theDefaultNodeImage = ParcelableModel.readString(parcel);
-		settings.theTreeEdgeColor = ParcelableModel.readColor(parcel);
-		settings.theTreeEdgeStyle = ParcelableModel.readInteger(parcel);
-		settings.theDefaultTreeEdgeImage = ParcelableModel.readString(parcel);
-		settings.theEdgeColor = ParcelableModel.readColor(parcel);
-		settings.theEdgeStyle = ParcelableModel.readInteger(parcel);
-		settings.theDefaultEdgeImage = ParcelableModel.readString(parcel);
-		settings.theMenu = ParcelableModel.readMenu(parcel);
+		settings.backColor = ParcelableModel.readColor(parcel);
+		settings.foreColor = ParcelableModel.readColor(parcel);
+		settings.backgroundImageFile = ParcelableModel.readString(parcel);
+		settings.fontFace = ParcelableModel.readString(parcel);
+		settings.fontSize = ParcelableModel.readInteger(parcel);
+		settings.downscaleFontsFlag = ParcelableModel.readBoolean(parcel);
+		settings.fontDownscaler = ParcelableModel.readFloats(parcel);
+		settings.downscaleImagesFlag = ParcelableModel.readBoolean(parcel);
+		settings.imageDownscaler = ParcelableModel.readFloats(parcel);
+		settings.orientation = ParcelableModel.readString(parcel);
+		settings.expansion = ParcelableModel.readFloat(parcel);
+		settings.sweep = ParcelableModel.readFloat(parcel);
+		settings.preserveOrientationFlag = ParcelableModel.readBoolean(parcel);
+		settings.edgesAsArcsFlag = ParcelableModel.readBoolean(parcel);
+		settings.borderFlag = ParcelableModel.readBoolean(parcel);
+		settings.ellipsizeFlag = ParcelableModel.readBoolean(parcel);
+		settings.hasToolbarFlag = ParcelableModel.readBoolean(parcel);
+		settings.hasStatusbarFlag = ParcelableModel.readBoolean(parcel);
+		settings.hasPopUpMenuFlag = ParcelableModel.readBoolean(parcel);
+		settings.hasToolTipFlag = ParcelableModel.readBoolean(parcel);
+		settings.toolTipDisplaysContentFlag = ParcelableModel.readBoolean(parcel);
+		settings.focusOnHoverFlag = ParcelableModel.readBoolean(parcel);
+		settings.focus = ParcelableModel.readString(parcel);
+		settings.xMoveTo = ParcelableModel.readFloat(parcel);
+		settings.yMoveTo = ParcelableModel.readFloat(parcel);
+		settings.xShift = ParcelableModel.readFloat(parcel);
+		settings.yShift = ParcelableModel.readFloat(parcel);
+		settings.nodeBackColor = ParcelableModel.readColor(parcel);
+		settings.nodeForeColor = ParcelableModel.readColor(parcel);
+		settings.defaultNodeImage = ParcelableModel.readString(parcel);
+		settings.treeEdgeColor = ParcelableModel.readColor(parcel);
+		settings.treeEdgeStyle = ParcelableModel.readInteger(parcel);
+		settings.defaultTreeEdgeImage = ParcelableModel.readString(parcel);
+		settings.edgeColor = ParcelableModel.readColor(parcel);
+		settings.edgeStyle = ParcelableModel.readInteger(parcel);
+		settings.defaultEdgeImage = ParcelableModel.readString(parcel);
+		settings.menu = ParcelableModel.readMenu(parcel);
 		return settings;
 	}
 
@@ -952,21 +947,21 @@ public class ParcelableModel implements Parcelable
 		int ordinal;
 		// action
 		ordinal = parcel.readInt();
-		menuItem.theAction = ordinal == -1 ? null : MenuItem.Action.values()[ordinal];
+		menuItem.action = ordinal == -1 ? null : MenuItem.Action.values()[ordinal];
 		// label
-		menuItem.theLabel = ParcelableModel.readString(parcel);
+		menuItem.label = ParcelableModel.readString(parcel);
 		// link
-		menuItem.theLink = ParcelableModel.readString(parcel);
+		menuItem.link = ParcelableModel.readString(parcel);
 		// target
-		menuItem.theTarget = ParcelableModel.readString(parcel);
+		menuItem.target = ParcelableModel.readString(parcel);
 		// match target
-		menuItem.theMatchTarget = ParcelableModel.readString(parcel);
+		menuItem.matchTarget = ParcelableModel.readString(parcel);
 		// match mode
 		ordinal = parcel.readInt();
-		menuItem.theMatchScope = ordinal == -1 ? null : MatchScope.values()[ordinal];
+		menuItem.matchScope = ordinal == -1 ? null : MatchScope.values()[ordinal];
 		// match scope
 		ordinal = parcel.readInt();
-		menuItem.theMatchMode = ordinal == -1 ? null : MatchMode.values()[ordinal];
+		menuItem.matchMode = ordinal == -1 ? null : MatchMode.values()[ordinal];
 		return menuItem;
 	}
 
@@ -998,7 +993,7 @@ public class ParcelableModel implements Parcelable
 	private static String readString(@NonNull final Parcel parcel)
 	{
 		final String s = parcel.readString();
-		if (!s.isEmpty())
+		if (s != null && !s.isEmpty())
 		{
 			return s;
 		}
@@ -1105,15 +1100,18 @@ public class ParcelableModel implements Parcelable
 					return (Image) parcel.readSerializable();
 				case IMAGE_ASBYTEARRAY:
 					final byte[] imageByteArray = parcel.createByteArray();
-					try
+					if (imageByteArray != null)
 					{
-						final Image image = new Image(null);
-						image.setFromByteArray(imageByteArray);
-						return image;
-					}
-					catch (@NonNull final Exception ignored)
-					{
-						//
+						try
+						{
+							final Image image = new Image(null);
+							image.setFromByteArray(imageByteArray);
+							return image;
+						}
+						catch (@NonNull final Exception ignored)
+						{
+							//
+						}
 					}
 					break;
 				case IMAGE_PARCEL:

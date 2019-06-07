@@ -87,6 +87,7 @@ abstract public class TreebolicAIDLBoundService extends Service implements ITree
 	/**
 	 * Model factory
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected IModelFactory factory;
 
 	/**

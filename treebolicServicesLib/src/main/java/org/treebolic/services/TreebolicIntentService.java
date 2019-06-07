@@ -26,6 +26,7 @@ abstract public class TreebolicIntentService extends IntentService implements IT
 	/**
 	 * Abstract: Model factory
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected IModelFactory factory;
 
 	/**

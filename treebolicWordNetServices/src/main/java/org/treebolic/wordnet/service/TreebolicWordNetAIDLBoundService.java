@@ -37,6 +37,7 @@ public class TreebolicWordNetAIDLBoundService extends TreebolicAIDLBoundService
 		}
 	}
 
+	@SuppressWarnings("SameReturnValue")
 	@NonNull
 	@Override
 	public String getUrlScheme()

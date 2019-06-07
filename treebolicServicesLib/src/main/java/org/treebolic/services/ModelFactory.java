@@ -73,6 +73,7 @@ public abstract class ModelFactory implements IModelFactory
 	 *
 	 * @return array of aliases for source
 	 */
+	@SuppressWarnings({"WeakerAccess", "SameReturnValue"})
 	@Nullable
 	protected String[] getSourceAliases()
 	{
@@ -84,6 +85,7 @@ public abstract class ModelFactory implements IModelFactory
 	 *
 	 * @return true if locatorContext.getFilesDir, false if base
 	 */
+	@SuppressWarnings("SameReturnValue")
 	protected boolean useFilesDir()
 	{
 		return false;
@@ -135,22 +137,22 @@ public abstract class ModelFactory implements IModelFactory
 	@NonNull
 	private Properties makeParameters(@Nullable final String source, @Nullable final String base, @Nullable final String imageBase, @Nullable final String settings)
 	{
-		final Properties theseParameters = new Properties();
+		final Properties parameters = new Properties();
 		if (source != null)
 		{
-			theseParameters.setProperty("source", source);
+			parameters.setProperty("source", source);
 		}
 		if (base != null)
 		{
-			theseParameters.setProperty("base", base);
+			parameters.setProperty("base", base);
 		}
 		if (imageBase != null)
 		{
-			theseParameters.setProperty("imagebase", imageBase);
+			parameters.setProperty("imagebase", imageBase);
 		}
 		if (settings != null)
 		{
-			theseParameters.setProperty("settings", settings);
+			parameters.setProperty("settings", settings);
 		}
 
 		// source aliases
@@ -159,10 +161,10 @@ public abstract class ModelFactory implements IModelFactory
 		{
 			for (final String sourceAlias : sourceAliases)
 			{
-				theseParameters.setProperty(sourceAlias, source);
+				parameters.setProperty(sourceAlias, source);
 			}
 		}
 
-		return theseParameters;
+		return parameters;
 	}
 }

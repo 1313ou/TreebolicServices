@@ -123,6 +123,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 
 	// M E N U
 
+	@SuppressWarnings("SameReturnValue")
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{
@@ -336,8 +337,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		try
 		{
 			// choose bundle entry
-			EntryChooser.choose(this, new File(archiveUri.getPath()), zipEntry ->
-			{
+			EntryChooser.choose(this, new File(archiveUri.getPath()), zipEntry -> {
 				final String base = "jar:" + archiveUri.toString() + "!/";
 				query(zipEntry, base, Settings.getStringPref(MainActivity.this, TreebolicIface.PREF_IMAGEBASE), Settings.getStringPref(MainActivity.this, TreebolicIface.PREF_SETTINGS));
 			});
@@ -428,19 +428,15 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	}
 
 	@Override
-	protected void onActivityResult(final int requestCode, final int resultCode, @NonNull final Intent returnIntent)
+	protected void onActivityResult(final int requestCode, final int resultCode, @Nullable final Intent returnIntent)
 	{
-		switch (requestCode)
+		if (requestCode == REQUEST_FILE_CODE)
 		{
-			case REQUEST_FILE_CODE:
-				if (resultCode == AppCompatActivity.RESULT_OK)
+			if (resultCode == AppCompatActivity.RESULT_OK && returnIntent != null)
+			{
+				final Uri fileUri = returnIntent.getData();
+				if (fileUri != null)
 				{
-					final Uri fileUri = returnIntent.getData();
-					if (fileUri == null)
-					{
-						break;
-					}
-
 					Toast.makeText(this, fileUri.toString(), Toast.LENGTH_SHORT).show();
 					final File file = new File(fileUri.getPath());
 					final String parent = file.getParent();
@@ -448,20 +444,19 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 					final Uri parentUri = Uri.fromFile(parentFile);
 					final String query = file.getName();
 					String base = parentUri.toString();
-					if (base != null && !base.endsWith("/"))
+					if (!base.endsWith("/"))
 					{
 						base += '/';
 					}
 					Settings.save(this, query, base);
 				}
 
-				updateButton();
+			}
 
-				// query
-				// query();
-				break;
-			default:
-				break;
+			updateButton();
+
+			// query
+			// query();
 		}
 		super.onActivityResult(requestCode, resultCode, returnIntent);
 	}

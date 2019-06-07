@@ -4,6 +4,7 @@ import android.util.Log;
 
 import treebolic.provider.IProviderContext;
 
+@SuppressWarnings("WeakerAccess")
 public class Utils
 {
 	/**

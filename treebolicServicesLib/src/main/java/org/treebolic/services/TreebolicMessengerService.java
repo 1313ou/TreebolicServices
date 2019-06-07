@@ -116,6 +116,7 @@ abstract public class TreebolicMessengerService extends Service implements ITree
 	/**
 	 * Abstract: Model factory
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected IModelFactory factory;
 
 	/**
