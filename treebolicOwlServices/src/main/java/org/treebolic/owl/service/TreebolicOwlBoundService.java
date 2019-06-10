@@ -1,7 +1,7 @@
 package org.treebolic.owl.service;
 
 import android.annotation.SuppressLint;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.treebolic.services.TreebolicBoundService;
 

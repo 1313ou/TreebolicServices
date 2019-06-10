@@ -3,7 +3,7 @@ package org.treebolic.services;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.treebolic.ParcelableModel;
 import org.treebolic.TreebolicIface;

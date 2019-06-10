@@ -1,7 +1,8 @@
 package org.treebolic.files.service;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import org.treebolic.services.Utils;
 
@@ -39,18 +40,18 @@ public class ModelFactory extends org.treebolic.services.ModelFactory
 		{
 			return new ILocator()
 			{
-				private final URL thisBase = context.getFilesDir().toURI().toURL();
+				private final URL base = context.getFilesDir().toURI().toURL();
 
 				@Override
 				public URL getBase()
 				{
-					return this.thisBase;
+					return this.base;
 				}
 
 				@Override
 				public URL getImagesBase()
 				{
-					return this.thisBase;
+					return this.base;
 				}
 			};
 		}

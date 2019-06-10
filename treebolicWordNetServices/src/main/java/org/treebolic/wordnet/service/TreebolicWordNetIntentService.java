@@ -1,6 +1,6 @@
 package org.treebolic.wordnet.service;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 
 import org.treebolic.services.TreebolicIntentService;

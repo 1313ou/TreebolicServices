@@ -1,7 +1,7 @@
 package org.treebolic.wordnet.service;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.util.Log;
 
 import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
