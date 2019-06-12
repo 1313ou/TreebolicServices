@@ -1,11 +1,16 @@
+/*
+ * Copyright (c) Treebolic 2019. Bernard Bou <1313ou@gmail.com>
+ */
+
 package org.treebolic.wordnet.service;
 
 import android.os.Bundle;
-import androidx.annotation.NonNull;
 import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
+
+import androidx.annotation.NonNull;
 
 /**
  * WordNet download activity

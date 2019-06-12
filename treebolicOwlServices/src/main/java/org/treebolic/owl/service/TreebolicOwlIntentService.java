@@ -1,8 +1,12 @@
+/*
+ * Copyright (c) Treebolic 2019. Bernard Bou <1313ou@gmail.com>
+ */
+
 package org.treebolic.owl.service;
 
-import androidx.annotation.NonNull;
-
 import org.treebolic.services.TreebolicIntentService;
+
+import androidx.annotation.NonNull;
 
 /**
  * Treebolic Owl intent service

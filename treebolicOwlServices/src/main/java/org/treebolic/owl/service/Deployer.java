@@ -1,9 +1,13 @@
-package org.treebolic.owl.service;
+/*
+ * Copyright (c) Treebolic 2019. Bernard Bou <1313ou@gmail.com>
+ */
 
-import androidx.annotation.NonNull;
+package org.treebolic.owl.service;
 
 import java.io.File;
 import java.io.InputStream;
+
+import androidx.annotation.NonNull;
 
 /**
  * Data deployer

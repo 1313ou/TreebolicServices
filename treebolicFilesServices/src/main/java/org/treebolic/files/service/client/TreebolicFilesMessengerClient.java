@@ -1,10 +1,14 @@
+/*
+ * Copyright (c) Treebolic 2019. Bernard Bou <1313ou@gmail.com>
+ */
+
 package org.treebolic.files.service.client;
+
+import android.content.Context;
 
 import org.treebolic.clients.TreebolicMessengerClient;
 import org.treebolic.clients.iface.IConnectionListener;
 import org.treebolic.clients.iface.IModelListener;
-
-import android.content.Context;
 
 /**
  * Treebolic Files messenger bound client

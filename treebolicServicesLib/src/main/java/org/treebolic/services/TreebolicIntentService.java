@@ -1,15 +1,19 @@
+/*
+ * Copyright (c) Treebolic 2019. Bernard Bou <1313ou@gmail.com>
+ */
+
 package org.treebolic.services;
 
 import android.app.IntentService;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.ResultReceiver;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.util.Log;
 
 import org.treebolic.services.iface.ITreebolicService;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import treebolic.model.Model;
 import treebolic.model.ModelDump;
 

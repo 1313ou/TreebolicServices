@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) Treebolic 2019. Bernard Bou <1313ou@gmail.com>
+ */
+
 package org.treebolic.wordnet.service;
 
 import android.annotation.SuppressLint;
@@ -8,10 +12,11 @@ import android.content.SharedPreferences.Editor;
 import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import org.treebolic.TreebolicIface;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Settings

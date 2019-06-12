@@ -3,7 +3,6 @@
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:cc="http://creativecommons.org/ns#"
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-	xmlns:svg="http://www.w3.org/2000/svg"
 	xmlns="http://www.w3.org/2000/svg"
 	xmlns:xlink="http://www.w3.org/1999/xlink"
 	xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -5208,12 +5207,12 @@
 		y="90.699997"
 		transform="matrix(0.9999999,4.5090835e-4,-9.7098496e-4,0.99999953,0,0)"/>
 	<text
-     xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.80000019px;line-height:0%;font-family:Busorama;-inkscape-font-specification:Busorama;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#fffafa;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:1.06666672;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     x="101.04755"
-     y="162.78517"
-     id="text2819"
-     transform="scale(1.0695337,0.93498691)"><tspan
+		xml:space="preserve"
+		style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.80000019px;line-height:0%;font-family:Busorama;-inkscape-font-specification:Busorama;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#fffafa;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:1.06666672;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+		x="101.04755"
+		y="162.78517"
+		id="text2819"
+		transform="scale(1.0695337,0.93498691)"><tspan
        sodipodi:role="line"
        id="tspan3868"
        x="101.04755"
@@ -5431,12 +5430,12 @@
 		</g>
 	</g>
 	<text
-     transform="scale(1.367097,0.73147699)"
-     id="text3860"
-     y="281.90396"
-     x="79.353882"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.80000019px;line-height:0%;font-family:Busorama;-inkscape-font-specification:Busorama;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#fefeff;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:1.06666672;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     xml:space="preserve"><tspan
+		transform="scale(1.367097,0.73147699)"
+		id="text3860"
+		y="281.90396"
+		x="79.353882"
+		style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.80000019px;line-height:0%;font-family:Busorama;-inkscape-font-specification:Busorama;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#fefeff;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:1.06666672;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+		xml:space="preserve"><tspan
        sodipodi:role="line"
        id="tspan3866"
        x="79.353882"

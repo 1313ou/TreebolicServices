@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) Treebolic 2019. Bernard Bou <1313ou@gmail.com>
+ */
+
 package org.treebolic.wordnet.service;
 
 import android.annotation.SuppressLint;
@@ -8,13 +12,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
 import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -40,6 +37,13 @@ import org.treebolic.wordnet.service.client.TreebolicWordNetBoundClient;
 import org.treebolic.wordnet.service.client.TreebolicWordNetIntentClient;
 import org.treebolic.wordnet.service.client.TreebolicWordNetMessengerClient;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import treebolic.model.Model;
 
@@ -175,8 +179,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		this.dataButton = menu.findItem(R.id.action_status_data);
 		final boolean ok = MainActivity.this.deployer.status();
 		this.dataButton.setIcon(ok ? R.drawable.ic_action_done : R.drawable.ic_action_error);
-		this.dataButton.setOnMenuItemClickListener(item ->
-		{
+		this.dataButton.setOnMenuItemClickListener(item -> {
 			final boolean ok2 = MainActivity.this.deployer.status();
 			Toast.makeText(MainActivity.this, ok2 ? R.string.ok_data : R.string.fail_data, Toast.LENGTH_SHORT).show();
 			return true;
@@ -403,8 +406,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		input.setInputType(InputType.TYPE_CLASS_TEXT);
 		alert.setView(input);
 
-		alert.setPositiveButton(R.string.action_ok, (dialog, whichButton) ->
-		{
+		alert.setPositiveButton(R.string.action_ok, (dialog, whichButton) -> {
 			String value = input.getText().toString();
 			Settings.putStringPref(MainActivity.this, TreebolicIface.PREF_SOURCE, value);
 
@@ -414,14 +416,12 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 			// query();
 		});
 
-		alert.setNegativeButton(R.string.action_cancel, (dialog, whichButton) ->
-		{
+		alert.setNegativeButton(R.string.action_cancel, (dialog, whichButton) -> {
 			// canceled.
 		});
 
 		final AlertDialog dialog = alert.create();
-		input.setOnEditorActionListener((view, actionId, event) ->
-		{
+		input.setOnEditorActionListener((view, actionId, event) -> {
 			if (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)
 			{
 				dialog.getButton(DialogInterface.BUTTON_POSITIVE).performClick();

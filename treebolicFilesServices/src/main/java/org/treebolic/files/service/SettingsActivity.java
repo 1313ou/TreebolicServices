@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) Treebolic 2019. Bernard Bou <1313ou@gmail.com>
+ */
+
 package org.treebolic.files.service;
 
 import android.content.Context;
@@ -6,17 +10,16 @@ import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
-
-import androidx.annotation.NonNull;
-import androidx.core.app.NavUtils;
-import androidx.appcompat.app.ActionBar;
-
 import android.view.MenuItem;
 
 import org.treebolic.AppCompatCommonPreferenceActivity;
 import org.treebolic.TreebolicIface;
 
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.core.app.NavUtils;
 
 /**
  * A AppCompatPreferenceActivity that presents a set of application settings. On handset devices, settings are presented as a single list. On tablets, settings

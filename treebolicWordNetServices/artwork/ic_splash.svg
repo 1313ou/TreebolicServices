@@ -5,7 +5,6 @@
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:cc="http://creativecommons.org/ns#"
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-	xmlns:svg="http://www.w3.org/2000/svg"
 	xmlns="http://www.w3.org/2000/svg"
 	xmlns:xlink="http://www.w3.org/1999/xlink"
 	xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -7162,24 +7161,24 @@
 			</g>
 		</g>
 		<text
-       transform="matrix(0.74826178,0,0,1.7087783,-9.4063289,-19.426737)"
-       id="text3395"
-       y="163.51024"
-       x="556.77942"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;line-height:0%;font-family:Impact;-inkscape-font-specification:'Impact Condensed';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#002b3d;fill-opacity:1;stroke:#00132c;stroke-width:0.69631934;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter4016)"
-       xml:space="preserve"><tspan
+			transform="matrix(0.74826178,0,0,1.7087783,-9.4063289,-19.426737)"
+			id="text3395"
+			y="163.51024"
+			x="556.77942"
+			style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;line-height:0%;font-family:Impact;-inkscape-font-specification:'Impact Condensed';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#002b3d;fill-opacity:1;stroke:#00132c;stroke-width:0.69631934;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter4016)"
+			xml:space="preserve"><tspan
          sodipodi:role="line"
          id="tspan3401"
          x="556.77942"
          y="163.51024"
          style="font-size:127.66687775px;line-height:1.25;stroke:#00132c;stroke-width:0.69631934;stroke-opacity:1">Net</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:12.80000019px;line-height:0%;font-family:Impact;-inkscape-font-specification:'Impact Condensed';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#0169c9;fill-opacity:1;stroke:#4074b8;stroke-width:0.78736866;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       x="301.73157"
-       y="171.39293"
-       id="text2819-9"
-       transform="scale(0.66173471,1.5111796)"><tspan
+		<text
+			xml:space="preserve"
+			style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:12.80000019px;line-height:0%;font-family:Impact;-inkscape-font-specification:'Impact Condensed';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#0169c9;fill-opacity:1;stroke:#4074b8;stroke-width:0.78736866;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+			x="301.73157"
+			y="171.39293"
+			id="text2819-9"
+			transform="scale(0.66173471,1.5111796)"><tspan
          y="171.39293"
          x="301.73157"
          sodipodi:role="line"

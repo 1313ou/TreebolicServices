@@ -1,14 +1,17 @@
+/*
+ * Copyright (c) Treebolic 2019. Bernard Bou <1313ou@gmail.com>
+ */
+
 package org.treebolic.files.service;
 
 import android.content.Context;
-
-import androidx.annotation.NonNull;
 
 import org.treebolic.services.Utils;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import androidx.annotation.NonNull;
 import treebolic.ILocator;
 import treebolic.provider.files.Provider;
 

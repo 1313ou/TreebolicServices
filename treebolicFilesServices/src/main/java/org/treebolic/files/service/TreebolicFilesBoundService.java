@@ -1,10 +1,14 @@
+/*
+ * Copyright (c) Treebolic 2019. Bernard Bou <1313ou@gmail.com>
+ */
+
 package org.treebolic.files.service;
 
 import android.annotation.SuppressLint;
 
-import androidx.annotation.NonNull;
-
 import org.treebolic.services.TreebolicBoundService;
+
+import androidx.annotation.NonNull;
 
 /**
  * Bound service for Files data

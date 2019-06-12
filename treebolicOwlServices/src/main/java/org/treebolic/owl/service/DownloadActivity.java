@@ -1,7 +1,10 @@
+/*
+ * Copyright (c) Treebolic 2019. Bernard Bou <1313ou@gmail.com>
+ */
+
 package org.treebolic.owl.service;
 
 import android.os.Bundle;
-import androidx.annotation.NonNull;
 import android.view.View;
 import android.widget.Toast;
 
@@ -11,6 +14,8 @@ import org.treebolic.storage.Storage;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+
+import androidx.annotation.NonNull;
 
 /**
  * Owl download activity

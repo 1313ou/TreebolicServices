@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) Treebolic 2019. Bernard Bou <1313ou@gmail.com>
+ */
+
 package org.treebolic.clients;
 
 import android.content.ComponentName;
@@ -5,8 +9,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -14,6 +16,9 @@ import org.treebolic.clients.iface.IConnectionListener;
 import org.treebolic.clients.iface.IModelListener;
 import org.treebolic.clients.iface.ITreebolicClient;
 import org.treebolic.services.iface.ITreebolicServiceBinder;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Treebolic bound client

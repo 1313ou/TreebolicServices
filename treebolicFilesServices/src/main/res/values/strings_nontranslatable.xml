@@ -1,3 +1,7 @@
+<!--
+  ~ Copyright (c) Treebolic 2019. Bernard Bou <1313ou@gmail.com>
+  -->
+
 <resources>
 
 	<string name="pref_default_source" translatable="false">/storage/</string>

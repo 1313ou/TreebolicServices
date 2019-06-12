@@ -1,7 +1,10 @@
+/*
+ * Copyright (c) Treebolic 2019. Bernard Bou <1313ou@gmail.com>
+ */
+
 package org.treebolic.clients;
 
 import android.content.Intent;
-import androidx.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -10,6 +13,8 @@ import org.treebolic.TreebolicIface;
 import org.treebolic.clients.iface.IConnectionListener;
 import org.treebolic.clients.iface.IModelListener;
 import org.treebolic.clients.iface.ITreebolicClient;
+
+import androidx.annotation.Nullable;
 
 /**
  * Treebolic server. Produces Treebolic model from data. Acts as client to service.

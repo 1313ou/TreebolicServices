@@ -1,16 +1,19 @@
+/*
+ * Copyright (c) Treebolic 2019. Bernard Bou <1313ou@gmail.com>
+ */
+
 package org.treebolic;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
-import androidx.annotation.NonNull;
 
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
 
-import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 import treebolic.model.Model;
 
 @SuppressWarnings("WeakerAccess")
@@ -30,7 +33,7 @@ public class Models
 		intent.putExtra(TreebolicIface.ARG_MODEL_REFERENCE, key);
 	}
 
-	@Nullable
+	@NonNull
 	@SuppressWarnings("boxing")
 	static public Model get(@NonNull final Intent intent)
 	{
@@ -46,7 +49,7 @@ public class Models
 		bundle.putLong(TreebolicIface.ARG_MODEL_REFERENCE, key);
 	}
 
-	@Nullable
+	@NonNull
 	@SuppressWarnings("boxing")
 	static public Model get(@NonNull final Bundle bundle)
 	{

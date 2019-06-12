@@ -1,9 +1,14 @@
+/*
+ * Copyright (c) Treebolic 2019. Bernard Bou <1313ou@gmail.com>
+ */
+
 package org.treebolic.wordnet.service;
 
-import androidx.annotation.NonNull;
 import android.util.Log;
 
 import org.treebolic.services.TreebolicIntentService;
+
+import androidx.annotation.NonNull;
 
 /**
  * Treebolic WordNet intent service

@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) Treebolic 2019. Bernard Bou <1313ou@gmail.com>
+ */
+
 package org.treebolic.services;
 
 import android.app.Service;
@@ -6,7 +10,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.ResultReceiver;
-import androidx.annotation.NonNull;
 import android.util.Log;
 
 import org.treebolic.services.iface.ITreebolicAIDLService;
@@ -14,6 +17,7 @@ import org.treebolic.services.iface.ITreebolicService;
 
 import java.lang.ref.WeakReference;
 
+import androidx.annotation.NonNull;
 import treebolic.model.Model;
 
 /**

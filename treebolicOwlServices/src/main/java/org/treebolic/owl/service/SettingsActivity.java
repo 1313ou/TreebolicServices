@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) Treebolic 2019. Bernard Bou <1313ou@gmail.com>
+ */
+
 package org.treebolic.owl.service;
 
 import android.content.Context;
@@ -6,15 +10,16 @@ import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
-import androidx.annotation.NonNull;
-import androidx.core.app.NavUtils;
-import androidx.appcompat.app.ActionBar;
 import android.view.MenuItem;
 
 import org.treebolic.AppCompatCommonPreferenceActivity;
 import org.treebolic.TreebolicIface;
 
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.core.app.NavUtils;
 
 /**
  * A AppCompatPreferenceActivity that presents a set of application settings. On handset devices, settings are presented as a single list. On tablets, settings
@@ -90,8 +95,7 @@ public class SettingsActivity extends AppCompatCommonPreferenceActivity
 	/**
 	 * A preference value change listener that updates the preference's summary to reflect its new value.
 	 */
-	private static final Preference.OnPreferenceChangeListener listener = (preference, value) ->
-	{
+	private static final Preference.OnPreferenceChangeListener listener = (preference, value) -> {
 		// set the summary to the value's simple string representation.
 		final String stringValue = value.toString();
 		preference.setSummary(stringValue);

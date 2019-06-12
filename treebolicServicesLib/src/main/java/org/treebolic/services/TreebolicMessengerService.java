@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) Treebolic 2019. Bernard Bou <1313ou@gmail.com>
+ */
+
 package org.treebolic.services;
 
 import android.app.Service;
@@ -10,7 +14,6 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
-import androidx.annotation.NonNull;
 import android.util.Log;
 
 import org.treebolic.services.iface.ITreebolicService;
@@ -19,6 +22,7 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import treebolic.model.Model;
 
 /**
@@ -97,7 +101,7 @@ abstract public class TreebolicMessengerService extends Service implements ITree
 			this.contextWeakReference = new WeakReference<>(context);
 			this.forward = forward;
 		}
-		
+
 		@Override
 		protected void onPostExecute(final Model model)
 		{
