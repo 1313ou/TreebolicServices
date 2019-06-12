@@ -1078,6 +1078,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to read from
 	 * @return array of floats
 	 */
+	@Nullable
 	private static float[] readFloats(@NonNull final Parcel parcel)
 	{
 		return parcel.createFloatArray();

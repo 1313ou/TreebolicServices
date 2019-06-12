@@ -10,6 +10,7 @@ import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
 
+import androidx.annotation.Nullable;
 import treebolic.model.Model;
 
 @SuppressWarnings("WeakerAccess")
@@ -29,6 +30,7 @@ public class Models
 		intent.putExtra(TreebolicIface.ARG_MODEL_REFERENCE, key);
 	}
 
+	@Nullable
 	@SuppressWarnings("boxing")
 	static public Model get(@NonNull final Intent intent)
 	{
@@ -44,6 +46,7 @@ public class Models
 		bundle.putLong(TreebolicIface.ARG_MODEL_REFERENCE, key);
 	}
 
+	@Nullable
 	@SuppressWarnings("boxing")
 	static public Model get(@NonNull final Bundle bundle)
 	{
@@ -79,6 +82,7 @@ public class Models
 		return null;
 	}
 
+	@NonNull
 	static public Model get(@NonNull final Long key) throws NoSuchElementException
 	{
 		final Model model = Models.getUnguarded(key);
