@@ -35,7 +35,7 @@ public class ModelFactory extends org.treebolic.services.ModelFactory
 	 * Constructor
 	 *
 	 * @param context context
-	 * @throws Exception exception
+	 * //@throws Exception exception
 	 */
 	public ModelFactory(@NonNull final Context context) throws Exception
 	{
