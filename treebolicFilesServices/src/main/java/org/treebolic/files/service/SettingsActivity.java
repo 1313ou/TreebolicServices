@@ -17,9 +17,9 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.core.app.NavUtils;
-import androidx.preference.Preference;
+import androidx.preference.EditTextPreference;
+import androidx.preference.ListPreference;
 import androidx.preference.PreferenceFragmentCompat;
-import androidx.preference.PreferenceManager;
 import androidx.preference.legacy.contrib.Header;
 
 /**
@@ -91,49 +91,24 @@ public class SettingsActivity extends AppCompatCommonPreferenceActivity
 		return (context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
 	}
 
-	// L I S T E N E R
-
-	/**
-	 * A preference value change listener that updates the preference's summary to reflect its new value.
-	 */
-	private static final Preference.OnPreferenceChangeListener listener = (preference, value) -> {
-		// set the summary to the value's simple string representation.
-		final String stringValue = value.toString();
-		preference.setSummary(stringValue);
-		return true;
-	};
-
-	// B I N D
-
-	/**
-	 * Binds a preference's summary to its value. More specifically, when the preference's value is changed, its summary (line of text below the preference
-	 * title) is updated to reflect the value. The summary is also immediately updated upon calling this method. The exact display format is dependent on the
-	 * type of preference.
-	 *
-	 * @see #listener
-	 */
-	private static void bind(@NonNull final Preference preference)
-	{
-		// Set the listener to watch for value changes.
-		preference.setOnPreferenceChangeListener(SettingsActivity.listener);
-
-		// Trigger the listener immediately with the preference's current value.
-		SettingsActivity.listener.onPreferenceChange(preference, PreferenceManager.getDefaultSharedPreferences(preference.getContext()).getString(preference.getKey(), ""));
-	}
-
 	// F R A G M E N T S
 
 	public static class GeneralPreferenceFragment extends PreferenceFragmentCompat
 	{
 		@Override
-		public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey)
+		public void onCreatePreferences(@SuppressWarnings("unused") final Bundle savedInstanceState, @SuppressWarnings("unused") final String rootKey)
 		{
 			// inflate
 			addPreferencesFromResource(R.xml.pref_general);
 
 			// bind
-			SettingsActivity.bind(findPreference(TreebolicIface.PREF_SOURCE));
-			SettingsActivity.bind(findPreference(Settings.PREF_SERVICE));
+			final EditTextPreference sourcePref = findPreference(TreebolicIface.PREF_SOURCE);
+			assert sourcePref != null;
+			sourcePref.setSummaryProvider(EditTextPreference.SimpleSummaryProvider.getInstance());
+
+			final ListPreference servicePref = findPreference(Settings.PREF_SERVICE);
+			assert servicePref != null;
+			servicePref.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance());
 		}
 	}
 }

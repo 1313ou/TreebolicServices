@@ -15,8 +15,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ebf7fe7b-6a7f-469c-a2f9-15fc5ae2cb6a" name="Default" comment="lint">
+    <list default="true" id="ebf7fe7b-6a7f-469c-a2f9-15fc5ae2cb6a" name="Default" comment="preference 1.1.0">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/SettingsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/SettingsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/SettingsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/SettingsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/SettingsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/SettingsActivity.java" afterDir="false" />
     </list>
     <ignored path="treebolicWordNetServices/build/" />
     <ignored path="treebolicServicesLib/build/" />
@@ -1153,6 +1156,9 @@
         <option value="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/MainActivity.java" />
         <option value="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/MainActivity.java" />
         <option value="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/ModelFactory.java" />
+        <option value="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/SettingsActivity.java" />
+        <option value="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/SettingsActivity.java" />
+        <option value="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/SettingsActivity.java" />
       </list>
     </option>
   </component>
@@ -1172,8 +1178,8 @@
     <panes>
       <pane id="ProjectPane" />
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="AndroidView" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1451,7 +1457,14 @@
       <option name="project" value="LOCAL" />
       <updated>1560324384680</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="preference 1.1.0">
+      <created>1560852262728</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1560852262728</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1498,7 +1511,8 @@
     <MESSAGE value="androidx&#10;lint" />
     <MESSAGE value="annotations&#10;copyright" />
     <MESSAGE value="lint" />
-    <option name="LAST_COMMIT_MESSAGE" value="lint" />
+    <MESSAGE value="preference 1.1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="preference 1.1.0" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/build.gradle">
@@ -1514,12 +1528,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/treebolicOwlServices/src/main/res/layout/actionbutton.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="30" column="36" selection-start-line="30" selection-start-column="36" selection-end-line="30" selection-end-column="36" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/Deployer.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1766,9 +1780,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/SettingsActivity.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="577">
@@ -1778,9 +1789,6 @@
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/SettingsActivity.java">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1796,6 +1804,71 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="351">
           <caret line="37" column="9" selection-start-line="37" selection-start-column="9" selection-end-line="37" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/treebolicFilesServices/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-326">
+          <folding>
+            <element signature="e#0#70#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/treebolicWordNetServices/src/main/res/xml/pref_general.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/treebolicFilesServices/src/main/res/xml/pref_general.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="8" column="29" lean-forward="true" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
+          <folding>
+            <element signature="e#228#257#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/treebolicWordNetServices/src/main/res/xml/pref_service.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/SettingsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="686">
+          <caret line="98" column="129" selection-start-line="98" selection-start-column="129" selection-end-line="98" selection-end-column="129" />
+          <folding>
+            <element signature="e#3046#3073#0" expanded="true" />
+            <element signature="e#3107#3134#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/SettingsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="530">
+          <caret line="99" column="129" selection-start-line="99" selection-start-column="129" selection-end-line="99" selection-end-column="129" />
+          <folding>
+            <element signature="e#3054#3081#0" expanded="true" />
+            <element signature="e#3115#3142#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/SettingsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="67" column="59" selection-start-line="67" selection-start-column="59" selection-end-line="67" selection-end-column="59" />
+          <folding>
+            <element signature="e#2218#2219#0" expanded="true" />
+            <element signature="e#2276#2277#0" expanded="true" />
+            <element signature="e#3115#3142#0" expanded="true" />
+            <element signature="e#3176#3203#0" expanded="true" />
+            <element signature="e#3846#3873#0" expanded="true" />
+            <element signature="e#3907#3934#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
