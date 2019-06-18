@@ -7,9 +7,6 @@ package org.treebolic.owl.service;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.preference.Preference;
-import android.preference.PreferenceFragment;
-import android.preference.PreferenceManager;
 import android.view.MenuItem;
 
 import org.treebolic.AppCompatCommonPreferenceActivity;
@@ -20,6 +17,10 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.core.app.NavUtils;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.PreferenceManager;
+import androidx.preference.legacy.contrib.Header;
 
 /**
  * A AppCompatPreferenceActivity that presents a set of application settings. On handset devices, settings are presented as a single list. On tablets, settings
@@ -63,7 +64,7 @@ public class SettingsActivity extends AppCompatCommonPreferenceActivity
 	// S E T U P
 
 	@Override
-	public void onBuildHeaders(final List<Header> target)
+	public void onBuildHeaders(@NonNull final List<Header> target)
 	{
 		loadHeadersFromResource(R.xml.pref_headers, target);
 	}
@@ -71,7 +72,7 @@ public class SettingsActivity extends AppCompatCommonPreferenceActivity
 	// D E T E C T I O N
 
 	@Override
-	protected boolean isValidFragment(final String fragmentName)
+	public boolean isValidFragment(final String fragmentName)
 	{
 		return GeneralPreferenceFragment.class.getName().equals(fragmentName);
 	}
@@ -122,13 +123,11 @@ public class SettingsActivity extends AppCompatCommonPreferenceActivity
 
 	// F R A G M E N T S
 
-	public static class GeneralPreferenceFragment extends PreferenceFragment
+	public static class GeneralPreferenceFragment extends PreferenceFragmentCompat
 	{
 		@Override
-		public void onCreate(final Bundle savedInstanceState)
+		public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey)
 		{
-			super.onCreate(savedInstanceState);
-
 			// inflate
 			addPreferencesFromResource(R.xml.pref_general);
 

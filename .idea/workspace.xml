@@ -15,178 +15,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ebf7fe7b-6a7f-469c-a2f9-15fc5ae2cb6a" name="Default" comment="annotations&#10;copyright">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="ebf7fe7b-6a7f-469c-a2f9-15fc5ae2cb6a" name="Default" comment="lint">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicAidl/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicAidl/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicAidl/lint.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicAidl/lint.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicAidl/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicAidl/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicAidl/treebolicAidl.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicAidl/treebolicAidl.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicClientsIface/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicClientsIface/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicClientsIface/lint.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicClientsIface/lint.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicClientsIface/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicClientsIface/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicClientsIface/src/main/java/org/treebolic/clients/iface/IConnectionListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicClientsIface/src/main/java/org/treebolic/clients/iface/IConnectionListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicClientsIface/src/main/java/org/treebolic/clients/iface/IModelListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicClientsIface/src/main/java/org/treebolic/clients/iface/IModelListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicClientsIface/src/main/java/org/treebolic/clients/iface/ITreebolicClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicClientsIface/src/main/java/org/treebolic/clients/iface/ITreebolicClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicClientsIface/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicClientsIface/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicClientsIface/treebolicClientsIface.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicClientsIface/treebolicClientsIface.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicClientsLib/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicClientsLib/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicClientsLib/lint.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicClientsLib/lint.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicClientsLib/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicClientsLib/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicClientsLib/src/main/java/org/treebolic/Models.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicClientsLib/src/main/java/org/treebolic/Models.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicClientsLib/src/main/java/org/treebolic/clients/TreebolicAIDLBoundClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicClientsLib/src/main/java/org/treebolic/clients/TreebolicAIDLBoundClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicClientsLib/src/main/java/org/treebolic/clients/TreebolicBoundClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicClientsLib/src/main/java/org/treebolic/clients/TreebolicBoundClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicClientsLib/src/main/java/org/treebolic/clients/TreebolicClientActivityStub.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicClientsLib/src/main/java/org/treebolic/clients/TreebolicClientActivityStub.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicClientsLib/src/main/java/org/treebolic/clients/TreebolicIntentClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicClientsLib/src/main/java/org/treebolic/clients/TreebolicIntentClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicClientsLib/src/main/java/org/treebolic/clients/TreebolicMessengerClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicClientsLib/src/main/java/org/treebolic/clients/TreebolicMessengerClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicClientsLib/src/main/res/values-fr/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicClientsLib/src/main/res/values-fr/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicClientsLib/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicClientsLib/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicClientsLib/treebolicClientsLib.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicClientsLib/treebolicClientsLib.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/artwork/ic_launcher.svg" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/artwork/ic_launcher.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/artwork/ic_splash.svg" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/artwork/ic_splash.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/artwork/ic_splash_backup.svg" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/artwork/ic_splash_backup.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/artwork/ic_treebolic.svg" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/artwork/ic_treebolic.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/lint.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/lint.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/ModelFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/ModelFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/Permissions.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/Permissions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/Settings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/SettingsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/SettingsActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/TreebolicFilesAIDLBoundService.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/TreebolicFilesAIDLBoundService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/TreebolicFilesBoundService.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/TreebolicFilesBoundService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/TreebolicFilesIntentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/TreebolicFilesIntentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/TreebolicFilesMessengerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/TreebolicFilesMessengerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/client/TreebolicFilesAIDLBoundClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/client/TreebolicFilesAIDLBoundClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/client/TreebolicFilesBoundClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/client/TreebolicFilesBoundClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/client/TreebolicFilesIntentClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/client/TreebolicFilesIntentClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/client/TreebolicFilesMessengerClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/client/TreebolicFilesMessengerClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/layout/actionbutton.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/layout/actionbutton.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/layout/fragment_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/layout/fragment_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/layout/toolbar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/layout/toolbar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/menu/main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/menu/main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/values-fr/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/values-fr/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/values-fr/strings_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/values-fr/strings_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/values-w820dp/dimens.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/values-w820dp/dimens.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/values/colors.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/values/dimens.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/values/dimens.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/values/strings_nontranslatable.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/values/strings_nontranslatable.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/values/strings_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/values/strings_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/xml/backup_descriptor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/xml/backup_descriptor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/xml/pref_general.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/xml/pref_general.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/xml/pref_headers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/xml/pref_headers.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/artwork/ic_launcher.svg" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/artwork/ic_launcher.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/artwork/ic_splash.svg" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/artwork/ic_splash.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/artwork/ic_treebolic.svg" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/artwork/ic_treebolic.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/lint.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/lint.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/Deployer.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/Deployer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/DownloadActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/DownloadActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/ModelFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/ModelFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/Permissions.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/Permissions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/Settings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/SettingsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/SettingsActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/TreebolicOwlAIDLBoundService.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/TreebolicOwlAIDLBoundService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/TreebolicOwlBoundService.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/TreebolicOwlBoundService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/TreebolicOwlIntentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/TreebolicOwlIntentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/TreebolicOwlMessengerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/TreebolicOwlMessengerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/client/TreebolicOwlAIDLBoundClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/client/TreebolicOwlAIDLBoundClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/client/TreebolicOwlBoundClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/client/TreebolicOwlBoundClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/client/TreebolicOwlIntentClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/client/TreebolicOwlIntentClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/client/TreebolicOwlMessengerClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/client/TreebolicOwlMessengerClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/layout/actionbutton.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/layout/actionbutton.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/layout/fragment_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/layout/fragment_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/layout/toolbar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/layout/toolbar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/menu/main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/menu/main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/values-fr/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/values-fr/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/values-fr/strings_download.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/values-fr/strings_download.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/values-fr/strings_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/values-fr/strings_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/values-w820dp/dimens.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/values-w820dp/dimens.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/values/colors.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/values/dimens.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/values/dimens.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/values/strings_download.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/values/strings_download.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/values/strings_nontranslatable.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/values/strings_nontranslatable.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/values/strings_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/values/strings_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/xml/backup_descriptor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/xml/backup_descriptor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/xml/pref_general.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/xml/pref_general.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/xml/pref_headers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/xml/pref_headers.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicParcel/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicParcel/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicParcel/lint.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicParcel/lint.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicParcel/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicParcel/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicParcel/src/main/java/org/treebolic/ParcelableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicParcel/src/main/java/org/treebolic/ParcelableModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicParcel/treebolicParcel.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicParcel/treebolicParcel.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicServicesIface/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicServicesIface/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicServicesIface/lint.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicServicesIface/lint.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicServicesIface/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicServicesIface/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicServicesIface/src/main/java/org/treebolic/services/IntentFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicServicesIface/src/main/java/org/treebolic/services/IntentFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicServicesIface/src/main/java/org/treebolic/services/iface/ITreebolicService.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicServicesIface/src/main/java/org/treebolic/services/iface/ITreebolicService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicServicesIface/src/main/java/org/treebolic/services/iface/ITreebolicServiceBinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicServicesIface/src/main/java/org/treebolic/services/iface/ITreebolicServiceBinder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicServicesIface/treebolicServicesIface.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicServicesIface/treebolicServicesIface.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicServicesLib/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicServicesLib/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicServicesLib/lint.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicServicesLib/lint.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicServicesLib/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicServicesLib/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicServicesLib/src/main/java/org/treebolic/services/AbstractMakeTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicServicesLib/src/main/java/org/treebolic/services/AbstractMakeTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicServicesLib/src/main/java/org/treebolic/services/IModelFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicServicesLib/src/main/java/org/treebolic/services/IModelFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicServicesLib/src/main/java/org/treebolic/services/ModelFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicServicesLib/src/main/java/org/treebolic/services/ModelFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicServicesLib/src/main/java/org/treebolic/services/TreebolicAIDLBoundService.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicServicesLib/src/main/java/org/treebolic/services/TreebolicAIDLBoundService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicServicesLib/src/main/java/org/treebolic/services/TreebolicBoundService.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicServicesLib/src/main/java/org/treebolic/services/TreebolicBoundService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicServicesLib/src/main/java/org/treebolic/services/TreebolicIntentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicServicesLib/src/main/java/org/treebolic/services/TreebolicIntentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicServicesLib/src/main/java/org/treebolic/services/TreebolicMessengerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicServicesLib/src/main/java/org/treebolic/services/TreebolicMessengerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicServicesLib/src/main/java/org/treebolic/services/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicServicesLib/src/main/java/org/treebolic/services/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicServicesLib/src/main/res/values/attrs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicServicesLib/src/main/res/values/attrs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicServicesLib/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicServicesLib/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicServicesLib/treebolicServicesLib.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicServicesLib/treebolicServicesLib.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/artwork/ic_action_done.svg" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/artwork/ic_action_done.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/artwork/ic_action_error.svg" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/artwork/ic_action_error.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/artwork/ic_launcher.svg" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/artwork/ic_launcher.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/artwork/ic_splash.svg" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/artwork/ic_splash.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/artwork/ic_treebolic.svg" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/artwork/ic_treebolic.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/lint.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/lint.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/Deployer.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/Deployer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/DownloadActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/DownloadActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/ModelFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/ModelFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/Permissions.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/Permissions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/QueryProviderActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/QueryProviderActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/Settings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/SettingsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/SettingsActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/TreebolicWordNetAIDLBoundService.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/TreebolicWordNetAIDLBoundService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/TreebolicWordNetBoundService.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/TreebolicWordNetBoundService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/TreebolicWordNetIntentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/TreebolicWordNetIntentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/TreebolicWordNetMessengerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/TreebolicWordNetMessengerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/client/TreebolicWordNetAIDLBoundClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/client/TreebolicWordNetAIDLBoundClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/client/TreebolicWordNetBoundClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/client/TreebolicWordNetBoundClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/client/TreebolicWordNetIntentClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/client/TreebolicWordNetIntentClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/client/TreebolicWordNetMessengerClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/client/TreebolicWordNetMessengerClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/layout/actionbutton.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/layout/actionbutton.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/layout/activity_query_file_provider.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/layout/activity_query_file_provider.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/layout/fragment_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/layout/fragment_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/layout/toolbar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/layout/toolbar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/menu/main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/menu/main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/values-fr/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/values-fr/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/values-fr/strings_download.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/values-fr/strings_download.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/values-fr/strings_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/values-fr/strings_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/values-w820dp/dimens.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/values-w820dp/dimens.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/values/colors.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/values/dimens.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/values/dimens.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/values/strings_download.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/values/strings_download.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/values/strings_nontranslatable.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/values/strings_nontranslatable.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/values/strings_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/values/strings_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/xml/backup_descriptor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/xml/backup_descriptor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/xml/pref_general.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/xml/pref_general.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/xml/pref_headers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/xml/pref_headers.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/xml/pref_service.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/xml/pref_service.xml" afterDir="false" />
     </list>
     <ignored path="treebolicWordNetServices/build/" />
     <ignored path="treebolicServicesLib/build/" />
@@ -1319,10 +1149,10 @@
         <option value="$PROJECT_DIR$/treebolicServicesLib/src/main/java/org/treebolic/services/TreebolicBoundService.java" />
         <option value="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/QueryProviderActivity.java" />
         <option value="$PROJECT_DIR$/treebolicParcel/src/main/java/org/treebolic/ParcelableModel.java" />
-        <option value="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/ModelFactory.java" />
         <option value="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/MainActivity.java" />
         <option value="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/MainActivity.java" />
         <option value="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/MainActivity.java" />
+        <option value="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/ModelFactory.java" />
       </list>
     </option>
   </component>
@@ -1607,7 +1437,21 @@
       <option name="project" value="LOCAL" />
       <updated>1560323042281</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="annotations&#10;copyright">
+      <created>1560324314491</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1560324314491</updated>
+    </task>
+    <task id="LOCAL-00007" summary="lint">
+      <created>1560324384680</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1560324384680</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1651,10 +1495,10 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="build tools&#10;fixes result msg in Messenger Service" />
-    <MESSAGE value="lint" />
     <MESSAGE value="androidx&#10;lint" />
     <MESSAGE value="annotations&#10;copyright" />
-    <option name="LAST_COMMIT_MESSAGE" value="annotations&#10;copyright" />
+    <MESSAGE value="lint" />
+    <option name="LAST_COMMIT_MESSAGE" value="lint" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/build.gradle">
@@ -1950,8 +1794,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/ModelFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="33" column="15" selection-start-line="33" selection-start-column="15" selection-end-line="33" selection-end-column="15" />
+        <state relative-caret-position="351">
+          <caret line="37" column="9" selection-start-line="37" selection-start-column="9" selection-end-line="37" selection-end-column="9" />
         </state>
       </provider>
     </entry>
