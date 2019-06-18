@@ -182,6 +182,10 @@
     <pattern value="org.treebolic.files.service.MainActivity.PlaceholderFragment" method="onCreateView" />
     <pattern value="org.treebolic.clients.TreebolicMessengerClient" method="requestModel" />
     <pattern value="org.treebolic.clients.TreebolicMessengerClient" method="TreebolicMessengerClient" />
+    <pattern value="org.treebolic.wordnet.service.SettingsActivity.GeneralPreferenceFragment" method="onCreatePreferences" />
+    <pattern value="org.treebolic.wordnet.service.SettingsActivity.ServicePreferenceFragment" method="onCreatePreferences" />
+    <pattern value="org.treebolic.owl.service.SettingsActivity.GeneralPreferenceFragment" method="onCreatePreferences" />
+    <pattern value="org.treebolic.files.service.SettingsActivity.GeneralPreferenceFragment" method="onCreatePreferences" />
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="androidx.annotation.Nullable" />
