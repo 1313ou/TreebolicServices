@@ -47,7 +47,7 @@ public class QueryProviderActivity extends AppCompatCommonActivity
 	/**
 	 * Android provider name for wordnet data
 	 */
-	private static final String PROVIDER_NAME = "android.support.v4.content.FileProvider";
+	private static final String PROVIDER_NAME = "androidx.core.content.FileProvider";
 
 	/**
 	 * Android provider activity for wordnet data

@@ -17,9 +17,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ebf7fe7b-6a7f-469c-a2f9-15fc5ae2cb6a" name="Default" comment="preference 1.1.0">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/SettingsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/SettingsActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/SettingsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/SettingsActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/SettingsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/SettingsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/treebolicFilesServices.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/treebolicFilesServices.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/treebolicOwlServices.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/treebolicOwlServices.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/treebolicWordNetServices.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/treebolicWordNetServices.iml" afterDir="false" />
     </list>
     <ignored path="treebolicWordNetServices/build/" />
     <ignored path="treebolicServicesLib/build/" />
@@ -1112,11 +1112,12 @@
     </system>
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>those\w</find>
+      <find>getContext</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/../TreebolicSupportLibs/commonLib</dir>
@@ -1159,6 +1160,7 @@
         <option value="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/SettingsActivity.java" />
         <option value="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/SettingsActivity.java" />
         <option value="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/SettingsActivity.java" />
+        <option value="$PROJECT_DIR$/../TreebolicSupportLibs/preferenceLib/src/main/java/androidx/preference/legacy/contrib/PreferenceActivityCompatDelegate.java" />
       </list>
     </option>
   </component>
@@ -1178,8 +1180,8 @@
     <panes>
       <pane id="ProjectPane" />
       <pane id="PackagesPane" />
-      <pane id="AndroidView" />
       <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1464,7 +1466,21 @@
       <option name="project" value="LOCAL" />
       <updated>1560852262728</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="preference 1.1.0">
+      <created>1560855343462</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1560855343462</updated>
+    </task>
+    <task id="LOCAL-00010" summary="preference 1.1.0">
+      <created>1560855369640</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1560855369640</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1528,12 +1544,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/treebolicOwlServices/src/main/res/layout/actionbutton.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="30" column="36" selection-start-line="30" selection-start-column="36" selection-end-line="30" selection-end-column="36" />
         </state>
       </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/Deployer.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1817,10 +1833,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/treebolicWordNetServices/src/main/res/xml/pref_general.xml">
-      <provider selected="true" editor-type-id="text-editor" />
       <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/treebolicFilesServices/src/main/res/xml/pref_general.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="104">
           <caret line="8" column="29" lean-forward="true" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
@@ -1829,11 +1846,10 @@
           </folding>
         </state>
       </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/treebolicWordNetServices/src/main/res/xml/pref_service.xml">
-      <provider selected="true" editor-type-id="text-editor" />
       <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/SettingsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1868,6 +1884,41 @@
             <element signature="e#3176#3203#0" expanded="true" />
             <element signature="e#3846#3873#0" expanded="true" />
             <element signature="e#3907#3934#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/misc.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../TreebolicSupportLibs/preferenceLib/src/main/java/org/treebolic/preference/AutoEditTextPreference.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="514">
+          <caret line="293" column="43" selection-start-line="293" selection-start-column="43" selection-end-line="293" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../TreebolicSupportLibs/preferenceLib/src/main/java/androidx/preference/legacy/contrib/HeaderAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="497">
+          <caret line="127" column="37" selection-start-line="127" selection-start-column="29" selection-end-line="127" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../TreebolicSupportLibs/preferenceLib/src/main/java/androidx/preference/legacy/contrib/Header.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="56" column="24" selection-start-line="56" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../TreebolicSupportLibs/preferenceLib/src/main/java/androidx/preference/legacy/contrib/PreferenceActivityCompatDelegate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="304" column="20" selection-start-line="304" selection-start-column="20" selection-end-line="304" selection-end-column="20" />
+          <folding>
+            <element signature="e#7819#7820#0" expanded="true" />
+            <element signature="e#7846#7847#0" expanded="true" />
           </folding>
         </state>
       </provider>

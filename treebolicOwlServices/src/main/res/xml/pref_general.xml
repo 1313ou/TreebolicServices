@@ -2,7 +2,7 @@
   ~ Copyright (c) Treebolic 2019. Bernard Bou <1313ou@gmail.com>
   -->
 
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
                   xmlns:app="http://schemas.android.com/apk/res-auto">
 
 	<EditTextPreference
@@ -61,4 +61,4 @@
 		android:key="pref_forward"
 		android:title="@string/pref_title_forwarding"/>
 
-</PreferenceScreen>
+</androidx.preference.PreferenceScreen>
