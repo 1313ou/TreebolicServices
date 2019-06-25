@@ -60,6 +60,7 @@ dependencies {
     implementation project(':preferenceLib')
 
     implementation files('libs/treebolic-provider-files.jar')
+    implementation files('libs/treebolic-balancer.jar')
 
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
