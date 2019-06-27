@@ -107,10 +107,10 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/shader_assets" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/signing_config" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/symbols" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/transforms" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/validate_signing_config" />
       <excludeFolder url="file://$MODULE_DIR$/build/outputs" />
+      <excludeFolder url="file://$MODULE_DIR$/build/reports" />
       <excludeFolder url="file://$MODULE_DIR$/build/tmp" />
     </content>
     <orderEntry type="jdk" jdkName="Android API 28 Platform" jdkType="Android SDK" />
@@ -141,6 +141,7 @@
     <orderEntry type="library" name="Gradle: androidx.print:print:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.preference:preference:1.1.0-beta01@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-common:2.1.0-beta01@jar" level="project" />
+    <orderEntry type="library" name="Gradle: __local_aars__:/mnt/data2/devel/android-treebolic-as/TreebolicServices/treebolicFilesServices/libs/treebolic-balancer.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.slidingpanelayout:slidingpanelayout:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.media:media:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.vectordrawable:vectordrawable-animated:1.1.0-beta02@aar" level="project" />
