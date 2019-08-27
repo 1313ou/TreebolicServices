@@ -417,8 +417,8 @@ public class ParcelableModel implements Parcelable
 		ParcelableModel.writeToParcel(parcel, menuItem.link);
 		ParcelableModel.writeToParcel(parcel, menuItem.target);
 		ParcelableModel.writeToParcel(parcel, menuItem.matchTarget);
-		ParcelableModel.writeToParcel(parcel, menuItem.matchMode);
 		ParcelableModel.writeToParcel(parcel, menuItem.matchScope);
+		ParcelableModel.writeToParcel(parcel, menuItem.matchMode);
 	}
 
 	// IMAGES
@@ -757,8 +757,8 @@ public class ParcelableModel implements Parcelable
 		if (n != -1)
 		{
 			final List<INode> children = node.getChildren();
-			if (children != null)
-			{
+			//if (children != null)
+			//{
 				for (int i = 0; i < n; i++)
 				{
 					/*final INode child =*/
@@ -770,7 +770,7 @@ public class ParcelableModel implements Parcelable
 				{
 					throw new IllegalArgumentException("parcelled different child size expected=" + n + " real=" + children.size());
 				}
-			}
+			//}
 		}
 		return node;
 	}

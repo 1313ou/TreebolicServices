@@ -19,35 +19,16 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ebf7fe7b-6a7f-469c-a2f9-15fc5ae2cb6a" name="Default" comment="update load balancer">
-      <change afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/values/theme.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/values/theme.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/values/theme.xml" afterDir="false" />
+    <list default="true" id="ebf7fe7b-6a7f-469c-a2f9-15fc5ae2cb6a" name="Default" comment="toolbar&#10;new tools">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/treebolicAidl/treebolicAidl.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicAidl/treebolicAidl.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/treebolicClientsIface/treebolicClientsIface.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicClientsIface/treebolicClientsIface.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/treebolicClientsLib/treebolicClientsLib.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicClientsLib/treebolicClientsLib.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/SettingsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/SettingsActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/xml/pref_general.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/src/main/res/xml/pref_general.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/treebolicFilesServices.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/treebolicFilesServices.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/SettingsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/SettingsActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/xml/pref_general.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/src/main/res/xml/pref_general.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/treebolicOwlServices.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/treebolicOwlServices.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treebolicParcel/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicParcel/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treebolicParcel/src/main/java/org/treebolic/ParcelableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicParcel/src/main/java/org/treebolic/ParcelableModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/treebolicParcel/treebolicParcel.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicParcel/treebolicParcel.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/treebolicServicesIface/treebolicServicesIface.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicServicesIface/treebolicServicesIface.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicServicesLib/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicServicesLib/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/treebolicServicesLib/treebolicServicesLib.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicServicesLib/treebolicServicesLib.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/SettingsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/SettingsActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/xml/pref_general.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/xml/pref_general.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/treebolicWordNetServices.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/treebolicWordNetServices.iml" afterDir="false" />
     </list>
     <ignored path="treebolicWordNetServices/build/" />
@@ -1126,8 +1107,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DefaultGradleProjectSettings">
-    <option name="testRunner" value="GRADLE" />
-    <option name="delegatedBuild" value="true" />
+    <option name="isMigrated" value="true" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="Samsung_S7_edge_API_25" />
   <component name="ExternalProjectsData">
@@ -1146,7 +1126,20 @@
     </system>
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/treebolicParcel/src/androidTest/java/org/treebolic/parcel/ParcelInstrumentedTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="29" column="1" lean-forward="true" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -1185,7 +1178,6 @@
         <option value="$PROJECT_DIR$/treebolicClientsLib/src/main/java/org/treebolic/Models.java" />
         <option value="$PROJECT_DIR$/treebolicServicesLib/src/main/java/org/treebolic/services/TreebolicBoundService.java" />
         <option value="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/QueryProviderActivity.java" />
-        <option value="$PROJECT_DIR$/treebolicParcel/src/main/java/org/treebolic/ParcelableModel.java" />
         <option value="$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/MainActivity.java" />
         <option value="$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/MainActivity.java" />
         <option value="$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/MainActivity.java" />
@@ -1202,26 +1194,57 @@
         <option value="$PROJECT_DIR$/treebolicFilesServices/src/main/res/xml/pref_general.xml" />
         <option value="$PROJECT_DIR$/treebolicOwlServices/src/main/res/xml/pref_general.xml" />
         <option value="$PROJECT_DIR$/treebolicWordNetServices/src/main/res/xml/pref_general.xml" />
+        <option value="$PROJECT_DIR$/treebolicParcel/src/main/java/org/treebolic/ParcelableModel.java" />
+        <option value="$PROJECT_DIR$/treebolicParcel/src/test/java/org/treebolic/parcel/ExampleUnitTest.java" />
+        <option value="$PROJECT_DIR$/treebolicParcel/src/androidTest/java/org/treebolic/parcel/ExampleInstrumentedTest.java" />
+        <option value="$PROJECT_DIR$/treebolicParcel/src/test/java/org/treebolic/parcel/ParcelUnitTest.java" />
+        <option value="$PROJECT_DIR$/treebolicParcel/build.gradle" />
+        <option value="$PROJECT_DIR$/treebolicParcel/src/androidTest/java/org/treebolic/parcel/ParcelInstrumentedTest.java" />
       </list>
     </option>
   </component>
   <component name="NamedScopeManager">
     <scope name="Analyzed" pattern="file[treebolicParcel]:src/main//*||file[treebolicParcel]:build/generated/source/buildConfig/androidTest/debug//*||file[treebolicParcel]:build/generated/source/buildConfig/debug//*||file[treebolicParcel]:build.gradle||file[treebolicParcel]:lint.xml||file[treebolicAidl]:build/generated/aidl_source_output_dir/debug/compileDebugAidl/out//*||file[treebolicAidl]:build/generated/source/buildConfig/androidTest/debug//*||file[treebolicAidl]:src/main//*||file[treebolicAidl]:build/generated/source/buildConfig/debug//*||file[treebolicAidl]:src/main/aidl//*||file[treebolicAidl]:lint.xml||file[treebolicAidl]:build.gradle||file[treebolicClientsLib]:build/generated/source/buildConfig/debug//*||file[treebolicClientsLib]:build/generated/source/buildConfig/androidTest/debug//*||file[treebolicClientsLib]:src/main/java//*||file[treebolicClientsLib]:src/main//*||file[treebolicClientsLib]:build.gradle||file[treebolicClientsLib]:lint.xml||file[treebolicServicesLib]:src/main//*||file[treebolicServicesLib]:src/main/java//*||file[treebolicServicesLib]:src/main/res//*||file[treebolicServicesLib]:build/generated/source/buildConfig/debug//*||file[treebolicServicesLib]:build/generated/source/buildConfig/androidTest/debug//*||file[treebolicServicesLib]:build.gradle||file[treebolicServicesLib]:lint.xml||file[treebolicServicesIface]:build/generated/source/buildConfig/androidTest/debug//*||file[treebolicServicesIface]:build/generated/source/buildConfig/debug//*||file[treebolicServicesIface]:src/main//*||file[treebolicServicesIface]:src/main/java//*||file[treebolicServicesIface]:build.gradle||file[treebolicServicesIface]:lint.xml||file[treebolicClientsIface]:build/generated/source/buildConfig/androidTest/debug//*||file[treebolicClientsIface]:build/generated/source/buildConfig/debug//*||file[treebolicClientsIface]:src/main//*||file[treebolicClientsIface]:src/main/java//*||file[treebolicClientsIface]:lint.xml||file[treebolicClientsIface]:build.gradle||file[treebolicFilesServices]:build/generated/source/buildConfig/androidTest/debug//*||file[treebolicFilesServices]:build/generated/source/buildConfig/debug//*||file[treebolicFilesServices]:src/main//*||file[treebolicFilesServices]:lint.xml||file[treebolicFilesServices]:build.gradle||file[treebolicOwlServices]:build/generated/source/buildConfig/androidTest/debug//*||file[treebolicOwlServices]:build/generated/source/buildConfig/debug//*||file[treebolicOwlServices]:src/main//*||file[treebolicOwlServices]:build.gradle||file[treebolicOwlServices]:lint.xml||file[treebolicWordNetServices]:src/main//*||file[treebolicWordNetServices]:build/generated/source/buildConfig/debug//*||file[treebolicWordNetServices]:build/generated/source/buildConfig/androidTest/debug//*||file[treebolicWordNetServices]:build.gradle||file[treebolicWordNetServices]:lint.xml" />
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="335" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="385" />
     <option name="y" value="27" />
-    <option name="width" value="1388" />
-    <option name="height" value="1165" />
+    <option name="width" value="1222" />
+    <option name="height" value="1156" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
-      <pane id="AndroidView" />
       <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
+      <pane id="AndroidView">
+        <subPane>
+          <expand>
+            <path>
+              <item name="TreebolicServices" type="1abcf292:AndroidViewProjectNode" />
+              <item name="treebolicParcel" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="TreebolicServices" type="1abcf292:AndroidViewProjectNode" />
+              <item name="treebolicParcel" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="TreebolicServices" type="1abcf292:AndroidViewProjectNode" />
+              <item name="treebolicParcel" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="parcel" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TreebolicServices" type="1abcf292:AndroidViewProjectNode" />
+              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scope" />
     </panes>
   </component>
@@ -1250,10 +1273,26 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Android App.treebolicOwlServices">
+  <component name="RunManager" selected="Android Instrumented Tests.All Tests">
     <configuration name="&lt;template&gt;" type="JUnit" default="true" selected="false">
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+    </configuration>
+    <configuration name="ParcelUnitTest" type="AndroidJUnit" factoryName="Android JUnit" nameIsGenerated="true">
+      <module name="treebolicParcel" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.treebolic.parcel.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.treebolic.parcel" />
+      <option name="MAIN_CLASS_NAME" value="org.treebolic.parcel.ParcelUnitTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
       <option name="TEST_OBJECT" value="class" />
@@ -1421,6 +1460,55 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="All Tests" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" nameIsGenerated="true">
+      <module name="treebolicParcel" />
+      <option name="TESTING_TYPE" value="0" />
+      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="EXTRA_OPTIONS" value="" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+      </Profilers>
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
@@ -1440,6 +1528,8 @@
       <item itemvalue="Android App.treebolicFilesServices" />
       <item itemvalue="Android App.treebolicOwlServices" />
       <item itemvalue="Android App.treebolicWordNetServices" />
+      <item itemvalue="Android Instrumented Tests.All Tests" />
+      <item itemvalue="Android JUnit.ParcelUnitTest" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -1565,13 +1655,52 @@
       <option name="project" value="LOCAL" />
       <updated>1561784884331</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="toolbar&#10;new tools">
+      <created>1566836221831</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1566836221831</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="All_Tests - 2019.08.27 at 07h 13m 06s.xml">
+      <configuration name="All Tests" configurationId="AndroidTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="All_Tests - 2019.08.27 at 07h 13m 46s.xml">
+      <configuration name="All Tests" configurationId="AndroidTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="All_Tests - 2019.08.27 at 07h 14m 01s.xml">
+      <configuration name="All Tests" configurationId="AndroidTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="All_Tests - 2019.08.27 at 07h 15m 30s.xml">
+      <configuration name="All Tests" configurationId="AndroidTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="All_Tests - 2019.08.27 at 07h 18m 46s.xml">
+      <configuration name="All Tests" configurationId="AndroidTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="All_Tests - 2019.08.27 at 07h 28m 09s.xml">
+      <configuration name="All Tests" configurationId="AndroidTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="All_Tests - 2019.08.27 at 07h 34m 57s.xml">
+      <configuration name="All Tests" configurationId="AndroidTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="All_Tests - 2019.08.27 at 07h 35m 53s.xml">
+      <configuration name="All Tests" configurationId="AndroidTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="All_Tests - 2019.08.27 at 07h 38m 25s.xml">
+      <configuration name="All Tests" configurationId="AndroidTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="All_Tests - 2019.08.27 at 07h 39m 59s.xml">
+      <configuration name="All Tests" configurationId="AndroidTestRunConfigurationType" />
+    </history-entry>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="53" y="31" width="1254" height="1167" extended-state="0" />
+    <frame x="51" y="27" width="1869" height="1173" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22277227" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14887795" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Build Variants" order="3" side_tool="true" />
@@ -1582,17 +1711,17 @@
       <window_info id="Resources Explorer" order="8" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3297456" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.18590999" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.35029355" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Logcat" order="7" weight="0.32906404" />
+      <window_info anchor="bottom" id="Logcat" order="7" weight="0.32840237" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="10" weight="0.3277559" />
-      <window_info anchor="bottom" id="Build" order="11" weight="0.19291338" />
-      <window_info anchor="bottom" id="Android Profiler" order="12" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.32741618" />
+      <window_info anchor="bottom" id="Build" order="11" visible="true" weight="0.1409002" />
+      <window_info anchor="bottom" id="Android Profiler" order="12" show_stripe_button="false" />
       <window_info active="true" anchor="bottom" id="Inspection Results" order="13" visible="true" weight="0.4281496" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -1618,137 +1747,28 @@
     <MESSAGE value="alertdialog&#10;balancing" />
     <MESSAGE value="version number" />
     <MESSAGE value="update load balancer" />
-    <option name="LAST_COMMIT_MESSAGE" value="update load balancer" />
+    <MESSAGE value="toolbar&#10;new tools" />
+    <option name="LAST_COMMIT_MESSAGE" value="toolbar&#10;new tools" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/treebolicParcel/src/androidTest/java/org/treebolic/parcel/ParcelInstrumentedTest.java</url>
+          <line>43</line>
+          <properties />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/treebolicParcel/src/androidTest/java/org/treebolic/parcel/ParcelInstrumentedTest.java</url>
+          <line>65</line>
+          <properties />
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/treebolicOwlServices/src/main/res/layout/actionbutton.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="30" column="36" selection-start-line="30" selection-start-column="36" selection-end-line="30" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/DownloadActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="52" selection-start-line="51" selection-end-line="52" />
-          <folding>
-            <element signature="e#1103#1104#0" expanded="true" />
-            <element signature="e#1121#1122#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/DownloadActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="584">
-          <caret line="52" selection-start-line="52" selection-end-line="52" />
-          <folding>
-            <element signature="e#976#1012#0" expanded="true" />
-            <element signature="e#1021#1022#0" expanded="true" />
-            <element signature="e#1039#1040#0" expanded="true" />
-            <element signature="e#1081#1117#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/TreebolicFilesAIDLBoundService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
-          <folding>
-            <element signature="e#449#485#0" expanded="true" />
-            <element signature="e#500#501#0" expanded="true" />
-            <element signature="e#526#527#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/TreebolicFilesBoundService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-          <folding>
-            <element signature="e#501#537#0" expanded="true" />
-            <element signature="e#552#553#0" expanded="true" />
-            <element signature="e#578#579#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/TreebolicFilesIntentService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
-          <folding>
-            <element signature="e#468#504#0" expanded="true" />
-            <element signature="e#519#520#0" expanded="true" />
-            <element signature="e#545#546#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/treebolicFilesServices/src/main/java/org/treebolic/files/service/TreebolicFilesMessengerService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-          <folding>
-            <element signature="e#486#522#0" expanded="true" />
-            <element signature="e#537#538#0" expanded="true" />
-            <element signature="e#563#564#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/TreebolicOwlAIDLBoundService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
-          <folding>
-            <element signature="e#441#477#0" expanded="true" />
-            <element signature="e#492#493#0" expanded="true" />
-            <element signature="e#512#513#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/TreebolicOwlIntentService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
-          <folding>
-            <element signature="e#458#494#0" expanded="true" />
-            <element signature="e#509#510#0" expanded="true" />
-            <element signature="e#529#530#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/treebolicOwlServices/src/main/java/org/treebolic/owl/service/TreebolicOwlMessengerService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-          <folding>
-            <element signature="e#478#514#0" expanded="true" />
-            <element signature="e#529#530#0" expanded="true" />
-            <element signature="e#549#550#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/TreebolicWordNetAIDLBoundService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="40" selection-start-line="40" selection-end-line="40" />
-          <folding>
-            <element signature="e#704#740#0" expanded="true" />
-            <element signature="e#755#756#0" expanded="true" />
-            <element signature="e#779#780#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/treebolicWordNetServices/src/main/java/org/treebolic/wordnet/service/TreebolicWordNetBoundService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="455">
@@ -1836,17 +1856,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/treebolicParcel/src/main/java/org/treebolic/ParcelableModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="672" selection-start-line="672" selection-end-line="672" />
-          <folding>
-            <element signature="e#15698#15699#0" expanded="true" />
-            <element signature="e#15745#15746#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/local.properties">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1888,8 +1897,8 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/treebolicWordNetServices/src/main/res/xml/pref_service.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/misc.xml">
       <provider selected="true" editor-type-id="text-editor" />
@@ -2057,26 +2066,220 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/treebolicFilesServices/src/main/res/xml/pref_general.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="104">
           <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/treebolicOwlServices/src/main/res/xml/pref_general.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="20">
           <caret line="28" selection-start-line="28" selection-end-line="28" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/treebolicWordNetServices/src/main/res/xml/pref_general.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="104">
           <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/treebolicParcel/src/main/java/org/treebolic/ParcelableModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="517">
+          <caret line="1169" column="26" selection-start-line="1151" selection-end-line="1174" selection-end-column="5" />
+          <folding>
+            <element signature="docComment;class#ParcelableModel#0" />
+            <element signature="e#914#934#0" />
+            <element signature="e#987#1080#0" />
+            <element signature="e#1131#1166#0" />
+            <element signature="e#1131#1248#0" />
+            <element signature="e#1251#1280#0" />
+            <element signature="e#1370#1396#0" />
+            <element signature="e#1465#1494#0" />
+            <element signature="e#1550#1574#0" />
+            <element signature="e#1658#1737#0" />
+            <element signature="e#1658#1955#0" />
+            <element signature="e#1830#1886#1" />
+            <element signature="e#1896#1952#1" />
+            <element signature="e#1958#2010#0" />
+            <element signature="e#2076#2112#0" />
+            <element signature="e#2175#2415#0" />
+            <element signature="e#2297#2343#1" />
+            <element signature="e#2353#2412#1" />
+            <element signature="e#2418#2438#0" />
+            <element signature="class#2510:2794" />
+            <element signature="e#2798#2824#0" />
+            <element signature="e#2838#2959#0" />
+            <element signature="e#3098#3197#0" />
+            <element signature="e#3098#3653#0" />
+            <element signature="e#3318#3357#1" />
+            <element signature="e#3656#3753#0" />
+            <element signature="e#3656#3970#0" />
+            <element signature="e#3983#4080#0" />
+            <element signature="e#4178#4195#0" />
+            <element signature="e#6115#6278#1" />
+            <element signature="e#6208#6274#1" />
+            <element signature="e#6284#6405#0" />
+            <element signature="e#6284#6786#0" />
+            <element signature="e#6569#6612#1" />
+            <element signature="e#6789#6896#0" />
+            <element signature="e#6789#7217#0" />
+            <element signature="e#7028#7068#1" />
+            <element signature="e#7153#7214#1" />
+            <element signature="e#7230#7315#0" />
+            <element signature="e#7230#8106#0" />
+            <element signature="e#8123#8232#0" />
+            <element signature="e#8123#10729#0" />
+            <element signature="e#10732#10841#0" />
+            <element signature="e#10732#11183#0" />
+            <element signature="e#10983#11023#1" />
+            <element signature="e#11112#11180#1" />
+            <element signature="e#11186#11323#0" />
+            <element signature="e#11186#11900#0" />
+            <element signature="e#11915#12220#0" />
+            <element signature="e#12038#12078#1" />
+            <element signature="e#12163#12217#1" />
+            <element signature="e#12237#12342#0" />
+            <element signature="e#12237#12532#0" />
+            <element signature="e#12457#12497#1" />
+            <element signature="e#12535#12636#0" />
+            <element signature="e#12535#12821#0" />
+            <element signature="e#12750#12793#1" />
+            <element signature="e#12824#12927#0" />
+            <element signature="e#12824#13128#0" />
+            <element signature="e#13042#13081#1" />
+            <element signature="e#13131#13234#0" />
+            <element signature="e#13131#13422#0" />
+            <element signature="e#13349#13389#1" />
+            <element signature="e#13425#13524#0" />
+            <element signature="e#13425#13725#0" />
+            <element signature="e#13637#13676#1" />
+            <element signature="e#13747#13847#0" />
+            <element signature="e#13849#14068#0" />
+            <element signature="e#14089#14200#0" />
+            <element signature="e#14320#14419#0" />
+            <element signature="e#14320#15065#0" />
+            <element signature="e#14564#14603#1" />
+            <element signature="e#14646#15062#0" />
+            <element signature="e#15068#15167#0" />
+            <element signature="e#15068#15405#0" />
+            <element signature="e#15306#15345#1" />
+            <element signature="e#15408#15432#0" />
+            <element signature="e#15446#15473#0" />
+            <element signature="e#15550#15669#0" />
+            <element signature="e#15806#15901#0" />
+            <element signature="e#15806#16390#0" />
+            <element signature="e#16138#16372#1" />
+            <element signature="e#16393#16486#0" />
+            <element signature="e#16750#16843#0" />
+            <element signature="e#18186#18216#1" />
+            <element signature="e#18244#18282#1" />
+            <element signature="e#18308#18342#1" />
+            <element signature="e#18370#18408#1" />
+            <element signature="e#18436#18474#1" />
+            <element signature="e#18502#18540#1" />
+            <element signature="e#18568#18606#1" />
+            <element signature="e#18629#18657#1" />
+            <element signature="e#18682#18714#1" />
+            <element signature="e#18742#18780#1" />
+            <element signature="e#18829#18869#1" />
+            <element signature="e#18901#18947#1" />
+            <element signature="e#19004#19052#1" />
+            <element signature="e#19081#19121#1" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///opt/androidsdk/sources/android-28/android/os/Bundle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/treebolicParcel/src/test/java/org/treebolic/parcel/ParcelUnitTest.java" />
+    <entry file="file://$PROJECT_DIR$/treebolicParcel/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="507">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
+          <folding>
+            <element signature="e#0#70#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/a6c32b40bf3d76eca54e3c601e5d1470c86fcdfa/junit-4.12-sources.jar!/org/junit/internal/runners/model/ReflectiveCallable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/a6c32b40bf3d76eca54e3c601e5d1470c86fcdfa/junit-4.12-sources.jar!/org/junit/internal/runners/statements/InvokeMethod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/a6c32b40bf3d76eca54e3c601e5d1470c86fcdfa/junit-4.12-sources.jar!/org/junit/runners/BlockJUnit4ClassRunner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="79" selection-start-line="79" selection-end-line="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/a6c32b40bf3d76eca54e3c601e5d1470c86fcdfa/junit-4.12-sources.jar!/org/junit/runners/ParentRunner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="268" selection-start-line="268" selection-end-line="268" />
+          <folding>
+            <element signature="e#2922#2923#0" expanded="true" />
+            <element signature="e#2966#2967#0" expanded="true" />
+            <element signature="e#10310#10449#0" expanded="true" />
+            <element signature="e#11040#11204#0" expanded="true" />
+            <element signature="e#11203#11204#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/a6c32b40bf3d76eca54e3c601e5d1470c86fcdfa/junit-4.12-sources.jar!/org/junit/runners/model/FrameworkMethod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="383">
+          <caret line="49" selection-start-line="49" selection-end-line="49" />
+          <folding>
+            <element signature="e#1657#1658#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../TreebolicLib/treebolicLibModel/src/main/java/treebolic/model/ModelDump.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-455">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/treebolicParcel/src/androidTest/java/org/treebolic/parcel/ParcelInstrumentedTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="29" column="1" lean-forward="true" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../TreebolicLib/treebolicLibModel/src/main/java/treebolic/model/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="481">
+          <caret line="42" column="11" selection-start-line="42" selection-start-column="11" selection-end-line="42" selection-end-column="11" />
         </state>
       </provider>
     </entry>
