@@ -12,7 +12,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import treebolic.ILocator;
 import treebolic.provider.owl.owlapi.Provider;
 
@@ -38,7 +37,7 @@ public class ModelFactory extends org.treebolic.services.ModelFactory
 		super(new Provider(), Utils.makeLogProviderContext(ModelFactory.TAG), makeLocator(context), null);
 	}
 
-	@Nullable
+	@NonNull
 	static private ILocator makeLocator(@NonNull final Context context)
 	{
 		try
