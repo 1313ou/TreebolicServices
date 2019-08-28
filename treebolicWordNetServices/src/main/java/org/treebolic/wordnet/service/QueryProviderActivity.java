@@ -178,6 +178,7 @@ public class QueryProviderActivity extends AppCompatCommonActivity
 	 * @param context context
 	 * @return provider info
 	 */
+	@Nullable
 	@SuppressWarnings("WeakerAccess")
 	static public ProviderInfo getProvider(@NonNull final Context context)
 	{
