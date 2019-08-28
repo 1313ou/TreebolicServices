@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.NoSuchElementException;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import treebolic.model.Model;
 
 @SuppressWarnings("WeakerAccess")
@@ -75,6 +76,7 @@ public class Models
 		Models.references.put(key, reference);
 	}
 
+	@Nullable
 	static public Model getUnguarded(final Long key)
 	{
 		final WeakReference<Model> reference = Models.references.get(key);

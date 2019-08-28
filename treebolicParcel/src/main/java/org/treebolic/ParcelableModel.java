@@ -133,12 +133,14 @@ public class ParcelableModel implements Parcelable
 	 */
 	public static final Parcelable.Creator<ParcelableModel> CREATOR = new Parcelable.Creator<ParcelableModel>()
 	{
+		@NonNull
 		@Override
 		public ParcelableModel createFromParcel(@NonNull final Parcel parcel)
 		{
 			return new ParcelableModel(parcel);
 		}
 
+		@NonNull
 		@Override
 		public ParcelableModel[] newArray(final int size)
 		{
@@ -632,6 +634,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to read from
 	 * @return model
 	 */
+	@Nullable
 	private static Model readModel(@NonNull final Parcel parcel)
 	{
 		Log.d(ParcelableModel.TAG, "parcel read size=" + parcel.dataSize() + " pos=" + parcel.dataPosition());
@@ -652,6 +655,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to read from
 	 * @return tree
 	 */
+	@NonNull
 	private static Tree readTree(@NonNull final Parcel parcel)
 	{
 		ParcelableModel.id2node.clear();
@@ -781,6 +785,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to read from
 	 * @return mount point
 	 */
+	@Nullable
 	private static MountPoint readMountPoint(@NonNull final Parcel parcel)
 	{
 		final String url = parcel.readString();
@@ -800,6 +805,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to read from
 	 * @return edge list
 	 */
+	@Nullable
 	private static List<IEdge> readEdges(@NonNull final Parcel parcel)
 	{
 		final int n = parcel.readInt();
@@ -922,6 +928,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to read from
 	 * @return menu
 	 */
+	@Nullable
 	private static List<MenuItem> readMenu(@NonNull final Parcel parcel)
 	{
 		final int n = parcel.readInt();
@@ -971,6 +978,7 @@ public class ParcelableModel implements Parcelable
 
 	// IMAGES
 
+	@Nullable
 	private static Image[] readImages(@NonNull final Parcel parcel)
 	{
 		final int n = parcel.readInt();
@@ -994,6 +1002,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to read from
 	 * @return string
 	 */
+	@Nullable
 	private static String readString(@NonNull final Parcel parcel)
 	{
 		final String s = parcel.readString();
@@ -1010,6 +1019,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to read from
 	 * @return boolean
 	 */
+	@Nullable
 	@SuppressWarnings("boxing")
 	private static Boolean readBoolean(@NonNull final Parcel parcel)
 	{
@@ -1032,6 +1042,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to read from
 	 * @return integer
 	 */
+	@Nullable
 	private static Integer readInteger(@NonNull final Parcel parcel)
 	{
 		final int isNotNull = parcel.readInt();
@@ -1066,6 +1077,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to read from
 	 * @return double
 	 */
+	@Nullable
 	private static Float readFloat(@NonNull final Parcel parcel)
 	{
 		final int isNotNull = parcel.readInt();
@@ -1094,6 +1106,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to read from
 	 * @return image
 	 */
+	@Nullable
 	private static Image readImage(@NonNull final Parcel parcel)
 	{
 		final int isNotNull = parcel.readInt();
@@ -1135,6 +1148,7 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to read from
 	 * @return color
 	 */
+	@Nullable
 	private static Color readColor(@NonNull final Parcel parcel)
 	{
 		final int isNotNull = parcel.readInt();

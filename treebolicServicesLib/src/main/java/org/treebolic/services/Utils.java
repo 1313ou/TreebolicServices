@@ -6,6 +6,7 @@ package org.treebolic.services;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import treebolic.provider.IProviderContext;
 
 @SuppressWarnings("WeakerAccess")
@@ -16,6 +17,7 @@ public class Utils
 	 *
 	 * @return provider locatorContext
 	 */
+	@NonNull
 	public static IProviderContext makeLogProviderContext(final String tag)
 	{
 		return new IProviderContext()
