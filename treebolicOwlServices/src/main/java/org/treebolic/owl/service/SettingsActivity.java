@@ -5,14 +5,11 @@
 package org.treebolic.owl.service;
 
 import android.os.Bundle;
-import android.view.MenuItem;
 
 import org.treebolic.AppCompatCommonPreferenceActivity;
 import org.treebolic.TreebolicIface;
 import org.treebolic.preference.OpenEditTextPreference;
 
-import androidx.annotation.NonNull;
-import androidx.core.app.NavUtils;
 import androidx.preference.EditTextPreference;
 import androidx.preference.ListPreference;
 import androidx.preference.PreferenceFragmentCompat;
