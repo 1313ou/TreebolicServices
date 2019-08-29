@@ -19,16 +19,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ebf7fe7b-6a7f-469c-a2f9-15fc5ae2cb6a" name="Default" comment="toolbar&#10;new tools">
+    <list default="true" id="ebf7fe7b-6a7f-469c-a2f9-15fc5ae2cb6a" name="Default" comment="inferred nullity">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicClientsIface/treebolicClientsIface.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicClientsIface/treebolicClientsIface.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicClientsLib/treebolicClientsLib.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicClientsLib/treebolicClientsLib.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicFilesServices/treebolicFilesServices.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicFilesServices/treebolicFilesServices.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicOwlServices/treebolicOwlServices.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicOwlServices/treebolicOwlServices.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicParcel/treebolicParcel.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicParcel/treebolicParcel.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicServicesIface/treebolicServicesIface.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicServicesIface/treebolicServicesIface.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicServicesLib/treebolicServicesLib.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicServicesLib/treebolicServicesLib.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treebolicWordNetServices/treebolicWordNetServices.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treebolicWordNetServices/treebolicWordNetServices.iml" afterDir="false" />
     </list>
     <ignored path="treebolicWordNetServices/build/" />
     <ignored path="treebolicServicesLib/build/" />
@@ -1108,7 +1100,7 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="ce12160c903ac05e0c" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="410326156afd500f" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$/../TreebolicLib">
       <ProjectState />
@@ -1193,7 +1185,7 @@
     <scope name="Analyzed" pattern="file[treebolicParcel]:src/main//*||file[treebolicParcel]:build/generated/source/buildConfig/androidTest/debug//*||file[treebolicParcel]:build/generated/source/buildConfig/debug//*||file[treebolicParcel]:build.gradle||file[treebolicParcel]:lint.xml||file[treebolicAidl]:build/generated/aidl_source_output_dir/debug/compileDebugAidl/out//*||file[treebolicAidl]:build/generated/source/buildConfig/androidTest/debug//*||file[treebolicAidl]:src/main//*||file[treebolicAidl]:build/generated/source/buildConfig/debug//*||file[treebolicAidl]:src/main/aidl//*||file[treebolicAidl]:lint.xml||file[treebolicAidl]:build.gradle||file[treebolicClientsLib]:build/generated/source/buildConfig/debug//*||file[treebolicClientsLib]:build/generated/source/buildConfig/androidTest/debug//*||file[treebolicClientsLib]:src/main/java//*||file[treebolicClientsLib]:src/main//*||file[treebolicClientsLib]:build.gradle||file[treebolicClientsLib]:lint.xml||file[treebolicServicesLib]:src/main//*||file[treebolicServicesLib]:src/main/java//*||file[treebolicServicesLib]:src/main/res//*||file[treebolicServicesLib]:build/generated/source/buildConfig/debug//*||file[treebolicServicesLib]:build/generated/source/buildConfig/androidTest/debug//*||file[treebolicServicesLib]:build.gradle||file[treebolicServicesLib]:lint.xml||file[treebolicServicesIface]:build/generated/source/buildConfig/androidTest/debug//*||file[treebolicServicesIface]:build/generated/source/buildConfig/debug//*||file[treebolicServicesIface]:src/main//*||file[treebolicServicesIface]:src/main/java//*||file[treebolicServicesIface]:build.gradle||file[treebolicServicesIface]:lint.xml||file[treebolicClientsIface]:build/generated/source/buildConfig/androidTest/debug//*||file[treebolicClientsIface]:build/generated/source/buildConfig/debug//*||file[treebolicClientsIface]:src/main//*||file[treebolicClientsIface]:src/main/java//*||file[treebolicClientsIface]:lint.xml||file[treebolicClientsIface]:build.gradle||file[treebolicFilesServices]:build/generated/source/buildConfig/androidTest/debug//*||file[treebolicFilesServices]:build/generated/source/buildConfig/debug//*||file[treebolicFilesServices]:src/main//*||file[treebolicFilesServices]:lint.xml||file[treebolicFilesServices]:build.gradle||file[treebolicOwlServices]:build/generated/source/buildConfig/androidTest/debug//*||file[treebolicOwlServices]:build/generated/source/buildConfig/debug//*||file[treebolicOwlServices]:src/main//*||file[treebolicOwlServices]:build.gradle||file[treebolicOwlServices]:lint.xml||file[treebolicWordNetServices]:src/main//*||file[treebolicWordNetServices]:build/generated/source/buildConfig/debug//*||file[treebolicWordNetServices]:build/generated/source/buildConfig/androidTest/debug//*||file[treebolicWordNetServices]:build.gradle||file[treebolicWordNetServices]:lint.xml" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="51" />
+    <option name="x" value="52" />
     <option name="y" value="27" />
     <option name="width" value="1466" />
     <option name="height" value="1156" />
@@ -1204,34 +1196,9 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="ProjectPane" />
       <pane id="Scope" />
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="TreebolicServices" type="1abcf292:AndroidViewProjectNode" />
-              <item name="treebolicParcel" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="TreebolicServices" type="1abcf292:AndroidViewProjectNode" />
-              <item name="treebolicParcel" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="TreebolicServices" type="1abcf292:AndroidViewProjectNode" />
-              <item name="treebolicParcel" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="parcel" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TreebolicServices" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="ProjectPane" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1655,7 +1622,35 @@
       <option name="project" value="LOCAL" />
       <updated>1566896137371</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="toolbar&#10;new tools">
+      <created>1566985117302</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1566985117302</updated>
+    </task>
+    <task id="LOCAL-00020" summary="inferred nullity&#10;theming materialcomponents">
+      <created>1566985242746</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1566985242746</updated>
+    </task>
+    <task id="LOCAL-00021" summary="theming materialcomponents&#10;inferred nullity">
+      <created>1566985282956</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1566985282956</updated>
+    </task>
+    <task id="LOCAL-00022" summary="inferred nullity">
+      <created>1566985541829</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1566985541829</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1691,9 +1686,9 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="51" y="27" width="1466" height="1156" extended-state="0" />
+    <frame x="52" y="27" width="1466" height="1156" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19101124" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19101124" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Build Variants" order="3" side_tool="true" />
@@ -1703,7 +1698,7 @@
       <window_info id="Capture Tool" order="7" />
       <window_info id="Resources Explorer" order="8" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3297456" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32935324" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.18590999" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.35029355" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -1712,10 +1707,10 @@
       <window_info anchor="bottom" id="Logcat" order="7" weight="0.3761194" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="10" weight="0.3323383" />
-      <window_info anchor="bottom" id="Build" order="11" visible="true" weight="0.1402985" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="10" visible="true" weight="0.3323383" />
+      <window_info anchor="bottom" id="Build" order="11" weight="0.1402985" />
       <window_info anchor="bottom" id="Android Profiler" order="12" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Inspection Results" order="13" visible="true" weight="0.4281496" />
+      <window_info anchor="bottom" id="Inspection Results" order="13" weight="0.4281496" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -1741,7 +1736,10 @@
     <MESSAGE value="version number" />
     <MESSAGE value="update load balancer" />
     <MESSAGE value="toolbar&#10;new tools" />
-    <option name="LAST_COMMIT_MESSAGE" value="toolbar&#10;new tools" />
+    <MESSAGE value="inferred nullity&#10;theming materialcomponents" />
+    <MESSAGE value="theming materialcomponents&#10;inferred nullity" />
+    <MESSAGE value="inferred nullity" />
+    <option name="LAST_COMMIT_MESSAGE" value="inferred nullity" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1890,8 +1888,8 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/treebolicWordNetServices/src/main/res/xml/pref_service.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/misc.xml">
       <provider selected="true" editor-type-id="text-editor" />
@@ -2059,28 +2057,28 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/treebolicFilesServices/src/main/res/xml/pref_general.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="104">
           <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/treebolicOwlServices/src/main/res/xml/pref_general.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="20">
           <caret line="28" selection-start-line="28" selection-end-line="28" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/treebolicWordNetServices/src/main/res/xml/pref_general.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="104">
           <caret line="8" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/treebolicParcel/src/main/java/org/treebolic/ParcelableModel.java">
       <provider selected="true" editor-type-id="text-editor">

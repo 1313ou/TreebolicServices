@@ -1,12 +1,13 @@
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) Treebolic 2019. Bernard Bou <1313ou@gmail.com>
   -->
 
-<preference-headers
-	xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
-	<header
+	<Preference
 		app:fragment="org.treebolic.files.service.SettingsActivity$GeneralPreferenceFragment"
-		app:title="@string/pref_header_general"/>
+		app:icon="@null"
+		app:key="pref_general"
+		app:title="@string/pref_header_general" />
 
-</preference-headers>
+</PreferenceScreen>
