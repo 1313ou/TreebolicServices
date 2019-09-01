@@ -38,6 +38,7 @@ abstract public class TreebolicClientActivityStub extends AppCompatCommonActivit
 	/**
 	 * Client status true=up
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected boolean clientStatus = false;
 
 	/**
@@ -74,6 +75,7 @@ abstract public class TreebolicClientActivityStub extends AppCompatCommonActivit
 	/**
 	 * Start client
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected void start()
 	{
 		this.client = makeClient();
@@ -87,6 +89,7 @@ abstract public class TreebolicClientActivityStub extends AppCompatCommonActivit
 	/**
 	 * Stop client
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected void stop()
 	{
 		if (this.client != null)
