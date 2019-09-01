@@ -135,17 +135,13 @@ public class TreebolicIntentClient implements org.treebolic.clients.iface.ITreeb
 	@Override
 	public void connect()
 	{
-		Log.d(TreebolicIntentClient.TAG, "Service connected");
-
-		// signal connected immediately
 		this.connectionListener.onConnected(true);
 	}
 
 	@Override
 	public void disconnect()
 	{
-		Log.d(TreebolicIntentClient.TAG, "Service disconnected");
-		// Toast.makeText(this.context, R.string.disconnected, Toast.LENGTH_SHORT).show();
+		this.connectionListener.onConnected(false);
 	}
 
 	@Override

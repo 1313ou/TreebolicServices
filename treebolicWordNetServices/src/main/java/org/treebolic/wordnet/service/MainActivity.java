@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		this.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
 		{
 			@Override
-			public boolean onQueryTextSubmit(final String query)
+			public boolean onQueryTextSubmit(@NonNull final String query)
 			{
 				MainActivity.this.searchView.clearFocus();
 				MainActivity.this.searchView.setQuery("", false);

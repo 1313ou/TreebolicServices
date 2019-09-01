@@ -17,7 +17,7 @@
 		android:id="@+id/action_status_data"
 		android:icon="@drawable/ic_action_error"
 		android:title="@string/title_status_data_available"
-		app:showAsAction="ifRoom"/>
+		app:showAsAction="always"/>
 	<item
 		android:id="@+id/action_query"
 		android:title="@string/title_query"

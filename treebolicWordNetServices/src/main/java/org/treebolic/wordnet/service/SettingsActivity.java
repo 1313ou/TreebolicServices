@@ -12,6 +12,7 @@ import org.treebolic.preference.OpenEditTextPreference;
 
 import androidx.preference.EditTextPreference;
 import androidx.preference.ListPreference;
+import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 /**
@@ -39,6 +40,15 @@ public class SettingsActivity extends AppCompatCommonPreferenceActivity
 			final OpenEditTextPreference downloadPref = findPreference(Settings.PREF_DOWNLOAD);
 			assert downloadPref != null;
 			downloadPref.setSummaryProvider(OpenEditTextPreference.SUMMARY_PROVIDER);
+		}
+
+		@Override
+		public void onDisplayPreferenceDialog(final Preference preference)
+		{
+			if (!OpenEditTextPreference.onDisplayPreferenceDialog(this, preference))
+			{
+				super.onDisplayPreferenceDialog(preference);
+			}
 		}
 	}
 

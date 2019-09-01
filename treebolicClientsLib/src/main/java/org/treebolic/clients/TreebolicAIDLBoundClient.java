@@ -200,6 +200,9 @@ public class TreebolicAIDLBoundClient implements ITreebolicClient
 			public void onServiceDisconnected(final ComponentName name)
 			{
 				TreebolicAIDLBoundClient.this.binder = null;
+
+				// signal disconnected
+				TreebolicAIDLBoundClient.this.connectionListener.onConnected(false);
 			}
 		};
 

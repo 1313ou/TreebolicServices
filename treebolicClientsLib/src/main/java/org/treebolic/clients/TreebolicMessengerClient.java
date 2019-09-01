@@ -253,6 +253,9 @@ public class TreebolicMessengerClient implements ITreebolicClient
 			public void onServiceDisconnected(final ComponentName name)
 			{
 				TreebolicMessengerClient.this.service = null;
+
+				// signal disconnected
+				TreebolicMessengerClient.this.connectionListener.onConnected(false);
 			}
 		};
 

@@ -36,6 +36,11 @@ abstract public class TreebolicClientActivityStub extends AppCompatCommonActivit
 	protected ITreebolicClient client;
 
 	/**
+	 * Client status true=up
+	 */
+	protected boolean clientStatus = false;
+
+	/**
 	 * Url scheme
 	 */
 	@SuppressWarnings("unused")
@@ -69,7 +74,7 @@ abstract public class TreebolicClientActivityStub extends AppCompatCommonActivit
 	/**
 	 * Start client
 	 */
-	private void start()
+	protected void start()
 	{
 		this.client = makeClient();
 		if (this.client != null)
@@ -82,7 +87,6 @@ abstract public class TreebolicClientActivityStub extends AppCompatCommonActivit
 	/**
 	 * Stop client
 	 */
-	@SuppressWarnings("WeakerAccess")
 	protected void stop()
 	{
 		if (this.client != null)
@@ -129,6 +133,8 @@ abstract public class TreebolicClientActivityStub extends AppCompatCommonActivit
 	@Override
 	public void onConnected(final boolean flag)
 	{
+		this.clientStatus = flag;
+
 		// Toast.makeText(this, R.string.bound, Toast.LENGTH_SHORT).show();
 		request();
 	}

@@ -15,6 +15,7 @@ import org.treebolic.services.iface.ITreebolicService;
 import androidx.annotation.NonNull;
 import treebolic.model.Model;
 
+@SuppressWarnings("WeakerAccess")
 public class IntentFactory
 {
 	// M O D E L

@@ -144,7 +144,8 @@ public class ParcelInstrumentedTest
 		// extract bundle from parcel
 		parcel.setDataPosition(0);
 		final Bundle bundle2 = parcel.readBundle(ParcelableModel.class.getClassLoader());
-		bundle2.setClassLoader(Model.class.getClassLoader());
+		if(bundle2 != null)
+			bundle2.setClassLoader(Model.class.getClassLoader());
 		return bundle2;
 	}
 
@@ -158,7 +159,7 @@ public class ParcelInstrumentedTest
 	{
 		// model2
 		final ParcelableModel pmodel = bundle.getParcelable(key);
-		return pmodel.getModel();
+		return pmodel != null ? pmodel.getModel() : null;
 	}
 
 	public static INode makeDefaultTree()
@@ -218,6 +219,6 @@ public class ParcelInstrumentedTest
 				}
 			}
 		}
-		throw new IOException("zip entry not found " + entry);
+		throw new IOException("zip entry not found " + targetEntry);
 	}
 }

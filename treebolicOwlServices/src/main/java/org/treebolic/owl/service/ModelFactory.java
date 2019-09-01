@@ -7,6 +7,7 @@ package org.treebolic.owl.service;
 import android.content.Context;
 
 import org.treebolic.services.Utils;
+import org.treebolic.storage.Storage;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -44,7 +45,9 @@ public class ModelFactory extends org.treebolic.services.ModelFactory
 		{
 			return new ILocator()
 			{
-				private final URL base = context.getFilesDir().toURI().toURL();
+				// Used when the base url is null
+				// private final URL base = context.getFilesDir().toURI().toURL();
+				private final URL base = Storage.getTreebolicStorage(context.getApplicationContext()).toURI().toURL();
 
 				@Override
 				public URL getBase()

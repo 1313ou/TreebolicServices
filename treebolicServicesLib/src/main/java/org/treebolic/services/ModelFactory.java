@@ -104,8 +104,10 @@ public abstract class ModelFactory implements IModelFactory
 		this.provider.setLocator(this.locatorContext);
 		this.provider.setHandle(this.applicationContext);
 
+		URL baseUrl = makeBaseURL(base);
+
 		// model
-		final Model model = this.provider.makeModel(source, ModelFactory.makeBaseURL(base), makeParameters(source, base, imageBase, settings));
+		final Model model = this.provider.makeModel(source, baseUrl, makeParameters(source, base, imageBase, settings));
 		Log.d(ModelFactory.TAG, "model=" + model);
 		return model;
 	}
@@ -116,18 +118,26 @@ public abstract class ModelFactory implements IModelFactory
 	 * @param base base
 	 * @return base URL
 	 */
+	@SuppressWarnings("WeakerAccess")
 	@Nullable
-	private static URL makeBaseURL(@Nullable final String base)
+	protected URL makeBaseURL(@Nullable final String base)
 	{
-		try
+		if (base == null)
 		{
-			return new URL(base != null && !base.endsWith("/") ? base + "/" : base);
+			return this.locatorContext.getBase();
 		}
-		catch (@NonNull final MalformedURLException ignored)
+		else
 		{
-			//
+			try
+			{
+				return new URL(!base.endsWith("/") ? base + "/" : base);
+			}
+			catch (@NonNull final MalformedURLException ignored)
+			{
+				//
+			}
+			return null;
 		}
-		return null;
 	}
 
 	/**
@@ -139,8 +149,9 @@ public abstract class ModelFactory implements IModelFactory
 	 * @param settings  settings
 	 * @return parameters
 	 */
+	@SuppressWarnings("WeakerAccess")
 	@NonNull
-	private Properties makeParameters(@Nullable final String source, @Nullable final String base, @Nullable final String imageBase, @Nullable final String settings)
+	protected Properties makeParameters(@Nullable final String source, @Nullable final String base, @Nullable final String imageBase, @Nullable final String settings)
 	{
 		final Properties parameters = new Properties();
 		if (source != null)
