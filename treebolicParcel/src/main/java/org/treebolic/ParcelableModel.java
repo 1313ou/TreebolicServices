@@ -116,7 +116,7 @@ public class ParcelableModel implements Parcelable
 	}
 
 	@Override
-	public void writeToParcel(@NonNull final Parcel parcel, final int flags)
+	synchronized public void writeToParcel(@NonNull final Parcel parcel, final int flags)
 	{
 		if (ParcelableModel.SERIALIZE)
 		{
@@ -678,8 +678,8 @@ public class ParcelableModel implements Parcelable
 		// structural
 		final String id = ParcelableModel.readString(parcel);
 		assert id != null;
-		final String parentId = ParcelableModel.readString(parcel);
-		final INode parent = parentId == null ? null : ParcelableModel.id2node.get(parentId);
+		@Nullable final String parentId = ParcelableModel.readString(parcel);
+		@Nullable final INode parent = parentId == null ? null : ParcelableModel.id2node.get(parentId);
 		final MutableNode node = new MutableNode(parent, id);
 		ParcelableModel.id2node.put(id, node);
 
@@ -772,7 +772,8 @@ public class ParcelableModel implements Parcelable
 				}
 				if (children.size() != n)
 				{
-					throw new IllegalArgumentException("parcelled different child size expected=" + n + " real=" + children.size());
+					//Log.e(TAG, "inconsistent child sizes expected=" + n + " real=" + children.size());
+					throw new IllegalArgumentException("inconsistent child sizes expected=" + n + " real=" + children.size());
 				}
 			//}
 		}

@@ -22,6 +22,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bbou.donate.DonateActivity;
+import com.bbou.others.OthersActivity;
+import com.bbou.rate.AppRate;
+
 import org.treebolic.AppCompatCommonActivity;
 import org.treebolic.Models;
 import org.treebolic.ParcelableModel;
@@ -83,6 +87,9 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	protected void onCreate(@Nullable final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+
+		// rate
+		AppRate.invoke(this);
 
 		// view
 		setContentView(R.layout.activity_main);
@@ -172,6 +179,18 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 				{
 					queryBundle(archiveFileUri);
 				}
+				return true;
+
+			case R.id.action_others:
+				startActivity(new Intent(this, OthersActivity.class));
+				return true;
+
+			case R.id.action_donate:
+				startActivity(new Intent(this, DonateActivity.class));
+				return true;
+
+			case R.id.action_rate:
+				AppRate.rate(this);
 				return true;
 
 			case R.id.action_finish:

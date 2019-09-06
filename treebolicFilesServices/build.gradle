@@ -18,7 +18,7 @@ android {
         versionName rootProject.ext.versionName
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
 
     signingConfigs {
@@ -58,6 +58,9 @@ dependencies {
     implementation project(':storageLib')
     implementation project(':fileChooserLib')
     implementation project(':preferenceLib')
+    implementation project(':rateLib')
+    implementation project(':othersLib')
+    implementation project(':donateLib')
 
     implementation files('libs/treebolic-provider-files.jar')
     implementation files('libs/treebolic-balancer.jar')

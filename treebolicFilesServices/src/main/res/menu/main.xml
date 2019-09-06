@@ -24,12 +24,24 @@
 		android:title="@string/title_demo"
 		app:showAsAction="never"/>
 	<item
-		android:id="@+id/action_finish"
-		android:title="@string/title_finish"
-		app:showAsAction="never"/>
+		android:id="@+id/action_rate"
+		android:title="@string/title_rate"
+		app:showAsAction="never" />
+	<item
+		android:id="@+id/action_others"
+		android:title="@string/title_others"
+		app:showAsAction="never" />
+	<item
+		android:id="@+id/action_donate"
+		android:title="@string/title_donate"
+		app:showAsAction="never" />
 	<item
 		android:id="@+id/action_settings"
 		android:title="@string/title_settings"
+		app:showAsAction="never"/>
+	<item
+		android:id="@+id/action_finish"
+		android:title="@string/title_finish"
 		app:showAsAction="never"/>
 	<item
 		android:id="@+id/action_app_settings"
