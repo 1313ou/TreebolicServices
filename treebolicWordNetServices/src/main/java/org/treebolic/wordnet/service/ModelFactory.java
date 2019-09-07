@@ -8,6 +8,7 @@ import android.content.Context;
 
 import org.treebolic.services.Utils;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import androidx.annotation.NonNull;
@@ -34,7 +35,7 @@ public class ModelFactory extends org.treebolic.services.ModelFactory
 	 * Constructor
 	 *
 	 * @param context context
-	 * //@throws Exception exception
+	 *                //@throws Exception exception
 	 */
 	public ModelFactory(@NonNull final Context context) throws Exception
 	{
@@ -44,21 +45,30 @@ public class ModelFactory extends org.treebolic.services.ModelFactory
 	@NonNull
 	static private ILocator makeLocator(@NonNull final Context context)
 	{
-		// Not used
-		return new ILocator()
+		try
 		{
+			return new ILocator()
+			{
+				private final URL base = context.getFilesDir().toURI().toURL();
+
 				@Override
 				public URL getBase()
 				{
-					return null;
+					return this.base;
 				}
 
 				@Override
 				public URL getImagesBase()
 				{
-					return null;
+					return this.base;
 				}
-		};
+			};
+		}
+		catch (MalformedURLException ignored)
+		{
+			//
+		}
+		return null;
 	}
 
 	@SuppressWarnings("SameReturnValue")

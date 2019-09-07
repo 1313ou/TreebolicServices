@@ -211,6 +211,10 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 				requestSource();
 				return true;
 
+			case R.id.action_demo:
+				query("love");
+				return true;
+
 			case R.id.action_query_file_provider:
 				QueryProviderActivity.isProviderAvailable(this);
 				startActivity(new Intent(this, QueryProviderActivity.class));
@@ -223,10 +227,6 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 			case R.id.action_cleanup:
 				this.deployer.cleanup();
 				this.dataButton.setIcon(MainActivity.this.deployer.status() ? R.drawable.ic_action_done : R.drawable.ic_action_error);
-				return true;
-
-			case R.id.action_demo:
-				query("love");
 				return true;
 
 			case R.id.action_others:
