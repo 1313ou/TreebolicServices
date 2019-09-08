@@ -24,7 +24,7 @@ public class ModelFactory extends org.treebolic.services.ModelFactory
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "Files Model Factory";
+	static private final String TAG = "FilesModelFactory";
 
 	/**
 	 * Constructor

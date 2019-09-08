@@ -28,7 +28,7 @@ abstract public class TreebolicAIDLBoundService extends Service implements ITree
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "TAIDLBoundS";
+	static private final String TAG = "AidlBoundS";
 
 	/**
 	 * Make model task

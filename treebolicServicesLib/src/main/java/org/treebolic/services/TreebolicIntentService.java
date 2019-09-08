@@ -25,7 +25,7 @@ abstract public class TreebolicIntentService extends IntentService implements IT
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "TIntentS";
+	static private final String TAG = "IntentS";
 
 	/**
 	 * Abstract: Model factory

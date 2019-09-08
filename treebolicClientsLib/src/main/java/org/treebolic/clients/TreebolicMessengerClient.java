@@ -39,7 +39,7 @@ public class TreebolicMessengerClient implements ITreebolicClient
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "TMessengerBoundC";
+	static private final String TAG = "MessengerC";
 
 	/**
 	 * Handler of incoming messages (results) from service

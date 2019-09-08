@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Process;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "Treebolic Owl Activity";
+	static private final String TAG = "ServiceOwlA";
 
 	/**
 	 * File request code
@@ -195,6 +196,10 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 
 			case R.id.action_finish:
 				finish();
+				return true;
+
+			case R.id.action_kill:
+				Process.killProcess(Process.myPid());
 				return true;
 
 			default:

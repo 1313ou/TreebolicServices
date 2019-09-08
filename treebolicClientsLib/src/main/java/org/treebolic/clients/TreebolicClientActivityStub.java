@@ -26,7 +26,7 @@ abstract public class TreebolicClientActivityStub extends AppCompatCommonActivit
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "TreebolicClientA";
+	static private final String TAG = "AClientA";
 
 	/**
 	 * Client

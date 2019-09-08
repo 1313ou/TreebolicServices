@@ -27,6 +27,7 @@
 	<string name="title_cleanup">Effacer les données WordNet</string>
 	<string name="title_demo">Démo</string>
 	<string name="title_finish">Finir</string>
+	<string name="title_kill">Terminate</string>
 	<string name="title_settings">Paramètres</string>
 	<string name="title_activity_app_settings">Application</string>
 	<string name="title_status_data_available">État de disponibilité des données</string>

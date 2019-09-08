@@ -29,7 +29,7 @@ abstract public class TreebolicBoundService extends Service implements ITreeboli
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "TBoundS";
+	static private final String TAG = "BoundS";
 
 	/**
 	 * Make model task

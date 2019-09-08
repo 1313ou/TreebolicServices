@@ -28,7 +28,7 @@ public abstract class ModelFactory implements IModelFactory
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "Model Factory";
+	static private final String TAG = "AModelFactory";
 
 	/**
 	 * Provider

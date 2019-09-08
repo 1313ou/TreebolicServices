@@ -34,7 +34,7 @@ public class TreebolicIntentClient implements org.treebolic.clients.iface.ITreeb
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "Treebolic Intent Client";
+	static private final String TAG = "IntentC";
 
 	/**
 	 * Abstract: Service package

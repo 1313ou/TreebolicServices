@@ -35,7 +35,7 @@ abstract public class TreebolicMessengerService extends Service implements ITree
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "TMessengerBoundS";
+	static private final String TAG = "MessengerS";
 
 	/**
 	 * Make model task

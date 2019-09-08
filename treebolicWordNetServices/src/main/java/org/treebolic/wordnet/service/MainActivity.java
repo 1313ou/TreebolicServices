@@ -11,6 +11,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Process;
 import android.preference.PreferenceManager;
 import android.text.InputType;
 import android.util.Log;
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "TreebolicWordNetA";
+	static private final String TAG = "WnSMainA";
 
 	/**
 	 * Whether to forward model directly to activity
@@ -251,6 +252,10 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 
 			case R.id.action_finish:
 				finish();
+				return true;
+
+			case R.id.action_kill:
+				Process.killProcess(Process.myPid());
 				return true;
 
 			default:

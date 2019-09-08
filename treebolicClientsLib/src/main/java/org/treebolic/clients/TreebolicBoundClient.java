@@ -30,7 +30,7 @@ public class TreebolicBoundClient implements ITreebolicClient
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "Treebolic Bound Client";
+	static private final String TAG = "BoundC";
 
 	/**
 	 * Abstract: Service package

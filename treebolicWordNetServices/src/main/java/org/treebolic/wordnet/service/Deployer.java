@@ -32,7 +32,7 @@ public class Deployer
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "TWordNetDeployer";
+	static private final String TAG = "WnSDeployer";
 
 	/**
 	 * Sub path in main directory

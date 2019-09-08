@@ -39,7 +39,7 @@ public class TreebolicAIDLBoundClient implements ITreebolicClient
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "TAIDLBoundC";
+	static private final String TAG = "AidlBoundC";
 
 	/**
 	 * Abstract: Service package
