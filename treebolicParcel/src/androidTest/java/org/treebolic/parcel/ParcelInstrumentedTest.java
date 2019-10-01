@@ -17,7 +17,7 @@ import java.util.zip.ZipInputStream;
 
 import androidx.annotation.NonNull;
 import androidx.test.platform.app.InstrumentationRegistry;
-import androidx.test.runner.AndroidJUnit4;
+import  androidx.test.ext.junit.runners.AndroidJUnit4;
 import treebolic.glue.Color;
 import treebolic.model.INode;
 import treebolic.model.Model;
