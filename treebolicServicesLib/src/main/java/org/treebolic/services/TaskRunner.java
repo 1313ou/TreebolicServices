@@ -8,7 +8,6 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -33,7 +32,7 @@ public class TaskRunner
 		THREAD_POOL_EXECUTOR = new ThreadPoolExecutor(CORE_POOL_SIZE, MAXIMUM_POOL_SIZE, KEEP_ALIVE, TimeUnit.SECONDS, POOL_WORK_QUEUE);
 	}
 
-	private static final Executor EXECUTOR = Executors.newSingleThreadExecutor(); // Executors.newCachedThreadPool();
+	private static final Executor EXECUTOR = THREAD_POOL_EXECUTOR;
 
 	// F U T U R E
 
