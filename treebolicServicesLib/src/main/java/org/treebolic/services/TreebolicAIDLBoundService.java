@@ -16,6 +16,7 @@ import org.treebolic.services.iface.ITreebolicAIDLService;
 import org.treebolic.services.iface.ITreebolicService;
 
 import java.lang.ref.WeakReference;
+import java.util.concurrent.Callable;
 
 import androidx.annotation.NonNull;
 import treebolic.model.Model;
@@ -31,61 +32,59 @@ abstract public class TreebolicAIDLBoundService extends Service implements ITree
 	static private final String TAG = "AidlBoundS";
 
 	/**
-	 * Make model task
+	 * Make callable
 	 */
-	static private class MakeTask
+	static public Callable<Model> makeModelCallable(final String source, final String base, final String imageBase, final String settings, final IModelFactory factory)
 	{
-		private final ResultReceiver resultReceiver;
+		return () -> {
 
-		private MakeTask(final String source, final String base, final String imageBase, final String settings, final String urlScheme, final IModelFactory factory, final ResultReceiver resultReceiver)
-		{
-			super(source, base, imageBase, settings, urlScheme, factory);
-			this.resultReceiver = resultReceiver;
-		}
-
-		@Override
-		protected void onPostExecute(final Model model)
-		{
-			// pack model
-			final Bundle bundle = new Bundle();
-			IntentFactory.putModelResult(bundle, model, this.urlScheme);
-
-			// use result receiver
-			Log.d(TreebolicAIDLBoundService.TAG, "Returning model " + model);
-			this.resultReceiver.send(0, bundle);
-		}
+			try
+			{
+				return factory.make(source, base, imageBase, settings);
+			}
+			catch (@NonNull final Exception e)
+			{
+				Log.e(TAG, "Error making model", e);
+			}
+			return null;
+		};
 	}
 
 	/**
-	 * Make model and forward task
+	 * Return callback
 	 */
-	static private class MakeAndForwardTask
+	static public TaskRunner.Callback<Model> makeModelCallback(final String urlScheme, final ResultReceiver resultReceiver)
 	{
-		@NonNull
-		final WeakReference<Context> contextWeakReference;
+		return (model) -> {
 
-		final Intent forward;
+			// pack model
+			final Bundle bundle = new Bundle();
+			IntentFactory.putModelResult(bundle, model, urlScheme);
 
-		private MakeAndForwardTask(final String source, final String base, final String imageBase, final String settings, final String urlScheme, final IModelFactory factory, final Context context, final Intent forward)
-		{
-			super(source, base, imageBase, settings, urlScheme, factory);
-			this.contextWeakReference = new WeakReference<>(context);
-			this.forward = forward;
-		}
+			// use result receiver
+			Log.d(TAG, "Returning model " + model);
+			resultReceiver.send(0, bundle);
+		};
+	}
 
-		@Override
-		protected void onPostExecute(final Model model)
-		{
+
+	/**
+	 * Forward callback
+	 */
+	static public TaskRunner.Callback<Model> makeModelForwardCallback(final WeakReference<Context> contextWeakReference, final String urlScheme, final Intent forward)
+	{
+		return (model) -> {
+
 			// do not return to client but forward it to service
-			IntentFactory.putModelArg(this.forward, model, this.urlScheme);
-			this.forward.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			Log.d(TreebolicAIDLBoundService.TAG, "Forwarding model");
-			final Context context = this.contextWeakReference.get();
+			IntentFactory.putModelArg(forward, model, urlScheme);
+			forward.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			Log.d(TAG, "Forwarding model");
+			final Context context = contextWeakReference.get();
 			if (context != null)
 			{
-				context.startActivity(this.forward);
+				context.startActivity(forward);
 			}
-		}
+		};
 	}
 
 	/**
@@ -102,14 +101,17 @@ abstract public class TreebolicAIDLBoundService extends Service implements ITree
 		@Override
 		public void makeModel(final String source, final String base, final String imageBase, final String settings, final ResultReceiver resultReceiver)
 		{
-			new MakeTask(source, base, imageBase, settings, TreebolicAIDLBoundService.this.getUrlScheme(), TreebolicAIDLBoundService.this.factory, resultReceiver).execute();
+			final Callable<Model> callable = makeModelCallable(source, base, imageBase, settings, TreebolicAIDLBoundService.this.factory);
+			final TaskRunner.Callback<Model> callback = makeModelCallback(getUrlScheme(), resultReceiver);
+			TaskRunner.execute(callable, callback);
 		}
 
 		@Override
 		public void makeAndForwardModel(final String source, final String base, final String imageBase, final String settings, final Intent forward)
 		{
-			// make model
-			new MakeAndForwardTask(source, base, imageBase, settings, TreebolicAIDLBoundService.this.getUrlScheme(), TreebolicAIDLBoundService.this.factory, TreebolicAIDLBoundService.this, forward).execute();
+			final Callable<Model> callable = makeModelCallable(source, base, imageBase, settings, TreebolicAIDLBoundService.this.factory);
+			final TaskRunner.Callback<Model> callback = makeModelForwardCallback(new WeakReference<>(TreebolicAIDLBoundService.this), getUrlScheme(), forward);
+			TaskRunner.execute(callable, callback);
 		}
 	};
 

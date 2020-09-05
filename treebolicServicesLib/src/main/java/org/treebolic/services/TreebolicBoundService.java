@@ -91,23 +91,19 @@ abstract public class TreebolicBoundService extends Service implements ITreeboli
 	/**
 	 * Binder given to clients
 	 */
-	static public class TreebolicServiceBinder extends Binder implements ITreebolicServiceBinder
+	public class TreebolicServiceBinder extends Binder implements ITreebolicServiceBinder
 	{
 		private final IModelFactory factory;
 
 		private final String urlScheme;
 
-		@NonNull
-		private final WeakReference<Context> contextWeakReference;
-
 		/**
 		 * Constructor
 		 */
-		TreebolicServiceBinder(final IModelFactory service, final String urlScheme, final Context context)
+		TreebolicServiceBinder(final IModelFactory service, final String urlScheme)
 		{
 			this.factory = service;
 			this.urlScheme = urlScheme;
-			this.contextWeakReference = new WeakReference<>(context);
 		}
 
 		@Override
@@ -121,13 +117,9 @@ abstract public class TreebolicBoundService extends Service implements ITreeboli
 		@Override
 		public void makeModel(final String source, final String base, final String imageBase, final String settings, final Intent forward)
 		{
-			final Context context = this.contextWeakReference.get();
-			if (context != null)
-			{
-				final Callable<Model> callable = makeModelCallable(source, base, imageBase, settings, this.factory);
-				final TaskRunner.Callback<Model> callback = makeModelForwardCallback(this.contextWeakReference, this.urlScheme, forward);
-				TaskRunner.execute(callable, callback);
-			}
+			final Callable<Model> callable = makeModelCallable(source, base, imageBase, settings, this.factory);
+			final TaskRunner.Callback<Model> callback = makeModelForwardCallback(new WeakReference<>(TreebolicBoundService.this), this.urlScheme, forward);
+			TaskRunner.execute(callable, callback);
 		}
 	}
 
@@ -135,7 +127,7 @@ abstract public class TreebolicBoundService extends Service implements ITreeboli
 	 * Binder that returns an interface to the service
 	 */
 	@SuppressWarnings("ConstantConditions")
-	private final IBinder binder = new TreebolicServiceBinder(this.factory, this.getUrlScheme(), this);
+	private final IBinder binder = new TreebolicServiceBinder(this.factory, this.getUrlScheme());
 
 	/**
 	 * Constructor
