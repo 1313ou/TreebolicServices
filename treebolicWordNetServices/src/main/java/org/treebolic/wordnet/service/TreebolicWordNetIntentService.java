@@ -25,7 +25,7 @@ public class TreebolicWordNetIntentService extends TreebolicIntentService
 	 */
 	public TreebolicWordNetIntentService()
 	{
-		super("TreebolicWordNetIntentService");
+		super();
 	}
 
 	@Override

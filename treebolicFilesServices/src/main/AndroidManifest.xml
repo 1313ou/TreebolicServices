@@ -9,6 +9,7 @@
           android:sharedUserId="org.treebolic.userId">
 
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="android.permission.WAKE_LOCK"/>
 
 	<application
 		android:allowBackup="true"
@@ -98,7 +99,7 @@
 			android:exported="true"
 			android:icon="@mipmap/ic_launcher"
 			android:label="@string/service_messenger_bound_service"
-			android:permission="android.permission.READ_EXTERNAL_STORAGE"
+			android:permission="android.permission.BIND_JOB_SERVICE"
 			android:process="org.treebolic">
 		</service>
 

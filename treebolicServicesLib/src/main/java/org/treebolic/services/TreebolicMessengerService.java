@@ -7,10 +7,10 @@ package org.treebolic.services;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
@@ -21,6 +21,7 @@ import org.treebolic.services.iface.ITreebolicService;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 import androidx.annotation.NonNull;
 import treebolic.model.Model;
@@ -38,83 +39,79 @@ abstract public class TreebolicMessengerService extends Service implements ITree
 	static private final String TAG = "MessengerS";
 
 	/**
-	 * Make model task
+	 * Make callable
 	 */
-	static private class MakeTask extends AbstractMakeTask
+	static public Callable<Model> makeModelCallable(final String source, final String base, final String imageBase, final String settings, final IModelFactory factory)
 	{
-		private final Bundle bundle;
-		private final List<Messenger> clients;
+		return () -> {
 
-		private MakeTask(final String source, final String base, final String imageBase, final String settings, final String urlScheme, final IModelFactory factory, final Bundle bundle, final List<Messenger> clients)
-		{
-			super(source, base, imageBase, settings, urlScheme, factory);
-			this.bundle = bundle;
-			this.clients = clients;
-		}
+			try
+			{
+				return factory.make(source, base, imageBase, settings);
+			}
+			catch (@NonNull final Exception e)
+			{
+				Log.e(TAG, "Error making model", e);
+			}
+			return null;
+		};
+	}
 
-		@Override
-		protected void onPostExecute(final Model model)
-		{
+	/**
+	 * Return callback
+	 */
+	static public TaskRunner.Callback<Model> makeModelCallback(final Bundle bundle, final String urlScheme, final List<Messenger> clients)
+	{
+		return (model) -> {
+
 			// reuse bundle
-			this.bundle.clear();
+			bundle.clear();
 
 			// pack model into message bundle
-			IntentFactory.putModelResult(this.bundle, model, this.urlScheme);
+			IntentFactory.putModelResult(bundle, model, urlScheme);
 
 			// send message to all clients
-			Log.d(TreebolicMessengerService.TAG, this.clients.size() + " clients");
-			for (int i = this.clients.size() - 1; i >= 0; i--)
+			Log.d(TAG, clients.size() + " clients");
+			for (int i = clients.size() - 1; i >= 0; i--)
 			{
 				// return model to clients as a message
 				final Message msg = Message.obtain();
 				msg.what = ITreebolicService.MSG_RESULT_MODEL;
-				msg.setData(this.bundle);
+				msg.setData(bundle);
 
 				try
 				{
-					Log.d(TreebolicMessengerService.TAG, "Returning model " + model);
-					this.clients.get(i).send(msg);
+					Log.d(TAG, "Returning model " + model);
+					clients.get(i).send(msg);
 				}
 				catch (@NonNull final RemoteException ignored)
 				{
 					// The client is dead. Remove it from the list;
 					// we are going through the list from back to front
 					// so this is safe to do inside the loop.
-					this.clients.remove(i);
+					clients.remove(i);
 				}
 			}
-		}
+		};
 	}
 
 	/**
-	 * Make model and forward task
+	 * Forward callback
 	 */
-	static private class MakeTaskAndForward extends AbstractMakeTask
+	static public TaskRunner.Callback<Model> makeModelForwardCallback(final WeakReference<Context> contextWeakReference, final String urlScheme, final Intent forward)
 	{
-		@NonNull
-		private final WeakReference<Context> contextWeakReference;
-		private final Intent forward;
+		return (model) -> {
 
-		private MakeTaskAndForward(final String source, final String base, final String imageBase, final String settings, final String urlScheme, final IModelFactory factory, final Context context, final Intent forward)
-		{
-			super(source, base, imageBase, settings, urlScheme, factory);
-			this.contextWeakReference = new WeakReference<>(context);
-			this.forward = forward;
-		}
-
-		@Override
-		protected void onPostExecute(final Model model)
-		{
 			// do not return to client but forward it to service
-			IntentFactory.putModelArg(this.forward, model, this.urlScheme);
-			this.forward.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			Log.d(TreebolicMessengerService.TAG, "Forwarding model");
-			final Context context = this.contextWeakReference.get();
+			IntentFactory.putModelArg(forward, model, urlScheme);
+			forward.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			Log.d(TAG, "Forwarding model");
+			final Context context = contextWeakReference.get();
 			if (context != null)
 			{
-				context.startActivity(this.forward);
+				context.startActivity(forward);
 			}
-		}
+		};
 	}
 
 	/**
@@ -140,7 +137,7 @@ abstract public class TreebolicMessengerService extends Service implements ITree
 		 */
 		private IncomingHandler(final TreebolicMessengerService service0)
 		{
-			super();
+			super(Looper.getMainLooper());
 			this.service = service0;
 		}
 
@@ -166,7 +163,6 @@ abstract public class TreebolicMessengerService extends Service implements ITree
 					super.handleMessage(msg);
 			}
 		}
-
 	}
 
 	/**
@@ -212,9 +208,10 @@ abstract public class TreebolicMessengerService extends Service implements ITree
 		final Intent forward = bundle.getParcelable(ITreebolicService.EXTRA_FORWARD_RESULT_TO);
 
 		// make model
-		final AsyncTask<Void, Void, Model> task = forward == null ? //
-				new MakeTask(source, base, imageBase, settings, getUrlScheme(), this.factory, bundle, this.clients) : //
-				new MakeTaskAndForward(source, base, imageBase, settings, getUrlScheme(), this.factory, this, forward);
-		task.execute();
+		final Callable<Model> callable = makeModelCallable(source, base, imageBase, settings, this.factory);
+		final TaskRunner.Callback<Model> callback = forward == null ? //
+				makeModelCallback(bundle, getUrlScheme(), this.clients) : //
+				makeModelForwardCallback(new WeakReference<>(this), getUrlScheme(), forward);
+		TaskRunner.execute(callable, callback);
 	}
 }

@@ -7,7 +7,6 @@ package org.treebolic.services;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
@@ -17,6 +16,7 @@ import org.treebolic.services.iface.ITreebolicService;
 import org.treebolic.services.iface.ITreebolicServiceBinder;
 
 import java.lang.ref.WeakReference;
+import java.util.concurrent.Callable;
 
 import androidx.annotation.NonNull;
 import treebolic.model.Model;
@@ -32,56 +32,54 @@ abstract public class TreebolicBoundService extends Service implements ITreeboli
 	static private final String TAG = "BoundS";
 
 	/**
-	 * Make model task
+	 * Make callable
 	 */
-	static private class MakeTask extends AbstractMakeTask
+	static public Callable<Model> makeModelCallable(final String source, final String base, final String imageBase, final String settings, final IModelFactory factory)
 	{
-		private final IModelListener modelListener;
+		return () -> {
 
-		private MakeTask(final String source, final String base, final String imageBase, final String settings, final String urlScheme, final IModelFactory factory, final IModelListener modelListener)
-		{
-			super(source, base, imageBase, settings, urlScheme, factory);
-			this.modelListener = modelListener;
-		}
-
-		@Override
-		protected void onPostExecute(final Model model)
-		{
-			Log.d(TreebolicBoundService.TAG, "Returning model " + model);
-			this.modelListener.onModel(model, this.urlScheme);
-		}
+			try
+			{
+				return factory.make(source, base, imageBase, settings);
+			}
+			catch (@NonNull final Exception e)
+			{
+				Log.e(TAG, "Error making model", e);
+			}
+			return null;
+		};
 	}
 
 	/**
-	 * Make model and forward task
+	 * Return callback
 	 */
-	static private class MakeAndForwardTask extends AbstractMakeTask
+	static public TaskRunner.Callback<Model> makeModelCallback(final String urlScheme, final IModelListener modelListener)
 	{
-		@NonNull
-		private final WeakReference<Context> contextWeakReference;
+		return (model) -> {
 
-		private final Intent forward;
+			Log.d(TAG, "Returning model " + model);
+			modelListener.onModel(model, urlScheme);
+		};
+	}
 
-		private MakeAndForwardTask(final String source, final String base, final String imageBase, final String settings, final String urlScheme, final IModelFactory factory, final Context context, final Intent forward)
-		{
-			super(source, base, imageBase, settings, urlScheme, factory);
-			this.contextWeakReference = new WeakReference<>(context);
-			this.forward = forward;
-		}
 
-		@Override
-		protected void onPostExecute(final Model model)
-		{
+	/**
+	 * Forward callback
+	 */
+	static public TaskRunner.Callback<Model> makeModelForwardCallback(final WeakReference<Context> contextWeakReference, final String urlScheme, final Intent forward)
+	{
+		return (model) -> {
+
 			// do not return to client but forward it to service
-			IntentFactory.putModelArg(this.forward, model, this.urlScheme);
-			this.forward.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			Log.d(TreebolicBoundService.TAG, "Forwarding model");
-			final Context context = this.contextWeakReference.get();
+			IntentFactory.putModelArg(forward, model, urlScheme);
+			forward.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			Log.d(TAG, "Forwarding model");
+			final Context context = contextWeakReference.get();
 			if (context != null)
 			{
-				context.startActivity(this.forward);
+				context.startActivity(forward);
 			}
-		}
+		};
 	}
 
 	/**
@@ -115,9 +113,9 @@ abstract public class TreebolicBoundService extends Service implements ITreeboli
 		@Override
 		public void makeModel(final String source, final String base, final String imageBase, final String settings, final IModelListener modelListener)
 		{
-			// make model
-			final AsyncTask<Void, Void, Model> task = new MakeTask(source, base, imageBase, settings, this.urlScheme, this.factory, modelListener);
-			task.execute();
+			final Callable<Model> callable = makeModelCallable(source, base, imageBase, settings, this.factory);
+			final TaskRunner.Callback<Model> callback = makeModelCallback(this.urlScheme, modelListener);
+			TaskRunner.execute(callable, callback);
 		}
 
 		@Override
@@ -126,9 +124,9 @@ abstract public class TreebolicBoundService extends Service implements ITreeboli
 			final Context context = this.contextWeakReference.get();
 			if (context != null)
 			{
-				// make model
-				final AsyncTask<Void, Void, Model> task = new MakeAndForwardTask(source, base, imageBase, settings, this.urlScheme, this.factory, context, forward);
-				task.execute();
+				final Callable<Model> callable = makeModelCallable(source, base, imageBase, settings, this.factory);
+				final TaskRunner.Callback<Model> callback = makeModelForwardCallback(this.contextWeakReference, this.urlScheme, forward);
+				TaskRunner.execute(callable, callback);
 			}
 		}
 	}

@@ -70,10 +70,14 @@ public class Deployer
 	 */
 	public void cleanup()
 	{
-		for (final File file : this.dir.listFiles())
+		File[] dirContent = this.dir.listFiles();
+		if (dirContent != null)
 		{
-			//noinspection ResultOfMethodCallIgnored
-			file.delete();
+			for (final File file : dirContent)
+			{
+				//noinspection ResultOfMethodCallIgnored
+				file.delete();
+			}
 		}
 	}
 

@@ -4,7 +4,6 @@
 
 package org.treebolic.services;
 
-import android.app.IntentService;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.ResultReceiver;
@@ -14,13 +13,14 @@ import org.treebolic.services.iface.ITreebolicService;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.JobIntentService;
 import treebolic.model.Model;
 import treebolic.model.ModelDump;
 
 /**
  * Treebolic service for handling asynchronous task requests in a service on a separate handler thread
  */
-abstract public class TreebolicIntentService extends IntentService implements ITreebolicService
+abstract public class TreebolicIntentService extends JobIntentService implements ITreebolicService
 {
 	/**
 	 * Log tag
@@ -36,13 +36,13 @@ abstract public class TreebolicIntentService extends IntentService implements IT
 	/**
 	 * Constructor
 	 */
-	public TreebolicIntentService(final String name)
+	public TreebolicIntentService()
 	{
-		super(name);
+		super();
 	}
 
 	@Override
-	protected void onHandleIntent(@Nullable final Intent intent)
+	protected void onHandleWork(@Nullable final Intent intent)
 	{
 		if (intent != null)
 		{
@@ -70,6 +70,7 @@ abstract public class TreebolicIntentService extends IntentService implements IT
 						// use result receiver
 						final ResultReceiver resultReceiver = intent.getParcelableExtra(ITreebolicService.EXTRA_RECEIVER);
 						Log.d(TreebolicIntentService.TAG, "Returning model " + model);
+						assert resultReceiver != null;
 						resultReceiver.send(0, bundle);
 					}
 					else

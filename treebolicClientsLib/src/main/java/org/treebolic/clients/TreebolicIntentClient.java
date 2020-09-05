@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.ResultReceiver;
@@ -22,6 +23,7 @@ import org.treebolic.services.iface.ITreebolicService;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.JobIntentService;
 import treebolic.model.Model;
 
 /**
@@ -70,6 +72,11 @@ public class TreebolicIntentClient implements org.treebolic.clients.iface.ITreeb
 	private final ResultReceiver receiver;
 
 	/**
+	 * Unique job ID
+	 */
+	private static int jobId = 0;
+
+	/**
 	 * Constructor
 	 *
 	 * @param context0            context
@@ -86,7 +93,7 @@ public class TreebolicIntentClient implements org.treebolic.clients.iface.ITreeb
 		final String[] serviceNameComponents = service0.split("/");
 		this.servicePackage = serviceNameComponents[0];
 		this.serviceName = serviceNameComponents[1];
-		this.receiver = new ResultReceiver(new Handler())
+		this.receiver = new ResultReceiver(new Handler(Looper.getMainLooper()))
 		{
 			@Override
 			protected void onReceiveResult(final int resultCode, @NonNull final Bundle resultData)
@@ -147,8 +154,9 @@ public class TreebolicIntentClient implements org.treebolic.clients.iface.ITreeb
 	@Override
 	public void requestModel(final String source, final String base, final String imageBase, final String settings, final Intent forward)
 	{
+		ComponentName component = new ComponentName(this.servicePackage, this.serviceName);
 		final Intent intent = new Intent();
-		intent.setComponent(new ComponentName(this.servicePackage, this.serviceName));
+		intent.setComponent(component);
 		intent.setAction(ITreebolicService.ACTION_MAKEMODEL);
 		intent.putExtra(ITreebolicService.EXTRA_SOURCE, source);
 		intent.putExtra(ITreebolicService.EXTRA_BASE, base);
@@ -156,10 +164,8 @@ public class TreebolicIntentClient implements org.treebolic.clients.iface.ITreeb
 		intent.putExtra(ITreebolicService.EXTRA_SETTINGS, settings);
 		intent.putExtra(ITreebolicService.EXTRA_RECEIVER, this.receiver);
 		intent.putExtra(ITreebolicService.EXTRA_FORWARD_RESULT_TO, forward);
-		if (this.context.startService(intent) == null)
-		{
-			Log.e(TreebolicIntentClient.TAG, "Intent service failed to start " + this.servicePackage + '/' + this.serviceName);
-			Toast.makeText(this.context, R.string.fail_start, Toast.LENGTH_LONG).show();
-		}
+		JobIntentService.enqueueWork(this.context, component, ++jobId, intent);
+		Log.e(TreebolicIntentClient.TAG, "Intent service failed to start " + this.servicePackage + '/' + this.serviceName);
+		Toast.makeText(this.context, R.string.fail_start, Toast.LENGTH_LONG).show();
 	}
 }

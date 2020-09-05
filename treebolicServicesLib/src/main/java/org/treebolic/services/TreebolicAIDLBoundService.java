@@ -33,7 +33,7 @@ abstract public class TreebolicAIDLBoundService extends Service implements ITree
 	/**
 	 * Make model task
 	 */
-	static private class MakeTask extends AbstractMakeTask
+	static private class MakeTask
 	{
 		private final ResultReceiver resultReceiver;
 
@@ -59,7 +59,7 @@ abstract public class TreebolicAIDLBoundService extends Service implements ITree
 	/**
 	 * Make model and forward task
 	 */
-	static private class MakeAndForwardTask extends AbstractMakeTask
+	static private class MakeAndForwardTask
 	{
 		@NonNull
 		final WeakReference<Context> contextWeakReference;

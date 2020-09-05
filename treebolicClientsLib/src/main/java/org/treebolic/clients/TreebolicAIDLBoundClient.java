@@ -11,6 +11,7 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.RemoteException;
@@ -108,7 +109,7 @@ public class TreebolicAIDLBoundClient implements ITreebolicClient
 		final String[] serviceNameComponents = service0.split("/");
 		this.servicePackage = serviceNameComponents[0];
 		this.serviceName = serviceNameComponents[1];
-		this.receiver = new ResultReceiver(new Handler())
+		this.receiver = new ResultReceiver(new Handler(Looper.getMainLooper()))
 		{
 			@Override
 			protected void onReceiveResult(final int resultCode, @NonNull final Bundle resultData)

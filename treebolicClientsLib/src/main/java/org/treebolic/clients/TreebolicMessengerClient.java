@@ -11,6 +11,7 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.Parcel;
@@ -59,7 +60,7 @@ public class TreebolicMessengerClient implements ITreebolicClient
 		@SuppressWarnings("WeakerAccess")
 		public IncomingHandler(final TreebolicMessengerClient client0)
 		{
-			super();
+			super(Looper.getMainLooper());
 			this.client = client0;
 		}
 

@@ -18,7 +18,7 @@ public class TreebolicFilesIntentService extends TreebolicIntentService
 	 */
 	public TreebolicFilesIntentService()
 	{
-		super("TreebolicFilesIntentService");
+		super();
 	}
 
 	@Override

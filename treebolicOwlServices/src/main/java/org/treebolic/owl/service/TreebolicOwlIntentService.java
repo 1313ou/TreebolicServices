@@ -18,7 +18,7 @@ public class TreebolicOwlIntentService extends TreebolicIntentService
 	 */
 	public TreebolicOwlIntentService()
 	{
-		super("TreebolicOwlIntentService");
+		super();
 	}
 
 	@Override
