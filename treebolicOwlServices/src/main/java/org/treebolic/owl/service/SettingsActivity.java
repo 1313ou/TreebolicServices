@@ -49,6 +49,42 @@ public class SettingsActivity extends AppCompatCommonPreferenceActivity
 			final ListPreference servicePref = findPreference(Settings.PREF_SERVICE);
 			assert servicePref != null;
 			servicePref.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance());
+		}
+	}
+
+	@SuppressWarnings("WeakerAccess")
+	public static class ServicesPreferenceFragment extends PreferenceFragmentCompat
+	{
+		@Override
+		public void onCreatePreferences(@SuppressWarnings("unused") final Bundle savedInstanceState, @SuppressWarnings("unused") final String rootKey)
+		{
+			// inflate
+			addPreferencesFromResource(R.xml.pref_service);
+
+			// bind
+			final ListPreference servicePref = findPreference(Settings.PREF_SERVICE);
+			assert servicePref != null;
+			servicePref.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance());
+		}
+
+		@Override
+		public void onDisplayPreferenceDialog(final Preference preference)
+		{
+			if (!OpenEditTextPreference.onDisplayPreferenceDialog(this, preference))
+			{
+				super.onDisplayPreferenceDialog(preference);
+			}
+		}
+	}
+
+	@SuppressWarnings("WeakerAccess")
+	public static class DownloadPreferenceFragment extends PreferenceFragmentCompat
+	{
+		@Override
+		public void onCreatePreferences(@SuppressWarnings("unused") final Bundle savedInstanceState, @SuppressWarnings("unused") final String rootKey)
+		{
+			// inflate
+			addPreferencesFromResource(R.xml.pref_download);
 
 			final OpenEditTextPreference downloadPref = findPreference(Settings.PREF_DOWNLOAD);
 			assert downloadPref != null;

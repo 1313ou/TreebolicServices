@@ -8,11 +8,13 @@
           package="org.treebolic.wordnet.service"
           android:sharedUserId="org.treebolic.userId">
 
+	<permission android:name="org.treebolic.wordnet.service.USE" android:protectionLevel="normal" android:label="Use service" />
 	<uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER"/>
 	<uses-permission android:name="android.permission.INTERNET"/>
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 	<uses-permission android:name="android.permission.WAKE_LOCK"/>
+	<uses-permission android:name="org.treebolic.wordnet.service.USE"/>
 
 	<application
 		android:allowBackup="true"
@@ -86,26 +88,13 @@
 			android:exported="true"
 			android:icon="@mipmap/ic_launcher"
 			android:label="@string/service_intent_service"
-			android:permission="android.permission.READ_EXTERNAL_STORAGE"
+			android:permission="android.permission.BIND_JOB_SERVICE"
 			android:process="org.treebolic">
 			<intent-filter>
 				<action android:name="org.treebolic.service.action.MAKE_MODEL">
 				</action>
 			</intent-filter>
 		</service>
-
-		<!--
-		<service
-			android:name=".TreebolicWordNetBoundService"
-			android:process="org.treebolic"
-			android:description="@string/description_service_bound_service"
-			android:enabled="true"
-			android:exported="true"
-			android:icon="@mipmap/ic_launcher"
-			android:label="@string/service_bound_service"
-			android:permission="android.permission.READ_EXTERNAL_STORAGE" >
-		</service>
-		-->
 
 		<service
 			android:name=".TreebolicWordNetAIDLBoundService"
@@ -114,7 +103,7 @@
 			android:exported="true"
 			android:icon="@mipmap/ic_launcher"
 			android:label="@string/service_aidl_bound_service"
-			android:permission="android.permission.READ_EXTERNAL_STORAGE"
+			android:permission="org.treebolic.wordnet.service.USE"
 			android:process="org.treebolic">
 		</service>
 
@@ -125,7 +114,7 @@
 			android:exported="true"
 			android:icon="@mipmap/ic_launcher"
 			android:label="@string/service_messenger_bound_service"
-			android:permission="android.permission.BIND_JOB_SERVICE">
+			android:permission="org.treebolic.wordnet.service.USE">
 		</service>
 
 	</application>

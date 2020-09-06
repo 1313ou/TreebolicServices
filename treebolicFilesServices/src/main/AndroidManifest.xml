@@ -8,8 +8,10 @@
           package="org.treebolic.files.service"
           android:sharedUserId="org.treebolic.userId">
 
+	<permission android:name="org.treebolic.files.service.USE" android:protectionLevel="normal" android:label="Use service" />
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 	<uses-permission android:name="android.permission.WAKE_LOCK"/>
+	<uses-permission android:name="org.treebolic.files.service.USE"/>
 
 	<application
 		android:allowBackup="true"
@@ -73,7 +75,7 @@
 			android:exported="true"
 			android:icon="@mipmap/ic_launcher"
 			android:label="@string/service_intent_service"
-			android:permission="android.permission.READ_EXTERNAL_STORAGE"
+			android:permission="android.permission.BIND_JOB_SERVICE"
 			android:process="org.treebolic">
 			<intent-filter>
 				<action android:name="org.treebolic.service.action.MAKE_MODEL">
@@ -88,7 +90,7 @@
 			android:exported="true"
 			android:icon="@mipmap/ic_launcher"
 			android:label="@string/service_aidl_bound_service"
-			android:permission="android.permission.READ_EXTERNAL_STORAGE"
+			android:permission="org.treebolic.files.service.USE"
 			android:process="org.treebolic">
 		</service>
 
@@ -99,7 +101,7 @@
 			android:exported="true"
 			android:icon="@mipmap/ic_launcher"
 			android:label="@string/service_messenger_bound_service"
-			android:permission="android.permission.BIND_JOB_SERVICE"
+			android:permission="org.treebolic.files.service.USE"
 			android:process="org.treebolic">
 		</service>
 

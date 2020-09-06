@@ -9,7 +9,6 @@
 	<string name="pref_default_service" translatable="false">IntentService</string>
 	<string-array name="pref_services_list_values" translatable="false">
 		<item>@string/pref_default_service</item>
-		<item>Bound</item>
 		<item>AIDLBound</item>
 		<item>Messenger</item>
 	</string-array>

@@ -37,7 +37,18 @@ public class SettingsActivity extends AppCompatCommonPreferenceActivity
 			final EditTextPreference sourcePref = findPreference(TreebolicIface.PREF_SOURCE);
 			assert sourcePref != null;
 			sourcePref.setSummaryProvider(EditTextPreference.SimpleSummaryProvider.getInstance());
+		}
+	}
 
+	public static class DownloadPreferenceFragment extends PreferenceFragmentCompat
+	{
+		@Override
+		public void onCreatePreferences(@SuppressWarnings("unused") final Bundle savedInstanceState, @SuppressWarnings("unused") final String rootKey)
+		{
+			// inflate
+			addPreferencesFromResource(R.xml.pref_download);
+
+			// bind
 			final OpenEditTextPreference downloadPref = findPreference(Settings.PREF_DOWNLOAD);
 			assert downloadPref != null;
 			downloadPref.setSummaryProvider(OpenEditTextPreference.SUMMARY_PROVIDER);

@@ -5,15 +5,21 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
 	<Preference
+		app:fragment="org.treebolic.wordnet.service.SettingsActivity$ServicePreferenceFragment"
+		app:icon="@null"
+		app:key="pref_service"
+		app:title="@string/pref_header_service" />
+
+	<Preference
 		app:fragment="org.treebolic.wordnet.service.SettingsActivity$GeneralPreferenceFragment"
 		app:icon="@null"
 		app:key="pref_general"
 		app:title="@string/pref_header_general" />
 
 	<Preference
-		app:fragment="org.treebolic.wordnet.service.SettingsActivity$ServicePreferenceFragment"
+		app:fragment="org.treebolic.wordnet.service.SettingsActivity$DownloadPreferenceFragment"
 		app:icon="@null"
-		app:key="pref_service"
-		app:title="@string/pref_header_service" />
+		app:key="pref_download"
+		app:title="@string/pref_header_download" />
 
 </PreferenceScreen>

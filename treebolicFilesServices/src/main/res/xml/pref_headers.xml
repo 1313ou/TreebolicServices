@@ -5,6 +5,12 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
 	<Preference
+		app:fragment="org.treebolic.files.service.SettingsActivity$ServicesPreferenceFragment"
+		app:icon="@null"
+		app:key="pref_service"
+		app:title="@string/pref_header_services" />
+
+	<Preference
 		app:fragment="org.treebolic.files.service.SettingsActivity$GeneralPreferenceFragment"
 		app:icon="@null"
 		app:key="pref_general"

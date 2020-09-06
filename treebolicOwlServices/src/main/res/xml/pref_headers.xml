@@ -5,9 +5,21 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
 	<Preference
+		app:fragment="org.treebolic.owl.service.SettingsActivity$ServicesPreferenceFragment"
+		app:icon="@null"
+		app:key="pref_service"
+		app:title="@string/pref_header_services" />
+
+	<Preference
 		app:fragment="org.treebolic.owl.service.SettingsActivity$GeneralPreferenceFragment"
 		app:icon="@null"
 		app:key="pref_general"
 		app:title="@string/pref_header_general" />
+
+	<Preference
+		app:fragment="org.treebolic.owl.service.SettingsActivity$DownloadPreferenceFragment"
+		app:icon="@null"
+		app:key="pref_download"
+		app:title="@string/pref_header_download" />
 
 </PreferenceScreen>

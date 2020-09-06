@@ -35,7 +35,19 @@ public class SettingsActivity extends AppCompatCommonPreferenceActivity
 			final EditTextPreference sourcePref = findPreference(TreebolicIface.PREF_SOURCE);
 			assert sourcePref != null;
 			sourcePref.setSummaryProvider(EditTextPreference.SimpleSummaryProvider.getInstance());
+		}
+	}
 
+	@SuppressWarnings("WeakerAccess")
+	public static class ServicesPreferenceFragment extends PreferenceFragmentCompat
+	{
+		@Override
+		public void onCreatePreferences(@SuppressWarnings("unused") final Bundle savedInstanceState, @SuppressWarnings("unused") final String rootKey)
+		{
+			// inflate
+			addPreferencesFromResource(R.xml.pref_service);
+
+			// bind
 			final ListPreference servicePref = findPreference(Settings.PREF_SERVICE);
 			assert servicePref != null;
 			servicePref.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance());

@@ -74,7 +74,7 @@ public class TreebolicIntentClient implements org.treebolic.clients.iface.ITreeb
 	/**
 	 * Unique job ID
 	 */
-	private static int jobId = 0;
+	private static final int JOB_ID = 131313;
 
 	/**
 	 * Constructor
@@ -164,8 +164,8 @@ public class TreebolicIntentClient implements org.treebolic.clients.iface.ITreeb
 		intent.putExtra(ITreebolicService.EXTRA_SETTINGS, settings);
 		intent.putExtra(ITreebolicService.EXTRA_RECEIVER, this.receiver);
 		intent.putExtra(ITreebolicService.EXTRA_FORWARD_RESULT_TO, forward);
-		JobIntentService.enqueueWork(this.context, component, ++jobId, intent);
-		Log.e(TreebolicIntentClient.TAG, "Intent service failed to start " + this.servicePackage + '/' + this.serviceName);
-		Toast.makeText(this.context, R.string.fail_start, Toast.LENGTH_LONG).show();
+		JobIntentService.enqueueWork(this.context, component, JOB_ID, intent);
+		Log.d(TreebolicIntentClient.TAG, "Intent service enqueued " + this.servicePackage + '/' + this.serviceName);
+		Toast.makeText(this.context, R.string.started, Toast.LENGTH_LONG).show();
 	}
 }

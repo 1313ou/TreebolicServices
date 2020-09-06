@@ -8,6 +8,8 @@
 
 	<!-- General settings -->
 	<string name="pref_header_general">General</string>
+	<string name="pref_header_service">Services</string>
+	<string name="pref_header_download">Download</string>
 
 	<!-- source -->
 	<string name="pref_title_source">Source</string>
@@ -16,16 +18,12 @@
 	<!-- forwarding -->
 	<string name="pref_title_forwarding">Forwarding</string>
 
-	<!-- service settings -->
-	<string name="pref_header_service">Service</string>
-
 	<!-- service -->
 	<string name="pref_title_service">Service</string>
 	<string name="pref_description_services">WordNet Service type</string>
 
 	<string-array name="pref_services_list_titles">
 		<item>Intent service</item>
-		<item>Bound service</item>
 		<item>AIDL Bound service</item>
 		<item>Messenger bound service</item>
 	</string-array>
