@@ -3,10 +3,10 @@
   ~ Copyright (c) Treebolic 2019. Bernard Bou <1313ou@gmail.com>
   -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-	<color name="default_primaryColor">#FF7e57c2</color>
-	<color name="default_primaryDarkColor">#FF673ab7</color>
-	<color name="default_secondaryColor">#FFef7c00</color>
+	<color name="default_primaryColor" tools:keep="@color/default_primaryColor">#FF7e57c2</color>
+	<color name="default_primaryDarkColor" tools:keep="@color/default_primaryDarkColor">#FF673ab7</color>
+	<color name="default_secondaryColor" tools:keep="@color/default_secondaryColor">#FFef7c00</color>
 
 </resources>

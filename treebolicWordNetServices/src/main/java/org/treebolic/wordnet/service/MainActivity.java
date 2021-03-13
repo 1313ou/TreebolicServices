@@ -202,66 +202,77 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		final int id = item.getItemId();
-		switch (id)
+		if (R.id.action_query == id)
 		{
-			case R.id.action_query:
-				query();
-				return true;
-
-			case R.id.action_source:
-				requestSource();
-				return true;
-
-			case R.id.action_demo:
-				query("love");
-				return true;
-
-			case R.id.action_query_file_provider:
-				QueryProviderActivity.isProviderAvailable(this);
-				startActivity(new Intent(this, QueryProviderActivity.class));
-				return true;
-
-			case R.id.action_download:
-				requestDownload();
-				return true;
-
-			case R.id.action_cleanup:
-				this.deployer.cleanup();
-				this.dataButton.setIcon(MainActivity.this.deployer.status() ? R.drawable.ic_action_done : R.drawable.ic_action_error);
-				return true;
-
-			case R.id.action_others:
-				startActivity(new Intent(this, OthersActivity.class));
-				return true;
-
-			case R.id.action_donate:
-				startActivity(new Intent(this, DonateActivity.class));
-				return true;
-
-			case R.id.action_rate:
-				AppRate.rate(this);
-				return true;
-
-			case R.id.action_settings:
-				startActivity(new Intent(this, SettingsActivity.class));
-				return true;
-
-			case R.id.action_app_settings:
-				Settings.applicationSettings(this, "org.treebolic.wordnet.service");
-				return true;
-
-			case R.id.action_finish:
-				finish();
-				return true;
-
-			case R.id.action_kill:
-				Process.killProcess(Process.myPid());
-				return true;
-
-			default:
-				break;
+			query();
+			return true;
 		}
-		return super.onOptionsItemSelected(item);
+		else if (R.id.action_source == id)
+		{
+			requestSource();
+			return true;
+		}
+		else if (R.id.action_demo == id)
+		{
+			query("love");
+			return true;
+		}
+		else if (R.id.action_query_file_provider == id)
+		{
+			QueryProviderActivity.isProviderAvailable(this);
+			startActivity(new Intent(this, QueryProviderActivity.class));
+			return true;
+		}
+		else if (R.id.action_download == id)
+		{
+			requestDownload();
+			return true;
+		}
+		else if (R.id.action_cleanup == id)
+		{
+			this.deployer.cleanup();
+			this.dataButton.setIcon(MainActivity.this.deployer.status() ? R.drawable.ic_action_done : R.drawable.ic_action_error);
+			return true;
+		}
+		else if (R.id.action_others == id)
+		{
+			startActivity(new Intent(this, OthersActivity.class));
+			return true;
+		}
+		else if (R.id.action_donate == id)
+		{
+			startActivity(new Intent(this, DonateActivity.class));
+			return true;
+		}
+		else if (R.id.action_rate == id)
+		{
+			AppRate.rate(this);
+			return true;
+		}
+		else if (R.id.action_app_settings == id)
+		{
+			Settings.applicationSettings(this, "org.treebolic.wordnet.service");
+			return true;
+		}
+		else if (R.id.action_settings == id)
+		{
+			startActivity(new Intent(this, SettingsActivity.class));
+			return true;
+		}
+		else if (R.id.action_finish == id)
+		{
+			finish();
+			return true;
+		}
+		else if (R.id.action_kill == id)
+		{
+			Process.killProcess(Process.myPid());
+			return true;
+		}
+		else
+		{
+			return super.onOptionsItemSelected(item);
+		}
 	}
 
 	@SuppressWarnings("SameReturnValue")

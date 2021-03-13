@@ -4,6 +4,7 @@
 
 package org.treebolic.owl.service;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -64,7 +65,8 @@ public class DownloadActivity extends org.treebolic.download.DownloadActivity
 			Deploy.expand(inputStream, Storage.getTreebolicStorage(this), false);
 			return true;
 		}
-		final String lastSegment = this.downloadUri.getLastPathSegment();
+		final Uri downloadUri = Uri.parse(this.downloadUrl);
+		final String lastSegment = downloadUri.getLastPathSegment();
 		if (lastSegment != null)
 		{
 			final File destFile = new File(storage, lastSegment);

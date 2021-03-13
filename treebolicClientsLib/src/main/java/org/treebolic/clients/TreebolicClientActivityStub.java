@@ -44,7 +44,6 @@ abstract public class TreebolicClientActivityStub extends AppCompatCommonActivit
 	/**
 	 * Url scheme
 	 */
-	@SuppressWarnings("unused")
 	protected String urlScheme;
 
 	// L I F E C Y C L E

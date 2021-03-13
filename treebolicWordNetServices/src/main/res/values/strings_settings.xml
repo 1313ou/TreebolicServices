@@ -2,14 +2,14 @@
   ~ Copyright (c) Treebolic 2019. Bernard Bou <1313ou@gmail.com>
   -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
 	<string name="title_activity_settings">Settings</string>
 
 	<!-- General settings -->
-	<string name="pref_header_general">General</string>
-	<string name="pref_header_service">Services</string>
-	<string name="pref_header_download">Download</string>
+	<string name="pref_header_general" tools:keep="@string/pref_header_general">General</string>
+	<string name="pref_header_service" tools:keep="@string/pref_header_service">Services</string>
+	<string name="pref_header_download" tools:keep="@string/pref_header_download">Download</string>
 
 	<!-- source -->
 	<string name="pref_title_source">Source</string>

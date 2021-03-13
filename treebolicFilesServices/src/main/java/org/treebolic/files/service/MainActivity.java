@@ -42,7 +42,6 @@ import org.treebolic.files.service.client.TreebolicFilesBoundClient;
 import org.treebolic.files.service.client.TreebolicFilesIntentClient;
 import org.treebolic.files.service.client.TreebolicFilesMessengerClient;
 import org.treebolic.services.IntentFactory;
-import org.treebolic.storage.Storage;
 
 import java.io.File;
 
@@ -154,56 +153,65 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		final int id = item.getItemId();
-		switch (id)
+		if (R.id.action_places == id)
 		{
-			case R.id.action_places:
-				chooseAndSave();
-				return true;
-
-			case R.id.action_run:
-				query();
-				return true;
-
-			case R.id.action_source:
-				requestSource();
-				return true;
-
-			case R.id.action_demo:
-				chooseAndTryStartTreebolic();
-				return true;
-
-			case R.id.action_others:
-				startActivity(new Intent(this, OthersActivity.class));
-				return true;
-
-			case R.id.action_donate:
-				startActivity(new Intent(this, DonateActivity.class));
-				return true;
-
-			case R.id.action_rate:
-				AppRate.rate(this);
-				return true;
-
-			case R.id.action_app_settings:
-				Settings.applicationSettings(this, "org.treebolic.files.service");
-				return true;
-
-			case R.id.action_settings:
-				startActivity(new Intent(this, SettingsActivity.class));
-				return true;
-
-			case R.id.action_finish:
-				finish();
-				return true;
-
-			case R.id.action_kill:
-				Process.killProcess(Process.myPid());
-				return true;
-
-			default:
-				break;
+			chooseAndSave();
+			return true;
 		}
-		return super.onOptionsItemSelected(item);
+		else if (R.id.action_run == id)
+		{
+			query();
+			return true;
+		}
+		else if (R.id.action_source == id)
+		{
+			requestSource();
+			return true;
+		}
+		else if (R.id.action_demo == id)
+		{
+			chooseAndTryStartTreebolic();
+			return true;
+		}
+		else if (R.id.action_others == id)
+		{
+			startActivity(new Intent(this, OthersActivity.class));
+			return true;
+		}
+		else if (R.id.action_donate == id)
+		{
+			startActivity(new Intent(this, DonateActivity.class));
+			return true;
+		}
+		else if (R.id.action_rate == id)
+		{
+			AppRate.rate(this);
+			return true;
+		}
+		else if (R.id.action_app_settings == id)
+		{
+			Settings.applicationSettings(this, "org.treebolic.files.service");
+			return true;
+		}
+		else if (R.id.action_settings == id)
+		{
+			startActivity(new Intent(this, SettingsActivity.class));
+			return true;
+		}
+		else if (R.id.action_finish == id)
+		{
+			finish();
+			return true;
+		}
+		else if (R.id.action_kill == id)
+		{
+			Process.killProcess(Process.myPid());
+			return true;
+		}
+		else
+		{
+			return super.onOptionsItemSelected(item);
+		}
 	}
 
 	// I N I T I A L I Z E
@@ -239,7 +247,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	{
 		final Intent intent = new Intent(this, org.treebolic.filechooser.FileChooserActivity.class);
 		intent.setType("inode/directory");
-		intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_INITIAL_DIR, Storage.getExternalStorage());
+		intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_INITIAL_DIR, StorageExplorer.discoverExternalStorage(this));
 		intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_CHOOSE_DIR, true);
 		intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_EXTENSION_FILTER, new String[]{});
 		intent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -315,7 +323,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 
 	private void choosePlace(@NonNull final Runnable1 runnable1)
 	{
-		final Pair<CharSequence[], CharSequence[]> result = Storage.getDirectoriesTypesValues();
+		final Pair<CharSequence[], CharSequence[]> result = StorageExplorer.getDirectoriesTypesValues(this);
 		final CharSequence[] types = result.first;
 		final CharSequence[] values = result.second;
 

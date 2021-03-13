@@ -13,7 +13,6 @@ import android.net.Uri;
 import android.os.Build;
 
 import org.treebolic.TreebolicIface;
-import org.treebolic.storage.Storage;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -47,7 +46,7 @@ public class Settings
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 
-		final String externalStorage = Storage.getExternalStorage();
+		final String externalStorage = StorageExplorer.discoverExternalStorage(context);
 		//final File treebolicStorage = Storage.getTreebolicStorage(context);
 		//final Uri uri = Uri.fromFile(treebolicStorage);
 

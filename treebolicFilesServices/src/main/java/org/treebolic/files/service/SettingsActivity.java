@@ -26,7 +26,7 @@ public class SettingsActivity extends AppCompatCommonPreferenceActivity
 	public static class GeneralPreferenceFragment extends PreferenceFragmentCompat
 	{
 		@Override
-		public void onCreatePreferences(@SuppressWarnings("unused") final Bundle savedInstanceState, @SuppressWarnings("unused") final String rootKey)
+		public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey)
 		{
 			// inflate
 			addPreferencesFromResource(R.xml.pref_general);
@@ -42,7 +42,7 @@ public class SettingsActivity extends AppCompatCommonPreferenceActivity
 	public static class ServicesPreferenceFragment extends PreferenceFragmentCompat
 	{
 		@Override
-		public void onCreatePreferences(@SuppressWarnings("unused") final Bundle savedInstanceState, @SuppressWarnings("unused") final String rootKey)
+		public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey)
 		{
 			// inflate
 			addPreferencesFromResource(R.xml.pref_service);

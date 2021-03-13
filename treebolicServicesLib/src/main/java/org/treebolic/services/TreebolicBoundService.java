@@ -100,9 +100,9 @@ abstract public class TreebolicBoundService extends Service implements ITreeboli
 		/**
 		 * Constructor
 		 */
-		TreebolicServiceBinder(final IModelFactory service, final String urlScheme)
+		TreebolicServiceBinder(final IModelFactory factory, final String urlScheme)
 		{
-			this.factory = service;
+			this.factory = factory;
 			this.urlScheme = urlScheme;
 		}
 
@@ -126,8 +126,7 @@ abstract public class TreebolicBoundService extends Service implements ITreeboli
 	/**
 	 * Binder that returns an interface to the service
 	 */
-	@SuppressWarnings("ConstantConditions")
-	private final IBinder binder = new TreebolicServiceBinder(this.factory, this.getUrlScheme());
+	private final IBinder binder;
 
 	/**
 	 * Constructor
@@ -135,6 +134,8 @@ abstract public class TreebolicBoundService extends Service implements ITreeboli
 	public TreebolicBoundService()
 	{
 		super();
+		assert this.factory != null;
+		this.binder = new TreebolicServiceBinder(this.factory, this.getUrlScheme());
 	}
 
 	/**
