@@ -479,12 +479,13 @@ public class StorageExplorer
 	/**
 	 * User id
 	 *
+	 * @param context context
 	 * @return user id
 	 */
 	@NonNull
 	@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
 	static private String getUserId(@NonNull final Context context)
-		{
+	{
 		final UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
 		if (null != manager)
 		{
