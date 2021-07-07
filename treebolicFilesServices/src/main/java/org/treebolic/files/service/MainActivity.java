@@ -546,6 +546,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	private void updateButton()
 	{
 		final ImageButton button = findViewById(R.id.queryButton);
+		button.setOnClickListener(this::onClick);
 		final TextView sourceText = findViewById(R.id.querySource);
 		final String source = Settings.getStringPref(this, TreebolicIface.PREF_SOURCE);
 		final boolean qualifies = sourceQualifies(source);
