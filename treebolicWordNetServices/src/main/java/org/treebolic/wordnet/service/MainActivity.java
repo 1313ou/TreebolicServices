@@ -5,6 +5,7 @@
 package org.treebolic.wordnet.service;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -41,11 +42,12 @@ import org.treebolic.wordnet.service.client.TreebolicWordNetBoundClient;
 import org.treebolic.wordnet.service.client.TreebolicWordNetIntentClient;
 import org.treebolic.wordnet.service.client.TreebolicWordNetMessengerClient;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -76,11 +78,6 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	private ITreebolicClient client;
 
 	/**
-	 * Request data code
-	 */
-	static private final int REQUEST_DATA_FROM_DOWNLOADER = 0x7777;
-
-	/**
 	 * Data deployer
 	 */
 	private Deployer deployer;
@@ -94,6 +91,11 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	 * Data button
 	 */
 	private MenuItem dataButton;
+
+	/**
+	 * Activity result launcher
+	 */
+	protected ActivityResultLauncher<Intent> activityResultLauncher;
 
 	// L I F E C Y C L E
 
@@ -111,6 +113,25 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		// toolbar
 		final Toolbar toolbar = findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
+
+		// activity result launcher
+		this.activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+			boolean success = result.getResultCode() == Activity.RESULT_OK;
+			if (success)
+			{
+				// handle selection of target by other activity which returns selected target
+				Intent returnIntent = result.getData();
+				if (returnIntent != null)
+				{
+					boolean downloadDataAvailable = returnIntent.getBooleanExtra(org.treebolic.download.DownloadActivity.RESULT_DOWNLOAD_DATA_AVAILABLE, false);
+					if (downloadDataAvailable)
+					{
+						downloadDataAvailable = this.deployer.status();
+					}
+					this.dataButton.setIcon(downloadDataAvailable ? R.drawable.ic_action_done : R.drawable.ic_action_error);
+				}
+			}
+		});
 
 		// set up the action bar
 		final ActionBar actionBar = getSupportActionBar();
@@ -485,26 +506,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 
 	private void requestDownload()
 	{
-		startActivityForResult(new Intent(this, DownloadActivity.class), MainActivity.REQUEST_DATA_FROM_DOWNLOADER);
-	}
-
-	@Override
-	protected void onActivityResult(final int requestCode, final int resultCode, @Nullable final Intent returnIntent)
-	{
-		// handle selection of target by other activity which returns selected target
-		if (resultCode == AppCompatActivity.RESULT_OK)
-		{
-			if (requestCode == REQUEST_DATA_FROM_DOWNLOADER && returnIntent != null)
-			{
-				boolean downloadDataAvailable = returnIntent.getBooleanExtra(org.treebolic.download.DownloadActivity.RESULT_DOWNLOAD_DATA_AVAILABLE, false);
-				if (downloadDataAvailable)
-				{
-					downloadDataAvailable = this.deployer.status();
-				}
-				this.dataButton.setIcon(downloadDataAvailable ? R.drawable.ic_action_done : R.drawable.ic_action_error);
-			}
-			super.onActivityResult(requestCode, resultCode, returnIntent);
-		}
+		this.activityResultLauncher.launch(new Intent(this, DownloadActivity.class));
 	}
 
 	/**

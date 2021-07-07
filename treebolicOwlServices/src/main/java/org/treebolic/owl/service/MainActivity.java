@@ -5,6 +5,7 @@
 package org.treebolic.owl.service;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -40,16 +41,17 @@ import org.treebolic.owl.service.client.TreebolicOwlBoundClient;
 import org.treebolic.owl.service.client.TreebolicOwlIntentClient;
 import org.treebolic.owl.service.client.TreebolicOwlMessengerClient;
 import org.treebolic.services.IntentFactory;
-import org.treebolic.storage.Storage;
 import org.treebolic.storage.Deployer;
+import org.treebolic.storage.Storage;
 
 import java.io.File;
 import java.io.IOException;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
@@ -66,12 +68,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	 * Log tag
 	 */
 	static private final String TAG = "ServiceOwlA";
-
-	/**
-	 * File request code
-	 */
-	private static final int REQUEST_FILE_CODE = 1;
-
+	
 	/**
 	 * Whether to forward model directly to activity
 	 */
@@ -82,6 +79,11 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	 */
 	@Nullable
 	private ITreebolicClient client;
+
+	/**
+	 * Activity result launcher
+	 */
+	protected ActivityResultLauncher<Intent> activityResultLauncher;
 
 	// L I F E C Y C L E
 
@@ -109,6 +111,46 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 
 		// init
 		initialize();
+
+		// activity result launcher
+		this.activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+			boolean success = result.getResultCode() == Activity.RESULT_OK;
+			if (success)
+			{
+				Intent returnIntent = result.getData();
+				if (returnIntent != null)
+				{
+					final Uri fileUri = returnIntent.getData();
+					if (fileUri != null)
+					{
+						Toast.makeText(this, fileUri.toString(), Toast.LENGTH_SHORT).show();
+						final String path = fileUri.getPath();
+						if (path != null)
+						{
+							final File file = new File(path);
+							final String parent = file.getParent();
+							if (parent != null)
+							{
+								final File parentFile = new File(parent);
+								final Uri parentUri = Uri.fromFile(parentFile);
+								final String query = file.getName();
+								String base = parentUri.toString();
+								if (!base.endsWith("/"))
+								{
+									base += '/';
+								}
+								Settings.save(this, query, base);
+							}
+						}
+					}
+				}
+
+				updateButton();
+
+				// query
+				// query();
+			}
+		});
 
 		// fragment
 		if (savedInstanceState == null)
@@ -467,47 +509,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_INITIAL_DIR, Settings.getStringPref(this, TreebolicIface.PREF_BASE));
 		intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_EXTENSION_FILTER, new String[]{"owl", "rdf"});
 		intent.addCategory(Intent.CATEGORY_OPENABLE);
-		startActivityForResult(intent, MainActivity.REQUEST_FILE_CODE);
-	}
-
-	@Override
-	protected void onActivityResult(final int requestCode, final int resultCode, @Nullable final Intent returnIntent)
-	{
-		if (requestCode == REQUEST_FILE_CODE)
-		{
-			if (resultCode == AppCompatActivity.RESULT_OK && returnIntent != null)
-			{
-				final Uri fileUri = returnIntent.getData();
-				if (fileUri != null)
-				{
-					Toast.makeText(this, fileUri.toString(), Toast.LENGTH_SHORT).show();
-					final String path = fileUri.getPath();
-					if (path != null)
-					{
-						final File file = new File(path);
-						final String parent = file.getParent();
-						if (parent != null)
-						{
-							final File parentFile = new File(parent);
-							final Uri parentUri = Uri.fromFile(parentFile);
-							final String query = file.getName();
-							String base = parentUri.toString();
-							if (!base.endsWith("/"))
-							{
-								base += '/';
-							}
-							Settings.save(this, query, base);
-						}
-					}
-				}
-			}
-
-			updateButton();
-
-			// query
-			// query();
-		}
-		super.onActivityResult(requestCode, resultCode, returnIntent);
+		this.activityResultLauncher.launch(intent);
 	}
 
 	// H E L P E R

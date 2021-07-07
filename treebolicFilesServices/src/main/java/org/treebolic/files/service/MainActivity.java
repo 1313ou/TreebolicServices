@@ -5,6 +5,7 @@
 package org.treebolic.files.service;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -45,11 +46,12 @@ import org.treebolic.services.IntentFactory;
 
 import java.io.File;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
@@ -68,11 +70,6 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	static private final String TAG = "ServiceFilesA";
 
 	/**
-	 * Dir request code
-	 */
-	private static final int REQUEST_DIR_CODE = 1;
-
-	/**
 	 * Whether to forward model directly to activity
 	 */
 	static private final boolean FORWARD = true;
@@ -82,6 +79,11 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	 */
 	@Nullable
 	private ITreebolicClient client;
+
+	/**
+	 * Activity result launcher
+	 */
+	protected ActivityResultLauncher<Intent> activityResultLauncher;
 
 	// L I F E C Y C L E
 
@@ -109,6 +111,30 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 
 		// init
 		initialize();
+
+		// activity result launcher
+		this.activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+			boolean success = result.getResultCode() == Activity.RESULT_OK;
+			if (success)
+			{
+				// handle selection of target by other activity which returns selected target
+				Intent returnIntent = result.getData();
+				if (returnIntent != null)
+				{
+					final Uri fileUri = returnIntent.getData();
+					if (fileUri != null)
+					{
+						Toast.makeText(this, fileUri.toString(), Toast.LENGTH_SHORT).show();
+						Settings.putStringPref(this, TreebolicIface.PREF_SOURCE, fileUri.getPath());
+
+						updateButton();
+
+						// query
+						// query());
+					}
+				}
+			}
+		});
 
 		// fragment
 		if (savedInstanceState == null)
@@ -251,31 +277,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_CHOOSE_DIR, true);
 		intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_EXTENSION_FILTER, new String[]{});
 		intent.addCategory(Intent.CATEGORY_OPENABLE);
-		startActivityForResult(intent, MainActivity.REQUEST_DIR_CODE);
-	}
-
-	@Override
-	protected void onActivityResult(final int requestCode, final int resultCode, @Nullable final Intent returnIntent)
-	{
-		// handle selection of target by other activity which returns selected target
-		if (resultCode == AppCompatActivity.RESULT_OK && returnIntent != null)
-		{
-			final Uri fileUri = returnIntent.getData();
-			if (fileUri != null)
-			{
-				Toast.makeText(this, fileUri.toString(), Toast.LENGTH_SHORT).show();
-				if (requestCode == REQUEST_DIR_CODE)
-				{
-					Settings.putStringPref(this, TreebolicIface.PREF_SOURCE, fileUri.getPath());
-
-					updateButton();
-
-					// query
-					// query());
-				}
-			}
-		}
-		super.onActivityResult(requestCode, resultCode, returnIntent);
+		this.activityResultLauncher.launch(intent);
 	}
 
 	abstract static class Runnable1

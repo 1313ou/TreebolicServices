@@ -4,6 +4,7 @@
 
 package org.treebolic.wordnet.service;
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -23,9 +24,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Convenience class for provider to acquire database data from provider
@@ -55,14 +57,14 @@ public class QueryProviderActivity extends AppCompatCommonActivity
 	private static final String PROVIDER_ACTIVITY = "org.wordnet.provider.FileProviderActivity";
 
 	/**
-	 * Request code
-	 */
-	private static final int REQUEST_CODE = 8888;
-
-	/**
 	 * Data deployer
 	 */
 	private Deployer deployer;
+
+	/**
+	 * Activity result launcher
+	 */
+	protected ActivityResultLauncher<Intent> activityResultLauncher;
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
@@ -75,90 +77,88 @@ public class QueryProviderActivity extends AppCompatCommonActivity
 		// deployer
 		this.deployer = new Deployer(getFilesDir());
 
-		// button
-		final Button closeButton = findViewById(R.id.button);
-		closeButton.setOnClickListener(v -> {
-			final Intent requestFileIntent = new Intent();
-			requestFileIntent.setAction(Intent.ACTION_DEFAULT);
-			requestFileIntent.setComponent(new ComponentName(QueryProviderActivity.PROVIDER_PKG, QueryProviderActivity.PROVIDER_ACTIVITY));
-			startActivityForResult(requestFileIntent, QueryProviderActivity.REQUEST_CODE);
-		});
-	}
-
-	@Override
-	protected void onActivityResult(final int requestCode, final int resultCode, @Nullable final Intent returnIntent)
-	{
-		if (requestCode == QueryProviderActivity.REQUEST_CODE)
-		{
-			if (resultCode == AppCompatActivity.RESULT_OK && returnIntent != null)
+		// activity result launcher
+		this.activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+			boolean success = result.getResultCode() == Activity.RESULT_OK;
+			if (success)
 			{
 				// retrieve arguments
-				final Uri returnUri = returnIntent.getData();
-				if (returnUri != null)
+				final Intent returnIntent = result.getData();
+				if (returnIntent != null)
 				{
-					final String path = returnUri.getPath();
-					final boolean asTarGz = path != null && path.endsWith(".tar.gz");
-					ParcelFileDescriptor fileDescriptor = null;
-					FileInputStream fin = null;
-
-					// try to open the file for "read" access using the returned URI. If the file isn't found, write to the error log and return.
-					try
+					final Uri uri = returnIntent.getData();
+					if (uri != null)
 					{
-						// get the content resolver instance for this context, and use it to get a ParcelFileDescriptor for the file.
-						fileDescriptor = getContentResolver().openFileDescriptor(returnUri, "r");
-						if (fileDescriptor != null)
+						final String path = uri.getPath();
+						final boolean asTarGz = path != null && path.endsWith(".tar.gz");
+						ParcelFileDescriptor fileDescriptor = null;
+						FileInputStream fin = null;
+
+						// try to open the file for "read" access using the returned URI. If the file isn't found, write to the error log and return.
+						try
 						{
-							// get a regular file descriptor for the file
-							final FileDescriptor fd = fileDescriptor.getFileDescriptor();
-
-							fin = new FileInputStream(fd);
-							this.deployer.process(fin, asTarGz);
-
-							Toast.makeText(this, R.string.ok_data, Toast.LENGTH_SHORT).show();
-						}
-					}
-					catch (@NonNull final FileNotFoundException e)
-					{
-						Log.e(QueryProviderActivity.TAG, "provider data " + returnUri, e);
-						Toast.makeText(this, R.string.fail_data, Toast.LENGTH_SHORT).show();
-					}
-					catch (@NonNull final IOException e)
-					{
-						Log.e(QueryProviderActivity.TAG, "provider data " + returnUri, e);
-						Toast.makeText(this, R.string.fail_data, Toast.LENGTH_SHORT).show();
-					}
-					finally
-					{
-						if (fileDescriptor != null)
-						{
-							try
+							// get the content resolver instance for this context, and use it to get a ParcelFileDescriptor for the file.
+							fileDescriptor = getContentResolver().openFileDescriptor(uri, "r");
+							if (fileDescriptor != null)
 							{
-								fileDescriptor.close();
-							}
-							catch (@NonNull final IOException ignored)
-							{
-								//
+								// get a regular file descriptor for the file
+								final FileDescriptor fd = fileDescriptor.getFileDescriptor();
+
+								fin = new FileInputStream(fd);
+								this.deployer.process(fin, asTarGz);
+
+								Toast.makeText(this, R.string.ok_data, Toast.LENGTH_SHORT).show();
 							}
 						}
-						if (fin != null)
+						catch (@NonNull final FileNotFoundException e)
 						{
-							try
+							Log.e(QueryProviderActivity.TAG, "provider data " + uri, e);
+							Toast.makeText(this, R.string.fail_data, Toast.LENGTH_SHORT).show();
+						}
+						catch (@NonNull final IOException e)
+						{
+							Log.e(QueryProviderActivity.TAG, "provider data " + uri, e);
+							Toast.makeText(this, R.string.fail_data, Toast.LENGTH_SHORT).show();
+						}
+						finally
+						{
+							if (fileDescriptor != null)
 							{
-								fin.close();
+								try
+								{
+									fileDescriptor.close();
+								}
+								catch (@NonNull final IOException ignored)
+								{
+									//
+								}
 							}
-							catch (@NonNull final IOException ignored)
+							if (fin != null)
 							{
-								//
+								try
+								{
+									fin.close();
+								}
+								catch (@NonNull final IOException ignored)
+								{
+									//
+								}
 							}
 						}
 					}
 				}
 			}
 			finish();
-		}
+		});
 
-		// super
-		super.onActivityResult(requestCode, resultCode, returnIntent);
+		// button
+		final Button closeButton = findViewById(R.id.button);
+		closeButton.setOnClickListener(v -> {
+			final Intent requestFileIntent = new Intent();
+			requestFileIntent.setAction(Intent.ACTION_DEFAULT);
+			requestFileIntent.setComponent(new ComponentName(QueryProviderActivity.PROVIDER_PKG, QueryProviderActivity.PROVIDER_ACTIVITY));
+			activityResultLauncher.launch(requestFileIntent);
+		});
 	}
 
 	/**
