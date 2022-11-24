@@ -51,8 +51,10 @@ dependencies {
     implementation project(':treebolicClientsIface')
     implementation project(':treebolicClientsLib')
     implementation project(':treebolicIface')
-    implementation project(':treebolicLibModel')
     implementation project(':treebolicParcel')
+    // implementation project(':treebolicLibModel')
+
+    implementation ('io.github.treebolic:treebolic-model:4.0-SNAPSHOT')
 
     implementation project(':commonLib')
     implementation project(':downloadLib')
@@ -64,8 +66,11 @@ dependencies {
     implementation files('libs/treebolic-provider-wordnet-jwi-nodata.jar')
     implementation files('libs/treebolic-balancer.jar')
 
-    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'androidx.preference:preference:1.2.0'
-    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'com.google.android.material:material:1.7.0'
     implementation 'org.apache.commons:commons-compress:1.20'
+
+    //TODO remove when bug fixed in appcompat:1.6.0
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
 }
