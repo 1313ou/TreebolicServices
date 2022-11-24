@@ -1123,7 +1123,7 @@ public class ParcelableModel implements Parcelable
 					{
 						try
 						{
-							final Image image = new Image(null);
+							final Image image = new Image((Bitmap) null);
 							image.setFromByteArray(imageByteArray);
 							return image;
 						}
