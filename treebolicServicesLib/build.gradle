@@ -30,14 +30,15 @@ android {
 dependencies {
     implementation project(':treebolicParcel')
     implementation project(':treebolicIface')
-    implementation project(':treebolicGlueIface')
     implementation project(':treebolicGlue')
-    implementation project(':treebolicGraph')
-    implementation project(':treebolicMutable')
     implementation project(':treebolicAidl')
     implementation project(':treebolicServicesIface')
     implementation project(':treebolicClientsIface')
 
-    implementation 'androidx.core:core:1.8.0'
-    implementation 'androidx.annotation:annotation:1.4.0'
+    implementation ('io.github.treebolic:treebolic-glue-iface:4.0-SNAPSHOT')
+    implementation ('io.github.treebolic:treebolic-graph:4.0-SNAPSHOT')
+    implementation ('io.github.treebolic:treebolic-mutable:4.0-SNAPSHOT')
+
+    implementation 'androidx.core:core:1.9.0'
+    implementation 'androidx.annotation:annotation:1.5.0'
 }

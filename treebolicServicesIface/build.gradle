@@ -28,12 +28,13 @@ android {
 }
 
 dependencies {
-    implementation project(':treebolicLibModel')
+    implementation ('io.github.treebolic:treebolic-model:4.0-SNAPSHOT')
+
     implementation project(':treebolicParcel')
     implementation project(':treebolicIface')
     implementation project(':treebolicAidl')
     implementation project(':treebolicClientsIface')
 
-    implementation 'androidx.appcompat:appcompat:1.4.2'
-    implementation 'androidx.annotation:annotation:1.4.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'androidx.annotation:annotation:1.5.0'
 }
