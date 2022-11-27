@@ -16,7 +16,6 @@ import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import treebolic.glue.Color;
 import treebolic.glue.Image;
 import treebolic.model.IEdge;
 import treebolic.model.INode;
@@ -222,9 +221,9 @@ public class ParcelableModel implements Parcelable
 		final String label = node.getLabel();
 		final String edgeLabel = node.getEdgeLabel();
 		final String content = node.getContent();
-		final Color backColor = node.getBackColor();
-		final Color foreColor = node.getForeColor();
-		final Color edgeColor = node.getEdgeColor();
+		final Integer backColor = node.getBackColor();
+		final Integer foreColor = node.getForeColor();
+		final Integer edgeColor = node.getEdgeColor();
 		final Integer edgeStyle = node.getEdgeStyle();
 		final String link = node.getLink();
 		final String target = node.getTarget();
@@ -323,7 +322,7 @@ public class ParcelableModel implements Parcelable
 
 		// functional
 		final String label = edge.getLabel();
-		final Color color = edge.getColor();
+		final Integer color = edge.getColor();
 		final Integer style = edge.getStyle();
 		final String imageFile = edge.getImageFile();
 		final int imageIndex = edge.getImageIndex();
@@ -590,23 +589,6 @@ public class ParcelableModel implements Parcelable
 		}
 	}
 
-	/**
-	 * Write color to parcel
-	 *
-	 * @param parcel parcel to write to
-	 * @param color  color
-	 */
-	private static void writeToParcel(@NonNull final Parcel parcel, @Nullable final Color color)
-	{
-		if (color == null || color.isNull())
-		{
-			parcel.writeInt(0);
-			return;
-		}
-		parcel.writeInt(1);
-		parcel.writeInt(color.getRGB());
-	}
-
 	// R E A D H E L P E R S
 
 	// MODEL
@@ -687,9 +669,9 @@ public class ParcelableModel implements Parcelable
 		final String label = ParcelableModel.readString(parcel);
 		final String edgeLabel = ParcelableModel.readString(parcel);
 		final String content = ParcelableModel.readString(parcel);
-		final Color backColor = ParcelableModel.readColor(parcel);
-		final Color foreColor = ParcelableModel.readColor(parcel);
-		final Color edgeColor = ParcelableModel.readColor(parcel);
+		final Integer backColor = ParcelableModel.readInteger(parcel);
+		final Integer foreColor = ParcelableModel.readInteger(parcel);
+		final Integer edgeColor = ParcelableModel.readInteger(parcel);
 		final Integer edgeStyle = ParcelableModel.readInteger(parcel);
 		final String link = ParcelableModel.readString(parcel);
 		final String target = ParcelableModel.readString(parcel);
@@ -763,18 +745,18 @@ public class ParcelableModel implements Parcelable
 			final List<INode> children = node.getChildren();
 			//if (children != null)
 			//{
-				for (int i = 0; i < n; i++)
-				{
-					/*final INode child =*/
-					ParcelableModel.readNode(parcel);
-					// added to parent by Constructor
-					// children.add(child);
-				}
-				if (children.size() != n)
-				{
-					//Log.e(TAG, "inconsistent child sizes expected=" + n + " real=" + children.size());
-					throw new IllegalArgumentException("inconsistent child sizes expected=" + n + " real=" + children.size());
-				}
+			for (int i = 0; i < n; i++)
+			{
+				/*final INode child =*/
+				ParcelableModel.readNode(parcel);
+				// added to parent by Constructor
+				// children.add(child);
+			}
+			if (children.size() != n)
+			{
+				//Log.e(TAG, "inconsistent child sizes expected=" + n + " real=" + children.size());
+				throw new IllegalArgumentException("inconsistent child sizes expected=" + n + " real=" + children.size());
+			}
 			//}
 		}
 		return node;
@@ -843,7 +825,7 @@ public class ParcelableModel implements Parcelable
 
 		// functional
 		final String label = ParcelableModel.readString(parcel);
-		final Color color = ParcelableModel.readColor(parcel);
+		final Integer color = ParcelableModel.readInteger(parcel);
 		final Integer style = ParcelableModel.readInteger(parcel);
 		final String imageFile = ParcelableModel.readString(parcel);
 		final Integer imageIndex = ParcelableModel.readInteger(parcel);
@@ -883,8 +865,8 @@ public class ParcelableModel implements Parcelable
 	private static Settings readSettings(@NonNull final Parcel parcel)
 	{
 		final Settings settings = new Settings();
-		settings.backColor = ParcelableModel.readColor(parcel);
-		settings.foreColor = ParcelableModel.readColor(parcel);
+		settings.backColor = ParcelableModel.readInteger(parcel);
+		settings.foreColor = ParcelableModel.readInteger(parcel);
 		settings.backgroundImageFile = ParcelableModel.readString(parcel);
 		settings.fontFace = ParcelableModel.readString(parcel);
 		settings.fontSize = ParcelableModel.readInteger(parcel);
@@ -910,13 +892,13 @@ public class ParcelableModel implements Parcelable
 		settings.yMoveTo = ParcelableModel.readFloat(parcel);
 		settings.xShift = ParcelableModel.readFloat(parcel);
 		settings.yShift = ParcelableModel.readFloat(parcel);
-		settings.nodeBackColor = ParcelableModel.readColor(parcel);
-		settings.nodeForeColor = ParcelableModel.readColor(parcel);
+		settings.nodeBackColor = ParcelableModel.readInteger(parcel);
+		settings.nodeForeColor = ParcelableModel.readInteger(parcel);
 		settings.defaultNodeImage = ParcelableModel.readString(parcel);
-		settings.treeEdgeColor = ParcelableModel.readColor(parcel);
+		settings.treeEdgeColor = ParcelableModel.readInteger(parcel);
 		settings.treeEdgeStyle = ParcelableModel.readInteger(parcel);
 		settings.defaultTreeEdgeImage = ParcelableModel.readString(parcel);
-		settings.edgeColor = ParcelableModel.readColor(parcel);
+		settings.edgeColor = ParcelableModel.readInteger(parcel);
 		settings.edgeStyle = ParcelableModel.readInteger(parcel);
 		settings.defaultEdgeImage = ParcelableModel.readString(parcel);
 		settings.menu = ParcelableModel.readMenu(parcel);
@@ -1139,24 +1121,6 @@ public class ParcelableModel implements Parcelable
 					return new Image(bitmap);
 			}
 
-		}
-		return null;
-	}
-
-	/**
-	 * Read color from parcel
-	 *
-	 * @param parcel parcel to read from
-	 * @return color
-	 */
-	@Nullable
-	private static Color readColor(@NonNull final Parcel parcel)
-	{
-		final int isNotNull = parcel.readInt();
-		if (isNotNull != 0)
-		{
-			final int color = parcel.readInt();
-			return new Color(color);
 		}
 		return null;
 	}
