@@ -178,7 +178,7 @@ public class ParcelableModel implements Parcelable
 		parcel.writeInt(1);
 		ParcelableModel.writeToParcel(parcel, model.tree);
 		ParcelableModel.writeToParcel(parcel, model.settings);
-		ParcelableModel.writeToParcel(parcel, model.images);
+		ParcelableModel.writeToParcel(parcel, (Image[]) model.images);
 		Log.d(ParcelableModel.TAG, "parcel write size=" + parcel.dataSize() + " pos=" + parcel.dataPosition());
 	}
 
