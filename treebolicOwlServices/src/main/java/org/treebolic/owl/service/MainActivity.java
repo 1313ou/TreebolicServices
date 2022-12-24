@@ -422,7 +422,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 			{
 				// choose bundle entry
 				EntryChooser.choose(this, new File(archiveUri.getPath()), zipEntry -> {
-					final String base = "jar:" + archiveUri.toString() + "!/";
+					final String base = "jar:" + archiveUri + "!/";
 					query(zipEntry, base, Settings.getStringPref(MainActivity.this, TreebolicIface.PREF_IMAGEBASE), Settings.getStringPref(MainActivity.this, TreebolicIface.PREF_SETTINGS));
 				});
 			}
