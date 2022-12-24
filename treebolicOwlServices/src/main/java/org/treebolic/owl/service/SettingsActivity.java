@@ -10,6 +10,7 @@ import org.treebolic.AppCompatCommonPreferenceActivity;
 import org.treebolic.TreebolicIface;
 import org.treebolic.preference.OpenEditTextPreference;
 
+import androidx.annotation.NonNull;
 import androidx.preference.EditTextPreference;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
@@ -68,7 +69,7 @@ public class SettingsActivity extends AppCompatCommonPreferenceActivity
 		}
 
 		@Override
-		public void onDisplayPreferenceDialog(final Preference preference)
+		public void onDisplayPreferenceDialog(@NonNull final Preference preference)
 		{
 			if (!OpenEditTextPreference.onDisplayPreferenceDialog(this, preference))
 			{
@@ -92,7 +93,7 @@ public class SettingsActivity extends AppCompatCommonPreferenceActivity
 		}
 
 		@Override
-		public void onDisplayPreferenceDialog(final Preference preference)
+		public void onDisplayPreferenceDialog(@NonNull final Preference preference)
 		{
 			if (!OpenEditTextPreference.onDisplayPreferenceDialog(this, preference))
 			{
