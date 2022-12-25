@@ -7,6 +7,7 @@ package org.treebolic.clients;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -105,7 +106,14 @@ public class TreebolicIntentClient implements org.treebolic.clients.iface.ITreeb
 				Model model = null;
 				if (isSerialized)
 				{
-					model = (Model) resultData.getSerializable(ITreebolicService.RESULT_MODEL);
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+					{
+						model = resultData.getSerializable(ITreebolicService.RESULT_MODEL, Model.class);
+					}
+					else
+					{
+						model = (Model) resultData.getSerializable(ITreebolicService.RESULT_MODEL);
+					}
 				}
 				else
 				{

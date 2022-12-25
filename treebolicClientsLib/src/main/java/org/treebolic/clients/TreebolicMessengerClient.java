@@ -8,6 +8,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -76,7 +77,14 @@ public class TreebolicMessengerClient implements ITreebolicClient
 				Model model = null;
 				if (isSerialized)
 				{
-					model = (Model) resultData.getSerializable(ITreebolicService.RESULT_MODEL);
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+					{
+						model = resultData.getSerializable(ITreebolicService.RESULT_MODEL, Model.class);
+					}
+					else
+					{
+						model = (Model) resultData.getSerializable(ITreebolicService.RESULT_MODEL);
+					}
 				}
 				else
 				{

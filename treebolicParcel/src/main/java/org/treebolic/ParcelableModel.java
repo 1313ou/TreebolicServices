@@ -5,6 +5,7 @@
 package org.treebolic;
 
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
@@ -88,7 +89,14 @@ public class ParcelableModel implements Parcelable
 	{
 		if (ParcelableModel.SERIALIZE)
 		{
-			this.model = (Model) parcel.readSerializable();
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+			{
+				this.model = parcel.readSerializable(null, Model.class);
+			}
+			else
+			{
+				this.model = (Model) parcel.readSerializable();
+			}
 		}
 		else
 		{
@@ -607,7 +615,15 @@ public class ParcelableModel implements Parcelable
 	@Nullable
 	public static Model readSerializableModel(@NonNull final Parcel parcel)
 	{
-		return (Model) parcel.readSerializable();
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+		{
+			return parcel.readSerializable(null, Model.class);
+		}
+		else
+		{
+			//noinspection deprecation
+			return (Model) parcel.readSerializable();
+		}
 	}
 
 	/**
@@ -1098,7 +1114,16 @@ public class ParcelableModel implements Parcelable
 			switch (ParcelableModel.IMAGEMETHOD)
 			{
 				case IMAGE_SERIALIZE:
-					return (Image) parcel.readSerializable();
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+					{
+						return parcel.readSerializable(null, Image.class);
+					}
+					else
+					{
+						//noinspection deprecation
+						return (Image) parcel.readSerializable();
+					}
+
 				case IMAGE_ASBYTEARRAY:
 					final byte[] imageByteArray = parcel.createByteArray();
 					if (imageByteArray != null)
