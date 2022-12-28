@@ -6,6 +6,8 @@ apply plugin: 'com.android.library'
 
 android {
 
+    namespace "org.treebolic.parcel"
+
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
@@ -34,8 +36,8 @@ android {
 }
 
 dependencies {
-    implementation ('io.github.treebolic:treebolic-model:4.0-SNAPSHOT')
-    implementation ('io.github.treebolic:treebolic-mutable:4.0-SNAPSHOT')
+    implementation('io.github.treebolic:treebolic-model:4.0-SNAPSHOT')
+    implementation('io.github.treebolic:treebolic-mutable:4.0-SNAPSHOT')
 
     implementation project(':treebolicGlue')
     implementation 'androidx.annotation:annotation:1.5.0'
@@ -43,4 +45,4 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
- }
+}

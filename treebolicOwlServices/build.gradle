@@ -10,6 +10,8 @@ keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
 android {
 
+    namespace "org.treebolic.owl.service"
+
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
@@ -55,7 +57,7 @@ dependencies {
     implementation project(':treebolicParcel')
     // implementation project(':treebolicLibModel')
 
-    implementation ('io.github.treebolic:treebolic-model:4.0-SNAPSHOT')
+    implementation('io.github.treebolic:treebolic-model:4.0-SNAPSHOT')
 
     implementation project(':commonLib')
     implementation project(':storageLib')

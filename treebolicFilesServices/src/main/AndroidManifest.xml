@@ -5,7 +5,6 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
-          package="org.treebolic.files.service"
           android:sharedUserId="org.treebolic.userId">
 
 	<permission android:name="org.treebolic.files.service.USE" android:protectionLevel="normal" android:label="Use service" />
