@@ -55,10 +55,12 @@ dependencies {
     implementation project(':treebolicClientsLib')
     implementation project(':treebolicIface')
     implementation project(':treebolicParcel')
+    implementation project(':treebolicFilesProvider')
     // implementation project(':treebolicLibModel')
 
-    implementation('io.github.treebolic:treebolic-model:4.0-SNAPSHOT')
-    implementation('io.github.treebolic:treebolic-loadbalancer:4.0-SNAPSHOT')
+    implementation 'io.github.treebolic:provider-files:4.0-SNAPSHOT'
+    implementation 'io.github.treebolic:treebolic-model:4.0-SNAPSHOT'
+    implementation 'io.github.treebolic:treebolic-loadbalancer:4.0-SNAPSHOT'
 
     implementation project(':commonLib')
     implementation project(':storageLib')
@@ -67,9 +69,7 @@ dependencies {
     implementation project(':rateLib')
     implementation project(':othersLib')
     implementation project(':donateLib')
-
-    implementation files('libs/treebolic-provider-files.jar')
-
+    
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'androidx.preference:preference:1.2.0'
     implementation 'com.google.android.material:material:1.7.0'

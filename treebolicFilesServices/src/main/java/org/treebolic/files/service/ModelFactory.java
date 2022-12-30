@@ -12,7 +12,7 @@ import java.net.URL;
 
 import androidx.annotation.NonNull;
 import treebolic.ILocator;
-import treebolic.provider.files.Provider;
+import treebolic.provider.files.Provider2;
 
 /**
  * Model factory
@@ -33,7 +33,7 @@ public class ModelFactory extends org.treebolic.services.ModelFactory
 	 */
 	public ModelFactory(@NonNull final Context context)
 	{
-		super(new Provider(), Utils.makeLogProviderContext(ModelFactory.TAG), makeLocator(context), null);
+		super(new Provider2(), Utils.makeLogProviderContext(ModelFactory.TAG), makeLocator(context), null);
 	}
 
 	@NonNull
@@ -44,15 +44,15 @@ public class ModelFactory extends org.treebolic.services.ModelFactory
 		{
 			@Override
 			public URL getBase()
-				{
-					return null;
-				}
+			{
+				return null;
+			}
 
 			@Override
-		public URL getImagesBase()
-				{
-					return null;
-				}
+			public URL getImagesBase()
+			{
+				return null;
+			}
 		};
 	}
 
