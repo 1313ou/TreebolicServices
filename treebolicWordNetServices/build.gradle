@@ -57,7 +57,9 @@ dependencies {
     implementation project(':treebolicParcel')
     // implementation project(':treebolicLibModel')
 
-    implementation ('io.github.treebolic:treebolic-model:4.0-SNAPSHOT')
+    implementation 'io.github.treebolic:treebolic-model:4.0-SNAPSHOT'
+    implementation 'io.github.treebolic:provider-wordnet-jwi:4.0-SNAPSHOT'
+    implementation 'io.github.treebolic:treebolic-loadbalancer:4.0-SNAPSHOT'
 
     implementation project(':commonLib')
     implementation project(':downloadLib')
@@ -65,9 +67,6 @@ dependencies {
     implementation project(':rateLib')
     implementation project(':othersLib')
     implementation project(':donateLib')
-
-    implementation files('libs/treebolic-provider-wordnet-jwi-nodata.jar')
-    implementation files('libs/treebolic-balancer.jar')
 
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'androidx.preference:preference:1.2.0'
