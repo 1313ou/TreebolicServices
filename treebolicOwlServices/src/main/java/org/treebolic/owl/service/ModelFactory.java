@@ -14,7 +14,7 @@ import java.net.URL;
 
 import androidx.annotation.NonNull;
 import treebolic.ILocator;
-import treebolic.provider.owl.owlapi.Provider;
+import treebolic.provider.owl.sax.Provider;
 
 /**
  * Owl Model factory

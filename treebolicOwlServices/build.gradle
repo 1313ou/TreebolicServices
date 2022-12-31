@@ -57,7 +57,8 @@ dependencies {
     implementation project(':treebolicParcel')
     // implementation project(':treebolicLibModel')
 
-    implementation('io.github.treebolic:treebolic-model:4.0-SNAPSHOT')
+    implementation 'io.github.treebolic:treebolic-model:4.0-SNAPSHOT'
+    implementation 'io.github.treebolic:provider-owl-sax:4.0-SNAPSHOT'
 
     implementation project(':commonLib')
     implementation project(':storageLib')
@@ -68,7 +69,7 @@ dependencies {
     implementation project(':othersLib')
     implementation project(':donateLib')
 
-    implementation files('libs/treebolic-provider-owl-owlapi-min.jar')
+    //implementation files('libs/treebolic-provider-owl-owlapi-min.jar')
     //implementation files('libs/treebolic-provider-owl-owlapi.jar')
 
     implementation 'androidx.appcompat:appcompat:1.5.1'
