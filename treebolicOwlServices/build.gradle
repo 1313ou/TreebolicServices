@@ -49,17 +49,15 @@ android {
 }
 
 dependencies {
+    implementation 'io.github.treebolic:treebolic-model:4.0-0'
+    implementation 'io.github.treebolic:provider-owl-sax:4.0-0'
+
     implementation project(':treebolicServicesIface')
     implementation project(':treebolicServicesLib')
     implementation project(':treebolicClientsIface')
     implementation project(':treebolicClientsLib')
     implementation project(':treebolicIface')
     implementation project(':treebolicParcel')
-    // implementation project(':treebolicLibModel')
-
-    implementation 'io.github.treebolic:treebolic-model:4.0-0'
-    implementation 'io.github.treebolic:provider-owl-sax:4.0-0'
-
     implementation project(':commonLib')
     implementation project(':storageLib')
     implementation project(':downloadLib')
@@ -68,9 +66,6 @@ dependencies {
     implementation project(':rateLib')
     implementation project(':othersLib')
     implementation project(':donateLib')
-
-    //implementation files('libs/treebolic-provider-owl-owlapi-min.jar')
-    //implementation files('libs/treebolic-provider-owl-owlapi.jar')
 
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'androidx.preference:preference:1.2.0'
