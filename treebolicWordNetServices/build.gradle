@@ -49,17 +49,15 @@ android {
 }
 
 dependencies {
+    implementation 'io.github.treebolic:treebolic-model:4.0-0'
+    implementation 'io.github.treebolic:provider-wordnet-jwi:4.0-0'
+
     implementation project(':treebolicServicesIface')
     implementation project(':treebolicServicesLib')
     implementation project(':treebolicClientsIface')
     implementation project(':treebolicClientsLib')
     implementation project(':treebolicIface')
     implementation project(':treebolicParcel')
-    // implementation project(':treebolicLibModel')
-
-    implementation 'io.github.treebolic:treebolic-model:4.0-0'
-    implementation 'io.github.treebolic:provider-wordnet-jwi:4.0-0'
-    implementation 'io.github.treebolic:treebolic-loadbalancer:4.0-0'
 
     implementation project(':commonLib')
     implementation project(':downloadLib')

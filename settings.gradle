@@ -45,6 +45,17 @@ project(':othersLib').projectDir = new File('../TreebolicSponsorLibs/othersLib/'
 include ':donateLib'
 project(':donateLib').projectDir = new File('../TreebolicSponsorLibs/donateLib/')
 
+// P R O V I D E R S
+
+include ':treebolicFilesProvider'
+project(':treebolicFilesProvider').projectDir = new File('../TreebolicFiles/treebolicFilesProvider/')
+
+include ':treebolicOwlProvider'
+project(':treebolicOwlProvider').projectDir = new File('../TreebolicOneOwl/treebolicOwlProvider/')
+
+include ':treebolicWordNetProvider'
+project(':treebolicWordNetProvider').projectDir = new File('../TreebolicWordNet/treebolicWordNetProvider/')
+
 // LIB
 
 include ':treebolicAidl'

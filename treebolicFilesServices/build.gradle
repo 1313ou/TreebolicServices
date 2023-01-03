@@ -49,9 +49,8 @@ android {
 }
 
 dependencies {
-    implementation 'io.github.treebolic:provider-files:4.0-0'
     implementation 'io.github.treebolic:treebolic-model:4.0-0'
-    implementation 'io.github.treebolic:treebolic-loadbalancer:4.0-0'
+    implementation 'io.github.treebolic:provider-files:4.0-0'
 
     implementation project(':treebolicServicesIface')
     implementation project(':treebolicServicesLib')
