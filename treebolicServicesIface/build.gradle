@@ -32,7 +32,7 @@ android {
 }
 
 dependencies {
-    implementation('io.github.treebolic:treebolic-model:4.0-SNAPSHOT')
+    implementation('io.github.treebolic:treebolic-model:4.0-0')
 
     implementation project(':treebolicParcel')
     implementation project(':treebolicIface')

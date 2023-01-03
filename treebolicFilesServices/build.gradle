@@ -58,9 +58,9 @@ dependencies {
     implementation project(':treebolicFilesProvider')
     // implementation project(':treebolicLibModel')
 
-    implementation 'io.github.treebolic:provider-files:4.0-SNAPSHOT'
-    implementation 'io.github.treebolic:treebolic-model:4.0-SNAPSHOT'
-    implementation 'io.github.treebolic:treebolic-loadbalancer:4.0-SNAPSHOT'
+    implementation 'io.github.treebolic:provider-files:4.0-0'
+    implementation 'io.github.treebolic:treebolic-model:4.0-0'
+    implementation 'io.github.treebolic:treebolic-loadbalancer:4.0-0'
 
     implementation project(':commonLib')
     implementation project(':storageLib')
