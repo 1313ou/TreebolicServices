@@ -32,9 +32,9 @@ android {
 }
 
 dependencies {
-    implementation 'io.github.treebolic:treebolic-glue-iface:4.0-0'
-    implementation 'io.github.treebolic:treebolic-graph:4.0-0'
-    implementation 'io.github.treebolic:treebolic-mutable:4.0-0'
+    implementation 'io.github.treebolic:treebolic-glue-iface:4.0-1'
+    implementation 'io.github.treebolic:treebolic-graph:4.0-1'
+    implementation 'io.github.treebolic:treebolic-mutable:4.0-1'
 
     implementation project(':treebolicParcel')
     implementation project(':treebolicIface')
