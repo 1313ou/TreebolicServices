@@ -11,6 +11,7 @@ import org.treebolic.services.Utils;
 import java.net.URL;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import treebolic.ILocator;
 import treebolic.provider.files.Provider2;
 
@@ -42,12 +43,14 @@ public class ModelFactory extends org.treebolic.services.ModelFactory
 		// Not used
 		return new ILocator()
 		{
+			@Nullable
 			@Override
 			public URL getBase()
 			{
 				return null;
 			}
 
+			@Nullable
 			@Override
 			public URL getImagesBase()
 			{

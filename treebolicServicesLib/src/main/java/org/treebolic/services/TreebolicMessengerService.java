@@ -42,7 +42,8 @@ abstract public class TreebolicMessengerService extends Service implements ITree
 	/**
 	 * Make callable
 	 */
-	static public Callable<Model> makeModelCallable(final String source, final String base, final String imageBase, final String settings, final IModelFactory factory)
+	@NonNull
+	static public Callable<Model> makeModelCallable(final String source, final String base, final String imageBase, final String settings, @NonNull final IModelFactory factory)
 	{
 		return () -> {
 
@@ -61,7 +62,8 @@ abstract public class TreebolicMessengerService extends Service implements ITree
 	/**
 	 * Return callback
 	 */
-	static public TaskRunner.Callback<Model> makeModelCallback(final Bundle bundle, final String urlScheme, final List<Messenger> clients)
+	@NonNull
+	static public TaskRunner.Callback<Model> makeModelCallback(@NonNull final Bundle bundle, final String urlScheme, @NonNull final List<Messenger> clients)
 	{
 		return (model) -> {
 
@@ -99,7 +101,8 @@ abstract public class TreebolicMessengerService extends Service implements ITree
 	/**
 	 * Forward callback
 	 */
-	static public TaskRunner.Callback<Model> makeModelForwardCallback(final WeakReference<Context> contextWeakReference, final String urlScheme, final Intent forward)
+	@NonNull
+	static public TaskRunner.Callback<Model> makeModelForwardCallback(@NonNull final WeakReference<Context> contextWeakReference, final String urlScheme, @NonNull final Intent forward)
 	{
 		return (model) -> {
 

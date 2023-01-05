@@ -34,7 +34,8 @@ abstract public class TreebolicBoundService extends Service implements ITreeboli
 	/**
 	 * Make callable
 	 */
-	static public Callable<Model> makeModelCallable(final String source, final String base, final String imageBase, final String settings, final IModelFactory factory)
+	@NonNull
+	static public Callable<Model> makeModelCallable(final String source, final String base, final String imageBase, final String settings, @NonNull final IModelFactory factory)
 	{
 		return () -> {
 
@@ -53,7 +54,8 @@ abstract public class TreebolicBoundService extends Service implements ITreeboli
 	/**
 	 * Return callback
 	 */
-	static public TaskRunner.Callback<Model> makeModelCallback(final String urlScheme, final IModelListener modelListener)
+	@NonNull
+	static public TaskRunner.Callback<Model> makeModelCallback(final String urlScheme, @NonNull final IModelListener modelListener)
 	{
 		return (model) -> {
 
@@ -66,7 +68,8 @@ abstract public class TreebolicBoundService extends Service implements ITreeboli
 	/**
 	 * Forward callback
 	 */
-	static public TaskRunner.Callback<Model> makeModelForwardCallback(final WeakReference<Context> contextWeakReference, final String urlScheme, final Intent forward)
+	@NonNull
+	static public TaskRunner.Callback<Model> makeModelForwardCallback(@NonNull final WeakReference<Context> contextWeakReference, final String urlScheme, @NonNull final Intent forward)
 	{
 		return (model) -> {
 
@@ -107,7 +110,7 @@ abstract public class TreebolicBoundService extends Service implements ITreeboli
 		}
 
 		@Override
-		public void makeModel(final String source, final String base, final String imageBase, final String settings, final IModelListener modelListener)
+		public void makeModel(final String source, final String base, final String imageBase, final String settings, @NonNull final IModelListener modelListener)
 		{
 			final Callable<Model> callable = makeModelCallable(source, base, imageBase, settings, this.factory);
 			final TaskRunner.Callback<Model> callback = makeModelCallback(this.urlScheme, modelListener);
@@ -115,7 +118,7 @@ abstract public class TreebolicBoundService extends Service implements ITreeboli
 		}
 
 		@Override
-		public void makeModel(final String source, final String base, final String imageBase, final String settings, final Intent forward)
+		public void makeModel(final String source, final String base, final String imageBase, final String settings, @NonNull final Intent forward)
 		{
 			final Callable<Model> callable = makeModelCallable(source, base, imageBase, settings, this.factory);
 			final TaskRunner.Callback<Model> callback = makeModelForwardCallback(new WeakReference<>(TreebolicBoundService.this), this.urlScheme, forward);
@@ -126,6 +129,7 @@ abstract public class TreebolicBoundService extends Service implements ITreeboli
 	/**
 	 * Binder that returns an interface to the service
 	 */
+	@NonNull
 	private final IBinder binder;
 
 	/**
@@ -141,6 +145,7 @@ abstract public class TreebolicBoundService extends Service implements ITreeboli
 	/**
 	 * When binding to the service, we return an interface to the service
 	 */
+	@NonNull
 	@Override
 	public IBinder onBind(final Intent intent)
 	{

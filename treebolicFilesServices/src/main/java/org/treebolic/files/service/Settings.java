@@ -42,7 +42,7 @@ public class Settings
 	 * @param context context
 	 */
 	@SuppressLint({"CommitPrefEdits", "ApplySharedPref"})
-	static public void setDefaults(final Context context)
+	static public void setDefaults(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 
@@ -64,7 +64,7 @@ public class Settings
 	 * @return value
 	 */
 	@Nullable
-	static public String getStringPref(final Context context, final String key)
+	static public String getStringPref(@NonNull final Context context, final String key)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getString(key, null);
@@ -78,7 +78,7 @@ public class Settings
 	 * @param value   value
 	 */
 	@SuppressLint({"CommitPrefEdits", "ApplySharedPref"})
-	static public void putStringPref(final Context context, @SuppressWarnings("SameParameterValue") final String key, final String value)
+	static public void putStringPref(@NonNull final Context context, @SuppressWarnings("SameParameterValue") final String key, final String value)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		sharedPref.edit().putString(key, value).commit();

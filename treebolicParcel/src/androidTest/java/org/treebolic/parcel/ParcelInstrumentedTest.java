@@ -17,6 +17,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 import treebolic.glue.iface.Colors;
@@ -132,7 +133,7 @@ public class ParcelInstrumentedTest
 		assertEquals(strB, strB2);
 	}
 
-	public static Parcel writeParcel(final Bundle bundle)
+	public static Parcel writeParcel(@NonNull final Bundle bundle)
 	{
 		// write bundle to parcel
 		final Parcel parcel = Parcel.obtain();
@@ -140,7 +141,7 @@ public class ParcelInstrumentedTest
 		return parcel;
 	}
 
-	public static Bundle readParcel(final Parcel parcel)
+	public static Bundle readParcel(@NonNull final Parcel parcel)
 	{
 		// extract bundle from parcel
 		parcel.setDataPosition(0);
@@ -152,13 +153,14 @@ public class ParcelInstrumentedTest
 		return bundle2;
 	}
 
-	public static void putParceledModel(final Model model, final Bundle bundle, final String key)
+	public static void putParceledModel(final Model model, @NonNull final Bundle bundle, final String key)
 	{
 		final ParcelableModel parcelableModel = new ParcelableModel(model);
 		bundle.putParcelable(key, parcelableModel);
 	}
 
-	public static Model getParceledModel(final Bundle bundle, final String key)
+	@Nullable
+	public static Model getParceledModel(@NonNull final Bundle bundle, final String key)
 	{
 		// model2
 		final ParcelableModel pmodel = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU ? //
@@ -167,6 +169,7 @@ public class ParcelInstrumentedTest
 		return pmodel != null ? pmodel.getModel() : null;
 	}
 
+	@NonNull
 	public static INode makeDefaultTree()
 	{
 		final String[][] data = { //
@@ -192,6 +195,7 @@ public class ParcelInstrumentedTest
 		return root;
 	}
 
+	@Nullable
 	private Model getSerialized(@NonNull final String asset)
 	{
 		final Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
@@ -211,7 +215,7 @@ public class ParcelInstrumentedTest
 		return null;
 	}
 
-	static public Object deserializeZip(final ZipInputStream zis, @SuppressWarnings("SameParameterValue") final String targetEntry) throws IOException, ClassNotFoundException
+	static public Object deserializeZip(@NonNull final ZipInputStream zis, @SuppressWarnings("SameParameterValue") final String targetEntry) throws IOException, ClassNotFoundException
 	{
 		ZipEntry entry;
 		while ((entry = zis.getNextEntry()) != null)

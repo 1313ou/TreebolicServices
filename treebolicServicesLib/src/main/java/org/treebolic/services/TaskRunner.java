@@ -13,6 +13,8 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import androidx.annotation.NonNull;
+
 public class TaskRunner
 {
 	// E X E C U T O R
@@ -25,6 +27,7 @@ public class TaskRunner
 
 	private static final BlockingQueue<Runnable> POOL_WORK_QUEUE = new LinkedBlockingQueue<>(10);
 
+	@NonNull
 	public static final Executor THREAD_POOL_EXECUTOR;
 
 	static
@@ -41,7 +44,8 @@ public class TaskRunner
 		void call(Result param);
 	}
 
-	private static <Result> FutureTask<Result> makeFuture(Callable<Result> callable, Callback<Result> callback)
+	@NonNull
+	private static <Result> FutureTask<Result> makeFuture(Callable<Result> callable, @NonNull Callback<Result> callback)
 	{
 		return new FutureTask<Result>(callable)
 		{
@@ -67,7 +71,7 @@ public class TaskRunner
 
 	// E X E C U T E
 
-	public static <Result> void execute(Callable<Result> callable, Callback<Result> callback)
+	public static <Result> void execute(Callable<Result> callable, @NonNull Callback<Result> callback)
 	{
 		final FutureTask<Result> future = makeFuture(callable, callback);
 		EXECUTOR.execute(future);
