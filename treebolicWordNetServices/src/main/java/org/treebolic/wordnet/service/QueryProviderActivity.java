@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ProviderInfo;
 import android.net.Uri;
@@ -184,12 +185,21 @@ public class QueryProviderActivity extends AppCompatCommonActivity
 	{
 		try
 		{
-			/*
-			 * PackageInfo pack = context.getPackageManager().getPackageInfo(PROVIDER_PKG, PackageManager.GET_PROVIDERS); ProviderInfo[] providers =
-			 * pack.providers; if (providers != null) { for (ProviderInfo provider0 : providers) { Log.d(TAG, "provider name: " + provider0.name); Log.d(TAG,
-			 * "provider package: " + provider0.packageName); Log.d(TAG, "provider authority: " + provider0.authority); } }
-			 */
-			return context.getPackageManager().getProviderInfo(new ComponentName(QueryProviderActivity.PROVIDER_PKG, QueryProviderActivity.PROVIDER_NAME), 0);
+			// PackageInfo pack = context.getPackageManager().getPackageInfo(PROVIDER_PKG, PackageManager.GET_PROVIDERS);
+			// ProviderInfo[] providers = pack.providers;
+			// if (providers != null)
+			// {
+			// 	for (ProviderInfo provider0 : providers)
+			// 	{
+			// 		Log.d(TAG, "provider name: " + provider0.name);
+			// 		Log.d(TAG, "provider package: " + provider0.packageName);
+			// 		Log.d(TAG, "provider authority: " + provider0.authority);
+			// 	}
+			// }
+
+			return android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU ? //
+					context.getPackageManager().getProviderInfo(new ComponentName(QueryProviderActivity.PROVIDER_PKG, QueryProviderActivity.PROVIDER_NAME), PackageManager.ComponentInfoFlags.of(0)) : //
+					context.getPackageManager().getProviderInfo(new ComponentName(QueryProviderActivity.PROVIDER_PKG, QueryProviderActivity.PROVIDER_NAME), 0);
 		}
 		catch (@NonNull final NameNotFoundException ignored)
 		{
