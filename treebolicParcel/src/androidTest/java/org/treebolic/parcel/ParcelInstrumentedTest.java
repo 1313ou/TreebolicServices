@@ -2,6 +2,7 @@ package org.treebolic.parcel;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
 
@@ -16,9 +17,9 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import androidx.annotation.NonNull;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
-import  androidx.test.ext.junit.runners.AndroidJUnit4;
-import treebolic.glue.Color;
+import treebolic.glue.iface.Colors;
 import treebolic.model.INode;
 import treebolic.model.Model;
 import treebolic.model.ModelDump;
@@ -144,8 +145,10 @@ public class ParcelInstrumentedTest
 		// extract bundle from parcel
 		parcel.setDataPosition(0);
 		final Bundle bundle2 = parcel.readBundle(ParcelableModel.class.getClassLoader());
-		if(bundle2 != null)
+		if (bundle2 != null)
+		{
 			bundle2.setClassLoader(Model.class.getClassLoader());
+		}
 		return bundle2;
 	}
 
@@ -158,7 +161,9 @@ public class ParcelInstrumentedTest
 	public static Model getParceledModel(final Bundle bundle, final String key)
 	{
 		// model2
-		final ParcelableModel pmodel = bundle.getParcelable(key);
+		final ParcelableModel pmodel = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU ? //
+				bundle.getParcelable(key, ParcelableModel.class) : //
+				bundle.getParcelable(key);
 		return pmodel != null ? pmodel.getModel() : null;
 	}
 
@@ -172,8 +177,8 @@ public class ParcelInstrumentedTest
 				{"id5", "five\n5"}}; //
 		final TreeMutableNode root = new TreeMutableNode(null, "root"); //$NON-NLS-1$
 		root.setLabel("root"); //$NON-NLS-1$
-		root.setBackColor(Color.ORANGE);
-		root.setForeColor(Color.BLACK);
+		root.setBackColor(Colors.ORANGE);
+		root.setForeColor(Colors.BLACK);
 		for (final String[] nodeData : data)
 		{
 			final TreeMutableNode node = new TreeMutableNode(root, nodeData[0]);

@@ -5,6 +5,7 @@
 package org.treebolic.services;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.util.Log;
@@ -53,8 +54,9 @@ abstract public class TreebolicIntentService extends JobIntentService implements
 				final String base = intent.getStringExtra(ITreebolicService.EXTRA_BASE);
 				final String imageBase = intent.getStringExtra(ITreebolicService.EXTRA_IMAGEBASE);
 				final String settings = intent.getStringExtra(ITreebolicService.EXTRA_SETTINGS);
-				final Intent forward = intent.getParcelableExtra(ITreebolicService.EXTRA_FORWARD_RESULT_TO);
-
+				final Intent forward = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU ? //
+						intent.getParcelableExtra(ITreebolicService.EXTRA_FORWARD_RESULT_TO, Intent.class) : //
+						intent.getParcelableExtra(ITreebolicService.EXTRA_FORWARD_RESULT_TO);
 				try
 				{
 					final Model model = this.factory.make(source, base, imageBase, settings);
@@ -68,7 +70,9 @@ abstract public class TreebolicIntentService extends JobIntentService implements
 						IntentFactory.putModelResult(bundle, model, getUrlScheme());
 
 						// use result receiver
-						final ResultReceiver resultReceiver = intent.getParcelableExtra(ITreebolicService.EXTRA_RECEIVER);
+						final ResultReceiver resultReceiver = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU ? //
+								intent.getParcelableExtra(ITreebolicService.EXTRA_RECEIVER, ResultReceiver.class) : //
+								intent.getParcelableExtra(ITreebolicService.EXTRA_RECEIVER);
 						Log.d(TreebolicIntentService.TAG, "Returning model " + model);
 						assert resultReceiver != null;
 						resultReceiver.send(0, bundle);

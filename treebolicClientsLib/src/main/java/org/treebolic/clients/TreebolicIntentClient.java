@@ -117,7 +117,9 @@ public class TreebolicIntentClient implements org.treebolic.clients.iface.ITreeb
 				}
 				else
 				{
-					Parcelable parcelable = resultData.getParcelable(ITreebolicService.RESULT_MODEL);
+					Parcelable parcelable = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU ? //
+							resultData.getParcelable(ITreebolicService.RESULT_MODEL, Parcelable.class) : //
+							resultData.getParcelable(ITreebolicService.RESULT_MODEL);
 					if (parcelable != null)
 					{
 						if (!ParcelableModel.class.equals(parcelable.getClass()))

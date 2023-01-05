@@ -7,6 +7,7 @@ package org.treebolic.services;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -205,7 +206,9 @@ abstract public class TreebolicMessengerService extends Service implements ITree
 		final String base = bundle.getString(ITreebolicService.EXTRA_BASE);
 		final String imageBase = bundle.getString(ITreebolicService.EXTRA_IMAGEBASE);
 		final String settings = bundle.getString(ITreebolicService.EXTRA_SETTINGS);
-		final Intent forward = bundle.getParcelable(ITreebolicService.EXTRA_FORWARD_RESULT_TO);
+		final Intent forward = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU ? //
+				bundle.getParcelable(ITreebolicService.EXTRA_FORWARD_RESULT_TO, Intent.class) : //
+				bundle.getParcelable(ITreebolicService.EXTRA_FORWARD_RESULT_TO);
 
 		// make model
 		final Callable<Model> callable = makeModelCallable(source, base, imageBase, settings, this.factory);

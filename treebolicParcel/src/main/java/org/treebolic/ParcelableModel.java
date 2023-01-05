@@ -89,14 +89,9 @@ public class ParcelableModel implements Parcelable
 	{
 		if (ParcelableModel.SERIALIZE)
 		{
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
-			{
-				this.model = parcel.readSerializable(null, Model.class);
-			}
-			else
-			{
-				this.model = (Model) parcel.readSerializable();
-			}
+			this.model = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU ? //
+					parcel.readSerializable(null, Model.class) : //
+					(Model) parcel.readSerializable();
 		}
 		else
 		{
@@ -615,15 +610,9 @@ public class ParcelableModel implements Parcelable
 	@Nullable
 	public static Model readSerializableModel(@NonNull final Parcel parcel)
 	{
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
-		{
-			return parcel.readSerializable(null, Model.class);
-		}
-		else
-		{
-			//noinspection deprecation
-			return (Model) parcel.readSerializable();
-		}
+		return Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU ? //
+				parcel.readSerializable(null, Model.class) : //
+				(Model) parcel.readSerializable();
 	}
 
 	/**
@@ -1114,15 +1103,9 @@ public class ParcelableModel implements Parcelable
 			switch (ParcelableModel.IMAGEMETHOD)
 			{
 				case IMAGE_SERIALIZE:
-					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
-					{
-						return parcel.readSerializable(null, Image.class);
-					}
-					else
-					{
-						//noinspection deprecation
-						return (Image) parcel.readSerializable();
-					}
+					return Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU ? //
+							parcel.readSerializable(null, Image.class) : //
+							(Image) parcel.readSerializable();
 
 				case IMAGE_ASBYTEARRAY:
 					final byte[] imageByteArray = parcel.createByteArray();
@@ -1140,6 +1123,7 @@ public class ParcelableModel implements Parcelable
 						}
 					}
 					break;
+
 				case IMAGE_PARCEL:
 				default:
 					final Bitmap bitmap = Bitmap.CREATOR.createFromParcel(parcel);
@@ -1156,7 +1140,9 @@ public class ParcelableModel implements Parcelable
 	public static boolean parcelTest(final Bundle bundle, final String key)
 	{
 		// model1
-		final ParcelableModel model1 = bundle.getParcelable(key);
+		final ParcelableModel model1 = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU ? //
+				bundle.getParcelable(key, ParcelableModel.class) : //
+				bundle.getParcelable(key);
 
 		// write bundle to parcel
 		final Parcel parcel = Parcel.obtain();
@@ -1168,7 +1154,10 @@ public class ParcelableModel implements Parcelable
 		bundle2.setClassLoader(Model.class.getClassLoader());
 
 		// model2
-		final ParcelableModel model2 = bundle2.getParcelable(key);
+		final ParcelableModel model2 = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU ? //
+				bundle2.getParcelable(key, ParcelableModel.class) : //
+				bundle2.getParcelable(key);
+
 		parcel.recycle();
 
 		if (model1 != null && model2 != null)

@@ -185,7 +185,10 @@ public class QueryProviderActivity extends AppCompatCommonActivity
 	{
 		try
 		{
-			// PackageInfo pack = context.getPackageManager().getPackageInfo(PROVIDER_PKG, PackageManager.GET_PROVIDERS);
+			// PackageManager pm = context.getPackageManager();
+			// PackageInfo pack = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU ? //
+			// 		pm.getPackageInfo(PROVIDER_PKG, PackageManager.PackageInfoFlags.of(PackageManager.GET_PROVIDERS)) : //
+			// 		pm.getPackageInfo(PROVIDER_PKG, PackageManager.GET_PROVIDERS);
 			// ProviderInfo[] providers = pack.providers;
 			// if (providers != null)
 			// {
@@ -197,9 +200,10 @@ public class QueryProviderActivity extends AppCompatCommonActivity
 			// 	}
 			// }
 
+			PackageManager pm = context.getPackageManager();
 			return android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU ? //
-					context.getPackageManager().getProviderInfo(new ComponentName(QueryProviderActivity.PROVIDER_PKG, QueryProviderActivity.PROVIDER_NAME), PackageManager.ComponentInfoFlags.of(0)) : //
-					context.getPackageManager().getProviderInfo(new ComponentName(QueryProviderActivity.PROVIDER_PKG, QueryProviderActivity.PROVIDER_NAME), 0);
+					pm.getProviderInfo(new ComponentName(QueryProviderActivity.PROVIDER_PKG, QueryProviderActivity.PROVIDER_NAME), PackageManager.ComponentInfoFlags.of(0)) : //
+					pm.getProviderInfo(new ComponentName(QueryProviderActivity.PROVIDER_PKG, QueryProviderActivity.PROVIDER_NAME), 0);
 		}
 		catch (@NonNull final NameNotFoundException ignored)
 		{
