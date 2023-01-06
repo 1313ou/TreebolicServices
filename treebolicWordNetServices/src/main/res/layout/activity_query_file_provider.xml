@@ -3,10 +3,10 @@
   -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context="org.treebolic.wordnet.service.QueryProviderActivity">
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context="org.treebolic.wordnet.service.QueryProviderActivity">
 
 	<Button
 		android:id="@+id/button"
@@ -15,6 +15,6 @@
 		android:layout_centerHorizontal="true"
 		android:layout_centerVertical="true"
 		android:gravity="center"
-		android:text="@string/get_data"/>
+		android:text="@string/get_data" />
 
 </RelativeLayout>

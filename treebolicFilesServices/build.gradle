@@ -67,7 +67,7 @@ dependencies {
     implementation project(':rateLib')
     implementation project(':othersLib')
     implementation project(':donateLib')
-    
+
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'androidx.preference:preference:1.2.0'
     implementation 'com.google.android.material:material:1.7.0'

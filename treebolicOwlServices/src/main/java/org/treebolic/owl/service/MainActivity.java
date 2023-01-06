@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	 * Log tag
 	 */
 	static private final String TAG = "ServiceOwlA";
-	
+
 	/**
 	 * Whether to forward model directly to activity
 	 */

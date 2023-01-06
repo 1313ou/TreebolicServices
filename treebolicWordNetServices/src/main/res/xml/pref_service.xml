@@ -12,11 +12,11 @@
 		android:negativeButtonText="@null"
 		android:positiveButtonText="@null"
 		android:summary="@string/pref_description_services"
-		android:title="@string/pref_title_service"/>
+		android:title="@string/pref_title_service" />
 
 	<CheckBoxPreference
 		android:defaultValue="true"
 		android:key="pref_forward"
-		android:title="@string/pref_title_forwarding"/>
+		android:title="@string/pref_title_forwarding" />
 
 </PreferenceScreen>
