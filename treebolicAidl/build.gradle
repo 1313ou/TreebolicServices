@@ -17,7 +17,7 @@ android {
         multiDexEnabled true
     }
 
-    aidlPackageWhiteList "org/treebolic/services/iface/ITreebolicAIDLService.aidl"
+    aidlPackagedList "org/treebolic/services/iface/ITreebolicAIDLService.aidl"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
