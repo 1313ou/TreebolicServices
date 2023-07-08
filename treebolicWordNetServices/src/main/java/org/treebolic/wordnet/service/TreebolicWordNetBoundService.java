@@ -33,7 +33,6 @@ public class TreebolicWordNetBoundService extends TreebolicBoundService
 	@Override
 	public void onCreate()
 	{
-		super.onCreate();
 		try
 		{
 			this.factory = new ModelFactory(this);
@@ -42,6 +41,7 @@ public class TreebolicWordNetBoundService extends TreebolicBoundService
 		{
 			Log.e(TreebolicWordNetBoundService.TAG, "Model factory constructor failed", e);
 		}
+		super.onCreate();
 	}
 
 	@SuppressWarnings("SameReturnValue")

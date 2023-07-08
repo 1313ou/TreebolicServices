@@ -27,8 +27,8 @@ public class TreebolicOwlBoundService extends TreebolicBoundService
 	@Override
 	public void onCreate()
 	{
-		super.onCreate();
 		this.factory = new ModelFactory(this);
+		super.onCreate();
 	}
 
 	@SuppressWarnings("SameReturnValue")

@@ -129,8 +129,7 @@ abstract public class TreebolicBoundService extends Service implements ITreeboli
 	/**
 	 * Binder that returns an interface to the service
 	 */
-	@NonNull
-	private final IBinder binder;
+	private IBinder binder;
 
 	/**
 	 * Constructor
@@ -138,6 +137,12 @@ abstract public class TreebolicBoundService extends Service implements ITreeboli
 	public TreebolicBoundService()
 	{
 		super();
+	}
+
+	@Override
+	public void onCreate()
+	{
+		super.onCreate();
 		assert this.factory != null;
 		this.binder = new TreebolicServiceBinder(this.factory, this.getUrlScheme());
 	}
@@ -150,6 +155,7 @@ abstract public class TreebolicBoundService extends Service implements ITreeboli
 	public IBinder onBind(final Intent intent)
 	{
 		Log.d(TreebolicBoundService.TAG, "Binding service");
+		assert this.binder != null;
 		return this.binder;
 	}
 }
