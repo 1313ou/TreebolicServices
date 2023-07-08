@@ -176,6 +176,7 @@ public class Deployer
 					destFile.createNewFile();
 
 					// copy
+					//noinspection IOStreamConstructor
 					try (BufferedOutputStream bout = new BufferedOutputStream(new FileOutputStream(destFile)))
 					{
 						final byte[] buffer = new byte[1024];
