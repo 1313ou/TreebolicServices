@@ -8,6 +8,7 @@ import android.content.Context;
 
 import org.treebolic.services.Utils;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -37,7 +38,7 @@ public class ModelFactory extends org.treebolic.services.ModelFactory
 	 * @param context context
 	 *                //@throws Exception exception
 	 */
-	public ModelFactory(@NonNull final Context context) throws Exception
+	public ModelFactory(@NonNull final Context context) throws IOException
 	{
 		super(ModelFactory.SIMPLE ? new treebolic.provider.wordnet.jwi.simple.Provider() : new treebolic.provider.wordnet.jwi.full.Provider(), Utils.makeLogProviderContext(ModelFactory.TAG), makeLocator(context), null);
 	}
