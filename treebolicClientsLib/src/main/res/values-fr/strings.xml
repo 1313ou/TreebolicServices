@@ -2,13 +2,13 @@
   ~ Copyright (c) Treebolic 2019. Bernard Bou <1313ou@gmail.com>
   -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
 	<string name="started">Démarré</string>
 
 	<!-- errors -->
 	<string name="fail_bind">Échec lors de la connexion au service</string>
-	<string name="fail_start">Échec lors du démarrage du service</string>
+	<string name="fail_start" tools:ignore="UnusedResources">Échec lors du démarrage du service</string>
 	<string name="fail_nullquery">Requête nulle</string>
 	<string name="fail_nullclient">Client nul</string>
 

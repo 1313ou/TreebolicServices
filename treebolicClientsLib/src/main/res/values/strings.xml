@@ -2,13 +2,13 @@
   ~ Copyright (c) Treebolic 2019. Bernard Bou <1313ou@gmail.com>
   -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
 	<string name="started">Started</string>
 
 	<!-- errors -->
 	<string name="fail_bind">Failed to bind to service</string>
-	<string name="fail_start">Failed to start service</string>
+	<string name="fail_start" tools:ignore="UnusedResources">Failed to start service</string>
 	<string name="fail_nullquery">Null query</string>
 	<string name="fail_nullclient">Null client</string>
 
