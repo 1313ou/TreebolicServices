@@ -4,7 +4,9 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
-	android:sharedUserId="org.treebolic.userId">
+	android:sharedUserId="org.treebolic.userId"
+	android:sharedUserMaxSdkVersion="32"
+	tools:targetApi="tiramisu">
 
 	<permission
 		android:name="org.treebolic.files.service.USE"
