@@ -13,7 +13,8 @@
 		android:protectionLevel="normal"
 		android:label="Use service" />
 
-	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="18" />
 	<uses-permission android:name="android.permission.WAKE_LOCK" />
 	<uses-permission android:name="org.treebolic.files.service.USE" />
 
