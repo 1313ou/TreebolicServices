@@ -10,22 +10,26 @@
 
 	<permission
 		android:name="org.treebolic.files.service.USE"
-		android:protectionLevel="normal"
-		android:label="Use service" />
+		android:label="Use service"
+		android:protectionLevel="normal" />
 
-	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="18" />
+	<uses-permission
+		android:name="android.permission.READ_EXTERNAL_STORAGE"
+		android:maxSdkVersion="32" />
+	<uses-permission
+		android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+		android:maxSdkVersion="18" />
 	<uses-permission android:name="android.permission.WAKE_LOCK" />
 	<uses-permission android:name="org.treebolic.files.service.USE" />
 
 	<application
 		android:allowBackup="true"
+		android:dataExtractionRules="@xml/data_extraction_rules"
 		android:fullBackupContent="@xml/backup_descriptor"
 		android:icon="@mipmap/ic_launcher"
 		android:label="@string/app_name"
 		android:supportsRtl="true"
-		android:theme="@style/MyTheme"
-		tools:ignore="UnusedAttribute">
+		android:theme="@style/MyTheme">
 
 		<activity
 			android:name=".MainActivity"
