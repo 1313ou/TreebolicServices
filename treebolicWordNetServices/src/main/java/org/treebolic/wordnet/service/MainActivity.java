@@ -187,6 +187,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		// search view
 		final MenuItem menuItem = menu.findItem(R.id.action_search);
 		this.searchView = (SearchView) menuItem.getActionView();
+		assert this.searchView != null;
 		this.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
 		{
 			@Override
