@@ -57,11 +57,7 @@ public class TaskRunner
 					Result result = get();
 					callback.call(result);
 				}
-				catch (ExecutionException e)
-				{
-					e.printStackTrace();
-				}
-				catch (InterruptedException e)
+				catch (ExecutionException | InterruptedException e)
 				{
 					e.printStackTrace();
 				}
