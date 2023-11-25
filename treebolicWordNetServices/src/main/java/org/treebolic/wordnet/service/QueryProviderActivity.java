@@ -22,7 +22,6 @@ import org.treebolic.AppCompatCommonActivity;
 
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -110,11 +109,6 @@ public class QueryProviderActivity extends AppCompatCommonActivity
 
 								Toast.makeText(this, R.string.ok_data, Toast.LENGTH_SHORT).show();
 							}
-						}
-						catch (@NonNull final FileNotFoundException e)
-						{
-							Log.e(QueryProviderActivity.TAG, "provider data " + uri, e);
-							Toast.makeText(this, R.string.fail_data, Toast.LENGTH_SHORT).show();
 						}
 						catch (@NonNull final IOException e)
 						{
