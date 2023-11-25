@@ -204,11 +204,7 @@ public class ParcelInstrumentedTest
 		{
 			return (Model) deserializeZip(zis, "model");
 		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-		catch (ClassNotFoundException e)
+		catch (IOException | ClassNotFoundException e)
 		{
 			e.printStackTrace();
 		}
