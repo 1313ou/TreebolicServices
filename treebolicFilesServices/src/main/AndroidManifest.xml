@@ -28,6 +28,7 @@
 		android:fullBackupContent="@xml/backup_descriptor"
 		android:icon="@mipmap/ic_launcher"
 		android:label="@string/app_name"
+		android:roundIcon="@mipmap/ic_launcher_round"
 		android:supportsRtl="true"
 		android:theme="@style/MyTheme">
 
@@ -43,8 +44,7 @@
 		<activity
 			android:name=".SettingsActivity"
 			android:label="@string/title_activity_settings"
-			android:parentActivityName=".MainActivity"
-			tools:targetApi="jelly_bean">
+			android:parentActivityName=".MainActivity">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value=".MainActivity" />
@@ -53,8 +53,7 @@
 		<activity
 			android:name="org.treebolic.filechooser.FileChooserActivity"
 			android:exported="false"
-			android:parentActivityName=".MainActivity"
-			tools:targetApi="jelly_bean">
+			android:parentActivityName=".MainActivity">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value=".MainActivity" />
@@ -63,8 +62,7 @@
 		<activity
 			android:name="com.bbou.others.OthersActivity"
 			android:exported="false"
-			android:parentActivityName=".MainActivity"
-			tools:targetApi="jelly_bean">
+			android:parentActivityName=".MainActivity">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value=".MainActivity" />
@@ -73,8 +71,7 @@
 		<activity
 			android:name="com.bbou.donate.DonateActivity"
 			android:exported="false"
-			android:parentActivityName=".MainActivity"
-			tools:targetApi="jelly_bean">
+			android:parentActivityName=".MainActivity">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value=".MainActivity" />

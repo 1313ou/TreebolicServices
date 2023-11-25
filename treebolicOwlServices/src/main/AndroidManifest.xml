@@ -11,11 +11,15 @@
 
 	<permission
 		android:name="org.treebolic.owl.service.USE"
-		android:protectionLevel="normal"
-		android:label="Use service" />
+		android:label="Use service"
+		android:protectionLevel="normal" />
 
-	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="18" />
+	<uses-permission
+		android:name="android.permission.READ_EXTERNAL_STORAGE"
+		android:maxSdkVersion="32" />
+	<uses-permission
+		android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+		android:maxSdkVersion="18" />
 	<uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER" />
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -23,12 +27,13 @@
 
 	<application
 		android:allowBackup="true"
+		android:dataExtractionRules="@xml/data_extraction_rules"
 		android:fullBackupContent="@xml/backup_descriptor"
 		android:icon="@mipmap/ic_launcher"
 		android:label="@string/app_name"
+		android:roundIcon="@mipmap/ic_launcher_round"
 		android:supportsRtl="true"
-		android:theme="@style/MyTheme"
-		android:dataExtractionRules="@xml/data_extraction_rules">
+		android:theme="@style/MyTheme">
 
 		<activity
 			android:name=".MainActivity"
@@ -43,8 +48,7 @@
 			android:name=".SettingsActivity"
 			android:exported="false"
 			android:label="@string/title_activity_settings"
-			android:parentActivityName=".MainActivity"
-			tools:targetApi="jelly_bean">
+			android:parentActivityName=".MainActivity">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value=".MainActivity" />
@@ -54,8 +58,7 @@
 			android:name=".DownloadActivity"
 			android:exported="false"
 			android:label="@string/title_activity_download"
-			android:parentActivityName=".MainActivity"
-			tools:targetApi="jelly_bean">
+			android:parentActivityName=".MainActivity">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value=".MainActivity" />
@@ -64,8 +67,7 @@
 		<activity
 			android:name="org.treebolic.filechooser.FileChooserActivity"
 			android:exported="false"
-			android:parentActivityName=".MainActivity"
-			tools:targetApi="jelly_bean">
+			android:parentActivityName=".MainActivity">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value=".MainActivity" />
@@ -74,8 +76,7 @@
 		<activity
 			android:name="com.bbou.others.OthersActivity"
 			android:exported="false"
-			android:parentActivityName=".MainActivity"
-			tools:targetApi="jelly_bean">
+			android:parentActivityName=".MainActivity">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value=".MainActivity" />
@@ -84,8 +85,7 @@
 		<activity
 			android:name="com.bbou.donate.DonateActivity"
 			android:exported="false"
-			android:parentActivityName=".MainActivity"
-			tools:targetApi="jelly_bean">
+			android:parentActivityName=".MainActivity">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value=".MainActivity" />
