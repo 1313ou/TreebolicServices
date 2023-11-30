@@ -111,7 +111,7 @@ public class Settings
 
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		final Editor editor = sharedPref.edit();
-		editor.putString(Settings.PREF_SERVICE, "IntentService");
+		editor.putString(Settings.PREF_SERVICE, "BroadcastService");
 		editor.putString(TreebolicIface.PREF_BASE, treebolicBase);
 		editor.putString(TreebolicIface.PREF_IMAGEBASE, treebolicBase);
 		editor.putString(TreebolicIface.PREF_SOURCE, Settings.DEMO);

@@ -51,7 +51,7 @@ public class Settings
 		//final Uri uri = Uri.fromFile(treebolicStorage);
 
 		final Editor editor = sharedPref.edit();
-		editor.putString(Settings.PREF_SERVICE, "IntentService");
+		editor.putString(Settings.PREF_SERVICE, "BroadcastService");
 		editor.putString(TreebolicIface.PREF_SOURCE, externalStorage);
 		editor.commit();
 	}

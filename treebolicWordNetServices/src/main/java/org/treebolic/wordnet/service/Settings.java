@@ -53,7 +53,7 @@ public class Settings
 		final Editor editor = sharedPref.edit();
 		editor.putString(TreebolicIface.PREF_SOURCE, "love");
 		editor.putString(Settings.PREF_DOWNLOAD, "http://treebolic.sourceforge.net/data/wordnet/wordnet31.zip");
-		editor.putString(Settings.PREF_SERVICE, "IntentService");
+		editor.putString(Settings.PREF_SERVICE, "BroadcastService");
 		editor.commit();
 	}
 
