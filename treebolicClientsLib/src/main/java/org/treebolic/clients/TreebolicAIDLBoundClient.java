@@ -218,6 +218,7 @@ public class TreebolicAIDLBoundClient implements ITreebolicClient
 		};
 
 		final Intent intent = new Intent();
+		//intent.setAction("org.treebolic.service.action.MAKE_MODEL");
 		intent.setComponent(new ComponentName(this.servicePackage, this.serviceName));
 		if (!this.context.bindService(intent, this.connection, Context.BIND_AUTO_CREATE))
 		{
