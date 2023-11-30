@@ -22,7 +22,7 @@ public class TreebolicWordNetBroadcastService extends TreebolicBroadcastService
 	/**
 	 * Log tag
 	 */
-	private static final String TAG = "TWordNetIntentS";
+	private static final String TAG = "TWordNetBroadcastS";
 
 	/**
 	 * Constructor
