@@ -4,12 +4,13 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
+	android:installLocation="auto"
 	android:sharedUserId="org.treebolic.userId"
 	android:sharedUserMaxSdkVersion="32"
 	tools:targetApi="tiramisu">
 
 	<permission
-		android:name="org.treebolic.files.service.USE"
+		android:name="org.treebolic.service.USE"
 		android:label="Use service"
 		android:protectionLevel="normal" />
 
@@ -20,7 +21,7 @@
 		android:name="android.permission.WRITE_EXTERNAL_STORAGE"
 		android:maxSdkVersion="18" />
 	<uses-permission android:name="android.permission.WAKE_LOCK" />
-	<uses-permission android:name="org.treebolic.files.service.USE" />
+	<uses-permission android:name="org.treebolic.service.USE" />
 
 	<application
 		android:allowBackup="true"
@@ -30,7 +31,8 @@
 		android:label="@string/app_name"
 		android:roundIcon="@mipmap/ic_launcher_round"
 		android:supportsRtl="true"
-		android:theme="@style/MyTheme">
+		android:theme="@style/MyTheme"
+		tools:ignore="AllowBackup">
 
 		<activity
 			android:name=".MainActivity"
@@ -43,6 +45,7 @@
 
 		<activity
 			android:name=".SettingsActivity"
+			android:exported="false"
 			android:label="@string/title_activity_settings"
 			android:parentActivityName=".MainActivity">
 			<meta-data
@@ -53,6 +56,7 @@
 		<activity
 			android:name="org.treebolic.filechooser.FileChooserActivity"
 			android:exported="false"
+			android:label="@string/title_activity_filechooser"
 			android:parentActivityName=".MainActivity">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
@@ -77,14 +81,26 @@
 				android:value=".MainActivity" />
 		</activity>
 
+		<receiver
+			android:name=".TreebolicFilesBroadcastService"
+			android:description="@string/description_service_broadcast_service"
+			android:enabled="true"
+			android:exported="true"
+			android:label="@string/service_broadcast_service"
+			android:permission="org.treebolic.service.USE">
+			<intent-filter>
+				<action android:name="org.treebolic.service.action.MAKE_MODEL" />
+			</intent-filter>
+		</receiver>
+
 		<service
-			android:name=".TreebolicFilesIntentService"
-			android:description="@string/description_service_intent_service"
+			android:name=".TreebolicFilesBroadcastService"
+			android:description="@string/description_service_broadcast_service"
 			android:enabled="true"
 			android:exported="true"
 			android:icon="@mipmap/ic_launcher"
-			android:label="@string/service_intent_service"
-			android:permission="android.permission.BIND_JOB_SERVICE"
+			android:label="@string/service_broadcast_service"
+			android:permission="org.treebolic.service.USE"
 			android:process="org.treebolic">
 			<intent-filter>
 				<action android:name="org.treebolic.service.action.MAKE_MODEL" />
@@ -98,8 +114,12 @@
 			android:exported="true"
 			android:icon="@mipmap/ic_launcher"
 			android:label="@string/service_aidl_bound_service"
-			android:permission="org.treebolic.files.service.USE"
-			android:process="org.treebolic" />
+			android:permission="org.treebolic.service.USE"
+			android:process="org.treebolic">
+			<intent-filter>
+				<action android:name="org.treebolic.service.action.MAKE_MODEL" />
+			</intent-filter>
+		</service>
 
 		<service
 			android:name=".TreebolicFilesMessengerService"
@@ -108,10 +128,13 @@
 			android:exported="true"
 			android:icon="@mipmap/ic_launcher"
 			android:label="@string/service_messenger_bound_service"
-			android:permission="org.treebolic.files.service.USE"
-			android:process="org.treebolic" />
+			android:permission="org.treebolic.service.USE"
+			android:process="org.treebolic">
+			<intent-filter>
+				<action android:name="org.treebolic.service.action.MAKE_MODEL" />
+			</intent-filter>
+		</service>
 
 	</application>
 
 </manifest>
-

@@ -4,12 +4,13 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
+	android:installLocation="auto"
 	android:sharedUserId="org.treebolic.userId"
 	android:sharedUserMaxSdkVersion="32"
 	tools:targetApi="tiramisu">
 
 	<permission
-		android:name="org.treebolic.wordnet.service.USE"
+		android:name="org.treebolic.service.USE"
 		android:label="Use service"
 		android:protectionLevel="normal" />
 
@@ -22,7 +23,7 @@
 	<uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER" />
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.WAKE_LOCK" />
-	<uses-permission android:name="org.treebolic.wordnet.service.USE" />
+	<uses-permission android:name="org.treebolic.service.USE" />
 
 	<application
 		android:allowBackup="true"
@@ -31,6 +32,7 @@
 		android:icon="@mipmap/ic_launcher"
 		android:label="@string/app_name"
 		android:roundIcon="@mipmap/ic_launcher_round"
+		android:supportsRtl="true"
 		android:theme="@style/MyTheme"
 		tools:ignore="AllowBackup">
 
@@ -45,17 +47,8 @@
 
 		<activity
 			android:name=".SettingsActivity"
-			android:label="@string/title_activity_settings"
-			android:parentActivityName=".MainActivity">
-			<meta-data
-				android:name="android.support.PARENT_ACTIVITY"
-				android:value=".MainActivity" />
-		</activity>
-
-		<activity
-			android:name=".QueryProviderActivity"
 			android:exported="false"
-			android:label="@string/title_activity_query_file_provider"
+			android:label="@string/title_activity_settings"
 			android:parentActivityName=".MainActivity">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
@@ -66,6 +59,16 @@
 			android:name=".DownloadActivity"
 			android:exported="false"
 			android:label="@string/title_activity_download"
+			android:parentActivityName=".MainActivity">
+			<meta-data
+				android:name="android.support.PARENT_ACTIVITY"
+				android:value=".MainActivity" />
+		</activity>
+
+		<activity
+			android:name=".QueryProviderActivity"
+			android:exported="false"
+			android:label="@string/title_activity_query_file_provider"
 			android:parentActivityName=".MainActivity">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
@@ -90,14 +93,26 @@
 				android:value=".MainActivity" />
 		</activity>
 
+		<receiver
+			android:name=".TreebolicWordNetBroadcastService"
+			android:description="@string/description_service_broadcast_service"
+			android:enabled="true"
+			android:exported="true"
+			android:label="@string/service_broadcast_service"
+			android:permission="org.treebolic.service.USE">
+			<intent-filter>
+				<action android:name="org.treebolic.service.action.MAKE_MODEL" />
+			</intent-filter>
+		</receiver>
+
 		<service
-			android:name=".TreebolicWordNetIntentService"
-			android:description="@string/description_service_intent_service"
+			android:name=".TreebolicWordNetBroadcastService"
+			android:description="@string/description_service_broadcast_service"
 			android:enabled="true"
 			android:exported="true"
 			android:icon="@mipmap/ic_launcher"
-			android:label="@string/service_intent_service"
-			android:permission="android.permission.BIND_JOB_SERVICE"
+			android:label="@string/service_broadcast_service"
+			android:permission="org.treebolic.service.USE"
 			android:process="org.treebolic">
 			<intent-filter>
 				<action android:name="org.treebolic.service.action.MAKE_MODEL" />
@@ -111,8 +126,12 @@
 			android:exported="true"
 			android:icon="@mipmap/ic_launcher"
 			android:label="@string/service_aidl_bound_service"
-			android:permission="org.treebolic.wordnet.service.USE"
-			android:process="org.treebolic" />
+			android:permission="org.treebolic.service.USE"
+			android:process="org.treebolic">
+			<intent-filter>
+				<action android:name="org.treebolic.service.action.MAKE_MODEL" />
+			</intent-filter>
+		</service>
 
 		<service
 			android:name=".TreebolicWordNetMessengerService"
@@ -121,7 +140,12 @@
 			android:exported="true"
 			android:icon="@mipmap/ic_launcher"
 			android:label="@string/service_messenger_bound_service"
-			android:permission="org.treebolic.wordnet.service.USE" />
+			android:permission="org.treebolic.service.USE"
+			android:process="org.treebolic">
+			<intent-filter>
+				<action android:name="org.treebolic.service.action.MAKE_MODEL" />
+			</intent-filter>
+		</service>
 
 	</application>
 
