@@ -38,7 +38,7 @@ import org.treebolic.filechooser.EntryChooser;
 import org.treebolic.filechooser.FileChooserActivity;
 import org.treebolic.owl.service.client.TreebolicOwlAIDLBoundClient;
 import org.treebolic.owl.service.client.TreebolicOwlBoundClient;
-import org.treebolic.owl.service.client.TreebolicOwlIntentClient;
+import org.treebolic.owl.service.client.TreebolicOwlBroadcastClient;
 import org.treebolic.owl.service.client.TreebolicOwlMessengerClient;
 import org.treebolic.services.IntentFactory;
 import org.treebolic.storage.Deployer;
@@ -306,9 +306,9 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	{
 		// client
 		final String serviceType = Settings.getStringPref(this, Settings.PREF_SERVICE);
-		if ("IntentService".equals(serviceType))
+		if ("BroadcastService".equals(serviceType))
 		{
-			this.client = new TreebolicOwlIntentClient(this, this, this);
+			this.client = new TreebolicOwlBroadcastClient(this, this, this);
 		}
 		else if ("Messenger".equals(serviceType))
 		{

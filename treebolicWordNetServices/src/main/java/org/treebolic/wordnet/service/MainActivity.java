@@ -39,7 +39,7 @@ import org.treebolic.clients.iface.ITreebolicClient;
 import org.treebolic.services.IntentFactory;
 import org.treebolic.wordnet.service.client.TreebolicWordNetAIDLBoundClient;
 import org.treebolic.wordnet.service.client.TreebolicWordNetBoundClient;
-import org.treebolic.wordnet.service.client.TreebolicWordNetIntentClient;
+import org.treebolic.wordnet.service.client.TreebolicWordNetBroadcastClient;
 import org.treebolic.wordnet.service.client.TreebolicWordNetMessengerClient;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -342,9 +342,9 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	{
 		// client
 		final String serviceType = Settings.getStringPref(this, Settings.PREF_SERVICE);
-		if ("IntentService".equals(serviceType))
+		if ("BroadcastService".equals(serviceType))
 		{
-			this.client = new TreebolicWordNetIntentClient(this, this, this);
+			this.client = new TreebolicWordNetBroadcastClient(this, this, this);
 		}
 		else if ("Messenger".equals(serviceType))
 		{

@@ -40,7 +40,7 @@ import org.treebolic.clients.iface.ITreebolicClient;
 import org.treebolic.filechooser.FileChooserActivity;
 import org.treebolic.files.service.client.TreebolicFilesAIDLBoundClient;
 import org.treebolic.files.service.client.TreebolicFilesBoundClient;
-import org.treebolic.files.service.client.TreebolicFilesIntentClient;
+import org.treebolic.files.service.client.TreebolicFilesBroadcastClient;
 import org.treebolic.files.service.client.TreebolicFilesMessengerClient;
 import org.treebolic.services.IntentFactory;
 
@@ -391,9 +391,9 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	{
 		// client
 		final String serviceType = Settings.getStringPref(this, Settings.PREF_SERVICE);
-		if ("IntentService".equals(serviceType))
+		if ("BroadcastService".equals(serviceType))
 		{
-			this.client = new TreebolicFilesIntentClient(this, this, this);
+			this.client = new TreebolicFilesBroadcastClient(this, this, this);
 		}
 		else if ("Messenger".equals(serviceType))
 		{
