@@ -563,7 +563,7 @@ public class ParcelableModel implements Parcelable
 	 * Write image to parcel
 	 *
 	 * @param parcel parcel to write to
-	 * @param image  image
+	 * @param image0 image
 	 */
 	private static void writeToParcel(@NonNull final Parcel parcel, @Nullable final treebolic.glue.iface.Image image0)
 	{
