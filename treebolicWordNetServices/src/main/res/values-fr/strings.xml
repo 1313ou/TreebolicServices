@@ -8,12 +8,12 @@
 	<string name="wordnet">WordNet</string>
 
 	<!-- services -->
-	<string name="service_intent_service">Treebolic WordNet Intent Service</string>
+	<string name="service_broadcast_service">Treebolic WordNet Broadcast Service</string>
 	<string name="service_aidl_bound_service">Treebolic WordNet AIDL-based Bound Service</string>
 	<string name="service_messenger_bound_service">Treebolic WordNet Messenger Bound Service</string>
 
 	<!-- service descriptions -->
-	<string name="description_service_intent_service">Produit un modèle Treebolic à partir des données WordNet sous la forme d\'un Intent Service</string>
+	<string name="description_service_broadcast_service">Produit un modèle Treebolic à partir des données WordNet sous la forme d\'un Broadcast Service</string>
 	<string name="description_service_aidl_bound_service">Produit un modèle Treebolic à partir des données WordNet sous la forme d\'un AIDL-based Bound Service</string>
 	<string name="description_service_messenger_bound_service">Produit un modèle Treebolic à partir des données WordNet sous la forme d\'un Messenger Bound Service</string>
 

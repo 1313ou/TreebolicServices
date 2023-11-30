@@ -29,12 +29,12 @@
 	<string name="fail_nullclient">Client nul</string>
 
 	<!-- services -->
-	<string name="service_intent_service">Treebolic Files Intent Service</string>
+	<string name="service_broadcast_service">Treebolic Files Broadcast Service</string>
 	<string name="service_aidl_bound_service">Treebolic Files AIDL-based Bound Service</string>
 	<string name="service_messenger_bound_service">Treebolic Files Messenger Bound Service</string>
 
 	<!-- service descriptions -->
-	<string name="description_service_intent_service">Produit un Treebolic modèle à partir des données issues du système de fichiers (Intent Service)</string>
+	<string name="description_service_broadcast_service">Produit un Treebolic modèle à partir des données issues du système de fichiers (Broadcast Service)</string>
 	<string name="description_service_aidl_bound_service">Produit un Treebolic modèle à partir des données issues du système de fichiers (AIDL-based Bound Service)</string>
 	<string name="description_service_messenger_bound_service">Produit un Treebolic modèle à partir des données issues du système de fichiers (Messenger Bound Service)</string>
 

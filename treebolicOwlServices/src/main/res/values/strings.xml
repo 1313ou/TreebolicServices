@@ -7,12 +7,12 @@
 	<string name="app_name">Treebolic OWL Services</string>
 
 	<!-- services -->
-	<string name="service_intent_service">Treebolic OWL Intent Service</string>
+	<string name="service_broadcast_service">Treebolic OWL Broadcast Service</string>
 	<string name="service_aidl_bound_service">Treebolic OWL AIDL-based Bound Service</string>
 	<string name="service_messenger_bound_service">Treebolic OWL Messenger Bound Service</string>
 
 	<!-- service descriptions -->
-	<string name="description_service_intent_service">Produces Treebolic model from OWL data as an Intent Service</string>
+	<string name="description_service_broadcast_service">Produces Treebolic model from OWL data as a Broadcast Service</string>
 	<string name="description_service_aidl_bound_service">Produces Treebolic model from OWL data as an AIDL-based Bound Service</string>
 	<string name="description_service_messenger_bound_service">Produces Treebolic model from OWL data as a Messenger Bound Service</string>
 

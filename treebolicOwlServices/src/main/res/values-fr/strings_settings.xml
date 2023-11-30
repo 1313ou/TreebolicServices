@@ -31,7 +31,7 @@
 	<string name="pref_description_services">Type du Service OWL</string>
 
 	<string-array name="pref_services_list_titles">
-		<item>Intent service</item>
+		<item>Broadcast service</item>
 		<item>Bound service</item>
 		<item>Messenger bound service</item>
 	</string-array>
