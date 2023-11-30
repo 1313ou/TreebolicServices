@@ -2,7 +2,7 @@
  * Copyright (c) 2022. Bernard Bou <1313ou@gmail.com>.
  */
 
-// CORE
+// C O R E
 
 include ':treebolicGlue'
 project(':treebolicGlue').projectDir = new File('../TreebolicLib/treebolicGlue/')
@@ -10,7 +10,12 @@ project(':treebolicGlue').projectDir = new File('../TreebolicLib/treebolicGlue/'
 include ':treebolicIface'
 project(':treebolicIface').projectDir = new File('../TreebolicLib/treebolicIface/')
 
-// LIBS
+// B A S E A P P
+
+include ':treebolic'
+project(':treebolic').projectDir = new File('../Treebolic/treebolic/')
+
+// L I B S
 
 include ':commonLib'
 project(':commonLib').projectDir = new File('../TreebolicSupportLibs/commonLib/')
@@ -51,7 +56,7 @@ include ':treebolicFilesProvider'
 project(':treebolicFilesProvider').projectDir = new File('../TreebolicFiles/treebolicFilesProvider/')
 
 include ':treebolicOwlProvider'
-project(':treebolicOwlProvider').projectDir = new File('../TreebolicOneOwl/treebolicOwlProvider/')
+project(':treebolicOwlProvider').projectDir = new File('../TreebolicOne/treebolicOwlProvider/')
 
 include ':treebolicWordNetProvider'
 project(':treebolicWordNetProvider').projectDir = new File('../TreebolicWordNet/treebolicWordNetProvider/')
