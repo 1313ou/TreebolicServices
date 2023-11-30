@@ -1,14 +1,15 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) Treebolic 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.treebolic.owl.service;
+package org.treebolic.wordnet;
 
 import android.os.Bundle;
 
 import org.treebolic.AppCompatCommonPreferenceActivity;
 import org.treebolic.TreebolicIface;
 import org.treebolic.preference.OpenEditTextPreference;
+import org.treebolic.wordnet.service.R;
 
 import androidx.annotation.NonNull;
 import androidx.preference.EditTextPreference;
@@ -38,47 +39,9 @@ public class SettingsActivity extends AppCompatCommonPreferenceActivity
 			final EditTextPreference sourcePref = findPreference(TreebolicIface.PREF_SOURCE);
 			assert sourcePref != null;
 			sourcePref.setSummaryProvider(EditTextPreference.SimpleSummaryProvider.getInstance());
-
-			final EditTextPreference basePref = findPreference(TreebolicIface.PREF_BASE);
-			assert basePref != null;
-			basePref.setSummaryProvider(EditTextPreference.SimpleSummaryProvider.getInstance());
-
-			final EditTextPreference imageBasePref = findPreference(TreebolicIface.PREF_IMAGEBASE);
-			assert imageBasePref != null;
-			imageBasePref.setSummaryProvider(EditTextPreference.SimpleSummaryProvider.getInstance());
-
-			final ListPreference servicePref = findPreference(Settings.PREF_SERVICE);
-			assert servicePref != null;
-			servicePref.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance());
 		}
 	}
 
-	@SuppressWarnings("WeakerAccess")
-	public static class ServicesPreferenceFragment extends PreferenceFragmentCompat
-	{
-		@Override
-		public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey)
-		{
-			// inflate
-			addPreferencesFromResource(R.xml.pref_service);
-
-			// bind
-			final ListPreference servicePref = findPreference(Settings.PREF_SERVICE);
-			assert servicePref != null;
-			servicePref.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance());
-		}
-
-		@Override
-		public void onDisplayPreferenceDialog(@NonNull final Preference preference)
-		{
-			if (!OpenEditTextPreference.onDisplayPreferenceDialog(this, preference))
-			{
-				super.onDisplayPreferenceDialog(preference);
-			}
-		}
-	}
-
-	@SuppressWarnings("WeakerAccess")
 	public static class DownloadPreferenceFragment extends PreferenceFragmentCompat
 	{
 		@Override
@@ -87,6 +50,7 @@ public class SettingsActivity extends AppCompatCommonPreferenceActivity
 			// inflate
 			addPreferencesFromResource(R.xml.pref_download);
 
+			// bind
 			final OpenEditTextPreference downloadPref = findPreference(Settings.PREF_DOWNLOAD);
 			assert downloadPref != null;
 			downloadPref.setSummaryProvider(OpenEditTextPreference.SUMMARY_PROVIDER);
@@ -99,6 +63,22 @@ public class SettingsActivity extends AppCompatCommonPreferenceActivity
 			{
 				super.onDisplayPreferenceDialog(preference);
 			}
+		}
+	}
+
+	@SuppressWarnings("WeakerAccess")
+	public static class ServicePreferenceFragment extends PreferenceFragmentCompat
+	{
+		@Override
+		public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey)
+		{
+			// inflate
+			addPreferencesFromResource(R.xml.pref_service);
+
+			// bind
+			final ListPreference servicePref = findPreference(Settings.PREF_SERVICE);
+			assert servicePref != null;
+			servicePref.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance());
 		}
 	}
 }

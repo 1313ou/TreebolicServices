@@ -567,7 +567,7 @@ public class ParcelableModel implements Parcelable
 	 */
 	private static void writeToParcel(@NonNull final Parcel parcel, @Nullable final treebolic.glue.iface.Image image0)
 	{
-		if (image0 == null || !(image0 instanceof treebolic.glue.Image))
+		if (!(image0 instanceof Image))
 		{
 			parcel.writeInt(0);
 			return;

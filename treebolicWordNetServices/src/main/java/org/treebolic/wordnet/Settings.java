@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) Treebolic 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.treebolic.owl.service;
+package org.treebolic.wordnet;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -13,9 +13,6 @@ import android.net.Uri;
 import android.os.Build;
 
 import org.treebolic.TreebolicIface;
-import org.treebolic.storage.Storage;
-
-import java.io.File;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,22 +27,12 @@ import androidx.preference.PreferenceManager;
 public class Settings
 {
 	/**
-	 * Demo archive
-	 */
-	public static final String DEMOZIP = "owl.zip";
-
-	/**
-	 * Demo
-	 */
-	public static final String DEMO = "pizza.owl";
-
-	/**
 	 * Initialized preference name
 	 */
 	public static final String PREF_INITIALIZED = "pref_initialized";
 
 	/**
-	 * Service preference name
+	 * Download service type name
 	 */
 	public static final String PREF_SERVICE = "pref_service";
 
@@ -55,16 +42,33 @@ public class Settings
 	public static final String PREF_DOWNLOAD = "pref_download";
 
 	/**
-	 * Save source and base to preferences
+	 * Set default initial settings
 	 *
 	 * @param context context
-	 * @param source  source
-	 * @param base    base
 	 */
-	public static void save(@NonNull final Context context, final String source, final String base)
+	@SuppressLint({"CommitPrefEdits", "ApplySharedPref"})
+	static public void setDefaults(@NonNull final Context context)
 	{
-		Settings.putStringPref(context, TreebolicIface.PREF_SOURCE, source);
-		Settings.putStringPref(context, TreebolicIface.PREF_BASE, base);
+		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+		final Editor editor = sharedPref.edit();
+		editor.putString(TreebolicIface.PREF_SOURCE, "love");
+		editor.putString(Settings.PREF_DOWNLOAD, "http://treebolic.sourceforge.net/data/wordnet/wordnet31.zip");
+		editor.putString(Settings.PREF_SERVICE, "BroadcastService");
+		editor.commit();
+	}
+
+	/**
+	 * Put string preference
+	 *
+	 * @param context context
+	 * @param key     key
+	 * @param value   value
+	 */
+	@SuppressLint({"CommitPrefEdits", "ApplySharedPref"})
+	static public void putStringPref(@NonNull final Context context, @SuppressWarnings("SameParameterValue") final String key, final String value)
+	{
+		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+		sharedPref.edit().putString(key, value).commit();
 	}
 
 	/**
@@ -81,42 +85,7 @@ public class Settings
 		return sharedPref.getString(key, null);
 	}
 
-	/**
-	 * Put string preference
-	 *
-	 * @param context context
-	 * @param key     key
-	 * @param value   value
-	 */
-	@SuppressLint({"CommitPrefEdits", "ApplySharedPref"})
-	static public void putStringPref(@NonNull final Context context, final String key, final String value)
-	{
-		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		sharedPref.edit().putString(key, value).commit();
-	}
-
 	// U T I L S
-
-	/**
-	 * Set default initial settings
-	 *
-	 * @param context context
-	 */
-	@SuppressLint({"CommitPrefEdits", "ApplySharedPref"})
-	static public void setDefaults(@NonNull final Context context)
-	{
-		final File treebolicStorage = Storage.getTreebolicStorage(context);
-		final Uri uri = Uri.fromFile(treebolicStorage);
-		final String treebolicBase = uri.toString() + '/';
-
-		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		final Editor editor = sharedPref.edit();
-		editor.putString(Settings.PREF_SERVICE, "BroadcastService");
-		editor.putString(TreebolicIface.PREF_BASE, treebolicBase);
-		editor.putString(TreebolicIface.PREF_IMAGEBASE, treebolicBase);
-		editor.putString(TreebolicIface.PREF_SOURCE, Settings.DEMO);
-		editor.commit();
-	}
 
 	/**
 	 * Application settings

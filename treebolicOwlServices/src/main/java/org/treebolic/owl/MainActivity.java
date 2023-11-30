@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) Treebolic 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.treebolic.files.service;
+package org.treebolic.owl;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -14,15 +14,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Process;
 import android.util.Log;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,28 +34,32 @@ import org.treebolic.TreebolicIface;
 import org.treebolic.clients.iface.IConnectionListener;
 import org.treebolic.clients.iface.IModelListener;
 import org.treebolic.clients.iface.ITreebolicClient;
+import org.treebolic.filechooser.EntryChooser;
 import org.treebolic.filechooser.FileChooserActivity;
-import org.treebolic.files.service.client.TreebolicFilesAIDLBoundClient;
-import org.treebolic.files.service.client.TreebolicFilesBoundClient;
-import org.treebolic.files.service.client.TreebolicFilesBroadcastClient;
-import org.treebolic.files.service.client.TreebolicFilesMessengerClient;
+import org.treebolic.owl.service.R;
+import org.treebolic.owl.service.client.TreebolicOwlAIDLBoundClient;
+import org.treebolic.owl.service.client.TreebolicOwlBoundClient;
+import org.treebolic.owl.service.client.TreebolicOwlBroadcastClient;
+import org.treebolic.owl.service.client.TreebolicOwlMessengerClient;
 import org.treebolic.services.IntentFactory;
+import org.treebolic.storage.Deployer;
+import org.treebolic.storage.Storage;
 
 import java.io.File;
+import java.io.IOException;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 import treebolic.model.Model;
 
 /**
- * Treebolic Files main activity. The activity obtains a model from source and requests Treebolic server to visualize it.
+ * Treebolic Owl main activity. The activity obtains a model from data and requests Treebolic server to visualize it.
  *
  * @author Bernard Bou
  */
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "ServiceFilesA";
+	static private final String TAG = "ServiceOwlA";
 
 	/**
 	 * Whether to forward model directly to activity
@@ -117,7 +118,6 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 			boolean success = result.getResultCode() == Activity.RESULT_OK;
 			if (success)
 			{
-				// handle selection of target by other activity which returns selected target
 				Intent returnIntent = result.getData();
 				if (returnIntent != null)
 				{
@@ -125,14 +125,31 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 					if (fileUri != null)
 					{
 						Toast.makeText(this, fileUri.toString(), Toast.LENGTH_SHORT).show();
-						Settings.putStringPref(this, TreebolicIface.PREF_SOURCE, fileUri.getPath());
-
-						updateButton();
-
-						// query
-						// query());
+						final String path = fileUri.getPath();
+						if (path != null)
+						{
+							final File file = new File(path);
+							final String parent = file.getParent();
+							if (parent != null)
+							{
+								final File parentFile = new File(parent);
+								final Uri parentUri = Uri.fromFile(parentFile);
+								final String query = file.getName();
+								String base = parentUri.toString();
+								if (!base.endsWith("/"))
+								{
+									base += '/';
+								}
+								Settings.save(this, query, base);
+							}
+						}
 					}
 				}
+
+				updateButton();
+
+				// query
+				// query();
 			}
 		});
 
@@ -179,12 +196,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		final int id = item.getItemId();
-		if (R.id.action_places == id)
-		{
-			chooseAndSave();
-			return true;
-		}
-		else if (R.id.action_run == id)
+		if (R.id.action_query == id)
 		{
 			query();
 			return true;
@@ -196,7 +208,11 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		}
 		else if (R.id.action_demo == id)
 		{
-			chooseAndTryStartTreebolic();
+			final Uri archiveFileUri = Deployer.copyAssetFile(this, Settings.DEMOZIP);
+			if (archiveFileUri != null)
+			{
+				queryBundle(archiveFileUri);
+			}
 			return true;
 		}
 		else if (R.id.action_others == id)
@@ -214,9 +230,14 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 			AppRate.rate(this);
 			return true;
 		}
+		else if (R.id.action_download == id)
+		{
+			startActivity(new Intent(this, DownloadActivity.class));
+			return true;
+		}
 		else if (R.id.action_app_settings == id)
 		{
-			Settings.applicationSettings(this, "org.treebolic.files.service");
+			Settings.applicationSettings(this, "org.treebolic.owl.service");
 			return true;
 		}
 		else if (R.id.action_settings == id)
@@ -262,123 +283,18 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 			// flag as initialized
 			sharedPref.edit().putBoolean(Settings.PREF_INITIALIZED, true).commit();
 		}
-	}
 
-	// R E Q U E S T (choose source)
-
-	/**
-	 * Request directory source
-	 */
-	private void requestSource()
-	{
-		final Intent intent = new Intent(this, org.treebolic.filechooser.FileChooserActivity.class);
-		intent.setType("inode/directory");
-		intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_INITIAL_DIR, StorageExplorer.discoverExternalStorage(this));
-		intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_CHOOSE_DIR, true);
-		intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_EXTENSION_FILTER, new String[]{});
-		intent.addCategory(Intent.CATEGORY_OPENABLE);
-		this.activityResultLauncher.launch(intent);
-	}
-
-	abstract static class Runnable1
-	{
-		@SuppressWarnings("WeakerAccess")
-		abstract public void run(final String arg);
-	}
-
-	/**
-	 * Choose dir and scan
-	 */
-	private void chooseAndTryStartTreebolic()
-	{
-		choosePlace(new Runnable1()
+		// deploy
+		final File dir = Storage.getTreebolicStorage(this);
+		if (dir.isDirectory())
 		{
-			@Override
-			public void run(final String arg)
+			final String[] dirContent = dir.list();
+			if (dirContent != null && dirContent.length == 0)
 			{
-				query(arg + File.separatorChar);
-			}
-		});
-	}
-
-	/**
-	 * Choose dir and save
-	 */
-	private void chooseAndSave()
-	{
-		choosePlace(new Runnable1()
-		{
-			@Override
-			public void run(final String arg)
-			{
-				Settings.putStringPref(MainActivity.this, TreebolicIface.PREF_SOURCE, arg);
-				updateButton();
-			}
-		});
-	}
-
-	/**
-	 * Choose dir to scan
-	 *
-	 * @param runnable1 what to do
-	 */
-
-	private void choosePlace(@NonNull final Runnable1 runnable1)
-	{
-		final Pair<CharSequence[], CharSequence[]> result = StorageExplorer.getDirectoriesTypesValues(this);
-		final CharSequence[] types = result.first;
-		final CharSequence[] values = result.second;
-
-		final AlertDialog.Builder alert = new AlertDialog.Builder(this);
-		alert.setTitle(R.string.title_choose);
-		alert.setMessage(R.string.title_choose_directory);
-
-		final RadioGroup input = new RadioGroup(this);
-		for (int i = 0; i < types.length && i < values.length; i++)
-		{
-			final CharSequence type = types[i];
-			final CharSequence value = values[i];
-			final File dir = new File(value.toString());
-			if (dir.exists())
-			{
-				final RadioButton radioButton = new RadioButton(this);
-				final String path = dir.getAbsolutePath();
-				final String str = path + ' ' + '[' + type + ']';
-				radioButton.setText(str);
-				radioButton.setTag(path);
-				input.addView(radioButton);
+				// deploy
+				Deployer.expandZipAssetFile(this, Settings.DEMOZIP);
 			}
 		}
-		alert.setView(input);
-		alert.setPositiveButton(R.string.action_ok, (dialog, whichButton) -> {
-			dialog.dismiss();
-
-			int childCount = input.getChildCount();
-			for (int i = 0; i < childCount; i++)
-			{
-				final RadioButton radioButton = (RadioButton) input.getChildAt(i);
-				if (radioButton.getId() == input.getCheckedRadioButtonId())
-				{
-					final String sourceFile = radioButton.getTag().toString();
-					final File sourceDir = new File(sourceFile);
-					if (sourceDir.exists() && sourceDir.isDirectory())
-					{
-						runnable1.run(sourceFile + File.separatorChar);
-					}
-					else
-					{
-						final AlertDialog.Builder alert2 = new AlertDialog.Builder(MainActivity.this);
-						alert2.setTitle(sourceFile) //
-								.setMessage(getString(R.string.status_fail)) //
-								.show();
-					}
-				}
-			}
-		});
-		alert.setNegativeButton(R.string.action_cancel, (dialog, whichButton) -> {
-			// canceled.
-		});
-		alert.show();
 	}
 
 	// C L I E N T   O P E R A T I O N
@@ -393,26 +309,23 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		final String serviceType = Settings.getStringPref(this, Settings.PREF_SERVICE);
 		if ("BroadcastService".equals(serviceType))
 		{
-			this.client = new TreebolicFilesBroadcastClient(this, this, this);
+			this.client = new TreebolicOwlBroadcastClient(this, this, this);
 		}
 		else if ("Messenger".equals(serviceType))
 		{
-			this.client = new TreebolicFilesMessengerClient(this, this, this);
+			this.client = new TreebolicOwlMessengerClient(this, this, this);
 		}
 		else if ("AIDLBound".equals(serviceType))
 		{
-			this.client = new TreebolicFilesAIDLBoundClient(this, this, this);
+			this.client = new TreebolicOwlAIDLBoundClient(this, this, this);
 		}
 		else if ("Bound".equals(serviceType))
 		{
-			this.client = new TreebolicFilesBoundClient(this, this, this);
+			this.client = new TreebolicOwlBoundClient(this, this, this);
 		}
 
 		// connect
-		if (this.client == null)
-		{
-			return;
-		}
+		assert this.client != null;
 		this.client.connect();
 	}
 
@@ -438,7 +351,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		String query = getIntent().getStringExtra(TreebolicIface.ARG_SOURCE);
 		if (query != null)
 		{
-			if (query.startsWith("directory:"))
+			if (query.startsWith("owl:"))
 			{
 				query = query.substring(8);
 				query(query);
@@ -464,7 +377,22 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	 * @param source source
 	 */
 	@SuppressWarnings("UnusedReturnValue")
-	private boolean query(@Nullable final String source)
+	private boolean query(final String source)
+	{
+		return query(source, Settings.getStringPref(this, TreebolicIface.PREF_BASE), Settings.getStringPref(this, TreebolicIface.PREF_IMAGEBASE), Settings.getStringPref(this, TreebolicIface.PREF_SETTINGS));
+	}
+
+	/**
+	 * Query request
+	 *
+	 * @param source    source
+	 * @param base      doc base
+	 * @param imageBase image base
+	 * @param settings  settings
+	 * @return true if query was made
+	 */
+	@SuppressWarnings("WeakerAccess")
+	protected boolean query(@Nullable final String source, final String base, final String imageBase, final String settings)
 	{
 		if (source == null || source.isEmpty())
 		{
@@ -476,9 +404,34 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 			Toast.makeText(MainActivity.this, R.string.fail_nullclient, Toast.LENGTH_SHORT).show();
 			return false;
 		}
-		final Intent forward = MainActivity.FORWARD ? IntentFactory.makeTreebolicIntentSkeleton(new Intent(this, org.treebolic.files.service.MainActivity.class), null, null, null) : null;
-		MainActivity.this.client.requestModel(source, null, null, null, forward);
+		final Intent forward = MainActivity.FORWARD ? IntentFactory.makeTreebolicIntentSkeleton(new Intent(this, MainActivity.class), base, imageBase, settings) : null;
+		MainActivity.this.client.requestModel(source, base, imageBase, settings, forward);
 		return true;
+	}
+
+	/**
+	 * Query request from zipped bundle file
+	 *
+	 * @param archiveUri archive uri
+	 */
+	private void queryBundle(@NonNull final Uri archiveUri)
+	{
+		try
+		{
+			final String path = archiveUri.getPath();
+			if (path != null)
+			{
+				// choose bundle entry
+				EntryChooser.choose(this, new File(archiveUri.getPath()), zipEntry -> {
+					final String base = "jar:" + archiveUri + "!/";
+					query(zipEntry, base, Settings.getStringPref(MainActivity.this, TreebolicIface.PREF_IMAGEBASE), Settings.getStringPref(MainActivity.this, TreebolicIface.PREF_SETTINGS));
+				});
+			}
+		}
+		catch (@NonNull final IOException e)
+		{
+			Log.d(MainActivity.TAG, "Failed to start treebolic from bundle uri " + archiveUri, e);
+		}
 	}
 
 	// M O D E L   L I S T E N E R
@@ -488,9 +441,9 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	{
 		if (model != null)
 		{
-			final Intent intent = MainActivity.makeTreebolicIntent(this, model);
+			final Intent intent = MainActivity.makeTreebolicIntent(this, model, null, null);
 
-			Log.d(MainActivity.TAG, "Starting treebolic");
+			Log.d(MainActivity.TAG, "Starting Treebolic");
 			this.startActivity(intent);
 		}
 	}
@@ -498,17 +451,19 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	/**
 	 * Make Treebolic intent
 	 *
-	 * @param context content
-	 * @param model   model
+	 * @param context   content
+	 * @param model     model
+	 * @param base      base
+	 * @param imageBase image base
 	 * @return intent
 	 */
 	@NonNull
 	@SuppressWarnings("WeakerAccess")
-	static public Intent makeTreebolicIntent(@NonNull final Context context, final Model model)
+	static public Intent makeTreebolicIntent(@NonNull final Context context, final Model model, @SuppressWarnings("SameParameterValue") final String base, @SuppressWarnings("SameParameterValue") final String imageBase)
 	{
 		// parent activity to return to
 		final Intent parentIntent = new Intent();
-		parentIntent.setClass(context, org.treebolic.files.service.MainActivity.class);
+		parentIntent.setClass(context, MainActivity.class);
 
 		// intent
 		final Intent intent = new Intent();
@@ -534,13 +489,28 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		}
 
 		// other parameters passing
-		intent.putExtra(TreebolicIface.ARG_BASE, (String) null);
-		intent.putExtra(TreebolicIface.ARG_IMAGEBASE, (String) null);
+		intent.putExtra(TreebolicIface.ARG_BASE, base);
+		intent.putExtra(TreebolicIface.ARG_IMAGEBASE, imageBase);
 
 		// parent passing
 		intent.putExtra(TreebolicIface.ARG_PARENTACTIVITY, parentIntent);
 
 		return intent;
+	}
+
+	// R E Q U E S T (choose source)
+
+	/**
+	 * Request Owl source
+	 */
+	private void requestSource()
+	{
+		final Intent intent = new Intent(this, org.treebolic.filechooser.FileChooserActivity.class);
+		intent.setType("application/rdf+xml");
+		intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_INITIAL_DIR, Settings.getStringPref(this, TreebolicIface.PREF_BASE));
+		intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_EXTENSION_FILTER, new String[]{"owl", "rdf"});
+		intent.addCategory(Intent.CATEGORY_OPENABLE);
+		this.activityResultLauncher.launch(intent);
 	}
 
 	// H E L P E R
@@ -567,11 +537,18 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	 */
 	private boolean sourceQualifies(@Nullable final String source)
 	{
+		final String base = Settings.getStringPref(this, TreebolicIface.PREF_BASE);
 		if (source != null && !source.isEmpty())
 		{
-			final File file = new File(source);
-			Log.d(MainActivity.TAG, "file=" + file);
-			return file.exists() && file.isDirectory();
+			final Uri baseUri = Uri.parse(base);
+			final String path = baseUri.getPath();
+			if (path != null)
+			{
+				final File baseFile = base == null ? null : new File(path);
+				final File file = new File(baseFile, source);
+				Log.d(MainActivity.TAG, "file=" + file);
+				return file.exists();
+			}
 		}
 		return false;
 	}

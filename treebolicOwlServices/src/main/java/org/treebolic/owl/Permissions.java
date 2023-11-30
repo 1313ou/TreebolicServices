@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) Treebolic 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.treebolic.files.service;
+package org.treebolic.owl;
 
 import android.Manifest;
 import android.app.Activity;
@@ -36,6 +36,7 @@ class Permissions
 				// Show an explanation to the user *asynchronously* -- don't block
 				// this thread waiting for the user's response! After the user
 				// sees the explanation, try again to request the permission.
+
 			}
 			else
 			*/
@@ -55,7 +56,7 @@ class Permissions
 	{
 		switch (requestCode)
 		{
-			case PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE:
+			case PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE:
 			{
 				// If request is cancelled, the result arrays are empty.
 				if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)

@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) Treebolic 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.treebolic.wordnet.service;
+package org.treebolic.files;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -32,14 +32,9 @@ public class Settings
 	public static final String PREF_INITIALIZED = "pref_initialized";
 
 	/**
-	 * Download service type name
+	 * Service type preference name
 	 */
 	public static final String PREF_SERVICE = "pref_service";
-
-	/**
-	 * Download preference name
-	 */
-	public static final String PREF_DOWNLOAD = "pref_download";
 
 	/**
 	 * Set default initial settings
@@ -50,25 +45,15 @@ public class Settings
 	static public void setDefaults(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		final Editor editor = sharedPref.edit();
-		editor.putString(TreebolicIface.PREF_SOURCE, "love");
-		editor.putString(Settings.PREF_DOWNLOAD, "http://treebolic.sourceforge.net/data/wordnet/wordnet31.zip");
-		editor.putString(Settings.PREF_SERVICE, "BroadcastService");
-		editor.commit();
-	}
 
-	/**
-	 * Put string preference
-	 *
-	 * @param context context
-	 * @param key     key
-	 * @param value   value
-	 */
-	@SuppressLint({"CommitPrefEdits", "ApplySharedPref"})
-	static public void putStringPref(@NonNull final Context context, @SuppressWarnings("SameParameterValue") final String key, final String value)
-	{
-		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		sharedPref.edit().putString(key, value).commit();
+		final String externalStorage = StorageExplorer.discoverExternalStorage(context);
+		//final File treebolicStorage = Storage.getTreebolicStorage(context);
+		//final Uri uri = Uri.fromFile(treebolicStorage);
+
+		final Editor editor = sharedPref.edit();
+		editor.putString(Settings.PREF_SERVICE, "BroadcastService");
+		editor.putString(TreebolicIface.PREF_SOURCE, externalStorage);
+		editor.commit();
 	}
 
 	/**
@@ -83,6 +68,20 @@ public class Settings
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getString(key, null);
+	}
+
+	/**
+	 * Put string preference
+	 *
+	 * @param context context
+	 * @param key     key
+	 * @param value   value
+	 */
+	@SuppressLint({"CommitPrefEdits", "ApplySharedPref"})
+	static public void putStringPref(@NonNull final Context context, @SuppressWarnings("SameParameterValue") final String key, final String value)
+	{
+		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+		sharedPref.edit().putString(key, value).commit();
 	}
 
 	// U T I L S

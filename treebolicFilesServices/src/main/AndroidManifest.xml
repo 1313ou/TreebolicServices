@@ -35,7 +35,7 @@
 		tools:ignore="AllowBackup">
 
 		<activity
-			android:name=".MainActivity"
+			android:name="org.treebolic.files.MainActivity"
 			android:exported="true">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
@@ -44,41 +44,41 @@
 		</activity>
 
 		<activity
-			android:name=".SettingsActivity"
+			android:name="org.treebolic.files.SettingsActivity"
 			android:exported="false"
 			android:label="@string/title_activity_settings"
-			android:parentActivityName=".MainActivity">
+			android:parentActivityName="org.treebolic.files.MainActivity">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
-				android:value=".MainActivity" />
+				android:value="org.treebolic.files.MainActivity" />
 		</activity>
 
 		<activity
 			android:name="org.treebolic.filechooser.FileChooserActivity"
 			android:exported="false"
 			android:label="@string/title_activity_choose"
-			android:parentActivityName=".MainActivity">
+			android:parentActivityName="org.treebolic.files.MainActivity">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
-				android:value=".MainActivity" />
+				android:value="org.treebolic.files.MainActivity" />
 		</activity>
 
 		<activity
 			android:name="com.bbou.others.OthersActivity"
 			android:exported="false"
-			android:parentActivityName=".MainActivity">
+			android:parentActivityName="org.treebolic.files.MainActivity">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
-				android:value=".MainActivity" />
+				android:value="org.treebolic.files.MainActivity" />
 		</activity>
 
 		<activity
 			android:name="com.bbou.donate.DonateActivity"
 			android:exported="false"
-			android:parentActivityName=".MainActivity">
+			android:parentActivityName="org.treebolic.files.MainActivity">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
-				android:value=".MainActivity" />
+				android:value="org.treebolic.files.MainActivity" />
 		</activity>
 
 		<receiver

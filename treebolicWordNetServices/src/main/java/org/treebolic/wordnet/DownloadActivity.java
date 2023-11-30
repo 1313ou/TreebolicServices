@@ -1,36 +1,36 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) Treebolic 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.treebolic.owl.service;
+package org.treebolic.wordnet;
 
-import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
-import org.treebolic.download.Deploy;
-import org.treebolic.storage.Storage;
+import org.treebolic.wordnet.service.R;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
 import androidx.annotation.NonNull;
 
 /**
- * Owl download activity
+ * WordNet download activity
  *
  * @author Bernard Bou
  */
 public class DownloadActivity extends org.treebolic.download.DownloadActivity
 {
+	/**
+	 * Whether stream is tar.gz (zip otherwise)
+	 */
+	private boolean asTarGz;
+
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 
-		this.expandArchiveCheckbox.setVisibility(View.VISIBLE);
 		this.downloadUrl = Settings.getStringPref(this, Settings.PREF_DOWNLOAD);
 		if (this.downloadUrl == null || this.downloadUrl.isEmpty())
 		{
@@ -42,7 +42,9 @@ public class DownloadActivity extends org.treebolic.download.DownloadActivity
 	@Override
 	public void start()
 	{
-		start(R.string.owl);
+		assert this.downloadUrl != null;
+		this.asTarGz = this.downloadUrl.endsWith(".tar.gz");
+		super.start(R.string.wordnet);
 	}
 
 	// P O S T P R O C E S S I N G
@@ -58,21 +60,7 @@ public class DownloadActivity extends org.treebolic.download.DownloadActivity
 	@Override
 	protected boolean process(@NonNull final InputStream inputStream) throws IOException
 	{
-		final File storage = Storage.getTreebolicStorage(this);
-
-		if (this.expandArchive)
-		{
-			Deploy.expand(inputStream, Storage.getTreebolicStorage(this), false);
-			return true;
-		}
-		final Uri downloadUri = Uri.parse(this.downloadUrl);
-		final String lastSegment = downloadUri.getLastPathSegment();
-		if (lastSegment != null)
-		{
-			final File destFile = new File(storage, lastSegment);
-			Deploy.copy(inputStream, destFile);
-			return true;
-		}
-		return false;
+		new Deployer(DownloadActivity.this.getFilesDir()).process(inputStream, this.asTarGz);
+		return true;
 	}
 }

@@ -37,7 +37,7 @@
 		tools:ignore="AllowBackup">
 
 		<activity
-			android:name=".MainActivity"
+			android:name="org.treebolic.wordnet.MainActivity"
 			android:exported="true">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
@@ -46,51 +46,51 @@
 		</activity>
 
 		<activity
-			android:name=".SettingsActivity"
+			android:name="org.treebolic.wordnet.SettingsActivity"
 			android:exported="false"
 			android:label="@string/title_activity_settings"
-			android:parentActivityName=".MainActivity">
+			android:parentActivityName="org.treebolic.wordnet.MainActivity">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
-				android:value=".MainActivity" />
+				android:value="org.treebolic.wordnet.MainActivity" />
 		</activity>
 
 		<activity
-			android:name=".DownloadActivity"
+			android:name="org.treebolic.wordnet.DownloadActivity"
 			android:exported="false"
 			android:label="@string/title_activity_download"
-			android:parentActivityName=".MainActivity">
+			android:parentActivityName="org.treebolic.wordnet.MainActivity">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
-				android:value=".MainActivity" />
+				android:value="org.treebolic.wordnet.MainActivity" />
 		</activity>
 
 		<activity
-			android:name=".QueryProviderActivity"
+			android:name="org.treebolic.wordnet.QueryProviderActivity"
 			android:exported="false"
 			android:label="@string/title_activity_query_file_provider"
-			android:parentActivityName=".MainActivity">
+			android:parentActivityName="org.treebolic.wordnet.MainActivity">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
-				android:value=".MainActivity" />
+				android:value="org.treebolic.wordnet.MainActivity" />
 		</activity>
 
 		<activity
 			android:name="com.bbou.others.OthersActivity"
 			android:exported="false"
-			android:parentActivityName=".MainActivity">
+			android:parentActivityName="org.treebolic.wordnet.MainActivity">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
-				android:value=".MainActivity" />
+				android:value="org.treebolic.wordnet.MainActivity" />
 		</activity>
 
 		<activity
 			android:name="com.bbou.donate.DonateActivity"
 			android:exported="false"
-			android:parentActivityName=".MainActivity">
+			android:parentActivityName="org.treebolic.wordnet.MainActivity">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
-				android:value=".MainActivity" />
+				android:value="org.treebolic.wordnet.MainActivity" />
 		</activity>
 
 		<receiver

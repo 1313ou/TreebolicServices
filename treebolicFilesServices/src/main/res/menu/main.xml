@@ -5,7 +5,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
-	tools:context="org.treebolic.files.service.MainActivity">
+	tools:context="org.treebolic.files.service.org.treebolic.files.MainActivity">
 
 	<item
 		android:id="@+id/action_places"

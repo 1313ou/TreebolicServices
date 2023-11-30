@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) Treebolic 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.treebolic.owl.service;
+package org.treebolic.wordnet;
 
 import android.Manifest;
 import android.app.Activity;

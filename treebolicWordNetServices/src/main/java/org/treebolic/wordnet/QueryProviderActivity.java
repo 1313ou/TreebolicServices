@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) Treebolic 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.treebolic.wordnet.service;
+package org.treebolic.wordnet;
 
 import android.app.Activity;
 import android.content.ComponentName;
@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import org.treebolic.AppCompatCommonActivity;
+import org.treebolic.wordnet.service.R;
 
 import java.io.FileDescriptor;
 import java.io.FileInputStream;

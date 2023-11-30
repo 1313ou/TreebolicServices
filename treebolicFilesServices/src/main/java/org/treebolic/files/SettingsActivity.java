@@ -1,19 +1,17 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) Treebolic 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.treebolic.wordnet.service;
+package org.treebolic.files;
 
 import android.os.Bundle;
 
 import org.treebolic.AppCompatCommonPreferenceActivity;
 import org.treebolic.TreebolicIface;
-import org.treebolic.preference.OpenEditTextPreference;
+import org.treebolic.files.service.R;
 
-import androidx.annotation.NonNull;
 import androidx.preference.EditTextPreference;
 import androidx.preference.ListPreference;
-import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 /**
@@ -41,32 +39,8 @@ public class SettingsActivity extends AppCompatCommonPreferenceActivity
 		}
 	}
 
-	public static class DownloadPreferenceFragment extends PreferenceFragmentCompat
-	{
-		@Override
-		public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey)
-		{
-			// inflate
-			addPreferencesFromResource(R.xml.pref_download);
-
-			// bind
-			final OpenEditTextPreference downloadPref = findPreference(Settings.PREF_DOWNLOAD);
-			assert downloadPref != null;
-			downloadPref.setSummaryProvider(OpenEditTextPreference.SUMMARY_PROVIDER);
-		}
-
-		@Override
-		public void onDisplayPreferenceDialog(@NonNull final Preference preference)
-		{
-			if (!OpenEditTextPreference.onDisplayPreferenceDialog(this, preference))
-			{
-				super.onDisplayPreferenceDialog(preference);
-			}
-		}
-	}
-
 	@SuppressWarnings("WeakerAccess")
-	public static class ServicePreferenceFragment extends PreferenceFragmentCompat
+	public static class ServicesPreferenceFragment extends PreferenceFragmentCompat
 	{
 		@Override
 		public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey)

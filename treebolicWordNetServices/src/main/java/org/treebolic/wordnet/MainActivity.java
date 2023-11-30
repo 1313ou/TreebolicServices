@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) Treebolic 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.treebolic.wordnet.service;
+package org.treebolic.wordnet;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -37,6 +37,7 @@ import org.treebolic.clients.iface.IConnectionListener;
 import org.treebolic.clients.iface.IModelListener;
 import org.treebolic.clients.iface.ITreebolicClient;
 import org.treebolic.services.IntentFactory;
+import org.treebolic.wordnet.service.R;
 import org.treebolic.wordnet.service.client.TreebolicWordNetAIDLBoundClient;
 import org.treebolic.wordnet.service.client.TreebolicWordNetBoundClient;
 import org.treebolic.wordnet.service.client.TreebolicWordNetBroadcastClient;
@@ -444,7 +445,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 			Toast.makeText(MainActivity.this, R.string.fail_nullclient, Toast.LENGTH_SHORT).show();
 			return false;
 		}
-		final Intent forward = MainActivity.FORWARD ? IntentFactory.makeTreebolicIntentSkeleton(new Intent(this, org.treebolic.wordnet.service.MainActivity.class), base, imageBase, settings) : null;
+		final Intent forward = MainActivity.FORWARD ? IntentFactory.makeTreebolicIntentSkeleton(new Intent(this, MainActivity.class), base, imageBase, settings) : null;
 		MainActivity.this.client.requestModel(query, base, imageBase, settings, forward);
 		return true;
 	}
@@ -525,7 +526,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	{
 		// parent activity to return to
 		final Intent parentIntent = new Intent();
-		parentIntent.setClass(context, org.treebolic.wordnet.service.MainActivity.class);
+		parentIntent.setClass(context, MainActivity.class);
 
 		// intent
 		final Intent intent = new Intent();
