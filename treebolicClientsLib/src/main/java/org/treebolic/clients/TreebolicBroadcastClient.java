@@ -20,24 +20,24 @@ import android.widget.Toast;
 import org.treebolic.ParcelableModel;
 import org.treebolic.clients.iface.IConnectionListener;
 import org.treebolic.clients.iface.IModelListener;
+import org.treebolic.clients.iface.ITreebolicClient;
 import org.treebolic.services.iface.ITreebolicService;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.JobIntentService;
 import treebolic.model.Model;
 
 /**
- * Treebolic intent service client
+ * Treebolic broadcast service client
  *
  * @author Bernard Bou
  */
-public class TreebolicIntentClient implements org.treebolic.clients.iface.ITreebolicClient
+public class TreebolicBroadcastClient implements ITreebolicClient
 {
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "IntentC";
+	static private final String TAG = "BroadcastC";
 
 	/**
 	 * Abstract: Service package
@@ -73,11 +73,6 @@ public class TreebolicIntentClient implements org.treebolic.clients.iface.ITreeb
 	private final ResultReceiver receiver;
 
 	/**
-	 * Unique job ID
-	 */
-	private static final int JOB_ID = 131313;
-
-	/**
 	 * Constructor
 	 *
 	 * @param context0            context
@@ -86,7 +81,7 @@ public class TreebolicIntentClient implements org.treebolic.clients.iface.ITreeb
 	 * @param modelListener0      model listener
 	 */
 	@SuppressWarnings("WeakerAccess")
-	public TreebolicIntentClient(final Context context0, @NonNull final String service0, final IConnectionListener connectionListener0, final IModelListener modelListener0)
+	public TreebolicBroadcastClient(final Context context0, @NonNull final String service0, final IConnectionListener connectionListener0, final IModelListener modelListener0)
 	{
 		this.context = context0;
 		this.connectionListener = connectionListener0;
@@ -124,7 +119,7 @@ public class TreebolicIntentClient implements org.treebolic.clients.iface.ITreeb
 					{
 						if (!ParcelableModel.class.equals(parcelable.getClass()))
 						{
-							Log.d(TreebolicIntentClient.TAG, "Parcel/Unparcel from source classloader " + parcelable.getClass().getClassLoader() + " to target classloader " + ParcelableModel.class.getClassLoader());
+							Log.d(TreebolicBroadcastClient.TAG, "Parcel/Unparcel from source classloader " + parcelable.getClass().getClassLoader() + " to target classloader " + ParcelableModel.class.getClassLoader());
 
 							// obtain parcel
 							final Parcel parcel = Parcel.obtain();
@@ -144,7 +139,7 @@ public class TreebolicIntentClient implements org.treebolic.clients.iface.ITreeb
 						model = parcelModel.getModel();
 					}
 				}
-				TreebolicIntentClient.this.modelListener.onModel(resultCode == 0 ? model : null, urlScheme);
+				TreebolicBroadcastClient.this.modelListener.onModel(resultCode == 0 ? model : null, urlScheme);
 			}
 		};
 	}
@@ -165,6 +160,7 @@ public class TreebolicIntentClient implements org.treebolic.clients.iface.ITreeb
 	public void requestModel(final String source, final String base, final String imageBase, final String settings, final Intent forward)
 	{
 		ComponentName component = new ComponentName(this.servicePackage, this.serviceName);
+
 		final Intent intent = new Intent();
 		intent.setComponent(component);
 		intent.setAction(ITreebolicService.ACTION_MAKEMODEL);
@@ -174,8 +170,10 @@ public class TreebolicIntentClient implements org.treebolic.clients.iface.ITreeb
 		intent.putExtra(ITreebolicService.EXTRA_SETTINGS, settings);
 		intent.putExtra(ITreebolicService.EXTRA_RECEIVER, this.receiver);
 		intent.putExtra(ITreebolicService.EXTRA_FORWARD_RESULT_TO, forward);
-		JobIntentService.enqueueWork(this.context, component, JOB_ID, intent);
-		Log.d(TreebolicIntentClient.TAG, "Intent service enqueued " + this.servicePackage + '/' + this.serviceName);
+
+		this.context.sendBroadcast(intent);
+
+		Log.d(TreebolicBroadcastClient.TAG, "Intent broadcast to " + this.servicePackage + '/' + this.serviceName);
 		Toast.makeText(this.context, R.string.started, Toast.LENGTH_LONG).show();
 	}
 }
