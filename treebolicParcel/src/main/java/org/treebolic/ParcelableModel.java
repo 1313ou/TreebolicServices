@@ -181,7 +181,7 @@ public class ParcelableModel implements Parcelable
 		parcel.writeInt(1);
 		ParcelableModel.writeToParcel(parcel, model.tree);
 		ParcelableModel.writeToParcel(parcel, model.settings);
-		ParcelableModel.writeToParcel(parcel, (Image[]) model.images);
+		ParcelableModel.writeToParcel(parcel, model.images);
 		Log.d(ParcelableModel.TAG, "parcel write size=" + parcel.dataSize() + " pos=" + parcel.dataPosition());
 	}
 
@@ -427,7 +427,7 @@ public class ParcelableModel implements Parcelable
 
 	// IMAGES
 
-	private static void writeToParcel(@NonNull final Parcel parcel, @Nullable final Image[] images)
+	private static void writeToParcel(@NonNull final Parcel parcel, @Nullable final treebolic.glue.iface.Image[] images)
 	{
 		if (images == null)
 		{
@@ -436,7 +436,7 @@ public class ParcelableModel implements Parcelable
 		}
 		final int n = images.length;
 		parcel.writeInt(n);
-		for (Image image : images)
+		for (treebolic.glue.iface.Image image : images)
 		{
 			ParcelableModel.writeToParcel(parcel, image);
 		}
@@ -565,9 +565,17 @@ public class ParcelableModel implements Parcelable
 	 * @param parcel parcel to write to
 	 * @param image  image
 	 */
-	private static void writeToParcel(@NonNull final Parcel parcel, @Nullable final Image image)
+	private static void writeToParcel(@NonNull final Parcel parcel, @Nullable final treebolic.glue.iface.Image image0)
 	{
-		if (image == null || image.bitmap == null)
+
+		if (image0 == null || !(image0 instanceof treebolic.glue.Image))
+		{
+			parcel.writeInt(0);
+			return;
+		}
+
+		treebolic.glue.Image image = (treebolic.glue.Image) image0;
+		if (image == null || image instanceof treebolic.glue.Image || image.bitmap == null)
 		{
 			parcel.writeInt(0);
 			return;
