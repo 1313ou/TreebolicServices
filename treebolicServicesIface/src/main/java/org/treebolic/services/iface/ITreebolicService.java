@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
  */
 public interface ITreebolicService
 {
-	// intent service
+	// broadcast service
 
 	String ACTION_MAKEMODEL = "org.treebolic.service.action.MAKE_MODEL";
 
