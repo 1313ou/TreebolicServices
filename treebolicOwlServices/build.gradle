@@ -15,7 +15,7 @@ android {
     compileSdk rootProject.ext.compileSdk
 
     defaultConfig {
-        applicationId "org.treebolic.owl.service"
+        applicationId "org.treebolic.owl"
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
         minSdkVersion rootProject.ext.minSdkVersion

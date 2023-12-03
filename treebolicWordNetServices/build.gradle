@@ -15,7 +15,7 @@ android {
     compileSdk rootProject.ext.compileSdk
 
     defaultConfig {
-        applicationId "org.treebolic.wordnet.service"
+        applicationId "org.treebolic.wordnet"
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
         minSdkVersion rootProject.ext.minSdkVersion

@@ -15,7 +15,7 @@ android {
     compileSdk rootProject.ext.compileSdk
 
     defaultConfig {
-        applicationId "org.treebolic.files.service"
+        applicationId "org.treebolic.files"
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
         minSdkVersion rootProject.ext.minSdkVersion
