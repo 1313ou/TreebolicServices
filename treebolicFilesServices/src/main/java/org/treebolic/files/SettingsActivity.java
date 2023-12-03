@@ -8,7 +8,6 @@ import android.os.Bundle;
 
 import org.treebolic.AppCompatCommonPreferenceActivity;
 import org.treebolic.TreebolicIface;
-import org.treebolic.files.service.R;
 
 import androidx.preference.EditTextPreference;
 import androidx.preference.ListPreference;

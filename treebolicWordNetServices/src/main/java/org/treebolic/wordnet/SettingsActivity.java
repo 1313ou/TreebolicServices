@@ -9,7 +9,6 @@ import android.os.Bundle;
 import org.treebolic.AppCompatCommonPreferenceActivity;
 import org.treebolic.TreebolicIface;
 import org.treebolic.preference.OpenEditTextPreference;
-import org.treebolic.wordnet.service.R;
 
 import androidx.annotation.NonNull;
 import androidx.preference.EditTextPreference;

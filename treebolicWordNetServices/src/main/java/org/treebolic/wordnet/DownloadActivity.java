@@ -7,8 +7,6 @@ package org.treebolic.wordnet;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import org.treebolic.wordnet.service.R;
-
 import java.io.IOException;
 import java.io.InputStream;
 

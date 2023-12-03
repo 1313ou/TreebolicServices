@@ -19,7 +19,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import org.treebolic.AppCompatCommonActivity;
-import org.treebolic.wordnet.service.R;
 
 import java.io.FileDescriptor;
 import java.io.FileInputStream;

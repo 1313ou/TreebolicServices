@@ -36,7 +36,6 @@ import org.treebolic.clients.iface.IModelListener;
 import org.treebolic.clients.iface.ITreebolicClient;
 import org.treebolic.filechooser.EntryChooser;
 import org.treebolic.filechooser.FileChooserActivity;
-import org.treebolic.owl.service.R;
 import org.treebolic.owl.service.client.TreebolicOwlAIDLBoundClient;
 import org.treebolic.owl.service.client.TreebolicOwlBoundClient;
 import org.treebolic.owl.service.client.TreebolicOwlBroadcastClient;

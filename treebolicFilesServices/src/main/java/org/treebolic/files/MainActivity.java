@@ -38,7 +38,6 @@ import org.treebolic.clients.iface.IConnectionListener;
 import org.treebolic.clients.iface.IModelListener;
 import org.treebolic.clients.iface.ITreebolicClient;
 import org.treebolic.filechooser.FileChooserActivity;
-import org.treebolic.files.service.R;
 import org.treebolic.files.service.client.TreebolicFilesAIDLBoundClient;
 import org.treebolic.files.service.client.TreebolicFilesBoundClient;
 import org.treebolic.files.service.client.TreebolicFilesBroadcastClient;

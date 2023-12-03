@@ -37,7 +37,6 @@ import org.treebolic.clients.iface.IConnectionListener;
 import org.treebolic.clients.iface.IModelListener;
 import org.treebolic.clients.iface.ITreebolicClient;
 import org.treebolic.services.IntentFactory;
-import org.treebolic.wordnet.service.R;
 import org.treebolic.wordnet.service.client.TreebolicWordNetAIDLBoundClient;
 import org.treebolic.wordnet.service.client.TreebolicWordNetBoundClient;
 import org.treebolic.wordnet.service.client.TreebolicWordNetBroadcastClient;
