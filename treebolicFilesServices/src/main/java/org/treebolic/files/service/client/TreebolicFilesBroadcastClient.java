@@ -27,6 +27,6 @@ public class TreebolicFilesBroadcastClient extends TreebolicBroadcastClient
 	 */
 	public TreebolicFilesBroadcastClient(final Context context, final IConnectionListener connectionListener, final IModelListener modelListener)
 	{
-		super(context, "org.treebolic.files.service" + '/' + TreebolicFilesBroadcastService.class.getName(), connectionListener, modelListener);
+		super(context, "org.treebolic.files" + '/' + TreebolicFilesBroadcastService.class.getName(), connectionListener, modelListener);
 	}
 }

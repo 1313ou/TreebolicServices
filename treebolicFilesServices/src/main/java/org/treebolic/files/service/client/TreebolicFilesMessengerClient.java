@@ -9,6 +9,8 @@ import android.content.Context;
 import org.treebolic.clients.TreebolicMessengerClient;
 import org.treebolic.clients.iface.IConnectionListener;
 import org.treebolic.clients.iface.IModelListener;
+import org.treebolic.files.BuildConfig;
+import org.treebolic.files.service.TreebolicFilesMessengerService;
 
 /**
  * Treebolic Files messenger bound client
@@ -26,6 +28,6 @@ public class TreebolicFilesMessengerClient extends TreebolicMessengerClient
 	 */
 	public TreebolicFilesMessengerClient(final Context context, final IConnectionListener connectionListener, final IModelListener modelListener)
 	{
-		super(context, "org.treebolic.files.service" + '/' + org.treebolic.files.service.TreebolicFilesMessengerService.class.getName(), connectionListener, modelListener);
+		super(context, BuildConfig.APPLICATION_ID + '/' + TreebolicFilesMessengerService.class.getName(), connectionListener, modelListener);
 	}
 }

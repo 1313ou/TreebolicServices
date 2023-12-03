@@ -9,6 +9,8 @@ import android.content.Context;
 import org.treebolic.clients.TreebolicBoundClient;
 import org.treebolic.clients.iface.IConnectionListener;
 import org.treebolic.clients.iface.IModelListener;
+import org.treebolic.wordnet.BuildConfig;
+import org.treebolic.wordnet.service.TreebolicWordNetBoundService;
 
 /**
  * Treebolic WordNet bound client
@@ -26,6 +28,6 @@ public class TreebolicWordNetBoundClient extends TreebolicBoundClient
 	 */
 	public TreebolicWordNetBoundClient(final Context context, final IConnectionListener connectionListener, final IModelListener modelListener)
 	{
-		super(context, "org.treebolic.wordnet.service" + '/' + org.treebolic.wordnet.service.TreebolicWordNetBoundService.class.getName(), connectionListener, modelListener);
+		super(context, BuildConfig.APPLICATION_ID + '/' + TreebolicWordNetBoundService.class.getName(), connectionListener, modelListener);
 	}
 }

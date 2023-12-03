@@ -9,6 +9,7 @@ import android.content.Context;
 import org.treebolic.clients.TreebolicBroadcastClient;
 import org.treebolic.clients.iface.IConnectionListener;
 import org.treebolic.clients.iface.IModelListener;
+import org.treebolic.owl.BuildConfig;
 import org.treebolic.owl.service.TreebolicOwlBroadcastService;
 
 /**
@@ -27,6 +28,6 @@ public class TreebolicOwlBroadcastClient extends TreebolicBroadcastClient
 	 */
 	public TreebolicOwlBroadcastClient(final Context context, final IConnectionListener connectionListener, final IModelListener modelListener)
 	{
-		super(context, "org.treebolic.owl.service" + '/' + TreebolicOwlBroadcastService.class.getName(), connectionListener, modelListener);
+		super(context, BuildConfig.APPLICATION_ID + '/' + TreebolicOwlBroadcastService.class.getName(), connectionListener, modelListener);
 	}
 }
