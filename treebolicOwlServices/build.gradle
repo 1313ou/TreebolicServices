@@ -10,7 +10,7 @@ keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
 android {
 
-    namespace "org.treebolic.owl.service"
+    namespace "org.treebolic.owl"
 
     compileSdk rootProject.ext.compileSdk
 
