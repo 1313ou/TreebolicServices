@@ -94,7 +94,7 @@
 		</activity>
 
 		<receiver
-			android:name=".TreebolicWordNetBroadcastService"
+			android:name="org.treebolic.wordnet.service.TreebolicWordNetBroadcastService"
 			android:description="@string/description_service_broadcast_service"
 			android:enabled="true"
 			android:exported="true"
@@ -106,7 +106,7 @@
 		</receiver>
 
 		<service
-			android:name=".TreebolicWordNetBroadcastService"
+			android:name="org.treebolic.wordnet.service.TreebolicWordNetBroadcastService"
 			android:description="@string/description_service_broadcast_service"
 			android:enabled="true"
 			android:exported="true"
@@ -120,7 +120,7 @@
 		</service>
 
 		<service
-			android:name=".TreebolicWordNetAIDLBoundService"
+			android:name="org.treebolic.wordnet.service.TreebolicWordNetAIDLBoundService"
 			android:description="@string/description_service_aidl_bound_service"
 			android:enabled="true"
 			android:exported="true"
@@ -134,7 +134,7 @@
 		</service>
 
 		<service
-			android:name=".TreebolicWordNetMessengerService"
+			android:name="org.treebolic.wordnet.service.TreebolicWordNetMessengerService"
 			android:description="@string/description_service_messenger_bound_service"
 			android:enabled="true"
 			android:exported="true"

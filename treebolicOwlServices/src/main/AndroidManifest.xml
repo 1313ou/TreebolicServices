@@ -94,7 +94,7 @@
 		</activity>
 
 		<receiver
-			android:name=".TreebolicOwlBroadcastService"
+			android:name="org.treebolic.owl.service.TreebolicOwlBroadcastService"
 			android:description="@string/description_service_broadcast_service"
 			android:enabled="true"
 			android:exported="true"
@@ -106,7 +106,7 @@
 		</receiver>
 
 		<service
-			android:name=".TreebolicOwlBroadcastService"
+			android:name="org.treebolic.owl.service.TreebolicOwlBroadcastService"
 			android:description="@string/description_service_broadcast_service"
 			android:enabled="true"
 			android:exported="true"
@@ -120,7 +120,7 @@
 		</service>
 
 		<service
-			android:name=".TreebolicOwlAIDLBoundService"
+			android:name="org.treebolic.owl.service.TreebolicOwlAIDLBoundService"
 			android:description="@string/description_service_aidl_bound_service"
 			android:enabled="true"
 			android:exported="true"
@@ -134,7 +134,7 @@
 		</service>
 
 		<service
-			android:name=".TreebolicOwlMessengerService"
+			android:name="org.treebolic.owl.service.TreebolicOwlMessengerService"
 			android:description="@string/description_service_messenger_bound_service"
 			android:enabled="true"
 			android:exported="true"

@@ -82,7 +82,7 @@
 		</activity>
 
 		<receiver
-			android:name=".TreebolicFilesBroadcastService"
+			android:name="org.treebolic.files.service.TreebolicFilesBroadcastService"
 			android:description="@string/description_service_broadcast_service"
 			android:enabled="true"
 			android:exported="true"
@@ -94,7 +94,7 @@
 		</receiver>
 
 		<service
-			android:name=".TreebolicFilesBroadcastService"
+			android:name="org.treebolic.files.service.TreebolicFilesBroadcastService"
 			android:description="@string/description_service_broadcast_service"
 			android:enabled="true"
 			android:exported="true"
@@ -108,7 +108,7 @@
 		</service>
 
 		<service
-			android:name=".TreebolicFilesAIDLBoundService"
+			android:name="org.treebolic.files.service.TreebolicFilesAIDLBoundService"
 			android:description="@string/description_service_aidl_bound_service"
 			android:enabled="true"
 			android:exported="true"
@@ -122,7 +122,7 @@
 		</service>
 
 		<service
-			android:name=".TreebolicFilesMessengerService"
+			android:name="org.treebolic.files.service.TreebolicFilesMessengerService"
 			android:description="@string/description_service_messenger_bound_service"
 			android:enabled="true"
 			android:exported="true"
