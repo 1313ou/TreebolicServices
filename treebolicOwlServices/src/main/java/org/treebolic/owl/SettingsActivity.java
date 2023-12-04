@@ -46,10 +46,6 @@ public class SettingsActivity extends AppCompatCommonPreferenceActivity
 			final EditTextPreference imageBasePref = findPreference(TreebolicIface.PREF_IMAGEBASE);
 			assert imageBasePref != null;
 			imageBasePref.setSummaryProvider(EditTextPreference.SimpleSummaryProvider.getInstance());
-
-			final ListPreference servicePref = findPreference(Settings.PREF_SERVICE);
-			assert servicePref != null;
-			servicePref.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance());
 		}
 	}
 

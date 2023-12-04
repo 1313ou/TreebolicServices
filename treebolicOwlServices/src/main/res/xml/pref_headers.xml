@@ -10,7 +10,7 @@
 		app:fragment="org.treebolic.owl.SettingsActivity$ServicesPreferenceFragment"
 		app:icon="@null"
 		app:key="pref_service"
-		app:title="@string/pref_header_services" />
+		app:title="@string/pref_header_service" />
 
 	<Preference
 		app:fragment="org.treebolic.owl.SettingsActivity$GeneralPreferenceFragment"
