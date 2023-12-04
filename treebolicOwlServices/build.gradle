@@ -52,6 +52,7 @@ dependencies {
     implementation 'io.github.treebolic:treebolic-model:4.1-3'
     implementation 'io.github.treebolic:provider-owl-sax:4.1-3'
 
+    implementation project(':treebolicOwlProvider')
     implementation project(':treebolicServicesIface')
     implementation project(':treebolicServicesLib')
     implementation project(':treebolicClientsIface')
@@ -72,7 +73,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.10.0'
 
     implementation "androidx.multidex:multidex:${multiDexVersion}"
-    coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:${desugaringVersion}"
+     coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:${desugaringVersion}"
 
     constraints {
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0") {

@@ -14,7 +14,7 @@ import java.net.URL;
 
 import androidx.annotation.NonNull;
 import treebolic.ILocator;
-import treebolic.provider.owl.sax.Provider;
+import treebolic.provider.owl.Provider2;
 
 /**
  * Owl Model factory
@@ -35,7 +35,7 @@ public class ModelFactory extends org.treebolic.services.ModelFactory
 	 */
 	public ModelFactory(@NonNull final Context context)
 	{
-		super(new Provider(), Utils.makeLogProviderContext(TAG), makeLocator(context), null);
+		super(new Provider2(), Utils.makeLogProviderContext(TAG), makeLocator(context), null);
 	}
 
 	@NonNull
