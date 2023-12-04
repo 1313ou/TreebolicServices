@@ -15,6 +15,7 @@
 	<string name="title_finish">Finir</string>
 	<string name="title_kill">Terminer</string>
 	<string name="title_settings">Paramètres</string>
+	<string name="title_settings_service">Paramètres pour service</string>
 	<string name="title_activity_app_settings">Application</string>
 	<string name="title_choose">Choisir</string>
 	<string name="title_choose_directory">Choisir un dossier</string>

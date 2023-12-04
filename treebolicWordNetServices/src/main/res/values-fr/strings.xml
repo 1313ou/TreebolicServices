@@ -28,6 +28,7 @@
 	<string name="title_finish">Finir</string>
 	<string name="title_kill">Terminate</string>
 	<string name="title_settings">Paramètres</string>
+	<string name="title_settings_service">Paramètres pour service</string>
 	<string name="title_activity_app_settings">Application</string>
 	<string name="title_status_data_available">État de disponibilité des données</string>
 	<string name="title_choose">Choisir</string>

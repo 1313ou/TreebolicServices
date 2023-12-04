@@ -50,7 +50,7 @@ public class SettingsActivity extends AppCompatCommonPreferenceActivity
 	}
 
 	@SuppressWarnings("WeakerAccess")
-	public static class ServicesPreferenceFragment extends PreferenceFragmentCompat
+	public static class ServicePreferenceFragment extends PreferenceFragmentCompat
 	{
 		@Override
 		public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey)
