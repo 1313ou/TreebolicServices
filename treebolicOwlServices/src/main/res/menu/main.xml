@@ -27,6 +27,11 @@
 		android:id="@+id/action_settings"
 		android:title="@string/title_settings"
 		app:showAsAction="never" />
+	<item
+		android:id="@+id/action_settings_service"
+		android:title="@string/title_settings_service"
+		app:showAsAction="never" />
+
 	<item android:title="@string/title_menu_about">
 		<menu>
 			<item

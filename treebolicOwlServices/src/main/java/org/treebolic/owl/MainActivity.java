@@ -244,6 +244,13 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 			startActivity(new Intent(this, SettingsActivity.class));
 			return true;
 		}
+		else if (R.id.action_settings_service == id)
+		{
+			Intent intent = new Intent(this, SettingsActivity.class);
+			intent.putExtra(SettingsActivity.INITIAL_ARG, SettingsActivity.ServicesPreferenceFragment.class.getName());
+			startActivity(intent);
+			return true;
+		}
 		else if (R.id.action_finish == id)
 		{
 			finish();
