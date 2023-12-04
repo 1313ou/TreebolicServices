@@ -216,7 +216,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		}
 		else if (R.id.action_app_settings == id)
 		{
-			Settings.applicationSettings(this, "org.treebolic.files");
+			Settings.applicationSettings(this, BuildConfig.APPLICATION_ID);
 			return true;
 		}
 		else if (R.id.action_settings == id)
