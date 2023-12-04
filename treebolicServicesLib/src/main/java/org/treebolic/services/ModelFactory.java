@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import treebolic.ILocator;
 import treebolic.model.Model;
+import treebolic.model.ModelDump;
 import treebolic.provider.IProvider;
 import treebolic.provider.IProviderContext;
 
@@ -108,7 +109,7 @@ public abstract class ModelFactory implements IModelFactory
 
 		// model
 		final Model model = this.provider.makeModel(source, baseUrl, makeParameters(source, base, imageBase, settings));
-		Log.d(TAG, "model=" + model);
+		Log.d(TAG, "Made model" + (BuildConfig.DEBUG ? '\n' + ModelDump.toString(model) : ' ' + model.toString()));
 		return model;
 	}
 

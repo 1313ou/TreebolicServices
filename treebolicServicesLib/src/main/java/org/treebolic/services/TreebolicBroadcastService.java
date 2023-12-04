@@ -71,8 +71,7 @@ abstract public class TreebolicBroadcastService extends BroadcastReceiver implem
 							intent.getParcelableExtra(ITreebolicService.EXTRA_FORWARD_RESULT_TO);
 					try
 					{
-						final Model model = this.factory.make(source, base, imageBase, settings);
-						Log.d(TAG, "model(service)=" + (model != null ? ModelDump.toString(model) : "null"));
+						final Model model = factory.make(source, base, imageBase, settings);
 
 						// return/ forward
 						if (forward == null)
