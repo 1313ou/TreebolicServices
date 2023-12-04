@@ -133,7 +133,7 @@ abstract public class TreebolicAIDLBoundService extends Service implements ITree
 	@Override
 	public IBinder onBind(final Intent intent)
 	{
-		Log.d(TreebolicAIDLBoundService.TAG, "Binding service");
+		Log.d(TAG, "Binding service");
 		return this.binder;
 	}
 }

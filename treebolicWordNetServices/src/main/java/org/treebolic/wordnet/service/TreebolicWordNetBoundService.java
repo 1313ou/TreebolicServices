@@ -39,7 +39,7 @@ public class TreebolicWordNetBoundService extends TreebolicBoundService
 		}
 		catch (@NonNull final Exception e)
 		{
-			Log.e(TreebolicWordNetBoundService.TAG, "Model factory constructor failed", e);
+			Log.e(TAG, "Model factory constructor failed", e);
 		}
 		super.onCreate();
 	}

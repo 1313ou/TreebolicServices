@@ -80,7 +80,7 @@ abstract public class TreebolicClientActivityStub extends AppCompatCommonActivit
 		this.client = makeClient();
 		if (this.client != null)
 		{
-			Log.d(TreebolicClientActivityStub.TAG, "Connecting client-service");
+			Log.d(TAG, "Connecting client-service");
 			this.client.connect();
 		}
 	}
@@ -93,7 +93,7 @@ abstract public class TreebolicClientActivityStub extends AppCompatCommonActivit
 	{
 		if (this.client != null)
 		{
-			Log.d(TreebolicClientActivityStub.TAG, "Disconnecting client-service");
+			Log.d(TAG, "Disconnecting client-service");
 			this.client.disconnect();
 			this.client = null;
 		}

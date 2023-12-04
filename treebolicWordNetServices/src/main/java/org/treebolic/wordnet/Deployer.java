@@ -169,7 +169,7 @@ public class Deployer
 					}
 
 					final File destFile = new File(destDir, entryName);
-					Log.d(Deployer.TAG, "Deploying in " + destFile.getCanonicalPath());
+					Log.d(TAG, "Deploying in " + destFile.getCanonicalPath());
 
 					// create destination
 					//noinspection ResultOfMethodCallIgnored

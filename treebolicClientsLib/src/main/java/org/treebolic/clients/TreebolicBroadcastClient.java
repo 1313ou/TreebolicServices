@@ -119,7 +119,7 @@ public class TreebolicBroadcastClient implements ITreebolicClient
 					{
 						if (!ParcelableModel.class.equals(parcelable.getClass()))
 						{
-							Log.d(TreebolicBroadcastClient.TAG, "Parcel/Unparcel from source classloader " + parcelable.getClass().getClassLoader() + " to target classloader " + ParcelableModel.class.getClassLoader());
+							Log.d(TAG, "Parcel/Unparcel from source classloader " + parcelable.getClass().getClassLoader() + " to target classloader " + ParcelableModel.class.getClassLoader());
 
 							// obtain parcel
 							final Parcel parcel = Parcel.obtain();
@@ -173,7 +173,7 @@ public class TreebolicBroadcastClient implements ITreebolicClient
 
 		this.context.sendBroadcast(intent);
 
-		Log.d(TreebolicBroadcastClient.TAG, "Intent broadcast to " + this.servicePackage + '/' + this.serviceName);
+		Log.d(TAG, "Intent broadcast to " + this.servicePackage + '/' + this.serviceName);
 		Toast.makeText(this.context, R.string.started, Toast.LENGTH_LONG).show();
 	}
 }

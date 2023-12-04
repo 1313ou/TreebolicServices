@@ -35,7 +35,7 @@ public class ModelFactory extends org.treebolic.services.ModelFactory
 	 */
 	public ModelFactory(@NonNull final Context context)
 	{
-		super(new Provider(), Utils.makeLogProviderContext(ModelFactory.TAG), makeLocator(context), null);
+		super(new Provider(), Utils.makeLogProviderContext(TAG), makeLocator(context), null);
 	}
 
 	@NonNull

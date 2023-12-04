@@ -490,7 +490,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		{
 			final Intent intent = MainActivity.makeTreebolicIntent(this, model);
 
-			Log.d(MainActivity.TAG, "Starting treebolic");
+			Log.d(TAG, "Starting treebolic");
 			this.startActivity(intent);
 		}
 	}
@@ -570,7 +570,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		if (source != null && !source.isEmpty())
 		{
 			final File file = new File(source);
-			Log.d(MainActivity.TAG, "file=" + file);
+			Log.d(TAG, "file=" + file);
 			return file.exists() && file.isDirectory();
 		}
 		return false;

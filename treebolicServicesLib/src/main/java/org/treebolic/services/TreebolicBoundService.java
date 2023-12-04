@@ -154,7 +154,7 @@ abstract public class TreebolicBoundService extends Service implements ITreeboli
 	@Override
 	public IBinder onBind(final Intent intent)
 	{
-		Log.d(TreebolicBoundService.TAG, "Binding service");
+		Log.d(TAG, "Binding service");
 		assert this.binder != null;
 		return this.binder;
 	}

@@ -112,7 +112,7 @@ public class QueryProviderActivity extends AppCompatCommonActivity
 						}
 						catch (@NonNull final IOException e)
 						{
-							Log.e(QueryProviderActivity.TAG, "provider data " + uri, e);
+							Log.e(TAG, "provider data " + uri, e);
 							Toast.makeText(this, R.string.fail_data, Toast.LENGTH_SHORT).show();
 						}
 						finally

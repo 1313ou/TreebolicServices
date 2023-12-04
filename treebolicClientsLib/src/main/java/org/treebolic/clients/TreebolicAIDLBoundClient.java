@@ -143,7 +143,7 @@ public class TreebolicAIDLBoundClient implements ITreebolicClient
 					{
 						if (!ParcelableModel.class.equals(parcelable.getClass()))
 						{
-							Log.d(TreebolicAIDLBoundClient.TAG, "Parcel/Unparcel from source classloader " + parcelable.getClass().getClassLoader() + " to target classloader " + ParcelableModel.class.getClassLoader());
+							Log.d(TAG, "Parcel/Unparcel from source classloader " + parcelable.getClass().getClassLoader() + " to target classloader " + ParcelableModel.class.getClassLoader());
 
 							// obtain parcel
 							final Parcel parcel = Parcel.obtain();
@@ -179,7 +179,7 @@ public class TreebolicAIDLBoundClient implements ITreebolicClient
 	{
 		if (this.isBound)
 		{
-			Log.d(TreebolicAIDLBoundClient.TAG, "Service disconnected");
+			Log.d(TAG, "Service disconnected");
 			// Toast.makeText(this.context, R.string.disconnected, Toast.LENGTH_SHORT).show();
 
 			// detach our existing connection.
@@ -199,7 +199,7 @@ public class TreebolicAIDLBoundClient implements ITreebolicClient
 			@Override
 			public void onServiceConnected(final ComponentName name, final IBinder binder0)
 			{
-				Log.d(TreebolicAIDLBoundClient.TAG, "Service connected");
+				Log.d(TAG, "Service connected");
 				TreebolicAIDLBoundClient.this.isBound = true;
 				TreebolicAIDLBoundClient.this.binder = ITreebolicAIDLService.Stub.asInterface(binder0);
 
@@ -222,7 +222,7 @@ public class TreebolicAIDLBoundClient implements ITreebolicClient
 		intent.setComponent(new ComponentName(this.servicePackage, this.serviceName));
 		if (!this.context.bindService(intent, this.connection, Context.BIND_AUTO_CREATE))
 		{
-			Log.e(TreebolicAIDLBoundClient.TAG, "Service failed to bind " + this.servicePackage + '/' + this.serviceName);
+			Log.e(TAG, "Service failed to bind " + this.servicePackage + '/' + this.serviceName);
 			Toast.makeText(this.context, R.string.fail_bind, Toast.LENGTH_LONG).show();
 		}
 	}
@@ -239,7 +239,7 @@ public class TreebolicAIDLBoundClient implements ITreebolicClient
 			}
 			catch (@NonNull final RemoteException e)
 			{
-				Log.e(TreebolicAIDLBoundClient.TAG, "Service request failed", e);
+				Log.e(TAG, "Service request failed", e);
 			}
 		}
 		else
@@ -250,7 +250,7 @@ public class TreebolicAIDLBoundClient implements ITreebolicClient
 			}
 			catch (@NonNull final RemoteException e)
 			{
-				Log.e(TreebolicAIDLBoundClient.TAG, "Service request failed", e);
+				Log.e(TAG, "Service request failed", e);
 			}
 		}
 	}

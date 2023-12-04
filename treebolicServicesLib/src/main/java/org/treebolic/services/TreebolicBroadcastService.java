@@ -85,7 +85,7 @@ abstract public class TreebolicBroadcastService extends BroadcastReceiver implem
 							final ResultReceiver resultReceiver = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU ? //
 									intent.getParcelableExtra(ITreebolicService.EXTRA_RECEIVER, ResultReceiver.class) : //
 									intent.getParcelableExtra(ITreebolicService.EXTRA_RECEIVER);
-							Log.d(TreebolicBroadcastService.TAG, "Returning model " + model);
+							Log.d(TAG, "Returning model " + model);
 							assert resultReceiver != null;
 							resultReceiver.send(0, bundle);
 						}
@@ -94,13 +94,13 @@ abstract public class TreebolicBroadcastService extends BroadcastReceiver implem
 							// do not return to client but forward it to service
 							IntentFactory.putModelArg(forward, model, getUrlScheme());
 							forward.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-							Log.d(TreebolicBroadcastService.TAG, "Forwarding model");
+							Log.d(TAG, "Forwarding model");
 							context.startActivity(forward);
 						}
 					}
 					catch (@NonNull final Exception e)
 					{
-						Log.d(TreebolicBroadcastService.TAG, "Model factory error", e);
+						Log.d(TAG, "Model factory error", e);
 					}
 				}
 				catch (IOException e)

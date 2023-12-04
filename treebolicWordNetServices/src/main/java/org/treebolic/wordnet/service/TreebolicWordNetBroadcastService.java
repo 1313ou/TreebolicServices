@@ -41,7 +41,7 @@ public class TreebolicWordNetBroadcastService extends TreebolicBroadcastService
 		}
 		catch (@NonNull final IOException e)
 		{
-			Log.e(TreebolicWordNetBroadcastService.TAG, "Model factory constructor failed", e);
+			Log.e(TAG, "Model factory constructor failed", e);
 			throw e;
 		}
 	}

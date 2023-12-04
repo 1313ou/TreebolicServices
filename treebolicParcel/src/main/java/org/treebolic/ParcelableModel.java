@@ -182,7 +182,7 @@ public class ParcelableModel implements Parcelable
 		ParcelableModel.writeToParcel(parcel, model.tree);
 		ParcelableModel.writeToParcel(parcel, model.settings);
 		ParcelableModel.writeToParcel(parcel, model.images);
-		Log.d(ParcelableModel.TAG, "parcel write size=" + parcel.dataSize() + " pos=" + parcel.dataPosition());
+		Log.d(TAG, "parcel write size=" + parcel.dataSize() + " pos=" + parcel.dataPosition());
 	}
 
 	/**
@@ -631,7 +631,7 @@ public class ParcelableModel implements Parcelable
 	@Nullable
 	private static Model readModel(@NonNull final Parcel parcel)
 	{
-		Log.d(ParcelableModel.TAG, "parcel read size=" + parcel.dataSize() + " pos=" + parcel.dataPosition());
+		Log.d(TAG, "parcel read size=" + parcel.dataSize() + " pos=" + parcel.dataPosition());
 		final int isNotNull = parcel.readInt();
 		if (isNotNull != 0)
 		{

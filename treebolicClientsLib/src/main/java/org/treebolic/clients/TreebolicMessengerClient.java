@@ -95,7 +95,7 @@ public class TreebolicMessengerClient implements ITreebolicClient
 					{
 						if (!ParcelableModel.class.equals(parcelable.getClass()))
 						{
-							Log.d(TreebolicMessengerClient.TAG, "Parcel/Unparcel from source classloader " + parcelable.getClass().getClassLoader() + " to target classloader " + ParcelableModel.class.getClassLoader());
+							Log.d(TAG, "Parcel/Unparcel from source classloader " + parcelable.getClass().getClassLoader() + " to target classloader " + ParcelableModel.class.getClassLoader());
 
 							// obtain parcel
 							final Parcel parcel = Parcel.obtain();
@@ -203,7 +203,7 @@ public class TreebolicMessengerClient implements ITreebolicClient
 	{
 		if (this.isBound)
 		{
-			Log.d(TreebolicMessengerClient.TAG, "Service disconnected");
+			Log.d(TAG, "Service disconnected");
 			// Toast.makeText(this.context, R.string.disconnected, Toast.LENGTH_SHORT).show();
 
 			// if we have received the service, and hence registered with it
@@ -240,7 +240,7 @@ public class TreebolicMessengerClient implements ITreebolicClient
 			@Override
 			public void onServiceConnected(final ComponentName name, final IBinder binder0)
 			{
-				Log.d(TreebolicMessengerClient.TAG, "Service bound");
+				Log.d(TAG, "Service bound");
 				TreebolicMessengerClient.this.isBound = true;
 
 				// pass service in-messenger to post results to
@@ -253,7 +253,7 @@ public class TreebolicMessengerClient implements ITreebolicClient
 				}
 				catch (@NonNull final RemoteException e)
 				{
-					Log.e(TreebolicMessengerClient.TAG, "Send error", e);
+					Log.e(TAG, "Send error", e);
 				}
 
 				// signal connected
@@ -275,7 +275,7 @@ public class TreebolicMessengerClient implements ITreebolicClient
 		intent.setComponent(new ComponentName(this.servicePackage, this.serviceName));
 		if (!this.context.bindService(intent, this.connection, Context.BIND_AUTO_CREATE))
 		{
-			Log.e(TreebolicMessengerClient.TAG, "Service failed to bind");
+			Log.e(TAG, "Service failed to bind");
 			Toast.makeText(this.context, R.string.fail_bind, Toast.LENGTH_LONG).show();
 		}
 	}
@@ -305,7 +305,7 @@ public class TreebolicMessengerClient implements ITreebolicClient
 		}
 		catch (@NonNull final RemoteException e)
 		{
-			Log.e(TreebolicMessengerClient.TAG, "Send error", e);
+			Log.e(TAG, "Send error", e);
 		}
 	}
 }

@@ -40,7 +40,7 @@ public class ModelFactory extends org.treebolic.services.ModelFactory
 	 */
 	public ModelFactory(@NonNull final Context context) throws IOException
 	{
-		super(ModelFactory.SIMPLE ? new treebolic.provider.wordnet.jwi.simple.Provider() : new treebolic.provider.wordnet.jwi.full.Provider(), Utils.makeLogProviderContext(ModelFactory.TAG), makeLocator(context), null);
+		super(ModelFactory.SIMPLE ? new treebolic.provider.wordnet.jwi.simple.Provider() : new treebolic.provider.wordnet.jwi.full.Provider(), Utils.makeLogProviderContext(TAG), makeLocator(context), null);
 	}
 
 	@NonNull

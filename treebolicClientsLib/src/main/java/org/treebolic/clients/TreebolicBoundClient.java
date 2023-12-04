@@ -106,7 +106,7 @@ public class TreebolicBoundClient implements ITreebolicClient
 	{
 		if (this.isBound)
 		{
-			Log.d(TreebolicBoundClient.TAG, "Service disconnected");
+			Log.d(TAG, "Service disconnected");
 			// Toast.makeText(this.context, R.string.disconnected, Toast.LENGTH_SHORT).show();
 
 			// detach our existing connection.
@@ -126,7 +126,7 @@ public class TreebolicBoundClient implements ITreebolicClient
 			@Override
 			public void onServiceConnected(final ComponentName name, final IBinder binder0)
 			{
-				Log.d(TreebolicBoundClient.TAG, "Service connected");
+				Log.d(TAG, "Service connected");
 				TreebolicBoundClient.this.isBound = true;
 				TreebolicBoundClient.this.binder = (ITreebolicServiceBinder) binder0;
 
@@ -148,7 +148,7 @@ public class TreebolicBoundClient implements ITreebolicClient
 		intent.setComponent(new ComponentName(this.servicePackage, this.serviceName));
 		if (!this.context.bindService(intent, this.connection, Context.BIND_AUTO_CREATE))
 		{
-			Log.e(TreebolicBoundClient.TAG, "Service failed to bind");
+			Log.e(TAG, "Service failed to bind");
 			Toast.makeText(this.context, R.string.fail_bind, Toast.LENGTH_LONG).show();
 		}
 	}

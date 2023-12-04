@@ -429,7 +429,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		}
 		catch (@NonNull final IOException e)
 		{
-			Log.d(MainActivity.TAG, "Failed to start treebolic from bundle uri " + archiveUri, e);
+			Log.d(TAG, "Failed to start treebolic from bundle uri " + archiveUri, e);
 		}
 	}
 
@@ -442,7 +442,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		{
 			final Intent intent = MainActivity.makeTreebolicIntent(this, model, null, null);
 
-			Log.d(MainActivity.TAG, "Starting Treebolic");
+			Log.d(TAG, "Starting Treebolic");
 			this.startActivity(intent);
 		}
 	}
@@ -545,7 +545,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 			{
 				final File baseFile = base == null ? null : new File(path);
 				final File file = new File(baseFile, source);
-				Log.d(MainActivity.TAG, "file=" + file);
+				Log.d(TAG, "file=" + file);
 				return file.exists();
 			}
 		}

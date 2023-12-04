@@ -40,7 +40,7 @@ public class TreebolicWordNetMessengerService extends TreebolicMessengerService
 		}
 		catch (@NonNull final Exception e)
 		{
-			Log.e(TreebolicWordNetMessengerService.TAG, "Model factory constructor failed", e);
+			Log.e(TAG, "Model factory constructor failed", e);
 		}
 	}
 

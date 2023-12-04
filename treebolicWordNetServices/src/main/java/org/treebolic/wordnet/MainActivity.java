@@ -498,7 +498,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		{
 			final Intent intent = MainActivity.makeTreebolicIntent(this, model, null, null);
 
-			Log.d(MainActivity.TAG, "Starting Treebolic");
+			Log.d(TAG, "Starting Treebolic");
 			this.startActivity(intent);
 		}
 	}

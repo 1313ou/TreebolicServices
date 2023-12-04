@@ -108,7 +108,7 @@ public abstract class ModelFactory implements IModelFactory
 
 		// model
 		final Model model = this.provider.makeModel(source, baseUrl, makeParameters(source, base, imageBase, settings));
-		Log.d(ModelFactory.TAG, "model=" + model);
+		Log.d(TAG, "model=" + model);
 		return model;
 	}
 
