@@ -18,7 +18,6 @@ import java.io.IOException;
 
 import androidx.annotation.NonNull;
 import treebolic.model.Model;
-import treebolic.model.ModelDump;
 
 /**
  * Treebolic service for handling broadcast asynchronous task requests
