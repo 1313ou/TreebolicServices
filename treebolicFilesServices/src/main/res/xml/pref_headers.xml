@@ -7,7 +7,7 @@
 	tools:keep="@xml/pref_headers">
 
 	<Preference
-		app:fragment="org.treebolic.files.SettingsActivity$ServicesPreferenceFragment"
+		app:fragment="org.treebolic.files.SettingsActivity$ServicePreferenceFragment"
 		app:icon="@null"
 		app:key="pref_service"
 		app:title="@string/pref_header_services" />
