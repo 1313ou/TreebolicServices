@@ -57,6 +57,11 @@ import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 import treebolic.model.Model;
 
+import static org.treebolic.services.iface.ITreebolicService.TYPE_AIDL_BOUND;
+import static org.treebolic.services.iface.ITreebolicService.TYPE_BOUND;
+import static org.treebolic.services.iface.ITreebolicService.TYPE_BROADCAST;
+import static org.treebolic.services.iface.ITreebolicService.TYPE_MESSENGER;
+
 /**
  * Treebolic Owl main activity. The activity obtains a model from data and requests Treebolic server to visualize it.
  *
@@ -95,6 +100,9 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		// rate
 		AppRate.invoke(this);
 
+		// init
+		initialize();
+
 		// view
 		setContentView(R.layout.activity_main);
 
@@ -108,9 +116,6 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		{
 			actionBar.setDisplayOptions(ActionBar.DISPLAY_USE_LOGO | ActionBar.DISPLAY_SHOW_TITLE);
 		}
-
-		// init
-		initialize();
 
 		// activity result launcher
 		this.activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
@@ -267,7 +272,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		}
 	}
 
-	// I N I T I A L I Z E
+	// P R E F E R E N C E S   A N D   D A T A
 
 	/**
 	 * Initialize
@@ -286,20 +291,20 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 			// default settings
 			Settings.setDefaults(this);
 
+			// deploy
+			final File dir = Storage.getTreebolicStorage(this);
+			if (dir.isDirectory())
+			{
+				final String[] dirContent = dir.list();
+				if (dirContent == null || dirContent.length == 0)
+				{
+					// deploy
+					Deployer.expandZipAssetFile(this, "owl.zip");
+				}
+			}
+
 			// flag as initialized
 			sharedPref.edit().putBoolean(Settings.PREF_INITIALIZED, true).commit();
-		}
-
-		// deploy
-		final File dir = Storage.getTreebolicStorage(this);
-		if (dir.isDirectory())
-		{
-			final String[] dirContent = dir.list();
-			if (dirContent != null && dirContent.length == 0)
-			{
-				// deploy
-				Deployer.expandZipAssetFile(this, Settings.DEMOZIP);
-			}
 		}
 	}
 
@@ -312,22 +317,25 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	protected void start()
 	{
 		// client
-		final String serviceType = Settings.getStringPref(this, Settings.PREF_SERVICE);
-		if ("BroadcastService".equals(serviceType))
+		String serviceType = Settings.getStringPref(this, Settings.PREF_SERVICE);
+		if (serviceType == null)
 		{
-			this.client = new TreebolicOwlBroadcastClient(this, this, this);
+			serviceType = TYPE_BROADCAST;
 		}
-		else if ("Messenger".equals(serviceType))
+		switch (serviceType)
 		{
-			this.client = new TreebolicOwlMessengerClient(this, this, this);
-		}
-		else if ("AIDLBound".equals(serviceType))
-		{
-			this.client = new TreebolicOwlAIDLBoundClient(this, this, this);
-		}
-		else if ("Bound".equals(serviceType))
-		{
-			this.client = new TreebolicOwlBoundClient(this, this, this);
+			case TYPE_BROADCAST:
+				this.client = new TreebolicOwlBroadcastClient(this, this, this);
+				break;
+			case TYPE_AIDL_BOUND:
+				this.client = new TreebolicOwlAIDLBoundClient(this, this, this);
+				break;
+			case TYPE_BOUND:
+				this.client = new TreebolicOwlBoundClient(this, this, this);
+				break;
+			case TYPE_MESSENGER:
+				this.client = new TreebolicOwlMessengerClient(this, this, this);
+				break;
 		}
 
 		// connect

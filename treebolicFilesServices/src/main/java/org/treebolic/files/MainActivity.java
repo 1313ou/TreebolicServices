@@ -54,8 +54,14 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.multidex.BuildConfig;
 import androidx.preference.PreferenceManager;
 import treebolic.model.Model;
+
+import static org.treebolic.services.iface.ITreebolicService.TYPE_AIDL_BOUND;
+import static org.treebolic.services.iface.ITreebolicService.TYPE_BOUND;
+import static org.treebolic.services.iface.ITreebolicService.TYPE_BROADCAST;
+import static org.treebolic.services.iface.ITreebolicService.TYPE_MESSENGER;
 
 /**
  * Treebolic Files main activity. The activity obtains a model from source and requests Treebolic server to visualize it.
@@ -95,6 +101,9 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		// rate
 		AppRate.invoke(this);
 
+		// init
+		initialize();
+
 		// view
 		setContentView(R.layout.activity_main);
 
@@ -108,9 +117,6 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		{
 			actionBar.setDisplayOptions(ActionBar.DISPLAY_USE_LOGO | ActionBar.DISPLAY_SHOW_TITLE);
 		}
-
-		// init
-		initialize();
 
 		// activity result launcher
 		this.activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
@@ -247,7 +253,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		}
 	}
 
-	// I N I T I A L I Z E
+	// P R E F E R E N C E S   A N D   D A T A
 
 	/**
 	 * Initialize
@@ -397,22 +403,25 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	protected void start()
 	{
 		// client
-		final String serviceType = Settings.getStringPref(this, Settings.PREF_SERVICE);
-		if ("BroadcastService".equals(serviceType))
+		String serviceType = Settings.getStringPref(this, Settings.PREF_SERVICE);
+		if (serviceType == null)
 		{
-			this.client = new TreebolicFilesBroadcastClient(this, this, this);
+			serviceType = TYPE_BROADCAST;
 		}
-		else if ("Messenger".equals(serviceType))
+		switch (serviceType)
 		{
-			this.client = new TreebolicFilesMessengerClient(this, this, this);
-		}
-		else if ("AIDLBound".equals(serviceType))
-		{
-			this.client = new TreebolicFilesAIDLBoundClient(this, this, this);
-		}
-		else if ("Bound".equals(serviceType))
-		{
-			this.client = new TreebolicFilesBoundClient(this, this, this);
+			case TYPE_BROADCAST:
+				this.client = new TreebolicFilesBroadcastClient(this, this, this);
+				break;
+			case TYPE_AIDL_BOUND:
+				this.client = new TreebolicFilesAIDLBoundClient(this, this, this);
+				break;
+			case TYPE_BOUND:
+				this.client = new TreebolicFilesBoundClient(this, this, this);
+				break;
+			case TYPE_MESSENGER:
+				this.client = new TreebolicFilesMessengerClient(this, this, this);
+				break;
 		}
 
 		// connect

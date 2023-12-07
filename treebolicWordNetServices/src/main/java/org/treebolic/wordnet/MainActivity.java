@@ -51,8 +51,14 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.multidex.BuildConfig;
 import androidx.preference.PreferenceManager;
 import treebolic.model.Model;
+
+import static org.treebolic.services.iface.ITreebolicService.TYPE_AIDL_BOUND;
+import static org.treebolic.services.iface.ITreebolicService.TYPE_BOUND;
+import static org.treebolic.services.iface.ITreebolicService.TYPE_BROADCAST;
+import static org.treebolic.services.iface.ITreebolicService.TYPE_MESSENGER;
 
 /**
  * Treebolic WordNet main activity. The activity obtains a model from data and requests Treebolic server to visualize it.
@@ -107,6 +113,9 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		// rate
 		AppRate.invoke(this);
 
+		// init
+		initialize();
+
 		// view
 		setContentView(R.layout.activity_main);
 
@@ -139,9 +148,6 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		{
 			actionBar.setDisplayOptions(ActionBar.DISPLAY_USE_LOGO | ActionBar.DISPLAY_SHOW_TITLE);
 		}
-
-		// init
-		initialize();
 
 		// deployer
 		this.deployer = new Deployer(getFilesDir());
@@ -315,7 +321,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 		return true;
 	}
 
-	// I N I T I A L I Z E
+	// P R E F E R E N C E S   A N D   D A T A
 
 	/**
 	 * Initialize
@@ -336,6 +342,9 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 
 			// flag as initialized
 			sharedPref.edit().putBoolean(Settings.PREF_INITIALIZED, true).commit();
+
+			// deploy
+			// auto from provider
 		}
 	}
 
@@ -348,22 +357,25 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 	protected void start()
 	{
 		// client
-		final String serviceType = Settings.getStringPref(this, Settings.PREF_SERVICE);
-		if ("BroadcastService".equals(serviceType))
+		String serviceType = Settings.getStringPref(this, Settings.PREF_SERVICE);
+		if (serviceType == null)
 		{
-			this.client = new TreebolicWordNetBroadcastClient(this, this, this);
+			serviceType = TYPE_BROADCAST;
 		}
-		else if ("Messenger".equals(serviceType))
+		switch (serviceType)
 		{
-			this.client = new TreebolicWordNetMessengerClient(this, this, this);
-		}
-		else if ("AIDLBound".equals(serviceType))
-		{
-			this.client = new TreebolicWordNetAIDLBoundClient(this, this, this);
-		}
-		else if ("Bound".equals(serviceType))
-		{
-			this.client = new TreebolicWordNetBoundClient(this, this, this);
+			case TYPE_BROADCAST:
+				this.client = new TreebolicWordNetBroadcastClient(this, this, this);
+				break;
+			case TYPE_AIDL_BOUND:
+				this.client = new TreebolicWordNetAIDLBoundClient(this, this, this);
+				break;
+			case TYPE_BOUND:
+				this.client = new TreebolicWordNetBoundClient(this, this, this);
+				break;
+			case TYPE_MESSENGER:
+				this.client = new TreebolicWordNetMessengerClient(this, this, this);
+				break;
 		}
 
 		// connect
