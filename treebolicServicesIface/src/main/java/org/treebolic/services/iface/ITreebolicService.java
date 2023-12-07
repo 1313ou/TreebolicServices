@@ -49,6 +49,16 @@ public interface ITreebolicService
 
 	String RESULT_URLSCHEME = "org.treebolic.service.URLSCHEME";
 
+	// result
+
+	String TYPE_BROADCAST = "Broadcast";
+
+	String TYPE_AIDL_BOUND = "AIDLBound";
+
+	String TYPE_BOUND = "Bound";
+
+	String TYPE_MESSENGER = "Messenger";
+
 	/**
 	 * Get service url scheme
 	 *
