@@ -16,7 +16,10 @@ import org.treebolic.TreebolicIface;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.multidex.BuildConfig;
 import androidx.preference.PreferenceManager;
+
+import static org.treebolic.services.iface.ITreebolicService.TYPE_BROADCAST;
 
 /**
  * Settings
@@ -29,7 +32,7 @@ public class Settings
 	/**
 	 * Initialized preference name
 	 */
-	public static final String PREF_INITIALIZED = "pref_initialized";
+	public static final String PREF_INITIALIZED = "pref_initialized_" + BuildConfig.VERSION_NAME;
 
 	/**
 	 * Service type preference name
@@ -47,11 +50,9 @@ public class Settings
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 
 		final String externalStorage = StorageExplorer.discoverExternalStorage(context);
-		//final File treebolicStorage = Storage.getTreebolicStorage(context);
-		//final Uri uri = Uri.fromFile(treebolicStorage);
 
 		final Editor editor = sharedPref.edit();
-		editor.putString(Settings.PREF_SERVICE, "BroadcastService");
+		editor.putString(Settings.PREF_SERVICE, TYPE_BROADCAST);
 		editor.putString(TreebolicIface.PREF_SOURCE, externalStorage);
 		editor.commit();
 	}

@@ -21,6 +21,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.PreferenceManager;
 
+import static org.treebolic.services.iface.ITreebolicService.TYPE_BROADCAST;
+
 /**
  * Settings
  *
@@ -42,7 +44,7 @@ public class Settings
 	/**
 	 * Initialized preference name
 	 */
-	public static final String PREF_INITIALIZED = "pref_initialized";
+	public static final String PREF_INITIALIZED = "pref_initialized_" + BuildConfig.VERSION_NAME;
 
 	/**
 	 * Service preference name
@@ -111,7 +113,7 @@ public class Settings
 
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		final Editor editor = sharedPref.edit();
-		editor.putString(Settings.PREF_SERVICE, "BroadcastService");
+		editor.putString(Settings.PREF_SERVICE, TYPE_BROADCAST);
 		editor.putString(TreebolicIface.PREF_BASE, treebolicBase);
 		editor.putString(TreebolicIface.PREF_IMAGEBASE, treebolicBase);
 		editor.putString(TreebolicIface.PREF_SOURCE, Settings.DEMO);
