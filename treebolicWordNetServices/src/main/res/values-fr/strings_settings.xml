@@ -25,6 +25,7 @@
 	<string-array name="pref_services_list_titles">
 		<item>Broadcast service</item>
 		<item>AIDL Bound service</item>
+		<item>Bound service</item>
 		<item>Messenger bound service</item>
 	</string-array>
 
