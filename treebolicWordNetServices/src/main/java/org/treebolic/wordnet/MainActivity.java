@@ -125,6 +125,7 @@ public class MainActivity extends AppCompatCommonActivity implements IConnection
 
 		// activity result launcher
 		this.activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+
 			boolean success = result.getResultCode() == Activity.RESULT_OK;
 			if (success)
 			{
