@@ -62,7 +62,7 @@ public class Deployer
 	 */
 	public boolean status()
 	{
-		return treebolic.provider.wordnet.jwi.DataManager.check(this.dir);
+		return treebolic.provider.wordnet.jwi.DataManager.coreCheck(this.dir);
 	}
 
 	/**
