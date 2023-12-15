@@ -77,14 +77,9 @@ public class TreebolicMessengerClient implements ITreebolicClient
 				Model model = null;
 				if (isSerialized)
 				{
-					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
-					{
-						model = resultData.getSerializable(ITreebolicService.RESULT_MODEL, Model.class);
-					}
-					else
-					{
-						model = (Model) resultData.getSerializable(ITreebolicService.RESULT_MODEL);
-					}
+					model = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU ? //
+							resultData.getSerializable(ITreebolicService.RESULT_MODEL, Model.class) : //
+							(Model) resultData.getSerializable(ITreebolicService.RESULT_MODEL);
 				}
 				else
 				{
