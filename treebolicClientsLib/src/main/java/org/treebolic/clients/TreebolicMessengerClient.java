@@ -122,6 +122,7 @@ public class TreebolicMessengerClient implements ITreebolicClient
 	/**
 	 * Context
 	 */
+	@NonNull
 	private final Context context;
 
 	/**
@@ -177,7 +178,7 @@ public class TreebolicMessengerClient implements ITreebolicClient
 	 * @param modelListener0      model listener
 	 */
 	@SuppressWarnings("WeakerAccess")
-	public TreebolicMessengerClient(final Context context0, @NonNull final String service0, final IConnectionListener connectionListener0, final IModelListener modelListener0)
+	public TreebolicMessengerClient(@NonNull final Context context0, @NonNull final String service0, final IConnectionListener connectionListener0, final IModelListener modelListener0)
 	{
 		this.context = context0;
 		this.connectionListener = connectionListener0;
@@ -293,14 +294,16 @@ public class TreebolicMessengerClient implements ITreebolicClient
 		msg.setData(bundle);
 
 		// send message
-		try
+		if (this.service != null)
 		{
-			assert TreebolicMessengerClient.this.service != null;
-			TreebolicMessengerClient.this.service.send(msg);
-		}
-		catch (@NonNull final RemoteException e)
-		{
-			Log.e(TAG, "Send error", e);
+			try
+			{
+				this.service.send(msg);
+			}
+			catch (@NonNull final RemoteException e)
+			{
+				Log.e(TAG, "Send error", e);
+			}
 		}
 	}
 }

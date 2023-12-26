@@ -47,6 +47,7 @@ public class TreebolicBoundClient implements ITreebolicClient
 	/**
 	 * Context
 	 */
+	@NonNull
 	private final Context context;
 
 	/**
@@ -85,7 +86,7 @@ public class TreebolicBoundClient implements ITreebolicClient
 	 * @param modelListener0      model listener
 	 */
 	@SuppressWarnings("WeakerAccess")
-	public TreebolicBoundClient(final Context context0, @NonNull final String service0, final IConnectionListener connectionListener0, final IModelListener modelListener0)
+	public TreebolicBoundClient(@NonNull final Context context0, @NonNull final String service0, final IConnectionListener connectionListener0, final IModelListener modelListener0)
 	{
 		this.context = context0;
 		this.modelListener = modelListener0;
@@ -156,14 +157,16 @@ public class TreebolicBoundClient implements ITreebolicClient
 	@Override
 	public void requestModel(final String source, final String base, final String imageBase, final String settings, @Nullable final Intent forward)
 	{
-		assert this.binder != null;
-		if (forward == null)
+		if (this.binder != null)
 		{
-			this.binder.makeModel(source, base, imageBase, settings, this.modelListener);
-		}
-		else
-		{
-			this.binder.makeModel(source, base, imageBase, settings, forward);
+			if (forward == null)
+			{
+				this.binder.makeModel(source, base, imageBase, settings, this.modelListener);
+			}
+			else
+			{
+				this.binder.makeModel(source, base, imageBase, settings, forward);
+			}
 		}
 	}
 }

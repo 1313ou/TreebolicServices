@@ -54,6 +54,7 @@ public class TreebolicBroadcastClient implements ITreebolicClient
 	/**
 	 * Context
 	 */
+	@NonNull
 	private final Context context;
 
 	/**
@@ -81,7 +82,7 @@ public class TreebolicBroadcastClient implements ITreebolicClient
 	 * @param modelListener0      model listener
 	 */
 	@SuppressWarnings("WeakerAccess")
-	public TreebolicBroadcastClient(final Context context0, @NonNull final String service0, final IConnectionListener connectionListener0, final IModelListener modelListener0)
+	public TreebolicBroadcastClient(@NonNull final Context context0, @NonNull final String service0, final IConnectionListener connectionListener0, final IModelListener modelListener0)
 	{
 		this.context = context0;
 		this.connectionListener = connectionListener0;

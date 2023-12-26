@@ -5,11 +5,14 @@
 package org.treebolic.services;
 
 import android.app.Service;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
+import android.os.TransactionTooLargeException;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.treebolic.clients.iface.IModelListener;
 import org.treebolic.services.iface.ITreebolicService;
@@ -80,7 +83,25 @@ abstract public class TreebolicBoundService extends Service implements ITreeboli
 			final Context context = contextWeakReference.get();
 			if (context != null)
 			{
-				context.startActivity(forward);
+				try
+				{
+					context.startActivity(forward);
+				}
+				catch (ActivityNotFoundException anfe)
+				{
+					Toast.makeText(context, R.string.activity_not_found, Toast.LENGTH_LONG).show();
+				}
+				catch (RuntimeException rte)
+				{
+					if (rte.getCause() instanceof TransactionTooLargeException)
+					{
+						Toast.makeText(context, R.string.transaction_too_large, Toast.LENGTH_LONG).show();
+					}
+					else
+					{
+						throw rte;
+					}
+				}
 			}
 		};
 	}

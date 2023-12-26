@@ -4,13 +4,16 @@
 
 package org.treebolic.services;
 
+import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.ResultReceiver;
+import android.os.TransactionTooLargeException;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.treebolic.services.iface.ITreebolicService;
 
@@ -93,7 +96,25 @@ abstract public class TreebolicBroadcastService extends BroadcastReceiver implem
 							IntentFactory.putModelArg(forward, model, getUrlScheme());
 							forward.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
 							Log.d(TAG, "Forwarding model");
-							context.startActivity(forward);
+							try
+							{
+								context.startActivity(forward);
+							}
+							catch (ActivityNotFoundException anfe)
+							{
+								Toast.makeText(context, R.string.activity_not_found, Toast.LENGTH_LONG).show();
+							}
+							catch (RuntimeException rte)
+							{
+								if (rte.getCause() instanceof TransactionTooLargeException)
+								{
+									Toast.makeText(context, R.string.transaction_too_large, Toast.LENGTH_LONG).show();
+								}
+								else
+								{
+									throw rte;
+								}
+							}
 						}
 					}
 					catch (@NonNull final Exception e)

@@ -58,6 +58,7 @@ public class TreebolicAIDLBoundClient implements ITreebolicClient
 	/**
 	 * Context
 	 */
+	@NonNull
 	private final Context context;
 
 	/**
@@ -102,7 +103,7 @@ public class TreebolicAIDLBoundClient implements ITreebolicClient
 	 * @param modelListener0      modelListener
 	 */
 	@SuppressWarnings("WeakerAccess")
-	public TreebolicAIDLBoundClient(final Context context0, @NonNull final String service0, final IConnectionListener connectionListener0, final IModelListener modelListener0)
+	public TreebolicAIDLBoundClient(@NonNull final Context context0, @NonNull final String service0, final IConnectionListener connectionListener0, final IModelListener modelListener0)
 	{
 		this.context = context0;
 		this.modelListener = modelListener0;
@@ -225,27 +226,29 @@ public class TreebolicAIDLBoundClient implements ITreebolicClient
 	@Override
 	public void requestModel(final String source, final String base, final String imageBase, final String settings, @Nullable final Intent forward)
 	{
-		assert this.binder != null;
-		if (forward == null)
+		if (this.binder != null)
 		{
-			try
+			if (forward == null)
 			{
-				this.binder.makeModel(source, base, imageBase, settings, this.receiver);
+				try
+				{
+					this.binder.makeModel(source, base, imageBase, settings, this.receiver);
+				}
+				catch (@NonNull final RemoteException e)
+				{
+					Log.e(TAG, "Service request failed", e);
+				}
 			}
-			catch (@NonNull final RemoteException e)
+			else
 			{
-				Log.e(TAG, "Service request failed", e);
-			}
-		}
-		else
-		{
-			try
-			{
-				this.binder.makeAndForwardModel(source, base, imageBase, settings, forward);
-			}
-			catch (@NonNull final RemoteException e)
-			{
-				Log.e(TAG, "Service request failed", e);
+				try
+				{
+					this.binder.makeAndForwardModel(source, base, imageBase, settings, forward);
+				}
+				catch (@NonNull final RemoteException e)
+				{
+					Log.e(TAG, "Service request failed", e);
+				}
 			}
 		}
 	}

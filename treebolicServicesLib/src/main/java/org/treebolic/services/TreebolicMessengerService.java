@@ -5,6 +5,7 @@
 package org.treebolic.services;
 
 import android.app.Service;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -15,7 +16,9 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
+import android.os.TransactionTooLargeException;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.treebolic.services.iface.ITreebolicService;
 
@@ -113,7 +116,25 @@ abstract public class TreebolicMessengerService extends Service implements ITree
 			final Context context = contextWeakReference.get();
 			if (context != null)
 			{
-				context.startActivity(forward);
+				try
+				{
+					context.startActivity(forward);
+				}
+				catch (ActivityNotFoundException anfe)
+				{
+					Toast.makeText(context, R.string.activity_not_found, Toast.LENGTH_LONG).show();
+				}
+				catch (RuntimeException rte)
+				{
+					if (rte.getCause() instanceof TransactionTooLargeException)
+					{
+						Toast.makeText(context, R.string.transaction_too_large, Toast.LENGTH_LONG).show();
+					}
+					else
+					{
+						throw rte;
+					}
+				}
 			}
 		};
 	}

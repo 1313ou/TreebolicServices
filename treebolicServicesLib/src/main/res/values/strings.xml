@@ -3,5 +3,6 @@
   -->
 
 <resources>
-
+	<string name="activity_not_found">The Treebolic application is needed but was not found.</string>
+	<string name="transaction_too_large">Transaction too large.</string>
 </resources>
