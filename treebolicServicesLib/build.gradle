@@ -43,7 +43,7 @@ dependencies {
     implementation project(':treebolicParcel')
     implementation project(':treebolicIface')
     implementation project(':treebolicGlue')
-    implementation project(':treebolicAidl')
+    implementation project(':treebolicAidl') // needed
     implementation project(':treebolicServicesIface')
     implementation project(':treebolicClientsIface')
 
