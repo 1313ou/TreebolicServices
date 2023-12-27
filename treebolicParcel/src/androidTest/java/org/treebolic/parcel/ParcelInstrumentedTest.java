@@ -141,6 +141,7 @@ public class ParcelInstrumentedTest
 		return parcel;
 	}
 
+	@Nullable
 	public static Bundle readParcel(@NonNull final Parcel parcel)
 	{
 		// extract bundle from parcel

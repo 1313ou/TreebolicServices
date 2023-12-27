@@ -89,6 +89,7 @@ public class Deployer
 	 * @return File
 	 * @throws IOException io exception
 	 */
+	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
 	public File process(@NonNull final InputStream fin, final boolean asTarGz) throws IOException
 	{

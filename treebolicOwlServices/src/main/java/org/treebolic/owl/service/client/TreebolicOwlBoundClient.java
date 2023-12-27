@@ -12,6 +12,8 @@ import org.treebolic.clients.iface.IModelListener;
 import org.treebolic.owl.BuildConfig;
 import org.treebolic.owl.service.TreebolicOwlBoundService;
 
+import androidx.annotation.NonNull;
+
 /**
  * Treebolic Owl bound client
  *
@@ -26,7 +28,7 @@ public class TreebolicOwlBoundClient extends TreebolicBoundClient
 	 * @param connectionListener connection listener
 	 * @param modelListener      model listener
 	 */
-	public TreebolicOwlBoundClient(final Context context, final IConnectionListener connectionListener, final IModelListener modelListener)
+	public TreebolicOwlBoundClient(@NonNull final Context context, final IConnectionListener connectionListener, final IModelListener modelListener)
 	{
 		super(context, BuildConfig.APPLICATION_ID + '/' + TreebolicOwlBoundService.class.getName(), connectionListener, modelListener);
 	}

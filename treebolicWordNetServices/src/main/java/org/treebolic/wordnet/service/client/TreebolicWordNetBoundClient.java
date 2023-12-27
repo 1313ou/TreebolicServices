@@ -12,6 +12,8 @@ import org.treebolic.clients.iface.IModelListener;
 import org.treebolic.wordnet.BuildConfig;
 import org.treebolic.wordnet.service.TreebolicWordNetBoundService;
 
+import androidx.annotation.NonNull;
+
 /**
  * Treebolic WordNet bound client
  *
@@ -26,7 +28,7 @@ public class TreebolicWordNetBoundClient extends TreebolicBoundClient
 	 * @param connectionListener connection listener
 	 * @param modelListener      model listener
 	 */
-	public TreebolicWordNetBoundClient(final Context context, final IConnectionListener connectionListener, final IModelListener modelListener)
+	public TreebolicWordNetBoundClient(@NonNull final Context context, final IConnectionListener connectionListener, final IModelListener modelListener)
 	{
 		super(context, BuildConfig.APPLICATION_ID + '/' + TreebolicWordNetBoundService.class.getName(), connectionListener, modelListener);
 	}

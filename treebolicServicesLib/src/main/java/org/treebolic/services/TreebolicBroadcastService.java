@@ -20,6 +20,7 @@ import org.treebolic.services.iface.ITreebolicService;
 import java.io.IOException;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import treebolic.model.Model;
 
 /**
@@ -53,7 +54,7 @@ abstract public class TreebolicBroadcastService extends BroadcastReceiver implem
 	}
 
 	@Override
-	public void onReceive(final Context context, final Intent intent)
+	public void onReceive(@NonNull final Context context, @Nullable final Intent intent)
 	{
 		if (intent != null)
 		{

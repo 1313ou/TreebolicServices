@@ -12,6 +12,8 @@ import org.treebolic.clients.iface.IModelListener;
 import org.treebolic.files.BuildConfig;
 import org.treebolic.files.service.TreebolicFilesAIDLBoundService;
 
+import androidx.annotation.NonNull;
+
 /**
  * Treebolic Files bound client
  *
@@ -26,7 +28,7 @@ public class TreebolicFilesAIDLBoundClient extends TreebolicAIDLBoundClient
 	 * @param connectionListener connection listener
 	 * @param modelListener      model listener
 	 */
-	public TreebolicFilesAIDLBoundClient(final Context context, final IConnectionListener connectionListener, final IModelListener modelListener)
+	public TreebolicFilesAIDLBoundClient(@NonNull final Context context, final IConnectionListener connectionListener, final IModelListener modelListener)
 	{
 		super(context, BuildConfig.APPLICATION_ID + '/' + TreebolicFilesAIDLBoundService.class.getName(), connectionListener, modelListener);
 	}

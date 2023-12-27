@@ -60,6 +60,7 @@ public class Models
 
 	// T I M E S T A M P K E Y
 
+	@NonNull
 	@SuppressWarnings("boxing")
 	static public Long set(final Model model)
 	{

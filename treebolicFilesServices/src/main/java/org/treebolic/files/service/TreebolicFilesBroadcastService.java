@@ -26,6 +26,7 @@ public class TreebolicFilesBroadcastService extends TreebolicBroadcastService
 		super();
 	}
 
+	@NonNull
 	@Override
 	protected IModelFactory createModelFactory(@NonNull final Context context) throws IOException
 	{
