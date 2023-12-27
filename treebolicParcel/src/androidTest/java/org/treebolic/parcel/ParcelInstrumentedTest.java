@@ -63,6 +63,7 @@ public class ParcelInstrumentedTest
 		final Bundle bundle2 = readParcel(parcel);
 		parcel.recycle();
 
+		assert bundle2 != null;
 		final Model modelA2 = getParceledModel(bundle2, MODEL_KEYA);
 		final String strA2 = ModelDump.toString(modelA2);
 
@@ -82,6 +83,7 @@ public class ParcelInstrumentedTest
 		final Bundle bundle2 = readParcel(parcel);
 		parcel.recycle();
 
+		assert bundle2 != null;
 		final Model modelA2 = getParceledModel(bundle2, MODEL_KEYA);
 		final String strA2 = ModelDump.toString(modelA2);
 
@@ -101,6 +103,7 @@ public class ParcelInstrumentedTest
 		final Bundle bundle2 = readParcel(parcel);
 		parcel.recycle();
 
+		assert bundle2 != null;
 		final Model modelB2 = getParceledModel(bundle2, MODEL_KEYA);
 		final String strB2 = ModelDump.toString(modelB2);
 
@@ -124,6 +127,7 @@ public class ParcelInstrumentedTest
 		final Bundle bundle2 = readParcel(parcel);
 		parcel.recycle();
 
+		assert bundle2 != null;
 		final Model modelA2 = getParceledModel(bundle2, MODEL_KEYA);
 		final Model modelB2 = getParceledModel(bundle2, MODEL_KEYB);
 		final String strA2 = ModelDump.toString(modelA2);
