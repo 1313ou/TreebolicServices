@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.os.TransactionTooLargeException;
 import android.util.Log;
-import android.widget.Toast;
 
 import org.treebolic.services.iface.ITreebolicService;
 
@@ -103,13 +102,13 @@ abstract public class TreebolicBroadcastService extends BroadcastReceiver implem
 							}
 							catch (ActivityNotFoundException anfe)
 							{
-								Toast.makeText(context, R.string.activity_not_found, Toast.LENGTH_LONG).show();
+								Utils.warn(context, R.string.activity_not_found);
 							}
 							catch (RuntimeException rte)
 							{
 								if (rte.getCause() instanceof TransactionTooLargeException)
 								{
-									Toast.makeText(context, R.string.transaction_too_large, Toast.LENGTH_LONG).show();
+									Utils.warn(context, R.string.transaction_too_large);
 								}
 								else
 								{
