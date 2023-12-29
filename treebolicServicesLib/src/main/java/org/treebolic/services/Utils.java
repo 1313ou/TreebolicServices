@@ -4,9 +4,14 @@
 
 package org.treebolic.services;
 
+import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import treebolic.provider.IProviderContext;
 
 @SuppressWarnings("WeakerAccess")
@@ -43,5 +48,18 @@ public class Utils
 				// Toast.makeText(locatorContext, text, Toast.LENGTH_LONG).show();
 			}
 		};
+	}
+
+	/**
+	 * Warning to run on UI thread
+	 *
+	 * @param context   context
+	 * @param messageId massage resource id
+	 */
+	static void warn(@NonNull Context context, @StringRes int messageId)
+	{
+		new Handler(Looper.getMainLooper()).post(() -> {
+			Toast.makeText(context, messageId, Toast.LENGTH_LONG).show();
+		});
 	}
 }
