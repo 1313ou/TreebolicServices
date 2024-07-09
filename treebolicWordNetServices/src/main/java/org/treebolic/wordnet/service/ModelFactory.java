@@ -65,11 +65,11 @@ public class ModelFactory extends org.treebolic.services.ModelFactory
 				}
 			};
 		}
-		catch (MalformedURLException ignored)
+		catch (MalformedURLException mue)
 		{
-			//
+			mue.printStackTrace();
+			throw mue;
 		}
-		return null;
 	}
 
 	@SuppressWarnings("SameReturnValue")
