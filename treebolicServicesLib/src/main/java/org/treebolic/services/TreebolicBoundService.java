@@ -9,12 +9,9 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Binder;
-import android.os.Handler;
 import android.os.IBinder;
-import android.os.Looper;
 import android.os.TransactionTooLargeException;
 import android.util.Log;
-import android.widget.Toast;
 
 import org.treebolic.clients.iface.IModelListener;
 import org.treebolic.services.iface.ITreebolicService;
@@ -24,7 +21,6 @@ import java.lang.ref.WeakReference;
 import java.util.concurrent.Callable;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
 import treebolic.model.Model;
 
 /**
