@@ -58,8 +58,6 @@ public class Utils
 	 */
 	static void warn(@NonNull Context context, @StringRes int messageId)
 	{
-		new Handler(Looper.getMainLooper()).post(() -> {
-			Toast.makeText(context, messageId, Toast.LENGTH_LONG).show();
-		});
+		new Handler(Looper.getMainLooper()).post(() -> Toast.makeText(context, messageId, Toast.LENGTH_LONG).show());
 	}
 }
