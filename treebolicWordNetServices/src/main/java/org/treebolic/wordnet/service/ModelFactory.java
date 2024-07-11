@@ -5,6 +5,7 @@
 package org.treebolic.wordnet.service;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.treebolic.services.Utils;
 
@@ -67,8 +68,8 @@ public class ModelFactory extends org.treebolic.services.ModelFactory
 		}
 		catch (MalformedURLException mue)
 		{
-			mue.printStackTrace();
-			throw mue;
+			Log.e(TAG, context.getFilesDir().toURI().toString(), mue);
+			throw new RuntimeException(mue);
 		}
 	}
 
