@@ -111,7 +111,7 @@ open class TreebolicBoundClient(
         }
     }
 
-    override fun requestModel(source: String, base: String, imageBase: String, settings: String, forward: Intent?) {
+    override fun requestModel(source: String, base: String?, imageBase: String?, settings: String?, forward: Intent?) {
         if (binder != null) {
             if (forward == null) {
                 binder!!.makeModel(source, base, imageBase, settings, modelListener)

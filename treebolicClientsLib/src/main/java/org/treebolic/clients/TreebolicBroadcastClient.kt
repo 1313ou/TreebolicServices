@@ -115,7 +115,7 @@ open class TreebolicBroadcastClient(
         connectionListener.onConnected(false)
     }
 
-    override fun requestModel(source: String, base: String, imageBase: String, settings: String, forward: Intent) {
+    override fun requestModel(source: String, base: String?, imageBase: String?, settings: String?, forward: Intent?) {
         val component = ComponentName(this.servicePackage, this.serviceName)
 
         val intent = Intent()

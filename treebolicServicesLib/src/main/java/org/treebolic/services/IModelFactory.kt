@@ -1,23 +1,20 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.treebolic.services
 
-package org.treebolic.services;
+import treebolic.model.Model
 
-import androidx.annotation.Nullable;
-import treebolic.model.Model;
+interface IModelFactory {
 
-public interface IModelFactory
-{
-	/**
-	 * Make model
-	 *
-	 * @param source    source
-	 * @param base      base
-	 * @param imageBase image base
-	 * @param settings  settings
-	 * @return model
-	 */
-	@Nullable
-	Model make(final String source, final String base, final String imageBase, final String settings);
+    /**
+     * Make model
+     *
+     * @param source    source
+     * @param base      base
+     * @param imageBase image base
+     * @param settings  settings
+     * @return model
+     */
+    fun make(source: String, base: String?, imageBase: String?, settings: String?): Model?
 }

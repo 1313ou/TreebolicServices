@@ -1,181 +1,129 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.treebolic.services
 
-package org.treebolic.services;
-
-import android.app.Service;
-import android.content.ActivityNotFoundException;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Binder;
-import android.os.IBinder;
-import android.os.TransactionTooLargeException;
-import android.util.Log;
-
-import org.treebolic.clients.iface.IModelListener;
-import org.treebolic.services.iface.ITreebolicService;
-import org.treebolic.services.iface.ITreebolicServiceBinder;
-
-import java.lang.ref.WeakReference;
-import java.util.concurrent.Callable;
-
-import androidx.annotation.NonNull;
-import treebolic.model.Model;
+import android.app.Service
+import android.content.ActivityNotFoundException
+import android.content.Context
+import android.content.Intent
+import android.os.Binder
+import android.os.IBinder
+import android.os.TransactionTooLargeException
+import android.util.Log
+import org.treebolic.clients.iface.IModelListener
+import org.treebolic.services.TaskRunner.execute
+import org.treebolic.services.Utils.warn
+import org.treebolic.services.iface.ITreebolicService
+import org.treebolic.services.iface.ITreebolicServiceBinder
+import treebolic.model.Model
+import java.lang.ref.WeakReference
+import java.util.concurrent.Callable
 
 /**
  * Treebolic bound service for data
  */
-abstract public class TreebolicBoundService extends Service implements ITreebolicService
-{
-	/**
-	 * Log tag
-	 */
-	static private final String TAG = "BoundS";
+abstract class TreebolicBoundService: Service(), ITreebolicService {
 
-	/**
-	 * Make callable
-	 */
-	@NonNull
-	static public Callable<Model> makeModelCallable(final String source, final String base, final String imageBase, final String settings, @NonNull final IModelFactory factory)
-	{
-		return () -> {
+    /**
+     * Model factory
+     */
+    @JvmField
+    protected var factory: IModelFactory? = null
 
-			try
-			{
-				return factory.make(source, base, imageBase, settings);
-			}
-			catch (@NonNull final Exception e)
-			{
-				Log.e(TAG, "Error making model", e);
-			}
-			return null;
-		};
-	}
+    /**
+     * Binder given to clients
+     */
+    inner class TreebolicServiceBinder internal constructor(factory: IModelFactory?, private val urlScheme: String) : Binder(), ITreebolicServiceBinder {
 
-	/**
-	 * Return callback
-	 */
-	@NonNull
-	static public TaskRunner.Callback<Model> makeModelCallback(final String urlScheme, @NonNull final IModelListener modelListener)
-	{
-		return (model) -> {
+        private val factory = factory!!
 
-			Log.d(TAG, "Returning model " + model);
-			modelListener.onModel(model, urlScheme);
-		};
-	}
+        override fun makeModel(source: String, base: String, imageBase: String, settings: String, modelListener: IModelListener) {
+            val callable = makeModelCallable(source, base, imageBase, settings, this.factory)
+            val callback = makeModelCallback(this.urlScheme, modelListener)
+            execute(callable, callback)
+        }
 
+        override fun makeModel(source: String, base: String, imageBase: String, settings: String, forward: Intent) {
+            val callable = makeModelCallable(source, base, imageBase, settings, this.factory)
+            val callback = makeModelForwardCallback(WeakReference(this@TreebolicBoundService), this.urlScheme, forward)
+            execute(callable, callback)
+        }
+    }
 
-	/**
-	 * Forward callback
-	 */
-	@NonNull
-	static public TaskRunner.Callback<Model> makeModelForwardCallback(@NonNull final WeakReference<Context> contextWeakReference, final String urlScheme, @NonNull final Intent forward)
-	{
-		return (model) -> {
+    /**
+     * Binder that returns an interface to the service
+     */
+    private var binder: IBinder? = null
 
-			// do not return to client but forward it to service
-			IntentFactory.putModelArg(forward, model, urlScheme);
-			forward.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			Log.d(TAG, "Forwarding model");
-			final Context context = contextWeakReference.get();
-			if (context != null)
-			{
-				try
-				{
-					context.startActivity(forward);
-				}
-				catch (ActivityNotFoundException anfe)
-				{
-					Utils.warn(context, R.string.activity_not_found);
-				}
-				catch (RuntimeException rte)
-				{
-					if (rte.getCause() instanceof TransactionTooLargeException)
-					{
-						Utils.warn(context, R.string.transaction_too_large);
-					}
-					else
-					{
-						throw rte;
-					}
-				}
-			}
-		};
-	}
+    override fun onCreate() {
+        super.onCreate()
+        checkNotNull(this.factory)
+        this.binder = TreebolicServiceBinder(this.factory, this.urlScheme)
+    }
 
-	/**
-	 * Model factory
-	 */
-	@SuppressWarnings("WeakerAccess")
-	protected IModelFactory factory;
+    /**
+     * When binding to the service, we return an interface to the service
+     */
+    override fun onBind(intent: Intent): IBinder {
+        Log.d(TAG, "Binding service")
+        checkNotNull(this.binder)
+        return binder!!
+    }
 
-	/**
-	 * Binder given to clients
-	 */
-	public class TreebolicServiceBinder extends Binder implements ITreebolicServiceBinder
-	{
-		private final IModelFactory factory;
+    companion object {
 
-		private final String urlScheme;
+        private const val TAG = "BoundS"
 
-		/**
-		 * Constructor
-		 */
-		TreebolicServiceBinder(final IModelFactory factory, final String urlScheme)
-		{
-			this.factory = factory;
-			this.urlScheme = urlScheme;
-		}
+        /**
+         * Make callable
+         */
+        fun makeModelCallable(source: String, base: String?, imageBase: String?, settings: String?, factory: IModelFactory): Callable<Model?> {
+            return Callable {
+                try {
+                    return@Callable factory.make(source, base, imageBase, settings)
+                } catch (e: Exception) {
+                    Log.e(TAG, "Error making model", e)
+                }
+                null
+            }
+        }
 
-		@Override
-		public void makeModel(final String source, final String base, final String imageBase, final String settings, @NonNull final IModelListener modelListener)
-		{
-			final Callable<Model> callable = makeModelCallable(source, base, imageBase, settings, this.factory);
-			final TaskRunner.Callback<Model> callback = makeModelCallback(this.urlScheme, modelListener);
-			TaskRunner.execute(callable, callback);
-		}
+        /**
+         * Return callback
+         */
+        fun makeModelCallback(urlScheme: String?, modelListener: IModelListener): (Model?) -> Unit {
+            return { model ->
+                Log.d(TAG, "Returning model $model")
+                modelListener.onModel(model, urlScheme)
+            }
+        }
 
-		@Override
-		public void makeModel(final String source, final String base, final String imageBase, final String settings, @NonNull final Intent forward)
-		{
-			final Callable<Model> callable = makeModelCallable(source, base, imageBase, settings, this.factory);
-			final TaskRunner.Callback<Model> callback = makeModelForwardCallback(new WeakReference<>(TreebolicBoundService.this), this.urlScheme, forward);
-			TaskRunner.execute(callable, callback);
-		}
-	}
+        /**
+         * Forward callback
+         */
+        fun makeModelForwardCallback(contextWeakReference: WeakReference<Context>, urlScheme: String?, forward: Intent): (Model?) -> Unit {
+            return { model ->
 
-	/**
-	 * Binder that returns an interface to the service
-	 */
-	private IBinder binder;
-
-	/**
-	 * Constructor
-	 */
-	public TreebolicBoundService()
-	{
-		super();
-	}
-
-	@Override
-	public void onCreate()
-	{
-		super.onCreate();
-		assert this.factory != null;
-		this.binder = new TreebolicServiceBinder(this.factory, this.getUrlScheme());
-	}
-
-	/**
-	 * When binding to the service, we return an interface to the service
-	 */
-	@NonNull
-	@Override
-	public IBinder onBind(final Intent intent)
-	{
-		Log.d(TAG, "Binding service");
-		assert this.binder != null;
-		return this.binder;
-	}
+                // do not return to client but forward it to service
+                IntentFactory.putModelArg(forward, model, urlScheme)
+                forward.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                Log.d(TAG, "Forwarding model")
+                val context = contextWeakReference.get()
+                if (context != null) {
+                    try {
+                        context.startActivity(forward)
+                    } catch (anfe: ActivityNotFoundException) {
+                        warn(context, R.string.activity_not_found)
+                    } catch (rte: RuntimeException) {
+                        if (rte.cause is TransactionTooLargeException) {
+                            warn(context, R.string.transaction_too_large)
+                        } else {
+                            throw rte
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

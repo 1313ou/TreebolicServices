@@ -207,7 +207,7 @@ open class TreebolicMessengerClient(
         }
     }
 
-    override fun requestModel(source: String, base: String, imageBase: String, settings: String, forward: Intent) {
+    override fun requestModel(source: String, base: String?, imageBase: String?, settings: String?, forward: Intent?) {
         // bundle
         val bundle = Bundle()
         bundle.putString(ITreebolicService.EXTRA_SOURCE, source)

@@ -31,5 +31,5 @@ interface ITreebolicClient {
      * @param settings  settings
      * @param forward   forward intent
      */
-    fun requestModel(source: String?, base: String?, imageBase: String?, settings: String?, forward: Intent?)
+    fun requestModel(source: String, base: String?, imageBase: String?, settings: String?, forward: Intent?)
 }

@@ -175,7 +175,7 @@ open class TreebolicAIDLBoundClient(
         }
     }
 
-    override fun requestModel(source: String, base: String, imageBase: String, settings: String, forward: Intent?) {
+    override fun requestModel(source: String, base: String?, imageBase: String?, settings: String?, forward: Intent?) {
         if (binder != null) {
             if (forward == null) {
                 try {

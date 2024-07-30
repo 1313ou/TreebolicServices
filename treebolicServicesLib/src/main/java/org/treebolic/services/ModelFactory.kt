@@ -1,187 +1,121 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.treebolic.services
 
-package org.treebolic.services;
-
-import android.content.Context;
-import android.util.Log;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Properties;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import treebolic.ILocator;
-import treebolic.model.Model;
-import treebolic.model.ModelDump;
-import treebolic.provider.IProvider;
-import treebolic.provider.IProviderContext;
+import android.content.Context
+import android.util.Log
+import treebolic.ILocator
+import treebolic.model.Model
+import treebolic.model.ModelDump
+import treebolic.provider.IProvider
+import treebolic.provider.IProviderContext
+import java.net.MalformedURLException
+import java.net.URL
+import java.util.Properties
 
 /**
  * Model factory
  *
+ * @param provider           provider
+ * @param providerContext    provider context
+ * @param locatorContext     locator context
+ * @param applicationContext application context
+ *
  * @author Bernard Bou
  */
-public abstract class ModelFactory implements IModelFactory
-{
-	/**
-	 * Log tag
-	 */
-	static private final String TAG = "AModelFactory";
+abstract class ModelFactory(
+    protected val provider: IProvider,
+    private val providerContext: IProviderContext,
+    private val locatorContext: ILocator,
+    private val applicationContext: Context
 
-	/**
-	 * Provider
-	 */
-	@SuppressWarnings("WeakerAccess")
-	final protected IProvider provider;
+) : IModelFactory {
 
-	/**
-	 * Provider locatorContext
-	 */
-	@SuppressWarnings("WeakerAccess")
-	final protected IProviderContext providerContext;
+    /**
+     * Source aliases
+     */
+    protected open val sourceAliases: Array<String>?
+        get() = null
 
-	/**
-	 * Context
-	 */
-	@SuppressWarnings("WeakerAccess")
-	final protected ILocator locatorContext;
+    /**
+     * What is returned by provider locatorContext getDataDir()
+     *
+     * @return true if locatorContext.getFilesDir, false if base
+     */
+    protected open fun useFilesDir(): Boolean {
+        return false
+    }
 
-	/**
-	 * Context
-	 */
-	@SuppressWarnings("WeakerAccess")
-	final protected Context applicationContext;
+    override fun make(source: String, base: String?, imageBase: String?, settings: String?): Model? {
+        // provider
+        provider.setContext(this.providerContext)
+        provider.setLocator(this.locatorContext)
+        provider.setHandle(this.applicationContext)
 
-	/**
-	 * Constructor
-	 *
-	 * @param provider0           provider
-	 * @param providerContext0    provider contextWeakReference
-	 * @param locatorContext0     locator contextWeakReference
-	 * @param applicationContext0 application contextWeakReference
-	 */
-	@SuppressWarnings("WeakerAccess")
-	public ModelFactory(final IProvider provider0, final IProviderContext providerContext0, final ILocator locatorContext0, @SuppressWarnings("SameParameterValue") final Context applicationContext0)
-	{
-		super();
-		this.provider = provider0;
-		this.providerContext = providerContext0;
-		this.locatorContext = locatorContext0;
-		this.applicationContext = applicationContext0;
-	}
+        // model
+        val baseUrl = makeBaseURL(base)
+        val model = provider.makeModel(source, baseUrl, makeParameters(source, base, imageBase, settings))
+        Log.d(TAG, "Made model" + (if (BuildConfig.DEBUG) "\n${ModelDump.toString(model)}\n" else " $model"))
+        return model
+    }
 
-	/**
-	 * Source aliases
-	 *
-	 * @return array of aliases for source
-	 */
-	@SuppressWarnings({"WeakerAccess", "SameReturnValue"})
-	@Nullable
-	protected String[] getSourceAliases()
-	{
-		return null;
-	}
+    /**
+     * Make base URL
+     *
+     * @param base base
+     * @return base URL
+     */
+    private fun makeBaseURL(base: String?): URL? {
+        if (base == null) {
+            return locatorContext.base
+        } else {
+            try {
+                return URL(if (!base.endsWith("/")) "$base/" else base)
+            } catch (ignored: MalformedURLException) {
+                //
+            }
+            return null
+        }
+    }
 
-	/**
-	 * What is returned by provider locatorContext getDataDir()
-	 *
-	 * @return true if locatorContext.getFilesDir, false if base
-	 */
-	@SuppressWarnings("SameReturnValue")
-	protected boolean useFilesDir()
-	{
-		return false;
-	}
+    /**
+     * Make parameters
+     *
+     * @param source    source
+     * @param base      base
+     * @param imageBase image base
+     * @param settings  settings
+     * @return parameters
+     */
+    private fun makeParameters(source: String?, base: String?, imageBase: String?, settings: String?): Properties {
+        val parameters = Properties()
+        if (source != null) {
+            parameters.setProperty("source", source)
+        }
+        if (base != null) {
+            parameters.setProperty("base", base)
+        }
+        if (imageBase != null) {
+            parameters.setProperty("imagebase", imageBase)
+        }
+        if (settings != null) {
+            parameters.setProperty("settings", settings)
+        }
 
-	@Nullable
-	@Override
-	public Model make(final String source, final String base, final String imageBase, final String settings)
-	{
-		// provider
-		this.provider.setContext(this.providerContext);
-		this.provider.setLocator(this.locatorContext);
-		this.provider.setHandle(this.applicationContext);
+        // source aliases
+        val sourceAliases = sourceAliases
+        if (source != null && sourceAliases != null) {
+            for (sourceAlias in sourceAliases) {
+                parameters.setProperty(sourceAlias, source)
+            }
+        }
 
-		URL baseUrl = makeBaseURL(base);
+        return parameters
+    }
 
-		// model
-		final Model model = this.provider.makeModel(source, baseUrl, makeParameters(source, base, imageBase, settings));
-		Log.d(TAG, "Made model" + (BuildConfig.DEBUG ? '\n' + ModelDump.toString(model) : ' ' + model.toString()));
-		return model;
-	}
+    companion object {
 
-	/**
-	 * Make base URL
-	 *
-	 * @param base base
-	 * @return base URL
-	 */
-	@SuppressWarnings("WeakerAccess")
-	@Nullable
-	protected URL makeBaseURL(@Nullable final String base)
-	{
-		if (base == null)
-		{
-			return this.locatorContext.getBase();
-		}
-		else
-		{
-			try
-			{
-				return new URL(!base.endsWith("/") ? base + "/" : base);
-			}
-			catch (@NonNull final MalformedURLException ignored)
-			{
-				//
-			}
-			return null;
-		}
-	}
-
-	/**
-	 * Make parameters
-	 *
-	 * @param source    source
-	 * @param base      base
-	 * @param imageBase image base
-	 * @param settings  settings
-	 * @return parameters
-	 */
-	@SuppressWarnings("WeakerAccess")
-	@NonNull
-	protected Properties makeParameters(@Nullable final String source, @Nullable final String base, @Nullable final String imageBase, @Nullable final String settings)
-	{
-		final Properties parameters = new Properties();
-		if (source != null)
-		{
-			parameters.setProperty("source", source);
-		}
-		if (base != null)
-		{
-			parameters.setProperty("base", base);
-		}
-		if (imageBase != null)
-		{
-			parameters.setProperty("imagebase", imageBase);
-		}
-		if (settings != null)
-		{
-			parameters.setProperty("settings", settings);
-		}
-
-		// source aliases
-		final String[] sourceAliases = getSourceAliases();
-		if (source != null && sourceAliases != null)
-		{
-			for (final String sourceAlias : sourceAliases)
-			{
-				parameters.setProperty(sourceAlias, source);
-			}
-		}
-
-		return parameters;
-	}
+        private const val TAG = "AModelFactory"
+    }
 }

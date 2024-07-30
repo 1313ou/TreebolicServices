@@ -1,63 +1,48 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.treebolic.services
 
-package org.treebolic.services;
+import android.content.Context
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
+import android.widget.Toast
+import androidx.annotation.StringRes
+import treebolic.provider.IProviderContext
 
-import android.content.Context;
-import android.os.Handler;
-import android.os.Looper;
-import android.util.Log;
-import android.widget.Toast;
+object Utils {
 
-import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
-import treebolic.provider.IProviderContext;
+    /**
+     * Make provider locatorContext
+     *
+     * @return provider locatorContext
+     */
+    @JvmStatic
+    fun makeLogProviderContext(tag: String?): IProviderContext {
+        return object : IProviderContext {
+            override fun message(text: String) {
+                Log.d(tag, "Message:$text")
+            }
 
-@SuppressWarnings("WeakerAccess")
-public class Utils
-{
-	/**
-	 * Make provider locatorContext
-	 *
-	 * @return provider locatorContext
-	 */
-	@NonNull
-	public static IProviderContext makeLogProviderContext(final String tag)
-	{
-		return new IProviderContext()
-		{
-			@Override
-			public void message(final String text)
-			{
-				Log.d(tag, "Message:" + text);
-				// Toast.makeText(locatorContext, text, Toast.LENGTH_LONG).show();
-			}
+            override fun progress(text: String, fail: Boolean) {
+                Log.d(tag, "Progress:$text")
+            }
 
-			@Override
-			public void progress(final String text, final boolean fail)
-			{
-				Log.d(tag, "Progress:" + text);
-				// Toast.makeText(locatorContext, text, Toast.LENGTH_LONG).show();
-			}
+            override fun warn(text: String) {
+                Log.d(tag, "Warn:$text")
+            }
+        }
+    }
 
-			@Override
-			public void warn(final String text)
-			{
-				Log.d(tag, "Warn:" + text);
-				// Toast.makeText(locatorContext, text, Toast.LENGTH_LONG).show();
-			}
-		};
-	}
-
-	/**
-	 * Warning to run on UI thread
-	 *
-	 * @param context   context
-	 * @param messageId massage resource id
-	 */
-	static void warn(@NonNull Context context, @StringRes int messageId)
-	{
-		new Handler(Looper.getMainLooper()).post(() -> Toast.makeText(context, messageId, Toast.LENGTH_LONG).show());
-	}
+    /**
+     * Warning to run on UI thread
+     *
+     * @param context   context
+     * @param messageId massage resource id
+     */
+    @JvmStatic
+    fun warn(context: Context, @StringRes messageId: Int) {
+        Handler(Looper.getMainLooper()).post { Toast.makeText(context, messageId, Toast.LENGTH_LONG).show() }
+    }
 }
