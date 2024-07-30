@@ -1,175 +1,141 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.treebolic.clients
 
-package org.treebolic.clients;
-
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.os.ResultReceiver;
-import android.util.Log;
-import android.widget.Toast;
-
-import org.treebolic.ParcelableModel;
-import org.treebolic.clients.iface.IConnectionListener;
-import org.treebolic.clients.iface.IModelListener;
-import org.treebolic.clients.iface.ITreebolicClient;
-import org.treebolic.services.iface.ITreebolicService;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import treebolic.model.Model;
+import android.content.ComponentName
+import android.content.Context
+import android.content.Intent
+import android.os.Build
+import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.os.Parcel
+import android.os.Parcelable
+import android.os.ResultReceiver
+import android.util.Log
+import android.widget.Toast
+import org.treebolic.ParcelableModel
+import org.treebolic.clients.iface.IConnectionListener
+import org.treebolic.clients.iface.IModelListener
+import org.treebolic.clients.iface.ITreebolicClient
+import org.treebolic.services.iface.ITreebolicService
+import treebolic.model.Model
 
 /**
  * Treebolic broadcast service client
  *
+ * @property context            context
+ * @property connectionListener connection listener
+ * @property modelListener      model listener
+ * @param serviceFullName       service full name (pkg/class)
+ *
  * @author Bernard Bou
  */
-public class TreebolicBroadcastClient implements ITreebolicClient
-{
-	/**
-	 * Log tag
-	 */
-	static private final String TAG = "BroadcastC";
+open class TreebolicBroadcastClient(
+    private val context: Context, serviceFullName: String,
+    private val connectionListener: IConnectionListener,
+    private val modelListener: IModelListener
 
-	/**
-	 * Abstract: Service package
-	 */
-	@SuppressWarnings("WeakerAccess")
-	protected final String servicePackage;
+) : ITreebolicClient {
 
-	/**
-	 * Abstract: Service name
-	 */
-	@SuppressWarnings("WeakerAccess")
-	protected final String serviceName;
+    /**
+     * Service package
+     */
+    private val servicePackage: String
 
-	/**
-	 * Context
-	 */
-	@NonNull
-	private final Context context;
+    /**
+     * Service name
+     */
+    private val serviceName: String
 
-	/**
-	 * Connection listener
-	 */
-	private final IConnectionListener connectionListener;
+    /**
+     * Result receiver
+     */
+    private val receiver: ResultReceiver?
 
-	/**
-	 * Model listener
-	 */
-	private final IModelListener modelListener;
+    /**
+     * Constructor
+     */
+    init {
+        val serviceNameComponents = serviceFullName.split("/".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+        this.servicePackage = serviceNameComponents[0]
+        this.serviceName = serviceNameComponents[1]
+        this.receiver = object : ResultReceiver(
+            Handler(Looper.getMainLooper())
+        ) {
+            override fun onReceiveResult(resultCode: Int, resultData: Bundle) {
+                resultData.classLoader = ParcelableModel::class.java.classLoader
 
-	/**
-	 * Result receiver
-	 */
-	@Nullable
-	private final ResultReceiver receiver;
+                val urlScheme = resultData.getString(ITreebolicService.RESULT_URLSCHEME)
+                val isSerialized = resultData.getBoolean(ITreebolicService.RESULT_SERIALIZED)
+                var model: Model? = null
+                if (isSerialized) {
+                    @Suppress("DEPRECATION")
+                    model = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+                        resultData.getSerializable(ITreebolicService.RESULT_MODEL, Model::class.java) else
+                        resultData.getSerializable(ITreebolicService.RESULT_MODEL) as Model?
+                } else {
+                    @Suppress("DEPRECATION")
+                    var parcelable = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+                        resultData.getParcelable(ITreebolicService.RESULT_MODEL, Parcelable::class.java) else
+                        resultData.getParcelable(ITreebolicService.RESULT_MODEL)
+                    if (parcelable != null) {
+                        if (ParcelableModel::class.java != parcelable.javaClass) {
+                            Log.d(TAG, "Parcel/Unparcel from source classloader " + parcelable.javaClass.classLoader + " to target classloader " + ParcelableModel::class.java.classLoader)
 
-	/**
-	 * Constructor
-	 *
-	 * @param context0            context
-	 * @param service0            service full name (pkg/class)
-	 * @param connectionListener0 connection listener
-	 * @param modelListener0      model listener
-	 */
-	@SuppressWarnings("WeakerAccess")
-	public TreebolicBroadcastClient(@NonNull final Context context0, @NonNull final String service0, final IConnectionListener connectionListener0, final IModelListener modelListener0)
-	{
-		this.context = context0;
-		this.connectionListener = connectionListener0;
-		this.modelListener = modelListener0;
-		final String[] serviceNameComponents = service0.split("/");
-		this.servicePackage = serviceNameComponents[0];
-		this.serviceName = serviceNameComponents[1];
-		this.receiver = new ResultReceiver(new Handler(Looper.getMainLooper()))
-		{
-			@Override
-			protected void onReceiveResult(final int resultCode, @NonNull final Bundle resultData)
-			{
-				resultData.setClassLoader(ParcelableModel.class.getClassLoader());
+                            // obtain parcel
+                            val parcel = Parcel.obtain()
 
-				final String urlScheme = resultData.getString(ITreebolicService.RESULT_URLSCHEME);
-				final boolean isSerialized = resultData.getBoolean(ITreebolicService.RESULT_SERIALIZED);
-				Model model = null;
-				if (isSerialized)
-				{
-					model = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU ? //
-							resultData.getSerializable(ITreebolicService.RESULT_MODEL, Model.class) : //
-							(Model) resultData.getSerializable(ITreebolicService.RESULT_MODEL);
-				}
-				else
-				{
-					Parcelable parcelable = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU ? //
-							resultData.getParcelable(ITreebolicService.RESULT_MODEL, Parcelable.class) : //
-							resultData.getParcelable(ITreebolicService.RESULT_MODEL);
-					if (parcelable != null)
-					{
-						if (!ParcelableModel.class.equals(parcelable.getClass()))
-						{
-							Log.d(TAG, "Parcel/Unparcel from source classloader " + parcelable.getClass().getClassLoader() + " to target classloader " + ParcelableModel.class.getClassLoader());
+                            // write parcel
+                            parcel.setDataPosition(0)
+                            parcelable.writeToParcel(parcel, 0)
 
-							// obtain parcel
-							final Parcel parcel = Parcel.obtain();
+                            // read parcel
+                            parcel.setDataPosition(0)
+                            parcelable = ParcelableModel(parcel)
 
-							// write parcel
-							parcel.setDataPosition(0);
-							parcelable.writeToParcel(parcel, 0);
+                            // recycle
+                            parcel.recycle()
+                        }
+                        val parcelModel = parcelable as ParcelableModel
+                        model = parcelModel.model
+                    }
+                }
+                modelListener.onModel(if (resultCode == 0) model else null, urlScheme)
+            }
+        }
+    }
 
-							// read parcel
-							parcel.setDataPosition(0);
-							parcelable = new ParcelableModel(parcel);
+    override fun connect() {
+        connectionListener.onConnected(true)
+    }
 
-							// recycle
-							parcel.recycle();
-						}
-						final ParcelableModel parcelModel = (ParcelableModel) parcelable;
-						model = parcelModel.getModel();
-					}
-				}
-				TreebolicBroadcastClient.this.modelListener.onModel(resultCode == 0 ? model : null, urlScheme);
-			}
-		};
-	}
+    override fun disconnect() {
+        connectionListener.onConnected(false)
+    }
 
-	@Override
-	public void connect()
-	{
-		this.connectionListener.onConnected(true);
-	}
+    override fun requestModel(source: String, base: String, imageBase: String, settings: String, forward: Intent) {
+        val component = ComponentName(this.servicePackage, this.serviceName)
 
-	@Override
-	public void disconnect()
-	{
-		this.connectionListener.onConnected(false);
-	}
+        val intent = Intent()
+        intent.setComponent(component)
+        intent.setAction(ITreebolicService.ACTION_MAKEMODEL)
+        intent.putExtra(ITreebolicService.EXTRA_SOURCE, source)
+        intent.putExtra(ITreebolicService.EXTRA_BASE, base)
+        intent.putExtra(ITreebolicService.EXTRA_IMAGEBASE, imageBase)
+        intent.putExtra(ITreebolicService.EXTRA_SETTINGS, settings)
+        intent.putExtra(ITreebolicService.EXTRA_RECEIVER, this.receiver)
+        intent.putExtra(ITreebolicService.EXTRA_FORWARD_RESULT_TO, forward)
 
-	@Override
-	public void requestModel(final String source, final String base, final String imageBase, final String settings, final Intent forward)
-	{
-		ComponentName component = new ComponentName(this.servicePackage, this.serviceName);
+        context.sendBroadcast(intent)
 
-		final Intent intent = new Intent();
-		intent.setComponent(component);
-		intent.setAction(ITreebolicService.ACTION_MAKEMODEL);
-		intent.putExtra(ITreebolicService.EXTRA_SOURCE, source);
-		intent.putExtra(ITreebolicService.EXTRA_BASE, base);
-		intent.putExtra(ITreebolicService.EXTRA_IMAGEBASE, imageBase);
-		intent.putExtra(ITreebolicService.EXTRA_SETTINGS, settings);
-		intent.putExtra(ITreebolicService.EXTRA_RECEIVER, this.receiver);
-		intent.putExtra(ITreebolicService.EXTRA_FORWARD_RESULT_TO, forward);
+        Log.d(TAG, "Intent broadcast to " + this.servicePackage + '/' + this.serviceName)
+        Toast.makeText(this.context, R.string.started, Toast.LENGTH_LONG).show()
+    }
 
-		this.context.sendBroadcast(intent);
+    companion object {
 
-		Log.d(TAG, "Intent broadcast to " + this.servicePackage + '/' + this.serviceName);
-		Toast.makeText(this.context, R.string.started, Toast.LENGTH_LONG).show();
-	}
+        private const val TAG = "BroadcastC"
+    }
 }

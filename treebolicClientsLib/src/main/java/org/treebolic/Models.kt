@@ -1,101 +1,75 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.treebolic
 
-package org.treebolic;
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.os.Bundle
+import android.os.SystemClock
+import treebolic.model.Model
+import java.lang.ref.WeakReference
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.SystemClock;
+object Models {
 
-import java.lang.ref.WeakReference;
-import java.util.HashMap;
-import java.util.NoSuchElementException;
+    /**
+     * Map of model references
+     */
+    @SuppressLint("UseSparseArrays")
+    private val references = HashMap<Long, WeakReference<Model>>()
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import treebolic.model.Model;
+    // T O / F R O M   I N T E N T
 
-@SuppressWarnings("WeakerAccess")
-public class Models
-{
-	/**
-	 * Map of model references
-	 */
-	@SuppressLint("UseSparseArrays")
-	static private final HashMap<Long, WeakReference<Model>> references = new HashMap<>();
+    @JvmStatic
+    fun set(model: Model, intent: Intent) {
+        val key = set(model)
+        intent.putExtra(TreebolicIface.ARG_MODEL_REFERENCE, key)
+    }
 
-	// T O / F R O M I N T E N T
+    fun get(intent: Intent): Model {
+        val key = intent.getLongExtra(TreebolicIface.ARG_MODEL_REFERENCE, -1)
+        return get(key)
+    }
 
-	static public void set(final Model model, @NonNull final Intent intent)
-	{
-		final Long key = Models.set(model);
-		intent.putExtra(TreebolicIface.ARG_MODEL_REFERENCE, key);
-	}
+    // T O / F R O M   B U N D L E
 
-	@NonNull
-	@SuppressWarnings("boxing")
-	static public Model get(@NonNull final Intent intent)
-	{
-		final Long key = intent.getLongExtra(TreebolicIface.ARG_MODEL_REFERENCE, -1);
-		return Models.get(key);
-	}
+    fun set(model: Model, bundle: Bundle) {
+        val key = set(model)
+        bundle.putLong(TreebolicIface.ARG_MODEL_REFERENCE, key)
+    }
 
-	// T O / F R O M B U N D L E
+    fun get(bundle: Bundle): Model {
+        val key = bundle.getLong(TreebolicIface.ARG_MODEL_REFERENCE, -1)
+        return get(key)
+    }
 
-	static public void set(final Model model, @NonNull final Bundle bundle)
-	{
-		final Long key = Models.set(model);
-		bundle.putLong(TreebolicIface.ARG_MODEL_REFERENCE, key);
-	}
+    // T I M E S T A M P   K E Y
 
-	@NonNull
-	@SuppressWarnings("boxing")
-	static public Model get(@NonNull final Bundle bundle)
-	{
-		final Long key = bundle.getLong(TreebolicIface.ARG_MODEL_REFERENCE, -1);
-		return Models.get(key);
-	}
+    fun set(model: Model): Long {
+        val key = SystemClock.elapsedRealtime()
+        set(key, model)
+        return key
+    }
 
-	// T I M E S T A M P K E Y
+    // F R O M   K E Y
 
-	@NonNull
-	@SuppressWarnings("boxing")
-	static public Long set(final Model model)
-	{
-		final long key = SystemClock.elapsedRealtime();
-		Models.set(key, model);
-		return key;
-	}
+    fun set(key: Long, model: Model) {
+        val reference = WeakReference(model)
+        references[key] = reference
+    }
 
-	// F R O M K E Y
+    private fun getUnguarded(key: Long): Model? {
+        val reference = references[key]
+        if (reference != null) {
+            return reference.get()
+        }
+        return null
+    }
 
-	static public void set(final Long key, final Model model)
-	{
-		final WeakReference<Model> reference = new WeakReference<>(model);
-		Models.references.put(key, reference);
-	}
-
-	@Nullable
-	static public Model getUnguarded(final Long key)
-	{
-		final WeakReference<Model> reference = Models.references.get(key);
-		if (reference != null)
-		{
-			return reference.get();
-		}
-		return null;
-	}
-
-	@NonNull
-	static public Model get(@NonNull final Long key) throws NoSuchElementException
-	{
-		final Model model = Models.getUnguarded(key);
-		if (model == null)
-		{
-			throw new NoSuchElementException(key.toString());
-		}
-		return model;
-	}
+    @JvmStatic
+    @Throws(NoSuchElementException::class)
+    fun get(key: Long): Model {
+        val model = getUnguarded(key) ?: throw NoSuchElementException(key.toString())
+        return model
+    }
 }

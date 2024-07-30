@@ -1,172 +1,128 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.treebolic.clients
 
-package org.treebolic.clients;
-
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
-import android.os.IBinder;
-import android.util.Log;
-import android.widget.Toast;
-
-import org.treebolic.clients.iface.IConnectionListener;
-import org.treebolic.clients.iface.IModelListener;
-import org.treebolic.clients.iface.ITreebolicClient;
-import org.treebolic.services.iface.ITreebolicServiceBinder;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.content.ComponentName
+import android.content.Context
+import android.content.Intent
+import android.content.ServiceConnection
+import android.os.IBinder
+import android.util.Log
+import android.widget.Toast
+import org.treebolic.clients.iface.IConnectionListener
+import org.treebolic.clients.iface.IModelListener
+import org.treebolic.clients.iface.ITreebolicClient
+import org.treebolic.services.iface.ITreebolicServiceBinder
 
 /**
  * Treebolic bound client
  *
+ * @property context            context
+ * @property connectionListener connection listener
+ * @property modelListener      model listener
+ * @param serviceFullName       service full name (pkg/class)
+ *
  * @author Bernard Bou
  */
-public class TreebolicBoundClient implements ITreebolicClient
-{
-	/**
-	 * Log tag
-	 */
-	static private final String TAG = "BoundC";
+open class TreebolicBoundClient(
+    private val context: Context,
+    serviceFullName: String,
+    private val connectionListener: IConnectionListener,
+    private val modelListener: IModelListener
+) : ITreebolicClient {
 
-	/**
-	 * Abstract: Service package
-	 */
-	@SuppressWarnings("WeakerAccess")
-	protected final String servicePackage;
+    /**
+     * Service package
+     */
+    private val servicePackage: String
 
-	/**
-	 * Abstract: Service name
-	 */
-	@SuppressWarnings("WeakerAccess")
-	protected final String serviceName;
+    /**
+     * Service name
+     */
+    private val serviceName: String
 
-	/**
-	 * Context
-	 */
-	@NonNull
-	private final Context context;
+    /**
+     * Connection
+     */
+    private var connection: ServiceConnection? = null
 
-	/**
-	 * Connection listener
-	 */
-	private final IConnectionListener connectionListener;
+    /**
+     * Bind state
+     */
+    private var isBound = false
 
-	/**
-	 * Model listener
-	 */
-	private final IModelListener modelListener;
+    /**
+     * Binder
+     */
+    private var binder: ITreebolicServiceBinder? = null
 
-	/**
-	 * Connection
-	 */
-	@Nullable
-	private ServiceConnection connection;
+    /**
+     * Constructor
+     */
+    init {
+        val serviceNameComponents = serviceFullName.split("/".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+        servicePackage = serviceNameComponents[0]
+        serviceName = serviceNameComponents[1]
+    }
 
-	/**
-	 * Bind state
-	 */
-	private boolean isBound = false;
+    override fun connect() {
+        bind()
+    }
 
-	/**
-	 * Binder
-	 */
-	@Nullable
-	private ITreebolicServiceBinder binder;
+    override fun disconnect() {
+        if (isBound) {
+            Log.d(TAG, "Service disconnected")
 
-	/**
-	 * Constructor
-	 *
-	 * @param context0            context
-	 * @param service0            service full name (pkg/class)
-	 * @param connectionListener0 connection listener
-	 * @param modelListener0      model listener
-	 */
-	@SuppressWarnings("WeakerAccess")
-	public TreebolicBoundClient(@NonNull final Context context0, @NonNull final String service0, final IConnectionListener connectionListener0, final IModelListener modelListener0)
-	{
-		this.context = context0;
-		this.modelListener = modelListener0;
-		this.connectionListener = connectionListener0;
-		final String[] serviceNameComponents = service0.split("/");
-		this.servicePackage = serviceNameComponents[0];
-		this.serviceName = serviceNameComponents[1];
-	}
+            // detach our existing connection.
+            checkNotNull(connection)
+            context.unbindService(connection!!)
+            isBound = false
+        }
+    }
 
-	@Override
-	public void connect()
-	{
-		bind();
-	}
+    /**
+     * Bind client to service
+     */
+    private fun bind() {
+        connection = object : ServiceConnection {
+            override fun onServiceConnected(name: ComponentName, binder0: IBinder) {
+                Log.d(TAG, "Service connected")
+                this@TreebolicBoundClient.isBound = true
+                this@TreebolicBoundClient.binder = binder0 as ITreebolicServiceBinder
 
-	@Override
-	public void disconnect()
-	{
-		if (this.isBound)
-		{
-			Log.d(TAG, "Service disconnected");
-			// Toast.makeText(this.context, R.string.disconnected, Toast.LENGTH_SHORT).show();
+                // signal connected
+                connectionListener.onConnected(true)
+            }
 
-			// detach our existing connection.
-			assert this.connection != null;
-			this.context.unbindService(this.connection);
-			this.isBound = false;
-		}
-	}
+            override fun onServiceDisconnected(name: ComponentName) {
+                this@TreebolicBoundClient.binder = null
 
-	/**
-	 * Bind client to service
-	 */
-	private void bind()
-	{
-		this.connection = new ServiceConnection()
-		{
-			@Override
-			public void onServiceConnected(final ComponentName name, final IBinder binder0)
-			{
-				Log.d(TAG, "Service connected");
-				TreebolicBoundClient.this.isBound = true;
-				TreebolicBoundClient.this.binder = (ITreebolicServiceBinder) binder0;
+                // signal disconnected
+                connectionListener.onConnected(false)
+            }
+        }
 
-				// signal connected
-				TreebolicBoundClient.this.connectionListener.onConnected(true);
-			}
+        val intent = Intent()
+        intent.setComponent(ComponentName(servicePackage, serviceName))
+        if (!context.bindService(intent, connection!!, Context.BIND_AUTO_CREATE)) {
+            Log.e(TAG, "Service failed to bind")
+            Toast.makeText(context, R.string.fail_bind, Toast.LENGTH_LONG).show()
+        }
+    }
 
-			@Override
-			public void onServiceDisconnected(final ComponentName name)
-			{
-				TreebolicBoundClient.this.binder = null;
+    override fun requestModel(source: String, base: String, imageBase: String, settings: String, forward: Intent?) {
+        if (binder != null) {
+            if (forward == null) {
+                binder!!.makeModel(source, base, imageBase, settings, modelListener)
+            } else {
+                binder!!.makeModel(source, base, imageBase, settings, forward)
+            }
+        }
+    }
 
-				// signal disconnected
-				TreebolicBoundClient.this.connectionListener.onConnected(false);
-			}
-		};
+    companion object {
 
-		final Intent intent = new Intent();
-		intent.setComponent(new ComponentName(this.servicePackage, this.serviceName));
-		if (!this.context.bindService(intent, this.connection, Context.BIND_AUTO_CREATE))
-		{
-			Log.e(TAG, "Service failed to bind");
-			Toast.makeText(this.context, R.string.fail_bind, Toast.LENGTH_LONG).show();
-		}
-	}
-
-	@Override
-	public void requestModel(final String source, final String base, final String imageBase, final String settings, @Nullable final Intent forward)
-	{
-		if (this.binder != null)
-		{
-			if (forward == null)
-			{
-				this.binder.makeModel(source, base, imageBase, settings, this.modelListener);
-			}
-			else
-			{
-				this.binder.makeModel(source, base, imageBase, settings, forward);
-			}
-		}
-	}
+        private const val TAG = "BoundC"
+    }
 }

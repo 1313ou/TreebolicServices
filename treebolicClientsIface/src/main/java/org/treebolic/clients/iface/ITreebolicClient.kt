@@ -1,36 +1,35 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.treebolic.clients.iface
 
-package org.treebolic.clients.iface;
-
-import android.content.Intent;
+import android.content.Intent
 
 /**
  * Interface to client
  *
  * @author Bernard Bou
  */
-public interface ITreebolicClient
-{
-	/**
-	 * Connect
-	 */
-	void connect();
+interface ITreebolicClient {
 
-	/**
-	 * Disconnect
-	 */
-	void disconnect();
+    /**
+     * Connect
+     */
+    fun connect()
 
-	/**
-	 * Request model from source
-	 *
-	 * @param source    source
-	 * @param base      document base
-	 * @param imageBase base image base
-	 * @param settings  settings
-	 * @param forward   forward intent
-	 */
-	void requestModel(String source, String base, String imageBase, String settings, Intent forward);
+    /**
+     * Disconnect
+     */
+    fun disconnect()
+
+    /**
+     * Request model from source
+     *
+     * @param source    source
+     * @param base      document base
+     * @param imageBase base image base
+     * @param settings  settings
+     * @param forward   forward intent
+     */
+    fun requestModel(source: String?, base: String?, imageBase: String?, settings: String?, forward: Intent?)
 }

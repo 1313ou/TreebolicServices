@@ -1,255 +1,200 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.treebolic.clients
 
-package org.treebolic.clients;
-
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.IBinder;
-import android.os.Looper;
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.os.RemoteException;
-import android.os.ResultReceiver;
-import android.util.Log;
-import android.widget.Toast;
-
-import org.treebolic.ParcelableModel;
-import org.treebolic.clients.iface.IConnectionListener;
-import org.treebolic.clients.iface.IModelListener;
-import org.treebolic.clients.iface.ITreebolicClient;
-import org.treebolic.services.iface.ITreebolicAIDLService;
-import org.treebolic.services.iface.ITreebolicService;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import treebolic.model.Model;
+import android.content.ComponentName
+import android.content.Context
+import android.content.Intent
+import android.content.ServiceConnection
+import android.os.Build
+import android.os.Bundle
+import android.os.Handler
+import android.os.IBinder
+import android.os.Looper
+import android.os.Parcel
+import android.os.Parcelable
+import android.os.RemoteException
+import android.os.ResultReceiver
+import android.util.Log
+import android.widget.Toast
+import org.treebolic.ParcelableModel
+import org.treebolic.clients.iface.IConnectionListener
+import org.treebolic.clients.iface.IModelListener
+import org.treebolic.clients.iface.ITreebolicClient
+import org.treebolic.services.iface.ITreebolicAIDLService
+import org.treebolic.services.iface.ITreebolicService
+import treebolic.model.Model
 
 /**
  * Treebolic bound client
- *
+ **
+ * @property context            context
+ * @property connectionListener connectionListener
+ * @property modelListener      modelListener
+ * @param serviceFullName       service full name (pkg/class)
+
  * @author Bernard Bou
  */
-public class TreebolicAIDLBoundClient implements ITreebolicClient
-{
-	/**
-	 * Log tag
-	 */
-	static private final String TAG = "AidlBoundC";
+open class TreebolicAIDLBoundClient(
+    private val context: Context, serviceFullName: String,
+    private val connectionListener: IConnectionListener,
+    private val modelListener: IModelListener
 
-	/**
-	 * Abstract: Service package
-	 */
-	@SuppressWarnings("WeakerAccess")
-	protected final String servicePackage;
+) : ITreebolicClient {
 
-	/**
-	 * Abstract: Service name
-	 */
-	@SuppressWarnings("WeakerAccess")
-	protected final String serviceName;
+    /**
+     * Service package
+     */
+    private val servicePackage: String
 
-	/**
-	 * Context
-	 */
-	@NonNull
-	private final Context context;
+    /**
+     * Service name
+     */
+    private val serviceName: String
 
-	/**
-	 * Connection listener
-	 */
-	private final IConnectionListener connectionListener;
+    /**
+     * Connection
+     */
+    private var connection: ServiceConnection? = null
 
-	/**
-	 * Model listener
-	 */
-	private final IModelListener modelListener;
+    /**
+     * Bind state
+     */
+    private var isBound = false
 
-	/**
-	 * Connection
-	 */
-	@Nullable
-	private ServiceConnection connection;
+    /**
+     * Binder
+     */
+    private var binder: ITreebolicAIDLService? = null
 
-	/**
-	 * Bind state
-	 */
-	private boolean isBound = false;
+    /**
+     * Result receiver
+     */
+    private val receiver: ResultReceiver
 
-	/**
-	 * Binder
-	 */
-	@Nullable
-	private ITreebolicAIDLService binder;
+    /**
+     * Constructor
+     */
+    init {
+        val serviceNameComponents = serviceFullName.split("/".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+        servicePackage = serviceNameComponents[0]
+        serviceName = serviceNameComponents[1]
+        receiver = object : ResultReceiver(
+            Handler(Looper.getMainLooper())
+        ) {
+            override fun onReceiveResult(resultCode: Int, resultData: Bundle) {
+                resultData.classLoader = ParcelableModel::class.java.classLoader
 
-	/**
-	 * Result receiver
-	 */
-	@NonNull
-	private final ResultReceiver receiver;
+                // scheme
+                val urlScheme = resultData.getString(ITreebolicService.RESULT_URLSCHEME)
 
-	/**
-	 * Constructor
-	 *
-	 * @param context0            context
-	 * @param service0            service full name (pkg/class)
-	 * @param connectionListener0 connectionListener
-	 * @param modelListener0      modelListener
-	 */
-	@SuppressWarnings("WeakerAccess")
-	public TreebolicAIDLBoundClient(@NonNull final Context context0, @NonNull final String service0, final IConnectionListener connectionListener0, final IModelListener modelListener0)
-	{
-		this.context = context0;
-		this.modelListener = modelListener0;
-		this.connectionListener = connectionListener0;
-		final String[] serviceNameComponents = service0.split("/");
-		this.servicePackage = serviceNameComponents[0];
-		this.serviceName = serviceNameComponents[1];
-		this.receiver = new ResultReceiver(new Handler(Looper.getMainLooper()))
-		{
-			@Override
-			protected void onReceiveResult(final int resultCode, @NonNull final Bundle resultData)
-			{
-				resultData.setClassLoader(ParcelableModel.class.getClassLoader());
+                // model
+                val isSerialized = resultData.getBoolean(ITreebolicService.RESULT_SERIALIZED)
+                var model: Model? = null
+                if (isSerialized) {
+                    @Suppress("DEPRECATION")
+                    model = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+                        resultData.getSerializable(ITreebolicService.RESULT_MODEL, Model::class.java) else
+                        resultData.getSerializable(ITreebolicService.RESULT_MODEL) as Model?
+                } else {
+                    @Suppress("DEPRECATION")
+                    var parcelable = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+                        resultData.getParcelable(ITreebolicService.RESULT_MODEL, Parcelable::class.java) else
+                        resultData.getParcelable(ITreebolicService.RESULT_MODEL)
+                    if (parcelable != null) {
+                        if (ParcelableModel::class.java != parcelable.javaClass) {
+                            Log.d(TAG, "Parcel/Unparcel from source classloader " + parcelable.javaClass.classLoader + " to target classloader " + ParcelableModel::class.java.classLoader)
 
-				// scheme
-				final String urlScheme = resultData.getString(ITreebolicService.RESULT_URLSCHEME);
+                            // obtain parcel
+                            val parcel = Parcel.obtain()
 
-				// model
-				final boolean isSerialized = resultData.getBoolean(ITreebolicService.RESULT_SERIALIZED);
-				Model model = null;
-				if (isSerialized)
-				{
-					model = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU ? //
-							resultData.getSerializable(ITreebolicService.RESULT_MODEL, Model.class) : //
-							(Model) resultData.getSerializable(ITreebolicService.RESULT_MODEL);
-				}
-				else
-				{
-					Parcelable parcelable = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU ? //
-							resultData.getParcelable(ITreebolicService.RESULT_MODEL, Parcelable.class) : //
-							resultData.getParcelable(ITreebolicService.RESULT_MODEL);
-					if (parcelable != null)
-					{
-						if (!ParcelableModel.class.equals(parcelable.getClass()))
-						{
-							Log.d(TAG, "Parcel/Unparcel from source classloader " + parcelable.getClass().getClassLoader() + " to target classloader " + ParcelableModel.class.getClassLoader());
+                            // write parcel
+                            parcel.setDataPosition(0)
+                            parcelable.writeToParcel(parcel, 0)
 
-							// obtain parcel
-							final Parcel parcel = Parcel.obtain();
+                            // read parcel
+                            parcel.setDataPosition(0)
+                            parcelable = ParcelableModel(parcel)
 
-							// write parcel
-							parcel.setDataPosition(0);
-							parcelable.writeToParcel(parcel, 0);
+                            // recycle
+                            parcel.recycle()
+                        }
+                        val parcelModel = parcelable as ParcelableModel
+                        model = parcelModel.model
+                    }
+                }
+                modelListener.onModel(if (resultCode == 0) model else null, urlScheme)
+            }
+        }
+    }
 
-							// read parcel
-							parcel.setDataPosition(0);
-							parcelable = new ParcelableModel(parcel);
+    override fun connect() {
+        bind()
+    }
 
-							// recycle
-							parcel.recycle();
-						}
-						final ParcelableModel parcelModel = (ParcelableModel) parcelable;
-						model = parcelModel.getModel();
-					}
-				}
-				TreebolicAIDLBoundClient.this.modelListener.onModel(resultCode == 0 ? model : null, urlScheme);
-			}
-		};
-	}
+    override fun disconnect() {
+        if (isBound) {
+            Log.d(TAG, "Service disconnected")
 
-	@Override
-	public void connect()
-	{
-		bind();
-	}
+            // detach our existing connection.
+            checkNotNull(connection)
+            context.unbindService(connection!!)
+            isBound = false
+        }
+    }
 
-	@Override
-	public void disconnect()
-	{
-		if (this.isBound)
-		{
-			Log.d(TAG, "Service disconnected");
-			// Toast.makeText(this.context, R.string.disconnected, Toast.LENGTH_SHORT).show();
+    /**
+     * Bind client to service
+     */
+    private fun bind() {
+        connection = object : ServiceConnection {
+            override fun onServiceConnected(name: ComponentName, binder0: IBinder) {
+                Log.d(TAG, "Service connected")
+                this@TreebolicAIDLBoundClient.isBound = true
+                this@TreebolicAIDLBoundClient.binder = ITreebolicAIDLService.Stub.asInterface(binder0)
 
-			// detach our existing connection.
-			assert this.connection != null;
-			this.context.unbindService(this.connection);
-			this.isBound = false;
-		}
-	}
+                // signal connected
+                connectionListener.onConnected(true)
+            }
 
-	/**
-	 * Bind client to service
-	 */
-	private void bind()
-	{
-		this.connection = new ServiceConnection()
-		{
-			@Override
-			public void onServiceConnected(final ComponentName name, final IBinder binder0)
-			{
-				Log.d(TAG, "Service connected");
-				TreebolicAIDLBoundClient.this.isBound = true;
-				TreebolicAIDLBoundClient.this.binder = ITreebolicAIDLService.Stub.asInterface(binder0);
+            override fun onServiceDisconnected(name: ComponentName) {
+                this@TreebolicAIDLBoundClient.binder = null
 
-				// signal connected
-				TreebolicAIDLBoundClient.this.connectionListener.onConnected(true);
-			}
+                // signal disconnected
+                connectionListener.onConnected(false)
+            }
+        }
 
-			@Override
-			public void onServiceDisconnected(final ComponentName name)
-			{
-				TreebolicAIDLBoundClient.this.binder = null;
+        val intent = Intent()
+        //intent.setAction("org.treebolic.service.action.MAKE_MODEL");
+        intent.setComponent(ComponentName(servicePackage, serviceName))
+        if (!context.bindService(intent, connection!!, Context.BIND_AUTO_CREATE)) {
+            Log.e(TAG, "Service failed to bind $servicePackage/$serviceName")
+            Toast.makeText(context, R.string.fail_bind, Toast.LENGTH_LONG).show()
+        }
+    }
 
-				// signal disconnected
-				TreebolicAIDLBoundClient.this.connectionListener.onConnected(false);
-			}
-		};
+    override fun requestModel(source: String, base: String, imageBase: String, settings: String, forward: Intent?) {
+        if (binder != null) {
+            if (forward == null) {
+                try {
+                    binder!!.makeModel(source, base, imageBase, settings, receiver)
+                } catch (e: RemoteException) {
+                    Log.e(TAG, "Service request failed", e)
+                }
+            } else {
+                try {
+                    binder!!.makeAndForwardModel(source, base, imageBase, settings, forward)
+                } catch (e: RemoteException) {
+                    Log.e(TAG, "Service request failed", e)
+                }
+            }
+        }
+    }
 
-		final Intent intent = new Intent();
-		//intent.setAction("org.treebolic.service.action.MAKE_MODEL");
-		intent.setComponent(new ComponentName(this.servicePackage, this.serviceName));
-		if (!this.context.bindService(intent, this.connection, Context.BIND_AUTO_CREATE))
-		{
-			Log.e(TAG, "Service failed to bind " + this.servicePackage + '/' + this.serviceName);
-			Toast.makeText(this.context, R.string.fail_bind, Toast.LENGTH_LONG).show();
-		}
-	}
+    companion object {
 
-	@Override
-	public void requestModel(final String source, final String base, final String imageBase, final String settings, @Nullable final Intent forward)
-	{
-		if (this.binder != null)
-		{
-			if (forward == null)
-			{
-				try
-				{
-					this.binder.makeModel(source, base, imageBase, settings, this.receiver);
-				}
-				catch (@NonNull final RemoteException e)
-				{
-					Log.e(TAG, "Service request failed", e);
-				}
-			}
-			else
-			{
-				try
-				{
-					this.binder.makeAndForwardModel(source, base, imageBase, settings, forward);
-				}
-				catch (@NonNull final RemoteException e)
-				{
-					Log.e(TAG, "Service request failed", e);
-				}
-			}
-		}
-	}
+        private const val TAG = "AidlBoundC"
+    }
 }
