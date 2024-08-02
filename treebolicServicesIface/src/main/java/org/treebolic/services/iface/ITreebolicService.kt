@@ -1,69 +1,63 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
-
-package org.treebolic.services.iface;
-
-import androidx.annotation.NonNull;
+package org.treebolic.services.iface
 
 /**
  * Service interface used in client/service interaction
  *
  * @author Bernard Bou
  */
-public interface ITreebolicService
-{
-	// broadcast service
+interface ITreebolicService {
 
-	String ACTION_MAKEMODEL = "org.treebolic.service.action.MAKE_MODEL";
+    /**
+     * Get service url scheme
+     *
+     * @return service url scheme
+     */
+    val urlScheme: String
 
-	// messaging service
+    companion object {
 
-	int MSG_REGISTER_CLIENT = 1;
+        // broadcast service
+        const val ACTION_MAKEMODEL: String = "org.treebolic.service.action.MAKE_MODEL"
 
-	int MSG_UNREGISTER_CLIENT = 2;
+        // messaging service
+        const val MSG_REGISTER_CLIENT: Int = 1
 
-	int MSG_REQUEST_MODEL = 3;
+        const val MSG_UNREGISTER_CLIENT: Int = 2
 
-	int MSG_RESULT_MODEL = 4;
+        const val MSG_REQUEST_MODEL: Int = 3
 
-	// arguments
+        const val MSG_RESULT_MODEL: Int = 4
 
-	String EXTRA_SOURCE = "org.treebolic.service.extra.SOURCE";
+        // arguments
+        const val EXTRA_SOURCE: String = "org.treebolic.service.extra.SOURCE"
 
-	String EXTRA_BASE = "org.treebolic.service.extra.BASE";
+        const val EXTRA_BASE: String = "org.treebolic.service.extra.BASE"
 
-	String EXTRA_IMAGEBASE = "org.treebolic.service.extra.IMAGEBASE";
+        const val EXTRA_IMAGEBASE: String = "org.treebolic.service.extra.IMAGEBASE"
 
-	String EXTRA_SETTINGS = "org.treebolic.service.extra.SETTINGS";
+        const val EXTRA_SETTINGS: String = "org.treebolic.service.extra.SETTINGS"
 
-	String EXTRA_RECEIVER = "org.treebolic.service.extra.RECEIVER";
+        const val EXTRA_RECEIVER: String = "org.treebolic.service.extra.RECEIVER"
 
-	String EXTRA_FORWARD_RESULT_TO = "org.treebolic.service.FORWARDTO";
+        const val EXTRA_FORWARD_RESULT_TO: String = "org.treebolic.service.FORWARDTO"
 
-	// result
+        // result
+        const val RESULT_MODEL: String = "org.treebolic.service.MODEL"
 
-	String RESULT_MODEL = "org.treebolic.service.MODEL";
+        const val RESULT_SERIALIZED: String = "org.treebolic.service.SERIALIZED"
 
-	String RESULT_SERIALIZED = "org.treebolic.service.SERIALIZED";
+        const val RESULT_URLSCHEME: String = "org.treebolic.service.URLSCHEME"
 
-	String RESULT_URLSCHEME = "org.treebolic.service.URLSCHEME";
+        // result
+        const val TYPE_BROADCAST: String = "Broadcast"
 
-	// result
+        const val TYPE_AIDL_BOUND: String = "AIDLBound"
 
-	String TYPE_BROADCAST = "Broadcast";
+        const val TYPE_BOUND: String = "Bound"
 
-	String TYPE_AIDL_BOUND = "AIDLBound";
-
-	String TYPE_BOUND = "Bound";
-
-	String TYPE_MESSENGER = "Messenger";
-
-	/**
-	 * Get service url scheme
-	 *
-	 * @return service url scheme
-	 */
-	@NonNull
-	String getUrlScheme();
+        const val TYPE_MESSENGER: String = "Messenger"
+    }
 }
