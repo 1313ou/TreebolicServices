@@ -1,43 +1,23 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.treebolic.owl.service
 
-package org.treebolic.owl.service;
-
-import android.content.Context;
-
-import org.treebolic.services.IModelFactory;
-import org.treebolic.services.TreebolicBroadcastService;
-
-import java.io.IOException;
-
-import androidx.annotation.NonNull;
+import android.content.Context
+import org.treebolic.services.IModelFactory
+import org.treebolic.services.TreebolicBroadcastService
+import java.io.IOException
 
 /**
  * Treebolic Owl broadcast service
  */
-public class TreebolicOwlBroadcastService extends TreebolicBroadcastService
-{
-	/**
-	 * Constructor
-	 */
-	public TreebolicOwlBroadcastService()
-	{
-		super();
-	}
+class TreebolicOwlBroadcastService : TreebolicBroadcastService() {
 
-	@NonNull
-	@Override
-	protected IModelFactory createModelFactory(@NonNull final Context context) throws IOException
-	{
-		return new ModelFactory(context);
-	}
+    @Throws(IOException::class)
+    override fun createModelFactory(context: Context): IModelFactory {
+        return ModelFactory(context)
+    }
 
-	@SuppressWarnings("SameReturnValue")
-	@NonNull
-	@Override
-	public String getUrlScheme()
-	{
-		return "owl:";
-	}
+    override val urlScheme: String
+        get() = "owl:"
 }

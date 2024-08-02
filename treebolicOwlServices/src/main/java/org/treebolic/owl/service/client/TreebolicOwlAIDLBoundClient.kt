@@ -1,35 +1,23 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.treebolic.owl.service.client
 
-package org.treebolic.owl.service.client;
-
-import android.content.Context;
-
-import org.treebolic.clients.TreebolicAIDLBoundClient;
-import org.treebolic.clients.iface.IConnectionListener;
-import org.treebolic.clients.iface.IModelListener;
-import org.treebolic.owl.BuildConfig;
-import org.treebolic.owl.service.TreebolicOwlAIDLBoundService;
-
-import androidx.annotation.NonNull;
+import android.content.Context
+import androidx.multidex.BuildConfig
+import org.treebolic.clients.TreebolicAIDLBoundClient
+import org.treebolic.clients.iface.IConnectionListener
+import org.treebolic.clients.iface.IModelListener
+import org.treebolic.owl.service.TreebolicOwlAIDLBoundService
 
 /**
  * Treebolic Owl bound client
  *
+ * @param context            context
+ * @param connectionListener connection listener
+ * @param modelListener      model listener
+ *
  * @author Bernard Bou
  */
-public class TreebolicOwlAIDLBoundClient extends TreebolicAIDLBoundClient
-{
-	/**
-	 * Constructor
-	 *
-	 * @param context            context
-	 * @param connectionListener connection listener
-	 * @param modelListener      model listener
-	 */
-	public TreebolicOwlAIDLBoundClient(@NonNull final Context context, final IConnectionListener connectionListener, final IModelListener modelListener)
-	{
-		super(context, BuildConfig.APPLICATION_ID + '/' + TreebolicOwlAIDLBoundService.class.getName(), connectionListener, modelListener);
-	}
-}
+class TreebolicOwlAIDLBoundClient(context: Context, connectionListener: IConnectionListener, modelListener: IModelListener) :
+    TreebolicAIDLBoundClient(context, (BuildConfig.APPLICATION_ID + '/') + TreebolicOwlAIDLBoundService::class.java.getName(), connectionListener, modelListener)

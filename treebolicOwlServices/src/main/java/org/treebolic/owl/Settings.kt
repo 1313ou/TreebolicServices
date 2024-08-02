@@ -1,151 +1,137 @@
 /*
  * Copyright (c) Treebolic 2023. Bernard Bou <1313ou@gmail.com>
  */
+package org.treebolic.owl
 
-package org.treebolic.owl;
-
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.net.Uri;
-import android.os.Build;
-
-import org.treebolic.TreebolicIface;
-import org.treebolic.storage.Storage;
-
-import java.io.File;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.preference.PreferenceManager;
-
-import static org.treebolic.services.iface.ITreebolicService.TYPE_BROADCAST;
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
+import android.provider.Settings
+import androidx.multidex.BuildConfig
+import androidx.preference.PreferenceManager
+import org.treebolic.TreebolicIface
+import org.treebolic.services.iface.ITreebolicService
+import org.treebolic.storage.Storage.getTreebolicStorage
 
 /**
  * Settings
  *
  * @author Bernard Bou
  */
-@SuppressWarnings("WeakerAccess")
-public class Settings
-{
-	/**
-	 * Demo archive
-	 */
-	public static final String DEMOZIP = "owl.zip";
+object Settings {
 
-	/**
-	 * Demo
-	 */
-	public static final String DEMO = "pizza.owl";
+    /**
+     * Demo archive
+     */
+    const val DEMOZIP: String = "owl.zip"
 
-	/**
-	 * Initialized preference name
-	 */
-	public static final String PREF_INITIALIZED = "pref_initialized_" + BuildConfig.VERSION_NAME;
+    /**
+     * Demo
+     */
+    private const val DEMO: String = "pizza.owl"
 
-	/**
-	 * Service preference name
-	 */
-	public static final String PREF_SERVICE = "pref_service";
+    /**
+     * Initialized preference name
+     */
+    const val PREF_INITIALIZED: String = "pref_initialized_" + BuildConfig.VERSION_NAME
 
-	/**
-	 * Download preference name
-	 */
-	public static final String PREF_DOWNLOAD = "pref_download";
+    /**
+     * Service preference name
+     */
+    const val PREF_SERVICE: String = "pref_service"
 
-	/**
-	 * Save source and base to preferences
-	 *
-	 * @param context context
-	 * @param source  source
-	 * @param base    base
-	 */
-	public static void save(@NonNull final Context context, final String source, final String base)
-	{
-		Settings.putStringPref(context, TreebolicIface.PREF_SOURCE, source);
-		Settings.putStringPref(context, TreebolicIface.PREF_BASE, base);
-	}
+    /**
+     * Download preference name
+     */
+    const val PREF_DOWNLOAD: String = "pref_download"
 
-	/**
-	 * Get string preference
-	 *
-	 * @param context context
-	 * @param key     key
-	 * @return value
-	 */
-	@Nullable
-	static public String getStringPref(@NonNull final Context context, final String key)
-	{
-		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		return sharedPref.getString(key, null);
-	}
+    /**
+     * Save source and base to preferences
+     *
+     * @param context context
+     * @param source  source
+     * @param base    base
+     */
+    @JvmStatic
+    fun save(context: Context, source: String?, base: String?) {
+        putStringPref(context, TreebolicIface.PREF_SOURCE, source)
+        putStringPref(context, TreebolicIface.PREF_BASE, base)
+    }
 
-	/**
-	 * Put string preference
-	 *
-	 * @param context context
-	 * @param key     key
-	 * @param value   value
-	 */
-	@SuppressLint({"CommitPrefEdits", "ApplySharedPref"})
-	static public void putStringPref(@NonNull final Context context, final String key, final String value)
-	{
-		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		sharedPref.edit().putString(key, value).commit();
-	}
+    /**
+     * Get string preference
+     *
+     * @param context context
+     * @param key     key
+     * @return value
+     */
+    @JvmStatic
+    fun getStringPref(context: Context, key: String?): String? {
+        val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
+        return sharedPref.getString(key, null)
+    }
 
-	// U T I L S
+    /**
+     * Put string preference
+     *
+     * @param context context
+     * @param key     key
+     * @param value   value
+     */
+    @SuppressLint("CommitPrefEdits", "ApplySharedPref")
+    fun putStringPref(context: Context, key: String?, value: String?) {
+        val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
+        sharedPref.edit().putString(key, value).commit()
+    }
 
-	/**
-	 * Set default initial settings
-	 *
-	 * @param context context
-	 */
-	@SuppressLint({"CommitPrefEdits", "ApplySharedPref"})
-	static public void setDefaults(@NonNull final Context context)
-	{
-		final File treebolicStorage = Storage.getTreebolicStorage(context);
-		final Uri uri = Uri.fromFile(treebolicStorage);
-		final String treebolicBase = uri.toString() + '/';
+    // U T I L S
 
-		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		final Editor editor = sharedPref.edit();
-		editor.putString(Settings.PREF_SERVICE, TYPE_BROADCAST);
-		editor.putString(TreebolicIface.PREF_BASE, treebolicBase);
-		editor.putString(TreebolicIface.PREF_IMAGEBASE, treebolicBase);
-		editor.putString(TreebolicIface.PREF_SOURCE, Settings.DEMO);
-		editor.commit();
-	}
+    /**
+     * Set default initial settings
+     *
+     * @param context context
+     */
+    @JvmStatic
+    @SuppressLint("CommitPrefEdits", "ApplySharedPref")
+    fun setDefaults(context: Context) {
+        val treebolicStorage = getTreebolicStorage(context)
+        val uri = Uri.fromFile(treebolicStorage)
+        val treebolicBase = "$uri/"
 
-	/**
-	 * Application settings
-	 *
-	 * @param context context
-	 * @param pkgName package name
-	 */
-	static public void applicationSettings(@NonNull final Context context, @SuppressWarnings("SameParameterValue") final String pkgName)
-	{
-		final int apiLevel = Build.VERSION.SDK_INT;
-		final Intent intent = new Intent();
+        val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
+        val editor = sharedPref.edit()
+        editor.putString(PREF_SERVICE, ITreebolicService.TYPE_BROADCAST)
+        editor.putString(TreebolicIface.PREF_BASE, treebolicBase)
+        editor.putString(TreebolicIface.PREF_IMAGEBASE, treebolicBase)
+        editor.putString(TreebolicIface.PREF_SOURCE, DEMO)
+        editor.commit()
+    }
 
-		if (apiLevel >= 9)
-		{
-			intent.setAction(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-			intent.setData(Uri.parse("package:" + pkgName));
-		}
-		else
-		{
-			final String appPkgName = apiLevel == 8 ? "pkg" : "com.android.settings.ApplicationPkgName";
+    /**
+     * Application settings
+     *
+     * @param context context
+     * @param pkgName package name
+     */
+    @JvmStatic
+    fun applicationSettings(context: Context, pkgName: String) {
+        val apiLevel = Build.VERSION.SDK_INT
+        val intent = Intent()
 
-			intent.setAction(Intent.ACTION_VIEW);
-			intent.setClassName("com.android.settings", "com.android.settings.InstalledAppDetails");
-			intent.putExtra(appPkgName, pkgName);
-		}
+        if (apiLevel >= 9) {
+            intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+            intent.setData(Uri.parse("package:$pkgName"))
+        } else {
+            val appPkgName = if (apiLevel == 8) "pkg" else "com.android.settings.ApplicationPkgName"
 
-		// start Activity
-		context.startActivity(intent);
-	}
+            intent.setAction(Intent.ACTION_VIEW)
+            intent.setClassName("com.android.settings", "com.android.settings.InstalledAppDetails")
+            intent.putExtra(appPkgName, pkgName)
+        }
+
+        // start Activity
+        context.startActivity(intent)
+    }
 }

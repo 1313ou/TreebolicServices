@@ -1,38 +1,22 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.treebolic.owl.service
 
-package org.treebolic.owl.service;
-
-import org.treebolic.services.TreebolicAIDLBoundService;
-
-import androidx.annotation.NonNull;
+import org.treebolic.services.TreebolicAIDLBoundService
+import java.io.IOException
 
 /**
  * Bound service for Owl data
  */
-public class TreebolicOwlAIDLBoundService extends TreebolicAIDLBoundService
-{
-	/**
-	 * Constructor
-	 */
-	public TreebolicOwlAIDLBoundService()
-	{
-		super();
-	}
+class TreebolicOwlAIDLBoundService : TreebolicAIDLBoundService() {
 
-	@Override
-	public void onCreate()
-	{
-		super.onCreate();
-		this.factory = new ModelFactory(this);
-	}
+    @Throws(IOException::class)
+    override fun onCreate() {
+        super.onCreate()
+        factory = ModelFactory(this)
+    }
 
-	@SuppressWarnings("SameReturnValue")
-	@NonNull
-	@Override
-	public String getUrlScheme()
-	{
-		return "owl:";
-	}
+    override val urlScheme: String
+        get() = "owl:"
 }

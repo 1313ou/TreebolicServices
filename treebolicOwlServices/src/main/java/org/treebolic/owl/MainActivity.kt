@@ -1,596 +1,487 @@
 /*
  * Copyright (c) Treebolic 2023. Bernard Bou <1313ou@gmail.com>
  */
+package org.treebolic.owl
 
-package org.treebolic.owl;
-
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Process;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.bbou.donate.DonateActivity;
-import com.bbou.others.OthersActivity;
-import com.bbou.rate.AppRate;
-
-import org.treebolic.AppCompatCommonActivity;
-import org.treebolic.Models;
-import org.treebolic.ParcelableModel;
-import org.treebolic.TreebolicIface;
-import org.treebolic.clients.iface.IConnectionListener;
-import org.treebolic.clients.iface.IModelListener;
-import org.treebolic.clients.iface.ITreebolicClient;
-import org.treebolic.filechooser.EntryChooser;
-import org.treebolic.filechooser.FileChooserActivity;
-import org.treebolic.owl.service.client.TreebolicOwlAIDLBoundClient;
-import org.treebolic.owl.service.client.TreebolicOwlBoundClient;
-import org.treebolic.owl.service.client.TreebolicOwlBroadcastClient;
-import org.treebolic.owl.service.client.TreebolicOwlMessengerClient;
-import org.treebolic.services.IntentFactory;
-import org.treebolic.storage.Deployer;
-import org.treebolic.storage.Storage;
-
-import java.io.File;
-import java.io.IOException;
-
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
-import androidx.preference.PreferenceManager;
-import treebolic.model.Model;
-
-import static org.treebolic.services.iface.ITreebolicService.TYPE_AIDL_BOUND;
-import static org.treebolic.services.iface.ITreebolicService.TYPE_BOUND;
-import static org.treebolic.services.iface.ITreebolicService.TYPE_BROADCAST;
-import static org.treebolic.services.iface.ITreebolicService.TYPE_MESSENGER;
+import android.annotation.SuppressLint
+import android.content.ComponentName
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.os.Bundle
+import android.os.Process
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageButton
+import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
+import androidx.multidex.BuildConfig
+import androidx.preference.PreferenceManager
+import com.bbou.donate.DonateActivity
+import com.bbou.others.OthersActivity
+import com.bbou.rate.AppRate.invoke
+import com.bbou.rate.AppRate.rate
+import org.treebolic.AppCompatCommonActivity
+import org.treebolic.AppCompatCommonPreferenceActivity
+import org.treebolic.Models.set
+import org.treebolic.ParcelableModel
+import org.treebolic.TreebolicIface
+import org.treebolic.clients.iface.IConnectionListener
+import org.treebolic.clients.iface.IModelListener
+import org.treebolic.clients.iface.ITreebolicClient
+import org.treebolic.filechooser.EntryChooser.Companion.choose
+import org.treebolic.filechooser.FileChooserActivity
+import org.treebolic.owl.Permissions.check
+import org.treebolic.owl.Settings.applicationSettings
+import org.treebolic.owl.Settings.getStringPref
+import org.treebolic.owl.Settings.save
+import org.treebolic.owl.Settings.setDefaults
+import org.treebolic.owl.service.client.TreebolicOwlAIDLBoundClient
+import org.treebolic.owl.service.client.TreebolicOwlBoundClient
+import org.treebolic.owl.service.client.TreebolicOwlBroadcastClient
+import org.treebolic.owl.service.client.TreebolicOwlMessengerClient
+import org.treebolic.services.IntentFactory.makeTreebolicIntentSkeleton
+import org.treebolic.services.iface.ITreebolicService
+import org.treebolic.storage.Deployer.copyAssetFile
+import org.treebolic.storage.Deployer.expandZipAssetFile
+import org.treebolic.storage.Storage.getTreebolicStorage
+import treebolic.model.Model
+import java.io.File
+import java.io.IOException
 
 /**
  * Treebolic Owl main activity. The activity obtains a model from data and requests Treebolic server to visualize it.
  *
  * @author Bernard Bou
  */
-public class MainActivity extends AppCompatCommonActivity implements IConnectionListener, IModelListener
-{
-	/**
-	 * Log tag
-	 */
-	static private final String TAG = "ServiceOwlA";
+class MainActivity : AppCompatCommonActivity(), IConnectionListener, IModelListener {
 
-	/**
-	 * Whether to forward model directly to activity
-	 */
-	static private final boolean FORWARD = true;
+    /**
+     * Client
+     */
+    private var client: ITreebolicClient? = null
 
-	/**
-	 * Client
-	 */
-	@Nullable
-	private ITreebolicClient client;
+    /**
+     * Activity result launcher
+     */
+    private var activityResultLauncher: ActivityResultLauncher<Intent>? = null
 
-	/**
-	 * Activity result launcher
-	 */
-	protected ActivityResultLauncher<Intent> activityResultLauncher;
+    // L I F E C Y C L E
 
-	// L I F E C Y C L E
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-	@Override
-	protected void onCreate(@Nullable final Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
+        // rate
+        invoke(this)
 
-		// rate
-		AppRate.invoke(this);
+        // init
+        initialize()
 
-		// init
-		initialize();
+        // view
+        setContentView(R.layout.activity_main)
 
-		// view
-		setContentView(R.layout.activity_main);
+        // toolbar
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
-		// toolbar
-		final Toolbar toolbar = findViewById(R.id.toolbar);
-		setSupportActionBar(toolbar);
+        // set up the action bar
+        val actionBar = supportActionBar
+        if (actionBar != null) {
+            actionBar.displayOptions = ActionBar.DISPLAY_USE_LOGO or ActionBar.DISPLAY_SHOW_TITLE
+        }
 
-		// set up the action bar
-		final ActionBar actionBar = getSupportActionBar();
-		if (actionBar != null)
-		{
-			actionBar.setDisplayOptions(ActionBar.DISPLAY_USE_LOGO | ActionBar.DISPLAY_SHOW_TITLE);
-		}
+        // activity result launcher
+        this.activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            val success = result.resultCode == RESULT_OK
+            if (success) {
+                val returnIntent = result.data
+                if (returnIntent != null) {
+                    val fileUri = returnIntent.data
+                    if (fileUri != null) {
+                        Toast.makeText(this, fileUri.toString(), Toast.LENGTH_SHORT).show()
+                        val path = fileUri.path
+                        if (path != null) {
+                            val file = File(path)
+                            val parent = file.parent
+                            if (parent != null) {
+                                val parentFile = File(parent)
+                                val parentUri = Uri.fromFile(parentFile)
+                                val query = file.name
+                                var base = parentUri.toString()
+                                if (!base.endsWith("/")) {
+                                    base += '/'
+                                }
+                                save(this, query, base)
+                            }
+                        }
+                    }
+                }
+                updateButton()
 
-		// activity result launcher
-		this.activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
-			boolean success = result.getResultCode() == Activity.RESULT_OK;
-			if (success)
-			{
-				Intent returnIntent = result.getData();
-				if (returnIntent != null)
-				{
-					final Uri fileUri = returnIntent.getData();
-					if (fileUri != null)
-					{
-						Toast.makeText(this, fileUri.toString(), Toast.LENGTH_SHORT).show();
-						final String path = fileUri.getPath();
-						if (path != null)
-						{
-							final File file = new File(path);
-							final String parent = file.getParent();
-							if (parent != null)
-							{
-								final File parentFile = new File(parent);
-								final Uri parentUri = Uri.fromFile(parentFile);
-								final String query = file.getName();
-								String base = parentUri.toString();
-								if (!base.endsWith("/"))
-								{
-									base += '/';
-								}
-								Settings.save(this, query, base);
-							}
-						}
-					}
-				}
+                // query
+                // query();
+            }
+        }
 
-				updateButton();
+        // fragment
+        if (savedInstanceState == null) {
+            val fragment = PlaceholderFragment()
+            supportFragmentManager.beginTransaction().add(R.id.container, fragment).commit()
+        }
+    }
 
-				// query
-				// query();
-			}
-		});
+    override fun onResume() {
+        stop()
+        start()
+        updateButton()
+        super.onResume()
+    }
 
-		// fragment
-		if (savedInstanceState == null)
-		{
-			PlaceholderFragment fragment = new PlaceholderFragment();
-			getSupportFragmentManager().beginTransaction().add(R.id.container, fragment).commit();
-		}
-	}
+    override fun onPause() {
+        stop()
+        super.onPause()
+    }
 
-	@Override
-	protected void onResume()
-	{
-		stop();
-		start();
-		updateButton();
-		super.onResume();
-	}
+    // M E N U
 
-	@Override
-	protected void onPause()
-	{
-		stop();
-		super.onPause();
-	}
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.main, menu)
 
-	// M E N U
+        return true
+    }
 
-	@SuppressWarnings("SameReturnValue")
-	@Override
-	public boolean onCreateOptionsMenu(final Menu menu)
-	{
-		// inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        val id = item.itemId
+        if (R.id.action_query == id) {
+            query()
+            return true
+        } else if (R.id.action_source == id) {
+            requestSource()
+            return true
+        } else if (R.id.action_demo == id) {
+            val archiveFileUri = copyAssetFile(this, Settings.DEMOZIP)
+            if (archiveFileUri != null) {
+                queryBundle(archiveFileUri)
+            }
+            return true
+        } else if (R.id.action_others == id) {
+            startActivity(Intent(this, OthersActivity::class.java))
+            return true
+        } else if (R.id.action_donate == id) {
+            startActivity(Intent(this, DonateActivity::class.java))
+            return true
+        } else if (R.id.action_rate == id) {
+            rate(this)
+            return true
+        } else if (R.id.action_download == id) {
+            startActivity(Intent(this, DownloadActivity::class.java))
+            return true
+        } else if (R.id.action_app_settings == id) {
+            applicationSettings(this, BuildConfig.APPLICATION_ID)
+            return true
+        } else if (R.id.action_settings == id) {
+            startActivity(Intent(this, SettingsActivity::class.java))
+            return true
+        } else if (R.id.action_settings_service == id) {
+            val intent = Intent(this, SettingsActivity::class.java)
+            intent.putExtra(AppCompatCommonPreferenceActivity.INITIAL_ARG, SettingsActivity.ServicePreferenceFragment::class.java.name)
+            startActivity(intent)
+            return true
+        } else if (R.id.action_finish == id) {
+            finish()
+            return true
+        } else if (R.id.action_kill == id) {
+            Process.killProcess(Process.myPid())
+            return true
+        } else {
+            return super.onOptionsItemSelected(item)
+        }
+    }
 
-		return true;
-	}
+    // P R E F E R E N C E S   A N D   D A T A
 
-	@Override
-	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
-	{
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		final int id = item.getItemId();
-		if (R.id.action_query == id)
-		{
-			query();
-			return true;
-		}
-		else if (R.id.action_source == id)
-		{
-			requestSource();
-			return true;
-		}
-		else if (R.id.action_demo == id)
-		{
-			final Uri archiveFileUri = Deployer.copyAssetFile(this, Settings.DEMOZIP);
-			if (archiveFileUri != null)
-			{
-				queryBundle(archiveFileUri);
-			}
-			return true;
-		}
-		else if (R.id.action_others == id)
-		{
-			startActivity(new Intent(this, OthersActivity.class));
-			return true;
-		}
-		else if (R.id.action_donate == id)
-		{
-			startActivity(new Intent(this, DonateActivity.class));
-			return true;
-		}
-		else if (R.id.action_rate == id)
-		{
-			AppRate.rate(this);
-			return true;
-		}
-		else if (R.id.action_download == id)
-		{
-			startActivity(new Intent(this, DownloadActivity.class));
-			return true;
-		}
-		else if (R.id.action_app_settings == id)
-		{
-			Settings.applicationSettings(this, BuildConfig.APPLICATION_ID);
-			return true;
-		}
-		else if (R.id.action_settings == id)
-		{
-			startActivity(new Intent(this, SettingsActivity.class));
-			return true;
-		}
-		else if (R.id.action_settings_service == id)
-		{
-			Intent intent = new Intent(this, SettingsActivity.class);
-			intent.putExtra(SettingsActivity.INITIAL_ARG, SettingsActivity.ServicePreferenceFragment.class.getName());
-			startActivity(intent);
-			return true;
-		}
-		else if (R.id.action_finish == id)
-		{
-			finish();
-			return true;
-		}
-		else if (R.id.action_kill == id)
-		{
-			Process.killProcess(Process.myPid());
-			return true;
-		}
-		else
-		{
-			return super.onOptionsItemSelected(item);
-		}
-	}
+    /**
+     * Initialize
+     */
+    @SuppressLint("CommitPrefEdits", "ApplySharedPref")
+    private fun initialize() {
+        // permissions
+        check(this)
 
-	// P R E F E R E N C E S   A N D   D A T A
+        // test if initialized
+        val sharedPref = PreferenceManager.getDefaultSharedPreferences(this)
+        val initialized = sharedPref.getBoolean(Settings.PREF_INITIALIZED, false)
+        if (!initialized) {
+            // default settings
+            setDefaults(this)
 
-	/**
-	 * Initialize
-	 */
-	@SuppressLint({"CommitPrefEdits", "ApplySharedPref"})
-	private void initialize()
-	{
-		// permissions
-		Permissions.check(this);
+            // deploy
+            val dir = getTreebolicStorage(this)
+            if (dir.isDirectory) {
+                val dirContent = dir.list()
+                if (dirContent == null || dirContent.isEmpty()) {
+                    // deploy
+                    expandZipAssetFile(this, "owl.zip")
+                }
+            }
 
-		// test if initialized
-		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-		final boolean initialized = sharedPref.getBoolean(Settings.PREF_INITIALIZED, false);
-		if (!initialized)
-		{
-			// default settings
-			Settings.setDefaults(this);
+            // flag as initialized
+            sharedPref.edit().putBoolean(Settings.PREF_INITIALIZED, true).commit()
+        }
+    }
 
-			// deploy
-			final File dir = Storage.getTreebolicStorage(this);
-			if (dir.isDirectory())
-			{
-				final String[] dirContent = dir.list();
-				if (dirContent == null || dirContent.length == 0)
-				{
-					// deploy
-					Deployer.expandZipAssetFile(this, "owl.zip");
-				}
-			}
+    // C L I E N T   O P E R A T I O N
 
-			// flag as initialized
-			sharedPref.edit().putBoolean(Settings.PREF_INITIALIZED, true).commit();
-		}
-	}
+    /**
+     * Start client
+     */
+    private fun start() {
+        // client
+        var serviceType = getStringPref(this, Settings.PREF_SERVICE)
+        if (serviceType == null) {
+            serviceType = ITreebolicService.TYPE_BROADCAST
+        }
+        when (serviceType) {
+            ITreebolicService.TYPE_BROADCAST -> this.client = TreebolicOwlBroadcastClient(this, this, this)
+            ITreebolicService.TYPE_AIDL_BOUND -> this.client = TreebolicOwlAIDLBoundClient(this, this, this)
+            ITreebolicService.TYPE_BOUND -> this.client = TreebolicOwlBoundClient(this, this, this)
+            ITreebolicService.TYPE_MESSENGER -> this.client = TreebolicOwlMessengerClient(this, this, this)
+        }
+        // connect
+        checkNotNull(this.client)
+        client!!.connect()
+    }
 
-	// C L I E N T   O P E R A T I O N
+    /**
+     * Stop client
+     */
+    private fun stop() {
+        if (this.client != null) {
+            client!!.disconnect()
+            this.client = null
+        }
+    }
 
-	/**
-	 * Start client
-	 */
-	@SuppressWarnings("WeakerAccess")
-	protected void start()
-	{
-		// client
-		String serviceType = Settings.getStringPref(this, Settings.PREF_SERVICE);
-		if (serviceType == null)
-		{
-			serviceType = TYPE_BROADCAST;
-		}
-		switch (serviceType)
-		{
-			case TYPE_BROADCAST:
-				this.client = new TreebolicOwlBroadcastClient(this, this, this);
-				break;
-			case TYPE_AIDL_BOUND:
-				this.client = new TreebolicOwlAIDLBoundClient(this, this, this);
-				break;
-			case TYPE_BOUND:
-				this.client = new TreebolicOwlBoundClient(this, this, this);
-				break;
-			case TYPE_MESSENGER:
-				this.client = new TreebolicOwlMessengerClient(this, this, this);
-				break;
-		}
+    // C O N N E C T I O N   L I S T E N E R
 
-		// connect
-		assert this.client != null;
-		this.client.connect();
-	}
+    override fun onConnected(success: Boolean) {
+        // url hook
+        var query = intent.getStringExtra(TreebolicIface.ARG_SOURCE)
+        if (query != null) {
+            if (query.startsWith("owl:")) {
+                query = query.substring(8)
+                query(query)
+            }
+        }
+    }
 
-	/**
-	 * Stop client
-	 */
-	@SuppressWarnings("WeakerAccess")
-	protected void stop()
-	{
-		if (this.client != null)
-		{
-			this.client.disconnect();
-			this.client = null;
-		}
-	}
+    // Q U E R Y
 
-	// C O N N E C T I O N   L I S T E N E R
+    /**
+     * Query request
+     */
+    private fun query() {
+        // get query
+        val query = getStringPref(this, TreebolicIface.PREF_SOURCE)
+        query(query)
+    }
 
-	@Override
-	public void onConnected(final boolean flag)
-	{
-		// url hook
-		String query = getIntent().getStringExtra(TreebolicIface.ARG_SOURCE);
-		if (query != null)
-		{
-			if (query.startsWith("owl:"))
-			{
-				query = query.substring(8);
-				query(query);
-			}
-		}
-	}
+    /**
+     * Query request
+     *
+     * @param source source
+     */
+    private fun query(source: String?): Boolean {
+        return query(source, getStringPref(this, TreebolicIface.PREF_BASE), getStringPref(this, TreebolicIface.PREF_IMAGEBASE), getStringPref(this, TreebolicIface.PREF_SETTINGS))
+    }
 
-	// Q U E R Y
+    /**
+     * Query request
+     *
+     * @param source    source
+     * @param base      doc base
+     * @param imageBase image base
+     * @param settings  settings
+     * @return true if query was made
+     */
+    private fun query(source: String?, base: String?, imageBase: String?, settings: String?): Boolean {
+        if (source.isNullOrEmpty()) {
+            Toast.makeText(this@MainActivity, R.string.fail_nullquery, Toast.LENGTH_SHORT).show()
+            return false
+        } else if (this@MainActivity.client == null) {
+            Toast.makeText(this@MainActivity, R.string.fail_nullclient, Toast.LENGTH_SHORT).show()
+            return false
+        }
+        val forward = if (FORWARD) makeTreebolicIntentSkeleton(Intent(this, MainActivity::class.java), base, imageBase, settings) else null
+        client!!.requestModel(source, base, imageBase, settings, forward)
+        return true
+    }
 
-	/**
-	 * Query request
-	 */
-	private void query()
-	{
-		// get query
-		final String query = Settings.getStringPref(this, TreebolicIface.PREF_SOURCE);
-		query(query);
-	}
+    /**
+     * Query request from zipped bundle file
+     *
+     * @param archiveUri archive uri
+     */
+    private fun queryBundle(archiveUri: Uri) {
+        try {
+            val path = archiveUri.path
+            if (path != null) {
+                // choose bundle entry
+                choose(this, File(archiveUri.path!!)) { zipEntry: String? ->
+                    val base = "jar:$archiveUri!/"
+                    query(zipEntry, base, getStringPref(this@MainActivity, TreebolicIface.PREF_IMAGEBASE), getStringPref(this@MainActivity, TreebolicIface.PREF_SETTINGS))
+                }
+            }
+        } catch (e: IOException) {
+            Log.d(TAG, "Failed to start treebolic from bundle uri $archiveUri", e)
+        }
+    }
 
-	/**
-	 * Query request
-	 *
-	 * @param source source
-	 */
-	@SuppressWarnings("UnusedReturnValue")
-	private boolean query(final String source)
-	{
-		return query(source, Settings.getStringPref(this, TreebolicIface.PREF_BASE), Settings.getStringPref(this, TreebolicIface.PREF_IMAGEBASE), Settings.getStringPref(this, TreebolicIface.PREF_SETTINGS));
-	}
+    // M O D E L   L I S T E N E R
 
-	/**
-	 * Query request
-	 *
-	 * @param source    source
-	 * @param base      doc base
-	 * @param imageBase image base
-	 * @param settings  settings
-	 * @return true if query was made
-	 */
-	@SuppressWarnings("WeakerAccess")
-	protected boolean query(@Nullable final String source, final String base, final String imageBase, final String settings)
-	{
-		if (source == null || source.isEmpty())
-		{
-			Toast.makeText(MainActivity.this, R.string.fail_nullquery, Toast.LENGTH_SHORT).show();
-			return false;
-		}
-		else if (MainActivity.this.client == null)
-		{
-			Toast.makeText(MainActivity.this, R.string.fail_nullclient, Toast.LENGTH_SHORT).show();
-			return false;
-		}
-		final Intent forward = MainActivity.FORWARD ? IntentFactory.makeTreebolicIntentSkeleton(new Intent(this, MainActivity.class), base, imageBase, settings) : null;
-		MainActivity.this.client.requestModel(source, base, imageBase, settings, forward);
-		return true;
-	}
+    override fun onModel(model: Model?, urlScheme: String?) {
+        if (model != null) {
+            val intent = makeTreebolicIntent(this, model, null, null)
 
-	/**
-	 * Query request from zipped bundle file
-	 *
-	 * @param archiveUri archive uri
-	 */
-	private void queryBundle(@NonNull final Uri archiveUri)
-	{
-		try
-		{
-			final String path = archiveUri.getPath();
-			if (path != null)
-			{
-				// choose bundle entry
-				EntryChooser.choose(this, new File(archiveUri.getPath()), zipEntry -> {
-					final String base = "jar:" + archiveUri + "!/";
-					query(zipEntry, base, Settings.getStringPref(MainActivity.this, TreebolicIface.PREF_IMAGEBASE), Settings.getStringPref(MainActivity.this, TreebolicIface.PREF_SETTINGS));
-				});
-			}
-		}
-		catch (@NonNull final IOException e)
-		{
-			Log.d(TAG, "Failed to start treebolic from bundle uri " + archiveUri, e);
-		}
-	}
+            Log.d(TAG, "Starting Treebolic")
+            this.startActivity(intent)
+        }
+    }
 
-	// M O D E L   L I S T E N E R
+    // R E Q U E S T (choose source)
 
-	@Override
-	public void onModel(@Nullable final Model model, final String urlScheme0)
-	{
-		if (model != null)
-		{
-			final Intent intent = MainActivity.makeTreebolicIntent(this, model, null, null);
+    /**
+     * Request Owl source
+     */
+    private fun requestSource() {
+        val intent = Intent(this, FileChooserActivity::class.java)
+        intent.setType("application/rdf+xml")
+        intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_INITIAL_DIR, getStringPref(this, TreebolicIface.PREF_BASE))
+        intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_EXTENSION_FILTER, arrayOf("owl", "rdf"))
+        intent.addCategory(Intent.CATEGORY_OPENABLE)
+        activityResultLauncher!!.launch(intent)
+    }
 
-			Log.d(TAG, "Starting Treebolic");
-			this.startActivity(intent);
-		}
-	}
+    // H E L P E R
 
-	/**
-	 * Make Treebolic intent
-	 *
-	 * @param context   content
-	 * @param model     model
-	 * @param base      base
-	 * @param imageBase image base
-	 * @return intent
-	 */
-	@NonNull
-	@SuppressWarnings("WeakerAccess")
-	static public Intent makeTreebolicIntent(@NonNull final Context context, final Model model, @SuppressWarnings("SameParameterValue") final String base, @SuppressWarnings("SameParameterValue") final String imageBase)
-	{
-		// parent activity to return to
-		final Intent parentIntent = new Intent();
-		parentIntent.setClass(context, MainActivity.class);
+    private fun updateButton() {
+        val button = findViewById<ImageButton>(R.id.queryButton)
+        button.setOnClickListener { view: View? -> this.onClick(view) }
+        val sourceText = findViewById<TextView>(R.id.querySource)
+        val source = getStringPref(this, TreebolicIface.PREF_SOURCE)
+        val qualifies = sourceQualifies(source)
+        button.visibility = if (qualifies) View.VISIBLE else View.INVISIBLE
+        sourceText.visibility = if (qualifies) View.VISIBLE else View.INVISIBLE
+        if (qualifies) {
+            sourceText.text = source
+        }
+    }
 
-		// intent
-		final Intent intent = new Intent();
-		intent.setComponent(new ComponentName(TreebolicIface.PKG_TREEBOLIC, TreebolicIface.ACTIVITY_MODEL));
+    /**
+     * Whether source qualifies
+     *
+     * @return true if source qualifies
+     */
+    private fun sourceQualifies(source: String?): Boolean {
+        val base = getStringPref(this, TreebolicIface.PREF_BASE)
+        if (!source.isNullOrEmpty()) {
+            val baseUri = Uri.parse(base)
+            val path = baseUri.path
+            if (path != null) {
+                val baseFile = if (base == null) null else File(path)
+                val file = File(baseFile, source)
+                Log.d(TAG, "file=$file")
+                return file.exists()
+            }
+        }
+        return false
+    }
 
-		// model passing
-		if (TreebolicIface.USE_MODEL_REFERENCES)
-		{
-			Models.set(model, intent);
-		}
-		else
-		{
-			if (ParcelableModel.SERIALIZE)
-			{
-				intent.putExtra(TreebolicIface.ARG_SERIALIZED, true);
-				intent.putExtra(TreebolicIface.ARG_MODEL, model);
-			}
-			else
-			{
-				intent.putExtra(TreebolicIface.ARG_SERIALIZED, false);
-				intent.putExtra(TreebolicIface.ARG_MODEL, new ParcelableModel(model));
-			}
-		}
+    // C L I C K
 
-		// other parameters passing
-		intent.putExtra(TreebolicIface.ARG_BASE, base);
-		intent.putExtra(TreebolicIface.ARG_IMAGEBASE, imageBase);
+    /**
+     * Click listener
+     *
+     * @param view view
+     */
+    private fun onClick(view: View?) {
+        query()
+    }
 
-		// parent passing
-		intent.putExtra(TreebolicIface.ARG_PARENTACTIVITY, parentIntent);
+    // F R A G M E N T
 
-		return intent;
-	}
+    /**
+     * A placeholder fragment containing a simple view.
+     */
+    class PlaceholderFragment : Fragment() {
 
-	// R E Q U E S T (choose source)
+        override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+            return inflater.inflate(R.layout.fragment_main, container, false)
+        }
+    }
 
-	/**
-	 * Request Owl source
-	 */
-	private void requestSource()
-	{
-		final Intent intent = new Intent(this, org.treebolic.filechooser.FileChooserActivity.class);
-		intent.setType("application/rdf+xml");
-		intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_INITIAL_DIR, Settings.getStringPref(this, TreebolicIface.PREF_BASE));
-		intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_EXTENSION_FILTER, new String[]{"owl", "rdf"});
-		intent.addCategory(Intent.CATEGORY_OPENABLE);
-		this.activityResultLauncher.launch(intent);
-	}
+    companion object {
 
-	// H E L P E R
+        private const val TAG = "ServiceOwlA"
 
-	private void updateButton()
-	{
-		final ImageButton button = findViewById(R.id.queryButton);
-		button.setOnClickListener(this::onClick);
-		final TextView sourceText = findViewById(R.id.querySource);
-		final String source = Settings.getStringPref(this, TreebolicIface.PREF_SOURCE);
-		final boolean qualifies = sourceQualifies(source);
-		button.setVisibility(qualifies ? View.VISIBLE : View.INVISIBLE);
-		sourceText.setVisibility(qualifies ? View.VISIBLE : View.INVISIBLE);
-		if (qualifies)
-		{
-			sourceText.setText(source);
-		}
-	}
+        /**
+         * Whether to forward model directly to activity
+         */
+        private const val FORWARD = true
 
-	/**
-	 * Whether source qualifies
-	 *
-	 * @return true if source qualifies
-	 */
-	private boolean sourceQualifies(@Nullable final String source)
-	{
-		final String base = Settings.getStringPref(this, TreebolicIface.PREF_BASE);
-		if (source != null && !source.isEmpty())
-		{
-			final Uri baseUri = Uri.parse(base);
-			final String path = baseUri.getPath();
-			if (path != null)
-			{
-				final File baseFile = base == null ? null : new File(path);
-				final File file = new File(baseFile, source);
-				Log.d(TAG, "file=" + file);
-				return file.exists();
-			}
-		}
-		return false;
-	}
+        /**
+         * Make Treebolic intent
+         *
+         * @param context   content
+         * @param model     model
+         * @param base      base
+         * @param imageBase image base
+         * @return intent
+         */
+        fun makeTreebolicIntent(context: Context, model: Model?, base: String?, imageBase: String?): Intent {
+            // parent activity to return to
+            val parentIntent = Intent()
+            parentIntent.setClass(context, MainActivity::class.java)
 
-	// C L I C K
+            // intent
+            val intent = Intent()
+            intent.setComponent(ComponentName(TreebolicIface.PKG_TREEBOLIC, TreebolicIface.ACTIVITY_MODEL))
 
-	/**
-	 * Click listener
-	 *
-	 * @param view view
-	 */
-	public void onClick(final View view)
-	{
-		query();
-	}
+            // model passing
+            if (TreebolicIface.USE_MODEL_REFERENCES) {
+                set(model!!, intent)
+            } else {
+                if (ParcelableModel.SERIALIZE) {
+                    intent.putExtra(TreebolicIface.ARG_SERIALIZED, true)
+                    intent.putExtra(TreebolicIface.ARG_MODEL, model)
+                } else {
+                    intent.putExtra(TreebolicIface.ARG_SERIALIZED, false)
+                    intent.putExtra(TreebolicIface.ARG_MODEL, ParcelableModel(model))
+                }
+            }
 
-	// F R A G M E N T
+            // other parameters passing
+            intent.putExtra(TreebolicIface.ARG_BASE, base)
+            intent.putExtra(TreebolicIface.ARG_IMAGEBASE, imageBase)
 
-	/**
-	 * A placeholder fragment containing a simple view.
-	 */
-	@SuppressWarnings("WeakerAccess")
-	public static class PlaceholderFragment extends Fragment
-	{
-		@Override
-		public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
-		{
-			return inflater.inflate(R.layout.fragment_main, container, false);
-		}
-	}
+            // parent passing
+            intent.putExtra(TreebolicIface.ARG_PARENTACTIVITY, parentIntent)
+
+            return intent
+        }
+    }
 }
