@@ -1,56 +1,45 @@
 /*
  * Copyright (c) Treebolic 2023. Bernard Bou <1313ou@gmail.com>
  */
+package org.treebolic.files
 
-package org.treebolic.files;
-
-import android.os.Bundle;
-
-import org.treebolic.AppCompatCommonPreferenceActivity;
-import org.treebolic.TreebolicIface;
-
-import androidx.preference.EditTextPreference;
-import androidx.preference.ListPreference;
-import androidx.preference.PreferenceFragmentCompat;
+import android.os.Bundle
+import androidx.preference.EditTextPreference
+import androidx.preference.ListPreference
+import androidx.preference.PreferenceFragmentCompat
+import org.treebolic.AppCompatCommonPreferenceActivity
+import org.treebolic.TreebolicIface
 
 /**
  * Settings activity
  *
  * @author Bernard Bou
  */
-public class SettingsActivity extends AppCompatCommonPreferenceActivity
-{
-	// F R A G M E N T S
+class SettingsActivity : AppCompatCommonPreferenceActivity() {
 
-	@SuppressWarnings("WeakerAccess")
-	public static class GeneralPreferenceFragment extends PreferenceFragmentCompat
-	{
-		@Override
-		public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey)
-		{
-			// inflate
-			addPreferencesFromResource(R.xml.pref_general);
+    // F R A G M E N T S
 
-			// bind
-			final EditTextPreference sourcePref = findPreference(TreebolicIface.PREF_SOURCE);
-			assert sourcePref != null;
-			sourcePref.setSummaryProvider(EditTextPreference.SimpleSummaryProvider.getInstance());
-		}
-	}
+    class GeneralPreferenceFragment : PreferenceFragmentCompat() {
 
-	@SuppressWarnings("WeakerAccess")
-	public static class ServicePreferenceFragment extends PreferenceFragmentCompat
-	{
-		@Override
-		public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey)
-		{
-			// inflate
-			addPreferencesFromResource(R.xml.pref_service);
+        override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+            // inflate
+            addPreferencesFromResource(R.xml.pref_general)
 
-			// bind
-			final ListPreference servicePref = findPreference(Settings.PREF_SERVICE);
-			assert servicePref != null;
-			servicePref.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance());
-		}
-	}
+            // bind
+            val sourcePref = checkNotNull(findPreference<EditTextPreference>(TreebolicIface.PREF_SOURCE))
+            sourcePref.summaryProvider = EditTextPreference.SimpleSummaryProvider.getInstance()
+        }
+    }
+
+    class ServicePreferenceFragment : PreferenceFragmentCompat() {
+
+        override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+            // inflate
+            addPreferencesFromResource(R.xml.pref_service)
+
+            // bind
+            val servicePref = checkNotNull(findPreference<ListPreference>(Settings.PREF_SERVICE))
+            servicePref.summaryProvider = ListPreference.SimpleSummaryProvider.getInstance()
+        }
+    }
 }

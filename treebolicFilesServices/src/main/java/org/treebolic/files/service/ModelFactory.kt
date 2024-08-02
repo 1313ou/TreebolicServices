@@ -1,68 +1,42 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.treebolic.files.service
 
-package org.treebolic.files.service;
-
-import android.content.Context;
-
-import org.treebolic.services.Utils;
-
-import java.net.URL;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import treebolic.ILocator;
-import treebolic.provider.files.Provider2;
+import android.content.Context
+import org.treebolic.services.ModelFactory
+import org.treebolic.services.Utils.makeLogProviderContext
+import treebolic.ILocator
+import treebolic.provider.files.Provider2
+import java.net.URL
 
 /**
  * Model factory
  *
+ * @param context context
+ *
  * @author Bernard Bou
  */
-public class ModelFactory extends org.treebolic.services.ModelFactory
-{
-	/**
-	 * Log tag
-	 */
-	static private final String TAG = "FilesModelFactory";
+class ModelFactory(context: Context) : ModelFactory(Provider2(), makeLogProviderContext(TAG), makeLocator(context), context.applicationContext) {
 
-	/**
-	 * Constructor
-	 *
-	 * @param context context
-	 */
-	public ModelFactory(@NonNull final Context context)
-	{
-		super(new Provider2(), Utils.makeLogProviderContext(TAG), makeLocator(context), null);
-	}
+    override val sourceAliases: Array<String>
+        get() = arrayOf("files")
 
-	@NonNull
-	static private ILocator makeLocator(@NonNull final Context context)
-	{
-		// Not used
-		return new ILocator()
-		{
-			@Nullable
-			@Override
-			public URL getBase()
-			{
-				return null;
-			}
+    companion object {
 
-			@Nullable
-			@Override
-			public URL getImagesBase()
-			{
-				return null;
-			}
-		};
-	}
+        private const val TAG = "FilesModelFactory"
 
-	@NonNull
-	@Override
-	protected String[] getSourceAliases()
-	{
-		return new String[]{"files"};
-	}
+        private fun makeLocator(context: Context): ILocator {
+            // Not used
+            return object : ILocator {
+                override fun getBase(): URL? {
+                    return null
+                }
+
+                override fun getImagesBase(): URL? {
+                    return null
+                }
+            }
+        }
+    }
 }

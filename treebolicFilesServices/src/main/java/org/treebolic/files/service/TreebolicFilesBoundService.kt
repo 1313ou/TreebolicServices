@@ -1,41 +1,22 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.treebolic.files.service
 
-package org.treebolic.files.service;
-
-import android.annotation.SuppressLint;
-
-import org.treebolic.services.TreebolicBoundService;
-
-import androidx.annotation.NonNull;
+import android.annotation.SuppressLint
+import org.treebolic.services.TreebolicBoundService
 
 /**
  * Bound service for Files data
  */
 @SuppressLint("Registered")
-public class TreebolicFilesBoundService extends TreebolicBoundService
-{
-	/**
-	 * Constructor
-	 */
-	public TreebolicFilesBoundService()
-	{
-		super();
-	}
+class TreebolicFilesBoundService : TreebolicBoundService() {
 
-	@Override
-	public void onCreate()
-	{
-		this.factory = new ModelFactory(this);
-		super.onCreate();
-	}
+    override fun onCreate() {
+        this.factory = ModelFactory(this)
+        super.onCreate()
+    }
 
-	@SuppressWarnings("SameReturnValue")
-	@NonNull
-	@Override
-	public String getUrlScheme()
-	{
-		return "directory:";
-	}
+    override val urlScheme: String
+        get() = "directory:"
 }

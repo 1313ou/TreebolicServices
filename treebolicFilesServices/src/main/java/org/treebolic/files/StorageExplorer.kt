@@ -1,255 +1,117 @@
 /*
  * Copyright (c) Treebolic 2023. Bernard Bou <1313ou@gmail.com>
  */
+package org.treebolic.files
 
-package org.treebolic.files;
+import android.content.Context
+import android.os.Environment
+import android.os.Process
+import android.os.UserManager
+import android.util.Pair
+import java.io.File
+import java.util.EnumMap
+import java.util.TreeSet
 
-import android.content.Context;
-import android.os.Build;
-import android.os.Environment;
-import android.os.UserHandle;
-import android.os.UserManager;
-import android.util.Pair;
+object StorageExplorer {
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
+    /**
+     * Get external storage directories
+     *
+     * @param context context
+     * @return map per type of of external storage directories
+     */
+    fun getStorageDirectories(context: Context): Map<StorageType, Array<String>> {
+        // result set of paths
+        val dirs: MutableMap<StorageType, Array<String>> = EnumMap(StorageType::class.java)
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+        // P R I M A R Y
 
-public class StorageExplorer
-{
-	// private static final String TAG = "StorageExplorer";
+        // primary emulated sdcard
+        val emulatedStorageTarget = System.getenv("EMULATED_STORAGE_TARGET")
+        if (emulatedStorageTarget != null && emulatedStorageTarget.isNotEmpty()) {
+            // device has emulated extStorage; external extStorage paths should have userId burned into them.
+            val userId = getUserId(context)
 
-	/**
-	 * Storage types
-	 */
-	enum StorageType
-	{PRIMARY_EMULATED, PRIMARY_PHYSICAL, SECONDARY}
+            // /extStorage/emulated/0[1,2,...]
+            if (userId.isEmpty()) {
+                dirs[StorageType.PRIMARY_PHYSICAL] = arrayOf(emulatedStorageTarget)
+            } else {
+                dirs[StorageType.PRIMARY_PHYSICAL] = arrayOf(emulatedStorageTarget + File.separatorChar + userId)
+            }
+        } else {
+            // primary physical sdcard (not emulated)
+            val externalStorage = System.getenv("EXTERNAL_STORAGE")
 
-	/**
-	 * Directory type
-	 *
-	 * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
-	 */
-	public enum DirType
-	{
-		AUTO, APP_EXTERNAL_SECONDARY, APP_EXTERNAL_PRIMARY, PUBLIC_EXTERNAL_SECONDARY, PUBLIC_EXTERNAL_PRIMARY, APP_INTERNAL;
+            // device has physical external extStorage; use plain paths
+            if (externalStorage != null && externalStorage.isNotEmpty()) {
+                dirs[StorageType.PRIMARY_EMULATED] = arrayOf(externalStorage)
+            } else {
+                // EXTERNAL_STORAGE undefined; falling back to default.
+                dirs[StorageType.PRIMARY_EMULATED] = arrayOf("/extStorage/sdcard0")
+            }
+        }
 
-		/**
-		 * Compare (sort by preference)
-		 *
-		 * @param type1 type 1
-		 * @param type2 type 2
-		 * @return order
-		 */
-		@SuppressWarnings("WeakerAccess")
-		static public int compare(@NonNull final DirType type1, @NonNull final DirType type2)
-		{
-			int i1 = type1.ordinal();
-			int i2 = type2.ordinal();
-			return Integer.compare(i1, i2);
-		}
+        // S E C O N D A R Y
 
-		@SuppressWarnings("WeakerAccess")
-		@NonNull
-		public String toDisplay()
-		{
-			switch (this)
-			{
-				case AUTO:
-					return "auto (internal or adopted)";
-				case APP_EXTERNAL_SECONDARY:
-					return "secondary";
-				case APP_EXTERNAL_PRIMARY:
-					return "primary";
-				case PUBLIC_EXTERNAL_PRIMARY:
-					return "public primary";
-				case PUBLIC_EXTERNAL_SECONDARY:
-					return "public secondary";
-				case APP_INTERNAL:
-					return "internal";
-			}
-			return "unexpected";
-		}
-	}
+        // all secondary sdcards (all exclude primary) separated by ":"
+        val secondaryStoragesStr = System.getenv("SECONDARY_STORAGE")
 
-	/**
-	 * Directory with type
-	 *
-	 * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
-	 */
-	@SuppressWarnings("WeakerAccess")
-	static public class Directory implements Comparable<Directory>
-	{
-		private final File file;
+        // add all secondary storages
+        if (secondaryStoragesStr != null && secondaryStoragesStr.isNotEmpty()) {
+            // all secondary sdcards split into array
+            val secondaryStorages = secondaryStoragesStr.split(File.pathSeparator.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+            if (secondaryStorages.isNotEmpty()) {
+                dirs[StorageType.SECONDARY] = secondaryStorages
+            }
+        }
 
-		private final DirType type;
+        return dirs
+    }
 
-		Directory(final File file, final DirType type)
-		{
-			this.file = file;
-			this.type = type;
-		}
+    /**
+     * Get directories as types and values
+     *
+     * @param context context
+     * @return pair of types and values
+     */
+    fun getDirectoriesTypesValues(context: Context): Pair<Array<CharSequence>, Array<CharSequence>> {
+        val types: MutableList<CharSequence> = ArrayList()
+        val values: MutableList<CharSequence> = ArrayList()
+        val dirs = getDirectories(context)
+        for (dir in dirs) {
+            // types
+            types.add(dir.type.toDisplay())
 
-		DirType getType()
-		{
-			return this.type;
-		}
+            // value
+            values.add(dir.file!!.absolutePath)
+        }
+        return Pair(types.toTypedArray<CharSequence>(), values.toTypedArray<CharSequence>())
+    }
 
-		@NonNull
-		CharSequence getValue()
-		{
-			if (DirType.AUTO == this.type)
-			{
-				return DirType.AUTO.toString();
-			}
-			return this.file.getAbsolutePath();
-		}
+    /**
+     * Get list of directories
+     *
+     * @param context context
+     * @return list of storage directories
+     */
+    private fun getDirectories(context: Context): Collection<Directory> {
+        val tags = arrayOf(
+            Environment.DIRECTORY_PODCASTS,
+            Environment.DIRECTORY_RINGTONES,
+            Environment.DIRECTORY_ALARMS,
+            Environment.DIRECTORY_NOTIFICATIONS,
+            Environment.DIRECTORY_PICTURES,
+            Environment.DIRECTORY_MOVIES,
+            Environment.DIRECTORY_DOWNLOADS,
+            Environment.DIRECTORY_DCIM
+        )
 
-		@SuppressWarnings("WeakerAccess")
-		public File getFile()
-		{
-			return this.file;
-		}
+        val result: MutableSet<Directory> = TreeSet()
+        var dir: File?
 
-		@Override
-		public int hashCode()
-		{
-			return getType().hashCode() * 7 + getValue().hashCode() * 13;
-		}
+        // P U B L I C
 
-		@Override
-		public boolean equals(Object d2)
-		{
-			return d2 instanceof Directory && this.getType().equals(((Directory) d2).getType());
-		}
-
-		@Override
-		public int compareTo(@NonNull final Directory d2)
-		{
-			int t = DirType.compare(this.getType(), d2.getType());
-			if (t != 0)
-			{
-				return t;
-			}
-			return this.getValue().toString().compareTo(d2.getValue().toString());
-		}
-	}
-
-	/**
-	 * Get external storage directories
-	 *
-	 * @param context context
-	 * @return map per type of of external storage directories
-	 */
-	@NonNull
-	static public Map<StorageType, String[]> getStorageDirectories(@NonNull final Context context)
-	{
-		// result set of paths
-		final Map<StorageType, String[]> dirs = new EnumMap<>(StorageType.class);
-
-		// P R I M A R Y
-
-		// primary emulated sdcard
-		final String emulatedStorageTarget = System.getenv("EMULATED_STORAGE_TARGET");
-		if (emulatedStorageTarget != null && !emulatedStorageTarget.isEmpty())
-		{
-			// device has emulated extStorage; external extStorage paths should have userId burned into them.
-			final String userId = getUserId(context);
-
-			// /extStorage/emulated/0[1,2,...]
-			if (userId.isEmpty())
-			{
-				dirs.put(StorageType.PRIMARY_PHYSICAL, new String[]{emulatedStorageTarget});
-			}
-			else
-			{
-				dirs.put(StorageType.PRIMARY_PHYSICAL, new String[]{emulatedStorageTarget + File.separatorChar + userId});
-			}
-		}
-		else
-		{
-			// primary physical sdcard (not emulated)
-			final String externalStorage = System.getenv("EXTERNAL_STORAGE");
-
-			// device has physical external extStorage; use plain paths
-			if (externalStorage != null && !externalStorage.isEmpty())
-			{
-				dirs.put(StorageType.PRIMARY_EMULATED, new String[]{externalStorage});
-			}
-			else
-			{
-				// EXTERNAL_STORAGE undefined; falling back to default.
-				dirs.put(StorageType.PRIMARY_EMULATED, new String[]{"/extStorage/sdcard0"});
-			}
-		}
-
-		// S E C O N D A R Y
-
-		// all secondary sdcards (all exclude primary) separated by ":"
-		final String secondaryStoragesStr = System.getenv("SECONDARY_STORAGE");
-
-		// add all secondary storages
-		if (secondaryStoragesStr != null && !secondaryStoragesStr.isEmpty())
-		{
-			// all secondary sdcards split into array
-			final String[] secondaryStorages = secondaryStoragesStr.split(File.pathSeparator);
-			if (secondaryStorages.length > 0)
-			{
-				dirs.put(StorageType.SECONDARY, secondaryStorages);
-			}
-		}
-
-		return dirs;
-	}
-
-	/**
-	 * Get directories as types and values
-	 *
-	 * @param context context
-	 * @return pair of types and values
-	 */
-	@NonNull
-	static public Pair<CharSequence[], CharSequence[]> getDirectoriesTypesValues(@NonNull final Context context)
-	{
-		final List<CharSequence> types = new ArrayList<>();
-		final List<CharSequence> values = new ArrayList<>();
-		final Collection<Directory> dirs = StorageExplorer.getDirectories(context);
-		for (Directory dir : dirs)
-		{
-			// types
-			types.add(dir.getType().toDisplay());
-
-			// value
-			values.add(dir.getFile().getAbsolutePath());
-		}
-		return new Pair<>(types.toArray(new CharSequence[0]), values.toArray(new CharSequence[0]));
-	}
-
-	/**
-	 * Get list of directories
-	 *
-	 * @param context context
-	 * @return list of storage directories
-	 */
-	@NonNull
-	static private Collection<Directory> getDirectories(@NonNull final Context context)
-	{
-		final String[] tags = {Environment.DIRECTORY_PODCASTS, Environment.DIRECTORY_RINGTONES, Environment.DIRECTORY_ALARMS, Environment.DIRECTORY_NOTIFICATIONS, Environment.DIRECTORY_PICTURES, Environment.DIRECTORY_MOVIES, Environment.DIRECTORY_DOWNLOADS, Environment.DIRECTORY_DCIM};
-
-		final Set<Directory> result = new TreeSet<>();
-		File dir;
-
-		// P U B L I C
-
-		/*
+        /*
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
 		{
 			final File[] externalMediaDirs = context.getExternalMediaDirs();
@@ -263,233 +125,264 @@ public class StorageExplorer
 		}
   	    */
 
-		// top-level public external storage directory
-		for (String tag : tags)
-		{
-			dir = Environment.getExternalStoragePublicDirectory(tag);
-			if (dir.exists())
-			{
-				result.add(new Directory(dir, DirType.PUBLIC_EXTERNAL_PRIMARY));
-			}
-		}
-		if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT)
-		{
-			dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
-			if (dir.exists())
-			{
-				result.add(new Directory(dir, DirType.PUBLIC_EXTERNAL_PRIMARY));
-			}
-		}
+        // top-level public external storage directory
+        for (tag in tags) {
+            dir = Environment.getExternalStoragePublicDirectory(tag)
+            if (dir.exists()) {
+                result.add(Directory(dir, DirType.PUBLIC_EXTERNAL_PRIMARY))
+            }
+        }
+        dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)
+        if (dir.exists()) {
+            result.add(Directory(dir, DirType.PUBLIC_EXTERNAL_PRIMARY))
+        }
 
-		// top-level public in external
-		dir = Environment.getExternalStorageDirectory();
-		if (dir != null)
-		{
-			if (dir.exists())
-			{
-				result.add(new Directory(dir, DirType.PUBLIC_EXTERNAL_PRIMARY));
-			}
-		}
+        // top-level public in external
+        dir = Environment.getExternalStorageDirectory()
+        if (dir != null) {
+            if (dir.exists()) {
+                result.add(Directory(dir, DirType.PUBLIC_EXTERNAL_PRIMARY))
+            }
+        }
 
-		// S E C O N D A R Y
+        // S E C O N D A R Y
 
-		// all secondary sdcards split into array
-		final File[] secondaries = discoverSecondaryExternalStorage();
-		if (secondaries != null)
-		{
-			for (File secondary : secondaries)
-			{
-				dir = secondary;
-				if (dir.exists())
-				{
-					result.add(new Directory(dir, DirType.PUBLIC_EXTERNAL_SECONDARY));
-				}
-			}
-		}
+        // all secondary sdcards split into array
+        val secondaries = discoverSecondaryExternalStorage()
+        if (secondaries != null) {
+            for (secondary in secondaries) {
+                dir = secondary
+                if (dir.exists()) {
+                    result.add(Directory(dir, DirType.PUBLIC_EXTERNAL_SECONDARY))
+                }
+            }
+        }
 
-		// P R I M A R Y
+        // P R I M A R Y
 
-		// primary emulated sdcard
-		dir = discoverPrimaryEmulatedExternalStorage(context);
-		if (dir != null)
-		{
-			if (dir.exists())
-			{
-				result.add(new Directory(dir, DirType.PUBLIC_EXTERNAL_PRIMARY));
-			}
-		}
+        // primary emulated sdcard
+        dir = discoverPrimaryEmulatedExternalStorage(context)
+        if (dir != null) {
+            if (dir.exists()) {
+                result.add(Directory(dir, DirType.PUBLIC_EXTERNAL_PRIMARY))
+            }
+        }
 
-		dir = discoverPrimaryPhysicalExternalStorage();
-		if (dir != null)
-		{
-			if (dir.exists())
-			{
-				result.add(new Directory(dir, DirType.PUBLIC_EXTERNAL_PRIMARY));
-			}
-		}
+        dir = discoverPrimaryPhysicalExternalStorage()
+        if (dir != null) {
+            if (dir.exists()) {
+                result.add(Directory(dir, DirType.PUBLIC_EXTERNAL_PRIMARY))
+            }
+        }
 
-		result.add(new Directory(new File("/storage"), DirType.PUBLIC_EXTERNAL_PRIMARY));
-		return result;
-	}
+        result.add(Directory(File("/storage"), DirType.PUBLIC_EXTERNAL_PRIMARY))
+        return result
+    }
 
-	/**
-	 * Discover external storage
-	 *
-	 * @param context context
-	 * @return (cached) external storage directory
-	 */
-	@Nullable
-	static public String discoverExternalStorage(@NonNull final Context context)
-	{
-		// S E C O N D A R Y
+    /**
+     * Discover external storage
+     *
+     * @param context context
+     * @return (cached) external storage directory
+     */
+    fun discoverExternalStorage(context: Context): String? {
+        // S E C O N D A R Y
 
-		// all secondary sdcards (all exclude primary) separated by ":"
-		final String secondaryStoragesStr = System.getenv("SECONDARY_STORAGE");
+        // all secondary sdcards (all exclude primary) separated by ":"
 
-		// add all secondary storages
-		if (secondaryStoragesStr != null && !secondaryStoragesStr.isEmpty())
-		{
-			// all secondary sdcards split into array
-			final String[] secondaryStorages = secondaryStoragesStr.split(File.pathSeparator);
-			if (secondaryStorages.length > 0)
-			{
-				return secondaryStorages[0];
-			}
-		}
+        val secondaryStoragesStr = System.getenv("SECONDARY_STORAGE")
 
-		// P R I M A R Y E M U L A T E D
+        // add all secondary storages
+        if (secondaryStoragesStr != null && secondaryStoragesStr.isNotEmpty()) {
+            // all secondary sdcards split into array
+            val secondaryStorages = secondaryStoragesStr.split(File.pathSeparator.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+            if (secondaryStorages.isNotEmpty()) {
+                return secondaryStorages[0]
+            }
+        }
 
-		// primary emulated sdcard
-		final String emulatedStorageTarget = System.getenv("EMULATED_STORAGE_TARGET");
-		if (emulatedStorageTarget != null && !emulatedStorageTarget.isEmpty())
-		{
-			// device has emulated extStorage; external extStorage paths should have userId burned into them.
-			final String userId = getUserId(context);
+        // P R I M A R Y E M U L A T E D
 
-			// /extStorage/emulated/0[1,2,...]
-			if (!userId.isEmpty())
-			{
-				return emulatedStorageTarget + File.separatorChar + userId;
-			}
-			return emulatedStorageTarget;
-		}
+        // primary emulated sdcard
+        val emulatedStorageTarget = System.getenv("EMULATED_STORAGE_TARGET")
+        if (emulatedStorageTarget != null && emulatedStorageTarget.isNotEmpty()) {
+            // device has emulated extStorage; external extStorage paths should have userId burned into them.
+            val userId = getUserId(context)
 
-		// P R I M A R Y N O N E M U L A T E D
+            // /extStorage/emulated/0[1,2,...]
+            if (userId.isNotEmpty()) {
+                return emulatedStorageTarget + File.separatorChar + userId
+            }
+            return emulatedStorageTarget
+        }
 
-		// primary physical sdcard (not emulated)
-		final String externalStorage = System.getenv("EXTERNAL_STORAGE");
+        // P R I M A R Y N O N E M U L A T E D
 
-		// device has physical external extStorage; use plain paths.
-		if (externalStorage != null && !externalStorage.isEmpty())
-		{
-			return externalStorage;
-		}
+        // primary physical sdcard (not emulated)
+        val externalStorage = System.getenv("EXTERNAL_STORAGE")
 
-		// EXTERNAL_STORAGE undefined; falling back to default.
-		// return "/extStorage/sdcard0";
+        // device has physical external extStorage; use plain paths.
+        if (externalStorage != null && externalStorage.isNotEmpty()) {
+            return externalStorage
+        }
+        return null
+    }
 
-		return null;
-	}
+    /**
+     * Discover primary emulated external storage directory
+     *
+     * @param context context
+     * @return primary emulated external storage directory
+     */
+    private fun discoverPrimaryEmulatedExternalStorage(context: Context): File? {
+        // primary emulated sdcard
+        val emulatedStorageTarget = System.getenv("EMULATED_STORAGE_TARGET")
+        if (emulatedStorageTarget != null && emulatedStorageTarget.isNotEmpty()) {
+            // device has emulated extStorage
+            // external extStorage paths should have userId burned into them
+            val userId = getUserId(context)
 
-	/**
-	 * Discover primary emulated external storage directory
-	 *
-	 * @param context context
-	 * @return primary emulated external storage directory
-	 */
-	@Nullable
-	static public File discoverPrimaryEmulatedExternalStorage(@NonNull final Context context)
-	{
-		// primary emulated sdcard
-		final String emulatedStorageTarget = System.getenv("EMULATED_STORAGE_TARGET");
-		if (emulatedStorageTarget != null && !emulatedStorageTarget.isEmpty())
-		{
-			// device has emulated extStorage
-			// external extStorage paths should have userId burned into them
-			final String userId = getUserId(context);
+            // /extStorage/emulated/0[1,2,...]
+            return if (userId.isEmpty()) {
+                File(emulatedStorageTarget)
+            } else {
+                File(emulatedStorageTarget + File.separatorChar + userId)
+            }
+        }
+        return null
+    }
 
-			// /extStorage/emulated/0[1,2,...]
-			if (userId.isEmpty())
-			{
-				return new File(emulatedStorageTarget);
-			}
-			else
-			{
-				return new File(emulatedStorageTarget + File.separatorChar + userId);
-			}
-		}
-		return null;
-	}
+    /**
+     * Discover primary physical external storage directory
+     *
+     * @return primary physical external storage directory
+     */
+    private fun discoverPrimaryPhysicalExternalStorage(): File? {
+        val externalStorage = System.getenv("EXTERNAL_STORAGE")
+        // device has physical external extStorage; use plain paths.
+        if (externalStorage != null && externalStorage.isNotEmpty()) {
+            return File(externalStorage)
+        }
 
-	/**
-	 * Discover primary physical external storage directory
-	 *
-	 * @return primary physical external storage directory
-	 */
-	@Nullable
-	static public File discoverPrimaryPhysicalExternalStorage()
-	{
-		final String externalStorage = System.getenv("EXTERNAL_STORAGE");
-		// device has physical external extStorage; use plain paths.
-		if (externalStorage != null && !externalStorage.isEmpty())
-		{
-			return new File(externalStorage);
-		}
+        return null
+    }
 
-		return null;
-	}
+    /**
+     * Discover secondary external storage directories
+     *
+     * @return secondary external storage directories
+     */
+    private fun discoverSecondaryExternalStorage(): Array<File>? {
+        // all secondary sdcards (all except primary) separated by ":"
+        var secondaryStoragesEnv = System.getenv("SECONDARY_STORAGE")
+        if ((secondaryStoragesEnv == null) || secondaryStoragesEnv.isEmpty()) {
+            secondaryStoragesEnv = System.getenv("EXTERNAL_SDCARD_STORAGE")
+        }
 
-	/**
-	 * Discover secondary external storage directories
-	 *
-	 * @return secondary external storage directories
-	 */
-	@Nullable
-	static public File[] discoverSecondaryExternalStorage()
-	{
-		// all secondary sdcards (all except primary) separated by ":"
-		String secondaryStoragesEnv = System.getenv("SECONDARY_STORAGE");
-		if ((secondaryStoragesEnv == null) || secondaryStoragesEnv.isEmpty())
-		{
-			secondaryStoragesEnv = System.getenv("EXTERNAL_SDCARD_STORAGE");
-		}
+        // addItem all secondary storages
+        if (secondaryStoragesEnv != null && secondaryStoragesEnv.isNotEmpty()) {
+            // all secondary sdcards split into array
+            val paths = secondaryStoragesEnv.split(File.pathSeparator.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+            val dirs: MutableList<File> = ArrayList()
+            for (path in paths) {
+                val dir = File(path)
+                if (dir.exists()) {
+                    dirs.add(dir)
+                }
+            }
+            return dirs.toTypedArray<File>()
+        }
+        return null
+    }
 
-		// addItem all secondary storages
-		if (secondaryStoragesEnv != null && !secondaryStoragesEnv.isEmpty())
-		{
-			// all secondary sdcards split into array
-			final String[] paths = secondaryStoragesEnv.split(File.pathSeparator);
-			final List<File> dirs = new ArrayList<>();
-			for (String path : paths)
-			{
-				final File dir = new File(path);
-				if (dir.exists())
-				{
-					dirs.add(dir);
-				}
-			}
-			return dirs.toArray(new File[0]);
-		}
-		return null;
-	}
+    /**
+     * User id
+     *
+     * @param context context
+     * @return user id
+     */
+    private fun getUserId(context: Context): String {
+        val manager = context.getSystemService(Context.USER_SERVICE) as UserManager
+        val user = Process.myUserHandle()
+        val userSerialNumber = manager.getSerialNumberForUser(user)
+        // Log.d("USER", "userSerialNumber = " + userSerialNumber);
+        return userSerialNumber.toString()
+    }
 
-	/**
-	 * User id
-	 *
-	 * @param context context
-	 * @return user id
-	 */
-	@NonNull
-	static private String getUserId(@NonNull final Context context)
-	{
-		final UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
-		if (null != manager)
-		{
-			UserHandle user = android.os.Process.myUserHandle();
-			long userSerialNumber = manager.getSerialNumberForUser(user);
-			// Log.d("USER", "userSerialNumber = " + userSerialNumber);
-			return Long.toString(userSerialNumber);
-		}
-		return "";
-	}
+    /**
+     * Storage types
+     */
+    enum class StorageType {
+
+        PRIMARY_EMULATED, PRIMARY_PHYSICAL, SECONDARY
+    }
+
+    /**
+     * Directory type
+     *
+     * @author [Bernard Bou](mailto:1313ou@gmail.com)
+     */
+    enum class DirType {
+
+        AUTO, APP_EXTERNAL_SECONDARY, APP_EXTERNAL_PRIMARY, PUBLIC_EXTERNAL_SECONDARY, PUBLIC_EXTERNAL_PRIMARY, APP_INTERNAL;
+
+        fun toDisplay(): String {
+            return when (this) {
+                AUTO -> "auto (internal or adopted)"
+                APP_EXTERNAL_SECONDARY -> "secondary"
+                APP_EXTERNAL_PRIMARY -> "primary"
+                PUBLIC_EXTERNAL_PRIMARY -> "public primary"
+                PUBLIC_EXTERNAL_SECONDARY -> "public secondary"
+                APP_INTERNAL -> "internal"
+            }
+        }
+
+        companion object {
+
+            /**
+             * Compare (sort by preference)
+             *
+             * @param type1 type 1
+             * @param type2 type 2
+             * @return order
+             */
+            fun compare(type1: DirType, type2: DirType): Int {
+                val i1 = type1.ordinal
+                val i2 = type2.ordinal
+                return i1.compareTo(i2)
+            }
+        }
+    }
+
+    /**
+     * Directory with type
+     *
+     * @author [Bernard Bou](mailto:1313ou@gmail.com)
+     */
+    class Directory internal constructor(val file: File?, val type: DirType) : Comparable<Directory> {
+
+        private val value: CharSequence
+            get() {
+                if (DirType.AUTO == this.type) {
+                    return DirType.AUTO.toString()
+                }
+                return file!!.absolutePath
+            }
+
+        override fun hashCode(): Int {
+            return type.hashCode() * 7 + value.hashCode() * 13
+        }
+
+        override fun equals(other: Any?): Boolean {
+            return (other is Directory) && this.type == other.type
+        }
+
+        override fun compareTo(other: Directory): Int {
+            val t = DirType.compare(this.type, other.type)
+            if (t != 0) {
+                return t
+            }
+            return value.toString().compareTo(other.value.toString())
+        }
+    }
 }

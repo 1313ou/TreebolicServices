@@ -1,43 +1,23 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.treebolic.files.service
 
-package org.treebolic.files.service;
-
-import android.content.Context;
-
-import org.treebolic.services.IModelFactory;
-import org.treebolic.services.TreebolicBroadcastService;
-
-import java.io.IOException;
-
-import androidx.annotation.NonNull;
+import android.content.Context
+import org.treebolic.services.IModelFactory
+import org.treebolic.services.TreebolicBroadcastService
+import java.io.IOException
 
 /**
  * Treebolic Files broadcast service
  */
-public class TreebolicFilesBroadcastService extends TreebolicBroadcastService
-{
-	/**
-	 * Constructor
-	 */
-	public TreebolicFilesBroadcastService()
-	{
-		super();
-	}
+class TreebolicFilesBroadcastService : TreebolicBroadcastService() {
 
-	@NonNull
-	@Override
-	protected IModelFactory createModelFactory(@NonNull final Context context) throws IOException
-	{
-		return new ModelFactory(context);
-	}
+    @Throws(IOException::class)
+    override fun createModelFactory(context: Context): IModelFactory {
+        return ModelFactory(context)
+    }
 
-	@SuppressWarnings("SameReturnValue")
-	@NonNull
-	@Override
-	public String getUrlScheme()
-	{
-		return "directory:";
-	}
+    override val urlScheme: String
+        get() = "directory:"
 }
