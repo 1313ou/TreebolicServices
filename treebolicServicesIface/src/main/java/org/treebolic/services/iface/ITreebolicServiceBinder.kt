@@ -17,7 +17,7 @@ interface ITreebolicServiceBinder {
      * @param settings      settings
      * @param modelListener listener model listener
      */
-    fun makeModel(source: String?, base: String?, imageBase: String?, settings: String?, modelListener: IModelListener?)
+    fun makeModel(source: String, base: String?, imageBase: String?, settings: String?, modelListener: IModelListener)
 
     /**
      * Make model from source and forward it to activity
@@ -28,5 +28,5 @@ interface ITreebolicServiceBinder {
      * @param settings  settings
      * @param forward   forward intent
      */
-    fun makeModel(source: String?, base: String?, imageBase: String?, settings: String?, forward: Intent?)
+    fun makeModel(source: String, base: String?, imageBase: String?, settings: String?, forward: Intent)
 }

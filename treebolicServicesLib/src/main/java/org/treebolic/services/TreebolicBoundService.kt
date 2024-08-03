@@ -38,13 +38,13 @@ abstract class TreebolicBoundService: Service(), ITreebolicService {
 
         private val factory = factory!!
 
-        override fun makeModel(source: String, base: String, imageBase: String, settings: String, modelListener: IModelListener) {
+        override fun makeModel(source: String, base: String?, imageBase: String?, settings: String?, modelListener: IModelListener) {
             val callable = makeModelCallable(source, base, imageBase, settings, this.factory)
             val callback = makeModelCallback(this.urlScheme, modelListener)
             execute(callable, callback)
         }
 
-        override fun makeModel(source: String, base: String, imageBase: String, settings: String, forward: Intent) {
+        override fun makeModel(source: String, base: String?, imageBase: String?, settings: String?, forward: Intent) {
             val callable = makeModelCallable(source, base, imageBase, settings, this.factory)
             val callback = makeModelForwardCallback(WeakReference(this@TreebolicBoundService), this.urlScheme, forward)
             execute(callable, callback)
