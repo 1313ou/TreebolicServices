@@ -1,194 +1,153 @@
 /*
  * Copyright (c) Treebolic 2023. Bernard Bou <1313ou@gmail.com>
  */
+package org.treebolic.wordnet
 
-package org.treebolic.wordnet;
-
-import android.util.Log;
-
-import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
-import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
-import org.apache.commons.compress.compressors.gzip.GzipCompressorInputStream;
-
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.regex.Pattern;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.util.Log
+import org.apache.commons.compress.archivers.tar.TarArchiveInputStream
+import org.apache.commons.compress.compressors.gzip.GzipCompressorInputStream
+import treebolic.provider.wordnet.jwi.DataManager
+import java.io.BufferedInputStream
+import java.io.BufferedOutputStream
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.InputStream
+import java.util.regex.Pattern
 
 /**
  * Source data deployer
  *
  * @author Bernard Bou
  */
-@SuppressWarnings("WeakerAccess")
-public class Deployer
-{
-	/**
-	 * Log tag
-	 */
-	static private final String TAG = "WnSDeployer";
+class Deployer(dir0: File?) {
 
-	/**
-	 * Sub path in main directory
-	 */
-	static private final String PATH = "wordnet";
+    /**
+     * Dir to write data to
+     */
+    private val dir: File = File(dir0, PATH)
 
-	/**
-	 * Dir to write data to
-	 */
-	@NonNull
-	private final File dir;
+    /**
+     * Data status
+     *
+     * @return data status
+     */
+    fun status(): Boolean {
+        return DataManager.coreCheck(this.dir)
+    }
 
-	/**
-	 * Constructor
-	 *
-	 * @param dir0 parent dir to write data to
-	 */
-	public Deployer(final File dir0)
-	{
-		this.dir = new File(dir0, Deployer.PATH);
-	}
+    /**
+     * Clean up data
+     */
+    fun cleanup() {
+        val dirContent = dir.listFiles()
+        if (dirContent != null) {
+            for (file in dirContent) {
+                file.delete()
+            }
+        }
+    }
 
-	/**
-	 * Data status
-	 *
-	 * @return data status
-	 */
-	public boolean status()
-	{
-		return treebolic.provider.wordnet.jwi.DataManager.coreCheck(this.dir);
-	}
+    /**
+     * Process input stream
+     *
+     * @param fin     input stream
+     * @param asTarGz process as tar.ge stream
+     * @return File
+     * @throws IOException io exception
+     */
+    @Throws(IOException::class)
+    fun process(fin: InputStream, asTarGz: Boolean): File {
+        if (asTarGz) {
+            return extractTarGz(fin, this.dir, true, ".*/?dic/?.*", ".*/?dbfiles/?.*")
+        }
+        return DataManager.expand(fin, null, this.dir)
+    }
 
-	/**
-	 * Clean up data
-	 */
-	public void cleanup()
-	{
-		File[] dirContent = this.dir.listFiles();
-		if (dirContent != null)
-		{
-			for (final File file : dirContent)
-			{
-				//noinspection ResultOfMethodCallIgnored
-				file.delete();
-			}
-		}
-	}
+    companion object {
 
-	/**
-	 * Process input stream
-	 *
-	 * @param fin     input stream
-	 * @param asTarGz process as tar.ge stream
-	 * @return File
-	 * @throws IOException io exception
-	 */
-	@NonNull
-	@SuppressWarnings("UnusedReturnValue")
-	public File process(@NonNull final InputStream fin, final boolean asTarGz) throws IOException
-	{
-		if (asTarGz)
-		{
-			return Deployer.extractTarGz(fin, this.dir, true, ".*/?dic/?.*", ".*/?dbfiles/?.*");
-		}
-		return treebolic.provider.wordnet.jwi.DataManager.expand(fin, null, this.dir);
-	}
+        private const val TAG = "WnSDeployer"
 
-	/**
-	 * Extract tar.gz stream
-	 *
-	 * @param fin     input stream
-	 * @param destDir destination dir
-	 * @param flat    flatten
-	 * @param include include regexp filter
-	 * @param exclude exclude regexp filter
-	 * @throws IOException io exception
-	 */
-	@NonNull
-	private static File extractTarGz(@NonNull final InputStream fin, @NonNull final File destDir, @SuppressWarnings("SameParameterValue") final boolean flat, @Nullable @SuppressWarnings("SameParameterValue") final String include, @Nullable @SuppressWarnings("SameParameterValue") final String exclude) throws IOException
-	{
-		final Pattern includePattern = include == null ? null : Pattern.compile(include);
-		final Pattern excludePattern = exclude == null ? null : Pattern.compile(exclude);
+        /**
+         * Sub path in main directory
+         */
+        private const val PATH = "wordnet"
 
-		// prepare destination
-		//noinspection ResultOfMethodCallIgnored
-		destDir.mkdirs();
+        /**
+         * Extract tar.gz stream
+         *
+         * @param fin     input stream
+         * @param destDir destination dir
+         * @param flat    flatten
+         * @param include include regexp filter
+         * @param exclude exclude regexp filter
+         * @throws IOException io exception
+         */
+        @Throws(IOException::class)
+        private fun extractTarGz(fin: InputStream, destDir: File, flat: Boolean, include: String?, exclude: String?): File {
+            val includePattern = if (include == null) null else Pattern.compile(include)
+            val excludePattern = if (exclude == null) null else Pattern.compile(exclude)
 
-		// input stream
-		try (TarArchiveInputStream tarIn = new TarArchiveInputStream(new GzipCompressorInputStream(new BufferedInputStream(fin))))
-		{
+            // prepare destination
+            destDir.mkdirs()
 
-			// loop through entries
-			for (TarArchiveEntry tarEntry = tarIn.getNextEntry(); tarEntry != null; tarEntry = tarIn.getNextEntry())
-			{
-				String entryName = tarEntry.getName();
+            TarArchiveInputStream(GzipCompressorInputStream(BufferedInputStream(fin))).use { tarIn ->
 
-				// include
-				if (includePattern != null)
-				{
-					if (!includePattern.matcher(entryName).matches())
-					{
-						continue;
-					}
-				}
+                // loop through entries
+                var tarEntry = tarIn.nextEntry
+                while (tarEntry != null) {
+                    var entryName = tarEntry.name
 
-				// exclude
-				if (excludePattern != null)
-				{
-					if (excludePattern.matcher(entryName).matches())
-					{
-						continue;
-					}
-				}
+                    // include
+                    if (includePattern != null) {
+                        if (!includePattern.matcher(entryName).matches()) {
+                            tarEntry = tarIn.nextEntry
+                            continue
+                        }
+                    }
 
-				// switch as per type
-				if (tarEntry.isDirectory())
-				{
-					// create dir if we don't flatten
-					if (!flat)
-					{
-						//noinspection ResultOfMethodCallIgnored
-						new File(destDir, entryName).mkdirs();
-					}
-				}
-				else
-				{
-					// create a file with the same name as the tarEntry
-					if (flat)
-					{
-						final int index = entryName.lastIndexOf('/');
-						if (index != -1)
-						{
-							entryName = entryName.substring(index + 1);
-						}
-					}
+                    // exclude
+                    if (excludePattern != null) {
+                        if (excludePattern.matcher(entryName).matches()) {
+                            tarEntry = tarIn.nextEntry
+                            continue
+                        }
+                    }
 
-					final File destFile = new File(destDir, entryName);
-					Log.d(TAG, "Deploying in " + destFile.getCanonicalPath());
+                    // switch as per type
+                    if (tarEntry.isDirectory) {
+                        // create dir if we don't flatten
+                        if (!flat) {
+                            File(destDir, entryName).mkdirs()
+                        }
+                    } else {
+                        // create a file with the same name as the tarEntry
+                        if (flat) {
+                            val index = entryName.lastIndexOf('/')
+                            if (index != -1) {
+                                entryName = entryName.substring(index + 1)
+                            }
+                        }
 
-					// create destination
-					//noinspection ResultOfMethodCallIgnored
-					destFile.createNewFile();
+                        val destFile = File(destDir, entryName)
+                        Log.d(TAG, "Deploying in " + destFile.canonicalPath)
 
-					// copy
-					//noinspection IOStreamConstructor
-					try (BufferedOutputStream bout = new BufferedOutputStream(new FileOutputStream(destFile)))
-					{
-						final byte[] buffer = new byte[1024];
-						for (int len = tarIn.read(buffer); len != -1; len = tarIn.read(buffer))
-						{
-							bout.write(buffer, 0, len);
-						}
-					}
-				}
-			}
-		}
-		return destDir;
-	}
+                        // create destination
+                        destFile.createNewFile()
+
+                        BufferedOutputStream(FileOutputStream(destFile)).use { bout ->
+                            val buffer = ByteArray(1024)
+                            var len = tarIn.read(buffer)
+                            while (len != -1) {
+                                bout.write(buffer, 0, len)
+                                len = tarIn.read(buffer)
+                            }
+                        }
+                    }
+                    tarEntry = tarIn.nextEntry
+                }
+            }
+            return destDir
+        }
+    }
 }

@@ -1,35 +1,23 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.treebolic.wordnet.service.client
 
-package org.treebolic.wordnet.service.client;
-
-import android.content.Context;
-
-import org.treebolic.clients.TreebolicMessengerClient;
-import org.treebolic.clients.iface.IConnectionListener;
-import org.treebolic.clients.iface.IModelListener;
-import org.treebolic.wordnet.BuildConfig;
-import org.treebolic.wordnet.service.TreebolicWordNetMessengerService;
-
-import androidx.annotation.NonNull;
+import android.content.Context
+import androidx.multidex.BuildConfig
+import org.treebolic.clients.TreebolicMessengerClient
+import org.treebolic.clients.iface.IConnectionListener
+import org.treebolic.clients.iface.IModelListener
+import org.treebolic.wordnet.service.TreebolicWordNetMessengerService
 
 /**
  * Treebolic WordNet messenger bound client
  *
+ * @param context            context
+ * @param connectionListener connection listener
+ * @param modelListener      model listener
+ *
  * @author Bernard Bou
  */
-public class TreebolicWordNetMessengerClient extends TreebolicMessengerClient
-{
-	/**
-	 * Constructor
-	 *
-	 * @param context            context
-	 * @param connectionListener connection listener
-	 * @param modelListener      model listener
-	 */
-	public TreebolicWordNetMessengerClient(@NonNull final Context context, final IConnectionListener connectionListener, final IModelListener modelListener)
-	{
-		super(context, BuildConfig.APPLICATION_ID + '/' + TreebolicWordNetMessengerService.class.getName(), connectionListener, modelListener);
-	}
-}
+class TreebolicWordNetMessengerClient(context: Context, connectionListener: IConnectionListener, modelListener: IModelListener) :
+    TreebolicMessengerClient(context, (BuildConfig.APPLICATION_ID + '/') + TreebolicWordNetMessengerService::class.java.getName(), connectionListener, modelListener)

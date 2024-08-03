@@ -1,57 +1,34 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.treebolic.wordnet.service
 
-package org.treebolic.wordnet.service;
-
-import android.content.Context;
-import android.util.Log;
-
-import org.treebolic.services.IModelFactory;
-import org.treebolic.services.TreebolicBroadcastService;
-
-import java.io.IOException;
-
-import androidx.annotation.NonNull;
+import android.content.Context
+import android.util.Log
+import org.treebolic.services.IModelFactory
+import org.treebolic.services.TreebolicBroadcastService
+import java.io.IOException
 
 /**
  * Treebolic WordNet broadcast service
  */
-public class TreebolicWordNetBroadcastService extends TreebolicBroadcastService
-{
-	/**
-	 * Log tag
-	 */
-	private static final String TAG = "TWordNetBroadcastS";
+class TreebolicWordNetBroadcastService : TreebolicBroadcastService() {
 
-	/**
-	 * Constructor
-	 */
-	public TreebolicWordNetBroadcastService()
-	{
-		super();
-	}
+    @Throws(IOException::class)
+    override fun createModelFactory(context: Context): IModelFactory {
+        try {
+            return ModelFactory(context)
+        } catch (e: IOException) {
+            Log.e(TAG, "Model factory constructor failed", e)
+            throw e
+        }
+    }
 
-	@NonNull
-	@Override
-	protected IModelFactory createModelFactory(@NonNull final Context context) throws IOException
-	{
-		try
-		{
-			return new ModelFactory(context);
-		}
-		catch (@NonNull final IOException e)
-		{
-			Log.e(TAG, "Model factory constructor failed", e);
-			throw e;
-		}
-	}
+    override val urlScheme: String
+        get() = "wordnet:"
 
-	@SuppressWarnings("SameReturnValue")
-	@NonNull
-	@Override
-	public String getUrlScheme()
-	{
-		return "wordnet:";
-	}
+    companion object {
+
+        private const val TAG = "TWordNetBroadcastS"
+    }
 }

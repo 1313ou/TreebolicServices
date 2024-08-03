@@ -1,54 +1,30 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.treebolic.wordnet.service
 
-package org.treebolic.wordnet.service;
-
-import android.annotation.SuppressLint;
-import android.util.Log;
-
-import org.treebolic.services.TreebolicBoundService;
-
-import androidx.annotation.NonNull;
+import android.util.Log
+import org.treebolic.services.TreebolicBoundService
 
 /**
  * Bound service for WordNet data
  */
-@SuppressLint("Registered")
-public class TreebolicWordNetBoundService extends TreebolicBoundService
-{
-	/**
-	 * Log tag
-	 */
-	private static final String TAG = "TWordNetBoundS";
+class TreebolicWordNetBoundService : TreebolicBoundService() {
 
-	/**
-	 * Constructor
-	 */
-	public TreebolicWordNetBoundService()
-	{
-		super();
-	}
+    override fun onCreate() {
+        try {
+            this.factory = ModelFactory(this)
+        } catch (e: Exception) {
+            Log.e(TAG, "Model factory constructor failed", e)
+        }
+        super.onCreate()
+    }
 
-	@Override
-	public void onCreate()
-	{
-		try
-		{
-			this.factory = new ModelFactory(this);
-		}
-		catch (@NonNull final Exception e)
-		{
-			Log.e(TAG, "Model factory constructor failed", e);
-		}
-		super.onCreate();
-	}
+    override val urlScheme: String
+        get() = "wordnet:"
 
-	@SuppressWarnings("SameReturnValue")
-	@NonNull
-	@Override
-	public String getUrlScheme()
-	{
-		return "wordnet:";
-	}
+    companion object {
+
+        private const val TAG = "TWordNetBoundS"
+    }
 }

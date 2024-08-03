@@ -1,64 +1,49 @@
 /*
  * Copyright (c) Treebolic 2023. Bernard Bou <1313ou@gmail.com>
  */
+package org.treebolic.wordnet
 
-package org.treebolic.wordnet;
-
-import android.os.Bundle;
-import android.widget.Toast;
-
-import java.io.IOException;
-import java.io.InputStream;
-
-import androidx.annotation.NonNull;
+import android.os.Bundle
+import android.widget.Toast
+import org.treebolic.download.DownloadActivity
+import java.io.IOException
+import java.io.InputStream
 
 /**
  * WordNet download activity
  *
  * @author Bernard Bou
  */
-public class DownloadActivity extends org.treebolic.download.DownloadActivity
-{
-	/**
-	 * Whether stream is tar.gz (zip otherwise)
-	 */
-	private boolean asTarGz;
+class DownloadActivity : DownloadActivity() {
 
-	@Override
-	protected void onCreate(final Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
+    /**
+     * Whether stream is tar.gz (zip otherwise)
+     */
+    private var asTarGz = false
 
-		this.downloadUrl = Settings.getStringPref(this, Settings.PREF_DOWNLOAD);
-		if (this.downloadUrl == null || this.downloadUrl.isEmpty())
-		{
-			Toast.makeText(this, R.string.error_null_download_url, Toast.LENGTH_SHORT).show();
-			finish();
-		}
-	}
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-	@Override
-	public void start()
-	{
-		assert this.downloadUrl != null;
-		this.asTarGz = this.downloadUrl.endsWith(".tar.gz");
-		super.start(R.string.wordnet);
-	}
+        this.downloadUrl = Settings.getStringPref(this, Settings.PREF_DOWNLOAD)
+        if (this.downloadUrl == null || downloadUrl!!.isEmpty()) {
+            Toast.makeText(this, R.string.error_null_download_url, Toast.LENGTH_SHORT).show()
+            finish()
+        }
+    }
 
-	// P O S T P R O C E S S I N G
+    public override fun start() {
+        checkNotNull(this.downloadUrl)
+        this.asTarGz = downloadUrl!!.endsWith(".tar.gz")
+        super.start(R.string.wordnet)
+    }
 
-	@SuppressWarnings("SameReturnValue")
-	@Override
-	protected boolean doProcessing()
-	{
-		return true;
-	}
+    override fun doProcessing(): Boolean {
+        return true
+    }
 
-	@SuppressWarnings("SameReturnValue")
-	@Override
-	protected boolean process(@NonNull final InputStream inputStream) throws IOException
-	{
-		new Deployer(DownloadActivity.this.getFilesDir()).process(inputStream, this.asTarGz);
-		return true;
-	}
+    @Throws(IOException::class)
+    override fun process(inputStream: InputStream): Boolean {
+        Deployer(this@DownloadActivity.filesDir).process(inputStream, this.asTarGz)
+        return true
+    }
 }

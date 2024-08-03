@@ -1,52 +1,30 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.treebolic.wordnet.service
 
-package org.treebolic.wordnet.service;
-
-import android.util.Log;
-
-import org.treebolic.services.TreebolicAIDLBoundService;
-
-import androidx.annotation.NonNull;
+import android.util.Log
+import org.treebolic.services.TreebolicAIDLBoundService
 
 /**
  * Bound service for WordNet data
  */
-public class TreebolicWordNetAIDLBoundService extends TreebolicAIDLBoundService
-{
-	/**
-	 * Log tag
-	 */
-	private static final String TAG = "TWordNetAIDLS";
+class TreebolicWordNetAIDLBoundService : TreebolicAIDLBoundService() {
 
-	/**
-	 * Constructor
-	 */
-	public TreebolicWordNetAIDLBoundService()
-	{
-		super();
-	}
+    override fun onCreate() {
+        super.onCreate()
+        try {
+            this.factory = ModelFactory(this)
+        } catch (e: Exception) {
+            Log.e(TAG, "Model factory constructor failed", e)
+        }
+    }
 
-	@Override
-	public void onCreate()
-	{
-		super.onCreate();
-		try
-		{
-			this.factory = new ModelFactory(this);
-		}
-		catch (@NonNull final Exception e)
-		{
-			Log.e(TAG, "Model factory constructor failed", e);
-		}
-	}
+    override val urlScheme: String
+        get() = "wordnet:"
 
-	@SuppressWarnings("SameReturnValue")
-	@NonNull
-	@Override
-	public String getUrlScheme()
-	{
-		return "wordnet:";
-	}
+    companion object {
+
+        private const val TAG = "TWordNetAIDLS"
+    }
 }
