@@ -234,9 +234,6 @@ open class TreebolicMessengerClient(
 
     companion object {
 
-        /**
-         * Log tag
-         */
         private const val TAG = "MessengerC"
     }
 }

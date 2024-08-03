@@ -59,9 +59,6 @@ abstract class TreebolicAIDLBoundService: Service(), ITreebolicService {
 
     companion object {
 
-        /**
-         * Log tag
-         */
         private const val TAG = "AidlBoundS"
 
         /**

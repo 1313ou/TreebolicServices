@@ -111,9 +111,6 @@ class QueryProviderActivity : AppCompatCommonActivity() {
 
     companion object {
 
-        /**
-         * Log tag
-         */
         private const val TAG = "QueryProviderActivity"
 
         /**

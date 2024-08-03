@@ -97,9 +97,6 @@ class ParcelableModel : Parcelable {
             return arrayOfNulls(size)
         }
 
-        /**
-         * Log tag
-         */
         private const val TAG = "ModelParcel"
 
         /**
