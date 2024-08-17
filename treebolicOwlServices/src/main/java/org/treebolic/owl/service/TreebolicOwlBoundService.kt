@@ -3,7 +3,6 @@
  */
 package org.treebolic.owl.service
 
-import android.annotation.SuppressLint
 import org.treebolic.services.TreebolicBoundService
 import java.io.IOException
 

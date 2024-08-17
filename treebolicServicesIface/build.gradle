@@ -44,7 +44,7 @@ dependencies {
     implementation project(':treebolicClientsIface')
 
     implementation 'androidx.appcompat:appcompat:1.7.0'
-    implementation 'androidx.annotation:annotation:1.8.1'
+    implementation 'androidx.annotation:annotation:1.8.2'
 
     implementation 'androidx.core:core-ktx:1.13.1'
 
