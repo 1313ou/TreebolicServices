@@ -15,7 +15,8 @@ import java.util.concurrent.TimeUnit
 object TaskRunner {
 
     // E X E C U T O R
-    
+
+
     private const val CORE_POOL_SIZE = 5
 
     private const val MAXIMUM_POOL_SIZE = 128
@@ -44,7 +45,8 @@ object TaskRunner {
     }
 
     // E X E C U T E
-    
+
+
     @JvmStatic
     fun <Result> execute(callable: Callable<Result>, callback: (Result) -> Unit) {
         val future = makeFuture(callable, callback)
