@@ -91,17 +91,17 @@ class Deployer(dir0: File?) {
             // prepare destination
             destDir.mkdirs()
 
-            TarArchiveInputStream(GzipCompressorInputStream(BufferedInputStream(fin))).use { tarIn ->
+            TarArchiveInputStream(GzipCompressorInputStream(BufferedInputStream(fin))).use { tarInput ->
 
                 // loop through entries
-                var tarEntry = tarIn.nextEntry
+                var tarEntry = tarInput.nextEntry
                 while (tarEntry != null) {
                     var entryName = tarEntry.name
 
                     // include
                     if (includePattern != null) {
                         if (!includePattern.matcher(entryName).matches()) {
-                            tarEntry = tarIn.nextEntry
+                            tarEntry = tarInput.nextEntry
                             continue
                         }
                     }
@@ -109,7 +109,7 @@ class Deployer(dir0: File?) {
                     // exclude
                     if (excludePattern != null) {
                         if (excludePattern.matcher(entryName).matches()) {
-                            tarEntry = tarIn.nextEntry
+                            tarEntry = tarInput.nextEntry
                             continue
                         }
                     }
@@ -135,16 +135,16 @@ class Deployer(dir0: File?) {
                         // create destination
                         destFile.createNewFile()
 
-                        BufferedOutputStream(FileOutputStream(destFile)).use { bout ->
+                        BufferedOutputStream(FileOutputStream(destFile)).use { output ->
                             val buffer = ByteArray(1024)
-                            var len = tarIn.read(buffer)
+                            var len = tarInput.read(buffer)
                             while (len != -1) {
-                                bout.write(buffer, 0, len)
-                                len = tarIn.read(buffer)
+                                output.write(buffer, 0, len)
+                                len = tarInput.read(buffer)
                             }
                         }
                     }
-                    tarEntry = tarIn.nextEntry
+                    tarEntry = tarInput.nextEntry
                 }
             }
             return destDir

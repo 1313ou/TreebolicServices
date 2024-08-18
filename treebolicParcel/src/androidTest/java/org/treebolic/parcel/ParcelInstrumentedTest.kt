@@ -124,9 +124,9 @@ class ParcelInstrumentedTest {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         val assets = appContext.assets
         try {
-            assets.open(asset).use { `is` ->
-                ZipInputStream(`is`).use { zis ->
-                    return deserializeZip(zis, "model") as Model
+            assets.open(asset).use { input ->
+                ZipInputStream(input).use { zipInput ->
+                    return deserializeZip(zipInput, "model") as Model
                 }
             }
         } catch (e: IOException) {
@@ -202,8 +202,8 @@ class ParcelInstrumentedTest {
             var entry: ZipEntry
             while ((zis.nextEntry.also { entry = it }) != null) {
                 if (entry.name == targetEntry) {
-                    ObjectInputStream(zis).use { objectInputStream ->
-                        return objectInputStream.readObject()
+                    ObjectInputStream(zis).use { input ->
+                        return input.readObject()
                     }
                 }
             }
