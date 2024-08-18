@@ -78,7 +78,7 @@ abstract class TreebolicClientActivityStub : AppCompatCommonActivity(), IConnect
     /**
      * Request model
      */
-    protected fun request() {
+    private fun request() {
         // get query from activity intent
         val intent = intent
         if (TreebolicIface.ACTION_MAKEMODEL == intent.action) {

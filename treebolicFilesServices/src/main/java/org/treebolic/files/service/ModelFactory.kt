@@ -26,7 +26,7 @@ class ModelFactory(context: Context) : ModelFactory(Provider2(), makeLogProvider
 
         private const val TAG = "FilesModelFactory"
 
-        private fun makeLocator(context: Context): ILocator {
+        private fun makeLocator(ignoredContext: Context): ILocator {
             // Not used
             return object : ILocator {
                 override fun getBase(): URL? {

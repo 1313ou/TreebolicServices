@@ -84,7 +84,7 @@ class Deployer(dir0: File?) {
          * @throws IOException io exception
          */
         @Throws(IOException::class)
-        private fun extractTarGz(fin: InputStream, destDir: File, flat: Boolean, include: String?, exclude: String?): File {
+        private fun extractTarGz(fin: InputStream, destDir: File, @Suppress("SameParameterValue") flat: Boolean, @Suppress("SameParameterValue") include: String?, @Suppress("SameParameterValue") exclude: String?): File {
             val includePattern = if (include == null) null else Pattern.compile(include)
             val excludePattern = if (exclude == null) null else Pattern.compile(exclude)
 
