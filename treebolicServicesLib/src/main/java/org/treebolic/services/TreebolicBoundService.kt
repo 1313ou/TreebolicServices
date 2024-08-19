@@ -23,7 +23,7 @@ import java.util.concurrent.Callable
 /**
  * Treebolic bound service for data
  */
-abstract class TreebolicBoundService: Service(), ITreebolicService {
+abstract class TreebolicBoundService : Service(), ITreebolicService {
 
     /**
      * Model factory

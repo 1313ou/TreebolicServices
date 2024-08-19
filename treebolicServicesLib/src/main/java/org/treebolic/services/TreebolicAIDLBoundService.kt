@@ -23,7 +23,7 @@ import java.util.concurrent.Callable
 /**
  * Treebolic bound service for data
  */
-abstract class TreebolicAIDLBoundService: Service(), ITreebolicService {
+abstract class TreebolicAIDLBoundService : Service(), ITreebolicService {
 
     /**
      * Model factory
@@ -95,7 +95,7 @@ abstract class TreebolicAIDLBoundService: Service(), ITreebolicService {
          * Forward callback
          */
         fun makeModelForwardCallback(contextWeakReference: WeakReference<Context>, urlScheme: String?, forward: Intent): (Model?) -> Unit {
-            return  { model ->
+            return { model ->
 
                 // do not return to client but forward it to service
                 IntentFactory.putModelArg(forward, model, urlScheme)
