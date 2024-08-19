@@ -186,6 +186,7 @@ object StorageExplorer {
      * @return (cached) external storage directory
      */
     fun discoverExternalStorage(context: Context): String? {
+
         // S E C O N D A R Y
 
         // all secondary sdcards (all exclude primary) separated by ":"
@@ -201,7 +202,7 @@ object StorageExplorer {
             }
         }
 
-        // P R I M A R Y E M U L A T E D
+        // P R I M A R Y   E M U L A T E D
 
         // primary emulated sdcard
         val emulatedStorageTarget = System.getenv("EMULATED_STORAGE_TARGET")
@@ -216,7 +217,7 @@ object StorageExplorer {
             return emulatedStorageTarget
         }
 
-        // P R I M A R Y N O N E M U L A T E D
+        // P R I M A R Y   N O N   E M U L A T E D
 
         // primary physical sdcard (not emulated)
         val externalStorage = System.getenv("EXTERNAL_STORAGE")

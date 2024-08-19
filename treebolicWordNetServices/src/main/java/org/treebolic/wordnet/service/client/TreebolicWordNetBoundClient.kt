@@ -13,9 +13,9 @@ import org.treebolic.wordnet.service.TreebolicWordNetBoundService
 /**
  * Treebolic WordNet bound client
  *
- * @param context            context
+ * @param context context
  * @param connectionListener connection listener
- * @param modelListener      model listener
+ * @param modelListener model listener
  *
  * @author Bernard Bou
  */
