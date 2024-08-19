@@ -1,1 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="533.333" height="533.333" version="1.0"><desc>Picture of a blue sphere (circle with 3D highlighting)</desc><g style="stroke:#fff"><path d="M237.817 304.113c-57.857 76.84-126.775 99.652-158.081 98.567M361.753 75.388C201.56 199.578 120.258 228.215 70.883 218.183" style="fill:none;stroke:#fff;stroke-width:10.66666698;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" transform="matrix(1.01622 0 0 1.02175 -.47 -.336)"/><path d="M467.984 306.64C408.1 276.781 356.197 265.092 357.96 77.915c-35.385 73.913-59.869 142.379-120.142 228.725-28.37 108.83-15.074 150.003 10.118 171.86" style="fill:none;stroke:#fff;stroke-width:10.66666698;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" transform="matrix(1.01622 0 0 1.02175 -.47 -.336)"/></g><g style="fill:#fff"><g style="fill:#fff;stroke:#6c5d53"><circle cx="-810.533" cy="-183.549" r="80.514" style="fill:#fff;fill-opacity:1;stroke:#6c5d53;stroke-width:.35670954" transform="matrix(-.31128 -.34374 .34215 -.31273 60.123 145.432)"/></g><g style="fill:#fff;fill-opacity:1;stroke:#6c5d53" transform="matrix(.46256 0 0 .46471 283.036 -23.71)"><circle cx="-810.533" cy="-183.549" r="80.514" style="fill:#fff;fill-opacity:1;stroke:#6c5d53;stroke-width:.35670954" transform="rotate(-132.295)"/></g><g style="fill:#fff;fill-opacity:1;stroke:#6c5d53" transform="matrix(.46256 0 0 .46471 -108.941 70.544)"><circle cx="-810.533" cy="-183.549" r="80.514" style="fill:#fff;fill-opacity:1;stroke:#6c5d53;stroke-width:.35670954" transform="rotate(-132.295)"/></g><g style="fill:#fff;fill-opacity:1;stroke:#6c5d53" transform="matrix(.46256 0 0 .46471 50.42 -25.002)"><circle cx="-810.533" cy="-183.549" r="80.514" style="fill:#fff;fill-opacity:1;stroke:#6c5d53;stroke-width:.35670954" transform="rotate(-132.295)"/></g><g style="fill:#fff;fill-opacity:1;stroke:#6c5d53" transform="matrix(.46256 0 0 .46471 -123.078 -121.839)"><circle cx="-810.533" cy="-183.549" r="80.514" style="fill:#fff;fill-opacity:1;stroke:#6c5d53;stroke-width:.35670954" transform="rotate(-132.295)"/></g><g style="fill:#fff;stroke:#6c5d53"><circle cx="-810.533" cy="-183.549" r="80.514" style="fill:#fff;fill-opacity:1;stroke:#6c5d53;stroke-width:.35670954" transform="matrix(-.31128 -.34374 .34215 -.31273 181.49 -284.656)"/></g></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="533.333" height="533.333" version="1.0">
+	<desc>Picture of a blue sphere (circle with 3D highlighting)</desc>
+	<g style="stroke:#fff">
+		<path d="M237.817 304.113c-57.857 76.84-126.775 99.652-158.081 98.567M361.753 75.388C201.56 199.578 120.258 228.215 70.883 218.183"
+			style="fill:none;stroke:#fff;stroke-width:10.66666698;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" transform="matrix(1.01622 0 0 1.02175 -.47 -.336)" />
+		<path d="M467.984 306.64C408.1 276.781 356.197 265.092 357.96 77.915c-35.385 73.913-59.869 142.379-120.142 228.725-28.37 108.83-15.074 150.003 10.118 171.86"
+			style="fill:none;stroke:#fff;stroke-width:10.66666698;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" transform="matrix(1.01622 0 0 1.02175 -.47 -.336)" />
+	</g>
+	<g style="fill:#fff">
+		<g style="fill:#fff;stroke:#6c5d53">
+			<circle cx="-810.533" cy="-183.549" r="80.514" style="fill:#fff;fill-opacity:1;stroke:#6c5d53;stroke-width:.35670954" transform="matrix(-.31128 -.34374 .34215 -.31273 60.123 145.432)" />
+		</g>
+		<g style="fill:#fff;fill-opacity:1;stroke:#6c5d53" transform="matrix(.46256 0 0 .46471 283.036 -23.71)">
+			<circle cx="-810.533" cy="-183.549" r="80.514" style="fill:#fff;fill-opacity:1;stroke:#6c5d53;stroke-width:.35670954" transform="rotate(-132.295)" />
+		</g>
+		<g style="fill:#fff;fill-opacity:1;stroke:#6c5d53" transform="matrix(.46256 0 0 .46471 -108.941 70.544)">
+			<circle cx="-810.533" cy="-183.549" r="80.514" style="fill:#fff;fill-opacity:1;stroke:#6c5d53;stroke-width:.35670954" transform="rotate(-132.295)" />
+		</g>
+		<g style="fill:#fff;fill-opacity:1;stroke:#6c5d53" transform="matrix(.46256 0 0 .46471 50.42 -25.002)">
+			<circle cx="-810.533" cy="-183.549" r="80.514" style="fill:#fff;fill-opacity:1;stroke:#6c5d53;stroke-width:.35670954" transform="rotate(-132.295)" />
+		</g>
+		<g style="fill:#fff;fill-opacity:1;stroke:#6c5d53" transform="matrix(.46256 0 0 .46471 -123.078 -121.839)">
+			<circle cx="-810.533" cy="-183.549" r="80.514" style="fill:#fff;fill-opacity:1;stroke:#6c5d53;stroke-width:.35670954" transform="rotate(-132.295)" />
+		</g>
+		<g style="fill:#fff;stroke:#6c5d53">
+			<circle cx="-810.533" cy="-183.549" r="80.514" style="fill:#fff;fill-opacity:1;stroke:#6c5d53;stroke-width:.35670954" transform="matrix(-.31128 -.34374 .34215 -.31273 181.49 -284.656)" />
+		</g>
+	</g>
+</svg>
