@@ -139,9 +139,8 @@ abstract class TreebolicMessengerService : Service(), ITreebolicService {
                         Log.d(TAG, "Returning model $model")
                         clients[i].send(msg)
                     } catch (ignored: RemoteException) {
-                        // The client is dead. Remove it from the list;
-                        // we are going through the list from back to front
-                        // so this is safe to do inside the loop.
+                        // The client is dead. Remove it from the list.
+                        // We are going through the list from back to front, so this is safe to do inside the loop.
                         clients.removeAt(i)
                     }
                 }

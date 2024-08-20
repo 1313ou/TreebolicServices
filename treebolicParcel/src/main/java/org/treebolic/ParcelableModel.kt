@@ -160,14 +160,7 @@ class ParcelableModel : Parcelable {
          * @param node   node
          */
         private fun writeToParcel(parcel: Parcel, node: INode) {
-            // volatile data:
-            // public double getWeight();
-            // public double getChildrenWeight();
-            // public double getMinWeight();
-            // public Location getLocation();
-
             // id
-
             writeToParcel(parcel, node.id)
 
             // parent
@@ -625,19 +618,14 @@ class ParcelableModel : Parcelable {
             val n = parcel.readInt()
             if (n != -1) {
                 val children = node.children
-                //if (children != null)
-                //{
                 for (i in 0 until n) {
-                    /*final INode child =*/
                     readNode(parcel)
                     // added to parent by Constructor
-                    // children.add(child);
                 }
                 require(children.size == n) {
-                    //Log.e(TAG, "inconsistent child sizes expected=" + n + " real=" + children.size());
+                    //Log.e(TAG, "inconsistent child sizes expected=" + n + " real=" + children.size())
                     "inconsistent child sizes expected=" + n + " real=" + children.size
                 }
-                //}
             }
             return node
         }

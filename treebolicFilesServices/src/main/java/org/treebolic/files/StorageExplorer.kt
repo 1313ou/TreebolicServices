@@ -111,20 +111,6 @@ object StorageExplorer {
 
         // P U B L I C
 
-        /*
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-		{
-			final File[] externalMediaDirs = context.getExternalMediaDirs();
-			if (externalMediaDirs != null)
-			{
-				for (File mediaStorage : externalMediaDirs)
-				{
-					//result.add(new Directory(mediaStorage, DirType.PUBLIC_EXTERNAL_SECONDARY));
-				}
-			}
-		}
-  	    */
-
         // top-level public external storage directory
         for (tag in tags) {
             dir = Environment.getExternalStoragePublicDirectory(tag)
@@ -306,7 +292,6 @@ object StorageExplorer {
         val manager = context.getSystemService(Context.USER_SERVICE) as UserManager
         val user = Process.myUserHandle()
         val userSerialNumber = manager.getSerialNumberForUser(user)
-        // Log.d("USER", "userSerialNumber = " + userSerialNumber);
         return userSerialNumber.toString()
     }
 

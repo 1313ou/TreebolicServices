@@ -106,9 +106,6 @@ class MainActivity : AppCompatCommonActivity(), IConnectionListener, IModelListe
                         Settings.putStringPref(this, TreebolicIface.PREF_SOURCE, fileUri.path)
 
                         updateButton()
-
-                        // query
-                        // query());
                     }
                 }
             }

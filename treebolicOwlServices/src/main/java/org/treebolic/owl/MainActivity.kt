@@ -127,9 +127,6 @@ class MainActivity : AppCompatCommonActivity(), IConnectionListener, IModelListe
                     }
                 }
                 updateButton()
-
-                // query
-                // query();
             }
         }
 

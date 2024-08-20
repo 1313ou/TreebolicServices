@@ -145,8 +145,6 @@ open class TreebolicMessengerClient(
         if (isBound) {
             Log.d(TAG, "Service disconnected")
 
-            // Toast.makeText(context, R.string.disconnected, Toast.LENGTH_SHORT).show();
-
             // if we have received the service, and hence registered with it
             if (service != null) {
                 try {

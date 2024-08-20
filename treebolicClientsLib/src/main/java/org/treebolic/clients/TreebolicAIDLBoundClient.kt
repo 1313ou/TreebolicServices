@@ -167,7 +167,7 @@ open class TreebolicAIDLBoundClient(
         }
 
         val intent = Intent()
-        //intent.setAction("org.treebolic.service.action.MAKE_MODEL");
+        //intent.setAction("org.treebolic.service.action.MAKE_MODEL")
         intent.setComponent(ComponentName(servicePackage, serviceName))
         if (!context.bindService(intent, connection!!, Context.BIND_AUTO_CREATE)) {
             Log.e(TAG, "Service failed to bind $servicePackage/$serviceName")

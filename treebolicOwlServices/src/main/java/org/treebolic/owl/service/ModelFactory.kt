@@ -33,7 +33,6 @@ class ModelFactory(context: Context) : ModelFactory(Provider2(), makeLogProvider
             try {
                 return object : ILocator {
                     // Used when the base url is null
-                    // private final URL base = context.getFilesDir().toURI().toURL();
                     private val base: URL = getTreebolicStorage(context.applicationContext).toURI().toURL()
 
                     override fun getBase(): URL {
