@@ -447,7 +447,7 @@ class ParcelableModel : Parcelable {
          * @param parcel parcel to write to
          * @param f      float array
          */
-        private fun writeToParcel(parcel: Parcel, f: FloatArray) {
+        private fun writeToParcel(parcel: Parcel, f: FloatArray?) {
             parcel.writeFloatArray(f)
         }
 
