@@ -11,7 +11,6 @@ import android.os.Build
 import android.provider.Settings
 import androidx.preference.PreferenceManager
 import org.treebolic.TreebolicIface
-import org.treebolic.files.BuildConfig
 import org.treebolic.services.iface.ITreebolicService
 
 /**

@@ -40,7 +40,6 @@ import org.treebolic.clients.iface.IModelListener
 import org.treebolic.clients.iface.ITreebolicClient
 import org.treebolic.filechooser.EntryChooser.Companion.choose
 import org.treebolic.filechooser.FileChooserActivity
-import org.treebolic.owl.BuildConfig
 import org.treebolic.owl.Permissions.check
 import org.treebolic.owl.Settings.applicationSettings
 import org.treebolic.owl.Settings.getStringPref

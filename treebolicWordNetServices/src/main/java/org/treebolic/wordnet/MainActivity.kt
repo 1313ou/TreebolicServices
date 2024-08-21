@@ -44,7 +44,6 @@ import org.treebolic.clients.iface.IModelListener
 import org.treebolic.clients.iface.ITreebolicClient
 import org.treebolic.services.IntentFactory.makeTreebolicIntentSkeleton
 import org.treebolic.services.iface.ITreebolicService
-import org.treebolic.wordnet.BuildConfig
 import org.treebolic.wordnet.Permissions.check
 import org.treebolic.wordnet.QueryProviderActivity.Companion.isProviderAvailable
 import org.treebolic.wordnet.Settings.applicationSettings

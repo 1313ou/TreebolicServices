@@ -12,7 +12,6 @@ import android.provider.Settings
 import androidx.preference.PreferenceManager
 import org.treebolic.TreebolicIface
 import org.treebolic.services.iface.ITreebolicService
-import org.treebolic.wordnet.BuildConfig
 
 /**
  * Settings
