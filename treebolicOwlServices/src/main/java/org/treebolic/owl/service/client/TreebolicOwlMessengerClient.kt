@@ -4,10 +4,10 @@
 package org.treebolic.owl.service.client
 
 import android.content.Context
-import androidx.multidex.BuildConfig
 import org.treebolic.clients.TreebolicMessengerClient
 import org.treebolic.clients.iface.IConnectionListener
 import org.treebolic.clients.iface.IModelListener
+import org.treebolic.owl.BuildConfig
 import org.treebolic.owl.service.TreebolicOwlMessengerService
 
 /**

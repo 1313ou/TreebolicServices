@@ -33,7 +33,8 @@ import treebolic.model.Model
  * @author Bernard Bou
  */
 open class TreebolicBroadcastClient(
-    private val context: Context, serviceFullName: String,
+    private val context: Context,
+    serviceFullName: String,
     private val connectionListener: IConnectionListener,
     private val modelListener: IModelListener
 

@@ -9,9 +9,9 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.provider.Settings
-import androidx.multidex.BuildConfig
 import androidx.preference.PreferenceManager
 import org.treebolic.TreebolicIface
+import org.treebolic.owl.BuildConfig
 import org.treebolic.services.iface.ITreebolicService
 import org.treebolic.storage.Storage.getTreebolicStorage
 

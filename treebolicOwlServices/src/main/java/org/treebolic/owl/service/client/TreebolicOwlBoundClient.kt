@@ -4,10 +4,10 @@
 package org.treebolic.owl.service.client
 
 import android.content.Context
-import androidx.multidex.BuildConfig
 import org.treebolic.clients.TreebolicBoundClient
 import org.treebolic.clients.iface.IConnectionListener
 import org.treebolic.clients.iface.IModelListener
+import org.treebolic.owl.BuildConfig
 import org.treebolic.owl.service.TreebolicOwlBoundService
 
 /**
@@ -21,4 +21,3 @@ import org.treebolic.owl.service.TreebolicOwlBoundService
  */
 class TreebolicOwlBoundClient(context: Context, connectionListener: IConnectionListener, modelListener: IModelListener) :
     TreebolicBoundClient(context, (BuildConfig.APPLICATION_ID + '/') + TreebolicOwlBoundService::class.java.getName(), connectionListener, modelListener)
-

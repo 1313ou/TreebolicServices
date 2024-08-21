@@ -25,7 +25,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import androidx.multidex.BuildConfig
 import androidx.preference.PreferenceManager
 import com.bbou.donate.DonateActivity
 import com.bbou.others.OthersActivity
@@ -41,6 +40,7 @@ import org.treebolic.clients.iface.IModelListener
 import org.treebolic.clients.iface.ITreebolicClient
 import org.treebolic.filechooser.EntryChooser.Companion.choose
 import org.treebolic.filechooser.FileChooserActivity
+import org.treebolic.owl.BuildConfig
 import org.treebolic.owl.Permissions.check
 import org.treebolic.owl.Settings.applicationSettings
 import org.treebolic.owl.Settings.getStringPref

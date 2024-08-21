@@ -30,7 +30,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import androidx.multidex.BuildConfig
 import androidx.preference.PreferenceManager
 import com.bbou.donate.DonateActivity
 import com.bbou.others.OthersActivity
@@ -45,6 +44,7 @@ import org.treebolic.clients.iface.IModelListener
 import org.treebolic.clients.iface.ITreebolicClient
 import org.treebolic.services.IntentFactory.makeTreebolicIntentSkeleton
 import org.treebolic.services.iface.ITreebolicService
+import org.treebolic.wordnet.BuildConfig
 import org.treebolic.wordnet.Permissions.check
 import org.treebolic.wordnet.QueryProviderActivity.Companion.isProviderAvailable
 import org.treebolic.wordnet.Settings.applicationSettings

@@ -4,10 +4,10 @@
 package org.treebolic.wordnet.service.client
 
 import android.content.Context
-import androidx.multidex.BuildConfig
 import org.treebolic.clients.TreebolicBroadcastClient
 import org.treebolic.clients.iface.IConnectionListener
 import org.treebolic.clients.iface.IModelListener
+import org.treebolic.wordnet.BuildConfig
 import org.treebolic.wordnet.service.TreebolicWordNetBroadcastService
 
 /**
