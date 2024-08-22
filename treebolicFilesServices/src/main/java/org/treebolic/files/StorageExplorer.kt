@@ -349,7 +349,7 @@ object StorageExplorer {
 
         private val value: CharSequence
             get() {
-                if (DirType.AUTO == this.type) {
+                if (DirType.AUTO == type) {
                     return DirType.AUTO.toString()
                 }
                 return file!!.absolutePath
@@ -360,11 +360,11 @@ object StorageExplorer {
         }
 
         override fun equals(other: Any?): Boolean {
-            return (other is Directory) && this.type == other.type
+            return (other is Directory) && type == other.type
         }
 
         override fun compareTo(other: Directory): Int {
-            val t = DirType.compare(this.type, other.type)
+            val t = DirType.compare(type, other.type)
             if (t != 0) {
                 return t
             }
