@@ -33,7 +33,7 @@ class Deployer(dir0: File?) {
      * @return data status
      */
     fun status(): Boolean {
-        return DataManager.coreCheck(this.dir)
+        return DataManager.coreCheck(dir)
     }
 
     /**
@@ -59,9 +59,9 @@ class Deployer(dir0: File?) {
     @Throws(IOException::class)
     fun process(fin: InputStream, asTarGz: Boolean): File {
         if (asTarGz) {
-            return extractTarGz(fin, this.dir, true, ".*/?dic/?.*", ".*/?dbfiles/?.*")
+            return extractTarGz(fin, dir, true, ".*/?dic/?.*", ".*/?dbfiles/?.*")
         }
-        return DataManager.expand(fin, null, this.dir)
+        return DataManager.expand(fin, null, dir)
     }
 
     companion object {
