@@ -48,14 +48,14 @@ class ParcelableModel : Parcelable {
      * Null constructor
      */
     constructor() {
-        this.model = null
+        model = null
     }
 
     /**
      * Constructor
      */
-    constructor(model: Model?) {
-        this.model = model
+    constructor(newModel: Model?) {
+        model = newModel
     }
 
     /**
@@ -66,11 +66,11 @@ class ParcelableModel : Parcelable {
     constructor(parcel: Parcel) {
         if (SERIALIZE) {
             @Suppress("DEPRECATION")
-            this.model = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) //
+            model = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) //
                 parcel.readSerializable(null, Model::class.java) else  //
                 parcel.readSerializable() as Model?
         } else {
-            this.model = readModel(parcel)
+            model = readModel(parcel)
         }
     }
 
