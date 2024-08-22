@@ -27,7 +27,7 @@ class Deployer(parentDir: File?) {
      * @return directory
      */
     fun process(fin: InputStream?): File {
-        return this.dir
+        return dir
     }
 
     companion object {
