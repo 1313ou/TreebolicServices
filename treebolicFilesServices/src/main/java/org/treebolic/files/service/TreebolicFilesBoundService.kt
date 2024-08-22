@@ -13,7 +13,7 @@ import org.treebolic.services.TreebolicBoundService
 class TreebolicFilesBoundService : TreebolicBoundService() {
 
     override fun onCreate() {
-        this.factory = ModelFactory(this)
+        factory = ModelFactory(this)
         super.onCreate()
     }
 

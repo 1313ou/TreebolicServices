@@ -12,7 +12,7 @@ class TreebolicFilesAIDLBoundService : TreebolicAIDLBoundService() {
 
     override fun onCreate() {
         super.onCreate()
-        this.factory = ModelFactory(this)
+        factory = ModelFactory(this)
     }
 
     override val urlScheme: String
