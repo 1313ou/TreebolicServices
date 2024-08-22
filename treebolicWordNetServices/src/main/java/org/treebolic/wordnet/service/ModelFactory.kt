@@ -43,11 +43,11 @@ class ModelFactory(context: Context) : ModelFactory(if (SIMPLE) Provider() else 
                     private val base: URL = context.filesDir.toURI().toURL()
 
                     override fun getBase(): URL {
-                        return this.base
+                        return base
                     }
 
                     override fun getImagesBase(): URL {
-                        return this.base
+                        return base
                     }
                 }
             } catch (mue: MalformedURLException) {
