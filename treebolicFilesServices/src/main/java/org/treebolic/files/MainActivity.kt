@@ -385,7 +385,7 @@ class MainActivity : AppCompatCommonActivity(), IConnectionListener, IModelListe
 
     // M O D E L   L I S T E N E R
 
-    override fun onModel(model: Model?, urlScheme: String?) {
+    override fun onModel(model: Model?, modelUrlScheme: String?) {
         if (model != null) {
             val intent = makeTreebolicIntent(this, model)
 
