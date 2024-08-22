@@ -5,7 +5,6 @@ package org.treebolic.wordnet
 
 import android.os.Bundle
 import android.widget.Toast
-import org.treebolic.download.DownloadActivity
 import java.io.IOException
 import java.io.InputStream
 
@@ -14,7 +13,7 @@ import java.io.InputStream
  *
  * @author Bernard Bou
  */
-class DownloadActivity : DownloadActivity() {
+class DownloadActivity : org.treebolic.download.DownloadActivity() {
 
     /**
      * Whether stream is tar.gz (zip otherwise)
@@ -24,16 +23,16 @@ class DownloadActivity : DownloadActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        this.downloadUrl = Settings.getStringPref(this, Settings.PREF_DOWNLOAD)
-        if (this.downloadUrl == null || downloadUrl!!.isEmpty()) {
+        downloadUrl = Settings.getStringPref(this, Settings.PREF_DOWNLOAD)
+        if (downloadUrl == null || downloadUrl!!.isEmpty()) {
             Toast.makeText(this, R.string.error_null_download_url, Toast.LENGTH_SHORT).show()
             finish()
         }
     }
 
     public override fun start() {
-        checkNotNull(this.downloadUrl)
-        this.asTarGz = downloadUrl!!.endsWith(".tar.gz")
+        checkNotNull(downloadUrl)
+        asTarGz = downloadUrl!!.endsWith(".tar.gz")
         super.start(R.string.wordnet)
     }
 
@@ -43,7 +42,7 @@ class DownloadActivity : DownloadActivity() {
 
     @Throws(IOException::class)
     override fun process(inputStream: InputStream): Boolean {
-        Deployer(this@DownloadActivity.filesDir).process(inputStream, this.asTarGz)
+        Deployer(filesDir).process(inputStream, asTarGz)
         return true
     }
 }
