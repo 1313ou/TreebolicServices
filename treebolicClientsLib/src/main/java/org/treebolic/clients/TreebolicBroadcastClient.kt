@@ -60,9 +60,9 @@ open class TreebolicBroadcastClient(
      */
     init {
         val serviceNameComponents = serviceFullName.split("/".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-        this.servicePackage = serviceNameComponents[0]
-        this.serviceName = serviceNameComponents[1]
-        this.receiver = object : ResultReceiver(
+        servicePackage = serviceNameComponents[0]
+        serviceName = serviceNameComponents[1]
+        receiver = object : ResultReceiver(
             Handler(Looper.getMainLooper())
         ) {
             override fun onReceiveResult(resultCode: Int, resultData: Bundle) {
@@ -117,7 +117,7 @@ open class TreebolicBroadcastClient(
     }
 
     override fun requestModel(source: String, base: String?, imageBase: String?, settings: String?, forward: Intent?) {
-        val component = ComponentName(this.servicePackage, this.serviceName)
+        val component = ComponentName(servicePackage, serviceName)
 
         val intent = Intent()
         intent.setComponent(component)
@@ -126,13 +126,13 @@ open class TreebolicBroadcastClient(
         intent.putExtra(ITreebolicService.EXTRA_BASE, base)
         intent.putExtra(ITreebolicService.EXTRA_IMAGEBASE, imageBase)
         intent.putExtra(ITreebolicService.EXTRA_SETTINGS, settings)
-        intent.putExtra(ITreebolicService.EXTRA_RECEIVER, this.receiver)
+        intent.putExtra(ITreebolicService.EXTRA_RECEIVER, receiver)
         intent.putExtra(ITreebolicService.EXTRA_FORWARD_RESULT_TO, forward)
 
         context.sendBroadcast(intent)
 
-        Log.d(TAG, "Intent broadcast to " + this.servicePackage + '/' + this.serviceName)
-        Toast.makeText(this.context, R.string.started, Toast.LENGTH_LONG).show()
+        Log.d(TAG, "Intent broadcast to " + servicePackage + '/' + serviceName)
+        Toast.makeText(context, R.string.started, Toast.LENGTH_LONG).show()
     }
 
     companion object {
