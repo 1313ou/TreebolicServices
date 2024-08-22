@@ -36,11 +36,11 @@ class ModelFactory(context: Context) : ModelFactory(Provider2(), makeLogProvider
                     private val base: URL = getTreebolicStorage(context.applicationContext).toURI().toURL()
 
                     override fun getBase(): URL {
-                        return this.base
+                        return base
                     }
 
                     override fun getImagesBase(): URL {
-                        return this.base
+                        return base
                     }
                 }
             } catch (mue: MalformedURLException) {
