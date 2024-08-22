@@ -45,10 +45,10 @@ class QueryProviderActivity : AppCompatCommonActivity() {
         setContentView(R.layout.activity_query_file_provider)
 
         // deployer
-        this.deployer = Deployer(filesDir)
+        deployer = Deployer(filesDir)
 
         // activity result launcher
-        this.activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+        activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             val success = result.resultCode == RESULT_OK
             if (success) {
                 // retrieve arguments
