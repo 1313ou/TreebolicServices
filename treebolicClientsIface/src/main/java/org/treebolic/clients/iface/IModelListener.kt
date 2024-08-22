@@ -16,7 +16,7 @@ interface IModelListener {
      * Model available callback
      *
      * @param model     model
-     * @param urlScheme url scheme
+     * @param modelUrlScheme url scheme
      */
-    fun onModel(model: Model?, urlScheme: String?)
+    fun onModel(model: Model?, modelUrlScheme: String?)
 }
