@@ -107,7 +107,7 @@ class MainActivity : AppCompatCommonActivity(), IConnectionListener, IModelListe
         setSupportActionBar(toolbar)
 
         // activity result launcher
-        this.activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+        activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             val success = result.resultCode == RESULT_OK
             if (success) {
                 // handle selection of target by other activity which returns selected target
@@ -129,7 +129,7 @@ class MainActivity : AppCompatCommonActivity(), IConnectionListener, IModelListe
         }
 
         // deployer
-        this.deployer = Deployer(filesDir)
+        deployer = Deployer(filesDir)
 
         // saved instance
         if (savedInstanceState == null) {
@@ -161,8 +161,8 @@ class MainActivity : AppCompatCommonActivity(), IConnectionListener, IModelListe
 
         // search view
         val menuItem = menu.findItem(R.id.action_search)
-        this.searchView = menuItem.actionView as SearchView?
-        checkNotNull(this.searchView)
+        searchView = menuItem.actionView as SearchView?
+        checkNotNull(searchView)
         searchView!!.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 searchView!!.clearFocus()
@@ -288,13 +288,13 @@ class MainActivity : AppCompatCommonActivity(), IConnectionListener, IModelListe
             serviceType = ITreebolicService.TYPE_BROADCAST
         }
         when (serviceType) {
-            ITreebolicService.TYPE_BROADCAST -> this.client = TreebolicWordNetBroadcastClient(this, this, this)
-            ITreebolicService.TYPE_AIDL_BOUND -> this.client = TreebolicWordNetAIDLBoundClient(this, this, this)
-            ITreebolicService.TYPE_BOUND -> this.client = TreebolicWordNetBoundClient(this, this, this)
-            ITreebolicService.TYPE_MESSENGER -> this.client = TreebolicWordNetMessengerClient(this, this, this)
+            ITreebolicService.TYPE_BROADCAST -> client = TreebolicWordNetBroadcastClient(this, this, this)
+            ITreebolicService.TYPE_AIDL_BOUND -> client = TreebolicWordNetAIDLBoundClient(this, this, this)
+            ITreebolicService.TYPE_BOUND -> client = TreebolicWordNetBoundClient(this, this, this)
+            ITreebolicService.TYPE_MESSENGER -> client = TreebolicWordNetMessengerClient(this, this, this)
         }
         // connect
-        checkNotNull(this.client)
+        checkNotNull(client)
         client!!.connect()
     }
 
@@ -302,9 +302,9 @@ class MainActivity : AppCompatCommonActivity(), IConnectionListener, IModelListe
      * Stop client
      */
     private fun stop() {
-        if (this.client != null) {
+        if (client != null) {
             client!!.disconnect()
-            this.client = null
+            client = null
         }
     }
 
@@ -402,12 +402,12 @@ class MainActivity : AppCompatCommonActivity(), IConnectionListener, IModelListe
 
     // M O D E L   L I S T E N E R
 
-    override fun onModel(model: Model?, urlScheme: String?) {
+    override fun onModel(model: Model?, modelUrlScheme: String?) {
         if (model != null) {
             val intent = makeTreebolicIntent(this, model, null, null)
 
             Log.d(TAG, "Starting Treebolic")
-            this.startActivity(intent)
+            startActivity(intent)
         }
     }
 
@@ -421,7 +421,7 @@ class MainActivity : AppCompatCommonActivity(), IConnectionListener, IModelListe
 
     private fun updateButton() {
         val button = findViewById<ImageButton>(R.id.queryButton)
-        button.setOnClickListener { view: View? -> this.onClick(view) }
+        button.setOnClickListener { view: View? -> onClick(view) }
         val sourceText = findViewById<TextView>(R.id.querySource)
         val source = getStringPref(this, TreebolicIface.PREF_SOURCE)
         val qualifies = sourceQualifies(source)
