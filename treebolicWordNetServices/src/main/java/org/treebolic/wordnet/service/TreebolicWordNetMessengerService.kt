@@ -16,7 +16,7 @@ class TreebolicWordNetMessengerService : TreebolicMessengerService() {
     override fun onCreate() {
         super.onCreate()
         try {
-            this.factory = ModelFactory(this)
+            factory = ModelFactory(this)
         } catch (e: Exception) {
             Log.e(TAG, "Model factory constructor failed", e)
         }
