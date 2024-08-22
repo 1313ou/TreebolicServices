@@ -100,7 +100,7 @@ class MainActivity : AppCompatCommonActivity(), IConnectionListener, IModelListe
         }
 
         // activity result launcher
-        this.activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+        activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             val success = result.resultCode == RESULT_OK
             if (success) {
                 val returnIntent = result.data
@@ -252,13 +252,13 @@ class MainActivity : AppCompatCommonActivity(), IConnectionListener, IModelListe
             serviceType = ITreebolicService.TYPE_BROADCAST
         }
         when (serviceType) {
-            ITreebolicService.TYPE_BROADCAST -> this.client = TreebolicOwlBroadcastClient(this, this, this)
-            ITreebolicService.TYPE_AIDL_BOUND -> this.client = TreebolicOwlAIDLBoundClient(this, this, this)
-            ITreebolicService.TYPE_BOUND -> this.client = TreebolicOwlBoundClient(this, this, this)
-            ITreebolicService.TYPE_MESSENGER -> this.client = TreebolicOwlMessengerClient(this, this, this)
+            ITreebolicService.TYPE_BROADCAST -> client = TreebolicOwlBroadcastClient(this, this, this)
+            ITreebolicService.TYPE_AIDL_BOUND -> client = TreebolicOwlAIDLBoundClient(this, this, this)
+            ITreebolicService.TYPE_BOUND -> client = TreebolicOwlBoundClient(this, this, this)
+            ITreebolicService.TYPE_MESSENGER -> client = TreebolicOwlMessengerClient(this, this, this)
         }
         // connect
-        checkNotNull(this.client)
+        checkNotNull(client)
         client!!.connect()
     }
 
@@ -266,9 +266,9 @@ class MainActivity : AppCompatCommonActivity(), IConnectionListener, IModelListe
      * Stop client
      */
     private fun stop() {
-        if (this.client != null) {
+        if (client != null) {
             client!!.disconnect()
-            this.client = null
+            client = null
         }
     }
 
@@ -349,12 +349,12 @@ class MainActivity : AppCompatCommonActivity(), IConnectionListener, IModelListe
 
     // M O D E L   L I S T E N E R
 
-    override fun onModel(model: Model?, urlScheme: String?) {
+    override fun onModel(model: Model?, modelUrlScheme: String?) {
         if (model != null) {
             val intent = makeTreebolicIntent(this, model, null, null)
 
             Log.d(TAG, "Starting Treebolic")
-            this.startActivity(intent)
+            startActivity(intent)
         }
     }
 
@@ -376,7 +376,7 @@ class MainActivity : AppCompatCommonActivity(), IConnectionListener, IModelListe
 
     private fun updateButton() {
         val button = findViewById<ImageButton>(R.id.queryButton)
-        button.setOnClickListener { view: View? -> this.onClick(view) }
+        button.setOnClickListener { view: View? -> onClick(view) }
         val sourceText = findViewById<TextView>(R.id.querySource)
         val source = getStringPref(this, TreebolicIface.PREF_SOURCE)
         val qualifies = sourceQualifies(source)
