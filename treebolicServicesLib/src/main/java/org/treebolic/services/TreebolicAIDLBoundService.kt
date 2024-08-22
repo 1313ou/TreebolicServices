@@ -54,7 +54,7 @@ abstract class TreebolicAIDLBoundService : Service(), ITreebolicService {
      */
     override fun onBind(intent: Intent): IBinder {
         Log.d(TAG, "Binding service")
-        return this.binder
+        return binder
     }
 
     companion object {

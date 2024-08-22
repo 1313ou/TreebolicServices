@@ -92,7 +92,7 @@ abstract class TreebolicMessengerService : Service(), ITreebolicService {
         // make model
         val callable = makeModelCallable(source, base, imageBase, settings, factory!!)
         val callback: (Model?) -> Unit = if (forward == null) //
-            makeModelCallback(bundle, urlScheme, this.clients) else  //
+            makeModelCallback(bundle, urlScheme, clients) else  //
             makeModelForwardCallback(WeakReference(this), urlScheme, forward)
         execute(callable, callback)
     }

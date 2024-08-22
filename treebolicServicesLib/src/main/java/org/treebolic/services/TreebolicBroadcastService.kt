@@ -37,7 +37,7 @@ abstract class TreebolicBroadcastService : BroadcastReceiver(), ITreebolicServic
             val action = intent.action
             if (ITreebolicService.ACTION_MAKEMODEL == action) {
                 try {
-                    this.factory = createModelFactory(context)
+                    factory = createModelFactory(context)
 
                     val source = intent.getStringExtra(ITreebolicService.EXTRA_SOURCE)!!
                     val base = intent.getStringExtra(ITreebolicService.EXTRA_BASE)

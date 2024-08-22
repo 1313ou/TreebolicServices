@@ -39,14 +39,14 @@ abstract class TreebolicBoundService : Service(), ITreebolicService {
         private val factory = factory!!
 
         override fun makeModel(source: String, base: String?, imageBase: String?, settings: String?, modelListener: IModelListener) {
-            val callable = makeModelCallable(source, base, imageBase, settings, this.factory)
-            val callback = makeModelCallback(this.urlScheme, modelListener)
+            val callable = makeModelCallable(source, base, imageBase, settings, factory)
+            val callback = makeModelCallback(urlScheme, modelListener)
             execute(callable, callback)
         }
 
         override fun makeModel(source: String, base: String?, imageBase: String?, settings: String?, forward: Intent) {
-            val callable = makeModelCallable(source, base, imageBase, settings, this.factory)
-            val callback = makeModelForwardCallback(WeakReference(this@TreebolicBoundService), this.urlScheme, forward)
+            val callable = makeModelCallable(source, base, imageBase, settings, factory)
+            val callback = makeModelForwardCallback(WeakReference(this@TreebolicBoundService), urlScheme, forward)
             execute(callable, callback)
         }
     }
@@ -58,8 +58,8 @@ abstract class TreebolicBoundService : Service(), ITreebolicService {
 
     override fun onCreate() {
         super.onCreate()
-        checkNotNull(this.factory)
-        this.binder = TreebolicServiceBinder(this.factory, this.urlScheme)
+        checkNotNull(factory)
+        binder = TreebolicServiceBinder(factory, urlScheme)
     }
 
     /**
@@ -67,7 +67,7 @@ abstract class TreebolicBoundService : Service(), ITreebolicService {
      */
     override fun onBind(intent: Intent): IBinder {
         Log.d(TAG, "Binding service")
-        checkNotNull(this.binder)
+        checkNotNull(binder)
         return binder!!
     }
 
