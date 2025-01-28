@@ -60,10 +60,9 @@ abstract class TreebolicBroadcastService : BroadcastReceiver(), ITreebolicServic
                             // use result receiver
                             @Suppress("DEPRECATION")
                             val resultReceiver = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
-                                intent.getParcelableExtra(ITreebolicService.EXTRA_RECEIVER, ResultReceiver::class.java) else
-                                intent.getParcelableExtra(ITreebolicService.EXTRA_RECEIVER)
+                                intent.getParcelableExtra(ITreebolicService.EXTRA_RECEIVER, ResultReceiver::class.java)!! else
+                                intent.getParcelableExtra(ITreebolicService.EXTRA_RECEIVER)!!
                             Log.d(TAG, "Returning model $model")
-                            checkNotNull(resultReceiver)
                             resultReceiver.send(0, bundle)
                         } else {
                             // do not return to client but forward it to service
@@ -72,7 +71,7 @@ abstract class TreebolicBroadcastService : BroadcastReceiver(), ITreebolicServic
                             Log.d(TAG, "Forwarding model")
                             try {
                                 context.startActivity(forward)
-                            } catch (anfe: ActivityNotFoundException) {
+                            } catch (_: ActivityNotFoundException) {
                                 warn(context, R.string.activity_not_found)
                             } catch (rte: RuntimeException) {
                                 if (rte.cause is TransactionTooLargeException) {

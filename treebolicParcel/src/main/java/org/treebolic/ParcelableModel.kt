@@ -549,7 +549,7 @@ class ParcelableModel : Parcelable {
          */
         private fun readNode(parcel: Parcel): INode {
             // structural
-            val id = checkNotNull(readString(parcel))
+            val id = readString(parcel)!!
             val parentId = readString(parcel)
             val parent: INode? = if (parentId == null) null else id2node[parentId]
             val node = MutableNode(parent, id)

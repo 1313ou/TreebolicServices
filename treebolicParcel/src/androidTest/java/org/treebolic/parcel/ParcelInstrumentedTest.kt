@@ -46,10 +46,9 @@ class ParcelInstrumentedTest {
         putParceledModel(modelA, bundle, MODEL_KEYA)
 
         val parcel = writeParcel(bundle)
-        val bundle2 = readParcel(parcel)
+        val bundle2 = readParcel(parcel)!!
         parcel.recycle()
 
-        checkNotNull(bundle2)
         val modelA2 = getParceledModel(bundle2, MODEL_KEYA)
         val strA2 = ModelDump.toString(modelA2)
 
@@ -65,10 +64,9 @@ class ParcelInstrumentedTest {
         putParceledModel(modelA, bundle, MODEL_KEYA)
 
         val parcel = writeParcel(bundle)
-        val bundle2 = readParcel(parcel)
+        val bundle2 = readParcel(parcel)!!
         parcel.recycle()
 
-        checkNotNull(bundle2)
         val modelA2 = getParceledModel(bundle2, MODEL_KEYA)
         val strA2 = ModelDump.toString(modelA2)
 
@@ -84,10 +82,9 @@ class ParcelInstrumentedTest {
         putParceledModel(modelB, bundle, MODEL_KEYA)
 
         val parcel = writeParcel(bundle)
-        val bundle2 = readParcel(parcel)
+        val bundle2 = readParcel(parcel)!!
         parcel.recycle()
 
-        checkNotNull(bundle2)
         val modelB2 = getParceledModel(bundle2, MODEL_KEYA)
         val strB2 = ModelDump.toString(modelB2)
 
@@ -107,10 +104,9 @@ class ParcelInstrumentedTest {
         putParceledModel(modelB, bundle, MODEL_KEYB)
 
         val parcel = writeParcel(bundle)
-        val bundle2 = readParcel(parcel)
+        val bundle2 = readParcel(parcel)!!
         parcel.recycle()
 
-        checkNotNull(bundle2)
         val modelA2 = getParceledModel(bundle2, MODEL_KEYA)
         val modelB2 = getParceledModel(bundle2, MODEL_KEYB)
         val strA2 = ModelDump.toString(modelA2)

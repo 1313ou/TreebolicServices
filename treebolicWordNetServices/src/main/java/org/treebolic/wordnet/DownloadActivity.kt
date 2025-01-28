@@ -31,7 +31,6 @@ class DownloadActivity : org.treebolic.download.DownloadActivity() {
     }
 
     public override fun start() {
-        checkNotNull(downloadUrl)
         asTarGz = downloadUrl!!.endsWith(".tar.gz")
         super.start(R.string.wordnet)
     }

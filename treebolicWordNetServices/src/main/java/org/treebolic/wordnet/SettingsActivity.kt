@@ -29,7 +29,7 @@ class SettingsActivity : AppCompatCommonPreferenceActivity() {
             addPreferencesFromResource(R.xml.pref_general)
 
             // bind
-            val sourcePref = checkNotNull(findPreference<EditTextPreference>(TreebolicIface.PREF_SOURCE))
+            val sourcePref: Preference = findPreference(TreebolicIface.PREF_SOURCE)!!
             sourcePref.summaryProvider = EditTextPreference.SimpleSummaryProvider.getInstance()
         }
     }
@@ -41,7 +41,7 @@ class SettingsActivity : AppCompatCommonPreferenceActivity() {
             addPreferencesFromResource(R.xml.pref_download)
 
             // bind
-            val downloadPref = checkNotNull(findPreference<OpenEditTextPreference>(Settings.PREF_DOWNLOAD))
+            val downloadPref: Preference = findPreference(Settings.PREF_DOWNLOAD)!!
             downloadPref.summaryProvider = OpenEditTextPreference.SUMMARY_PROVIDER
         }
 
@@ -59,7 +59,7 @@ class SettingsActivity : AppCompatCommonPreferenceActivity() {
             addPreferencesFromResource(R.xml.pref_service)
 
             // bind
-            val servicePref = checkNotNull(findPreference<ListPreference>(Settings.PREF_SERVICE))
+            val servicePref: Preference = findPreference(Settings.PREF_SERVICE)!!
             servicePref.summaryProvider = ListPreference.SimpleSummaryProvider.getInstance()
         }
     }

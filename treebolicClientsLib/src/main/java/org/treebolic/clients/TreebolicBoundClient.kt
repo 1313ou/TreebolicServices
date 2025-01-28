@@ -75,7 +75,6 @@ open class TreebolicBoundClient(
             Log.d(TAG, "Service disconnected")
 
             // detach our existing connection.
-            checkNotNull(connection)
             context.unbindService(connection!!)
             isBound = false
         }

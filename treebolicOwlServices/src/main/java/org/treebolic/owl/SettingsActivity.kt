@@ -29,13 +29,13 @@ class SettingsActivity : AppCompatCommonPreferenceActivity() {
             addPreferencesFromResource(R.xml.pref_general)
 
             // bind
-            val sourcePref = checkNotNull(findPreference<EditTextPreference>(TreebolicIface.PREF_SOURCE))
+            val sourcePref: Preference = findPreference(TreebolicIface.PREF_SOURCE)!!
             sourcePref.summaryProvider = EditTextPreference.SimpleSummaryProvider.getInstance()
 
-            val basePref = checkNotNull(findPreference<EditTextPreference>(TreebolicIface.PREF_BASE))
+            val basePref: Preference = findPreference(TreebolicIface.PREF_BASE)!!
             basePref.summaryProvider = EditTextPreference.SimpleSummaryProvider.getInstance()
 
-            val imageBasePref = checkNotNull(findPreference<EditTextPreference>(TreebolicIface.PREF_IMAGEBASE))
+            val imageBasePref: Preference = findPreference(TreebolicIface.PREF_IMAGEBASE)!!
             imageBasePref.summaryProvider = EditTextPreference.SimpleSummaryProvider.getInstance()
         }
     }
@@ -47,7 +47,7 @@ class SettingsActivity : AppCompatCommonPreferenceActivity() {
             addPreferencesFromResource(R.xml.pref_service)
 
             // bind
-            val servicePref = checkNotNull(findPreference<ListPreference>(Settings.PREF_SERVICE))
+            val servicePref: Preference = findPreference(Settings.PREF_SERVICE)!!
             servicePref.summaryProvider = ListPreference.SimpleSummaryProvider.getInstance()
         }
 
@@ -64,7 +64,7 @@ class SettingsActivity : AppCompatCommonPreferenceActivity() {
             // inflate
             addPreferencesFromResource(R.xml.pref_download)
 
-            val downloadPref = checkNotNull(findPreference<OpenEditTextPreference>(Settings.PREF_DOWNLOAD))
+            val downloadPref: Preference = findPreference(Settings.PREF_DOWNLOAD)!!
             downloadPref.summaryProvider = OpenEditTextPreference.SUMMARY_PROVIDER
         }
 

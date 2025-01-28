@@ -161,8 +161,7 @@ class MainActivity : AppCompatCommonActivity(), IConnectionListener, IModelListe
 
         // search view
         val menuItem = menu.findItem(R.id.action_search)
-        searchView = menuItem.actionView as SearchView?
-        checkNotNull(searchView)
+        searchView = menuItem.actionView as SearchView
         searchView!!.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 searchView!!.clearFocus()
@@ -294,7 +293,6 @@ class MainActivity : AppCompatCommonActivity(), IConnectionListener, IModelListe
             ITreebolicService.TYPE_MESSENGER -> client = TreebolicWordNetMessengerClient(this, this, this)
         }
         // connect
-        checkNotNull(client)
         client!!.connect()
     }
 

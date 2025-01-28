@@ -258,7 +258,6 @@ class MainActivity : AppCompatCommonActivity(), IConnectionListener, IModelListe
             ITreebolicService.TYPE_MESSENGER -> client = TreebolicOwlMessengerClient(this, this, this)
         }
         // connect
-        checkNotNull(client)
         client!!.connect()
     }
 
@@ -376,7 +375,7 @@ class MainActivity : AppCompatCommonActivity(), IConnectionListener, IModelListe
 
     private fun updateButton() {
         val button = findViewById<ImageButton>(R.id.queryButton)
-        button.setOnClickListener { view: View? -> onClick(view) }
+        button.setOnClickListener { view: View? -> onClick() }
         val sourceText = findViewById<TextView>(R.id.querySource)
         val source = getStringPref(this, TreebolicIface.PREF_SOURCE)
         val qualifies = sourceQualifies(source)
@@ -411,10 +410,8 @@ class MainActivity : AppCompatCommonActivity(), IConnectionListener, IModelListe
 
     /**
      * Click listener
-     *
-     * @param view view
      */
-    private fun onClick(view: View?) {
+    private fun onClick() {
         query()
     }
 

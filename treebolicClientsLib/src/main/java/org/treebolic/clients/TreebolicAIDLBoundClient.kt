@@ -138,7 +138,6 @@ open class TreebolicAIDLBoundClient(
             Log.d(TAG, "Service disconnected")
 
             // detach our existing connection.
-            checkNotNull(connection)
             context.unbindService(connection!!)
             isBound = false
         }
@@ -168,7 +167,7 @@ open class TreebolicAIDLBoundClient(
 
         val intent = Intent()
         //intent.setAction("org.treebolic.service.action.MAKE_MODEL")
-        intent.setComponent(ComponentName(servicePackage, serviceName))
+        intent.component = ComponentName(servicePackage, serviceName)
         if (!context.bindService(intent, connection!!, Context.BIND_AUTO_CREATE)) {
             Log.e(TAG, "Service failed to bind $servicePackage/$serviceName")
             Toast.makeText(context, R.string.fail_bind, Toast.LENGTH_LONG).show()

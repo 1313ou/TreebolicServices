@@ -157,7 +157,6 @@ open class TreebolicMessengerClient(
             }
 
             // detach our existing connection.
-            checkNotNull(connection)
             context.unbindService(connection!!)
             isBound = false
         }

@@ -58,8 +58,7 @@ abstract class TreebolicBoundService : Service(), ITreebolicService {
 
     override fun onCreate() {
         super.onCreate()
-        checkNotNull(factory)
-        binder = TreebolicServiceBinder(factory, urlScheme)
+        binder = TreebolicServiceBinder(factory!!, urlScheme)
     }
 
     /**
@@ -67,7 +66,6 @@ abstract class TreebolicBoundService : Service(), ITreebolicService {
      */
     override fun onBind(intent: Intent): IBinder {
         Log.d(TAG, "Binding service")
-        checkNotNull(binder)
         return binder!!
     }
 
