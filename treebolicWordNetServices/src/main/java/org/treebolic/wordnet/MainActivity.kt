@@ -33,7 +33,7 @@ import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import com.bbou.donate.DonateActivity
 import com.bbou.others.OthersActivity
-import com.bbou.rate.AppRate.invoke
+import com.bbou.rate.AppRate.promptRate
 import com.bbou.rate.AppRate.rate
 import org.treebolic.AppCompatCommonActivity
 import org.treebolic.AppCompatCommonPreferenceActivity
@@ -94,7 +94,7 @@ class MainActivity : AppCompatCommonActivity(), IConnectionListener, IModelListe
         super.onCreate(savedInstanceState)
 
         // rate
-        invoke(this)
+        promptRate(this)
 
         // init
         initialize()
