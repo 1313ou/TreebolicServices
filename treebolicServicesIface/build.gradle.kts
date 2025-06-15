@@ -12,7 +12,7 @@ private val vMinSdk by lazy { rootProject.extra["minSdk"] as Int }
 
 android {
 
-    namespace = "org.treebolic.clients.iface"
+    namespace = "org.treebolic.services.iface"
 
     compileSdk = vCompileSdk
 
@@ -35,7 +35,13 @@ android {
 dependencies {
     implementation(libs.treebolic.model)
 
+    implementation(project(":treebolicParcel"))
+    implementation(project(":treebolicIface"))
+    implementation(project(":treebolicClientsIface"))
+
     implementation(libs.appcompat)
+    implementation(libs.annotation)
+
     implementation(libs.core.ktx)
 
     coreLibraryDesugaring(libs.desugar)

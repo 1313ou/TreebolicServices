@@ -102,8 +102,8 @@ abstract class TreebolicClientActivityStub : AppCompatCommonActivity(), IConnect
 
     // C O N N E C T I O N L I S T E N E R
 
-    override fun onConnected(flag: Boolean) {
-        clientStatus = flag
+    override fun onConnected(success: Boolean) {
+        clientStatus = success
         request()
     }
 

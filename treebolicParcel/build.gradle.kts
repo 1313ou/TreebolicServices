@@ -12,12 +12,13 @@ private val vMinSdk by lazy { rootProject.extra["minSdk"] as Int }
 
 android {
 
-    namespace = "org.treebolic.clients.iface"
+    namespace = "org.treebolic.parcel"
 
     compileSdk = vCompileSdk
 
     defaultConfig {
         minSdk = vMinSdk
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled = true
     }
 
@@ -34,9 +35,14 @@ android {
 
 dependencies {
     implementation(libs.treebolic.model)
+    implementation(libs.treebolic.mutable)
 
-    implementation(libs.appcompat)
+    implementation(project(":treebolicGlue"))
+    implementation(libs.annotation)
+
     implementation(libs.core.ktx)
-
     coreLibraryDesugaring(libs.desugar)
+
+    androidTestImplementation(libs.test)
+    androidTestImplementation(libs.espresso.core)
 }
