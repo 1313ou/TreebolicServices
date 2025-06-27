@@ -82,14 +82,14 @@ class QueryProviderActivity : AppCompatCommonActivity() {
                                 try {
                                     fileDescriptor.close()
                                 } catch (ignored: IOException) {
-                                    //
+                                    
                                 }
                             }
                             if (fin != null) {
                                 try {
                                     fin.close()
                                 } catch (ignored: IOException) {
-                                    //
+                                    
                                 }
                             }
                         }
@@ -103,8 +103,8 @@ class QueryProviderActivity : AppCompatCommonActivity() {
         val closeButton = findViewById<Button>(R.id.button)
         closeButton.setOnClickListener {
             val requestFileIntent = Intent()
-            requestFileIntent.setAction(Intent.ACTION_DEFAULT)
-            requestFileIntent.setComponent(ComponentName(PROVIDER_PKG, PROVIDER_ACTIVITY))
+            requestFileIntent.action = Intent.ACTION_DEFAULT
+            requestFileIntent.component = ComponentName(PROVIDER_PKG, PROVIDER_ACTIVITY)
             activityResultLauncher!!.launch(requestFileIntent)
         }
     }
@@ -148,11 +148,11 @@ class QueryProviderActivity : AppCompatCommonActivity() {
         private fun getProvider(context: Context): ProviderInfo? {
             try {
                 val pm = context.packageManager
-                return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) //
-                    pm.getProviderInfo(ComponentName(PROVIDER_PKG, PROVIDER_NAME), PackageManager.ComponentInfoFlags.of(0)) else  //
+                return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) 
+                    pm.getProviderInfo(ComponentName(PROVIDER_PKG, PROVIDER_NAME), PackageManager.ComponentInfoFlags.of(0)) else  
                     pm.getProviderInfo(ComponentName(PROVIDER_PKG, PROVIDER_NAME), 0)
             } catch (ignored: PackageManager.NameNotFoundException) {
-                //
+                
             }
             return null
         }

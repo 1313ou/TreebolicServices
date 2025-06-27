@@ -162,20 +162,20 @@ class ParcelInstrumentedTest {
 
         fun getParceledModel(bundle: Bundle, key: String?): Model? {
             // model2
-            @Suppress("DEPRECATION") val pmodel = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) //
-                bundle.getParcelable(key, ParcelableModel::class.java) else  //
+            @Suppress("DEPRECATION") val pmodel = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) 
+                bundle.getParcelable(key, ParcelableModel::class.java) else  
                 bundle.getParcelable(key)
             return pmodel?.model
         }
 
         fun makeDefaultTree(): INode {
-            val data = arrayOf( //
-                arrayOf("id1", "one\n1", "id11", "eleven\n11", "id12", "twelve\n12", "id13", "thirteen\n13", "id14", "fourteen\n14"),  //
-                arrayOf("id2", "two\n2", "id21", "twenty-one\n21", "id22", "twenty-two\n22", "id23", "twenty-three\n23"),  //
-                arrayOf("id3", "three\n3", "id31", "thirty-one\n31", "id32", "thirty-two\n32"),  //
-                arrayOf("id4", "four\n4", "id41", "forty-one\n41"),  //
+            val data = arrayOf( 
+                arrayOf("id1", "one\n1", "id11", "eleven\n11", "id12", "twelve\n12", "id13", "thirteen\n13", "id14", "fourteen\n14"),  
+                arrayOf("id2", "two\n2", "id21", "twenty-one\n21", "id22", "twenty-two\n22", "id23", "twenty-three\n23"),  
+                arrayOf("id3", "three\n3", "id31", "thirty-one\n31", "id32", "thirty-two\n32"),  
+                arrayOf("id4", "four\n4", "id41", "forty-one\n41"),  
                 arrayOf("id5", "five\n5")
-            ) //
+            ) 
             val root = TreeMutableNode(null, "root") //$NON-NLS-1$
             root.label = "root" //$NON-NLS-1$
             root.backColor = Colors.ORANGE

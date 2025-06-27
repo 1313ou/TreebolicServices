@@ -41,7 +41,7 @@ object IntentFactory {
     @JvmStatic
     fun makeTreebolicIntentSkeleton(parentIntent: Intent?, base: String?, imageBase: String?, settings: String?): Intent {
         val intent = Intent()
-        intent.setComponent(ComponentName(TreebolicIface.PKG_TREEBOLIC, TreebolicIface.ACTIVITY_MODEL))
+        intent.component = ComponentName(TreebolicIface.PKG_TREEBOLIC, TreebolicIface.ACTIVITY_MODEL)
         intent.putExtra(TreebolicIface.ARG_BASE, base)
         intent.putExtra(TreebolicIface.ARG_IMAGEBASE, imageBase)
         intent.putExtra(TreebolicIface.ARG_SETTINGS, settings)

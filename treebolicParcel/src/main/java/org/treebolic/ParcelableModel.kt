@@ -66,8 +66,8 @@ class ParcelableModel : Parcelable {
     constructor(parcel: Parcel) {
         if (SERIALIZE) {
             @Suppress("DEPRECATION")
-            model = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) //
-                parcel.readSerializable(null, Model::class.java) else  //
+            model = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) 
+                parcel.readSerializable(null, Model::class.java) else  
                 parcel.readSerializable() as Model?
         } else {
             model = readModel(parcel)
@@ -503,8 +503,8 @@ class ParcelableModel : Parcelable {
          */
         fun readSerializableModel(parcel: Parcel): Model? {
             @Suppress("DEPRECATION")
-            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) //
-                parcel.readSerializable(null, Model::class.java) else  //
+            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) 
+                parcel.readSerializable(null, Model::class.java) else  
                 parcel.readSerializable() as Model?
         }
 
@@ -908,7 +908,7 @@ class ParcelableModel : Parcelable {
                                 image.setFromByteArray(imageByteArray)
                                 return image
                             } catch (ignored: Exception) {
-                                //
+                                
                             }
                         }
                     }

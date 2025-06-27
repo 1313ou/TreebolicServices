@@ -55,6 +55,7 @@ import org.treebolic.wordnet.service.client.TreebolicWordNetBoundClient
 import org.treebolic.wordnet.service.client.TreebolicWordNetBroadcastClient
 import org.treebolic.wordnet.service.client.TreebolicWordNetMessengerClient
 import treebolic.model.Model
+import androidx.core.content.edit
 
 /**
  * Treebolic WordNet main activity. The activity obtains a model from data and requests Treebolic server to visualize it.
@@ -268,7 +269,7 @@ class MainActivity : AppCompatCommonActivity(), IConnectionListener, IModelListe
             setDefaults(this)
 
             // flag as initialized
-            sharedPref.edit().putBoolean(Settings.PREF_INITIALIZED, true).commit()
+            sharedPref.edit(commit = true) { putBoolean(Settings.PREF_INITIALIZED, true) }
 
             // deploy
             // auto from provider
@@ -487,7 +488,7 @@ class MainActivity : AppCompatCommonActivity(), IConnectionListener, IModelListe
 
             // intent
             val intent = Intent()
-            intent.setComponent(ComponentName(TreebolicIface.PKG_TREEBOLIC, TreebolicIface.ACTIVITY_MODEL))
+            intent.component = ComponentName(TreebolicIface.PKG_TREEBOLIC, TreebolicIface.ACTIVITY_MODEL)
             if (ParcelableModel.SERIALIZE) {
                 intent.putExtra(TreebolicIface.ARG_SERIALIZED, true)
                 intent.putExtra(TreebolicIface.ARG_MODEL, model)

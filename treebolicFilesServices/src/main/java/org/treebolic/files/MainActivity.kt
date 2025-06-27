@@ -50,6 +50,7 @@ import org.treebolic.services.IntentFactory.makeTreebolicIntentSkeleton
 import org.treebolic.services.iface.ITreebolicService
 import treebolic.model.Model
 import java.io.File
+import androidx.core.content.edit
 
 /**
  * Treebolic Files main activity. The activity obtains a model from source and requests Treebolic server to visualize it.
@@ -204,7 +205,7 @@ class MainActivity : AppCompatCommonActivity(), IConnectionListener, IModelListe
             Settings.setDefaults(this)
 
             // flag as initialized
-            sharedPref.edit().putBoolean(Settings.PREF_INITIALIZED, true).commit()
+            sharedPref.edit(commit = true) { putBoolean(Settings.PREF_INITIALIZED, true) }
         }
     }
 
@@ -215,7 +216,7 @@ class MainActivity : AppCompatCommonActivity(), IConnectionListener, IModelListe
      */
     private fun requestSource() {
         val intent = Intent(this, FileChooserActivity::class.java)
-        intent.setType("inode/directory")
+        intent.type = "inode/directory"
         intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_INITIAL_DIR, StorageExplorer.discoverExternalStorage(this))
         intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_CHOOSE_DIR, true)
         intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_EXTENSION_FILTER, arrayOf<String>())
@@ -296,8 +297,8 @@ class MainActivity : AppCompatCommonActivity(), IConnectionListener, IModelListe
                         runnable1.run(sourceFile + File.separatorChar)
                     } else {
                         val alert2 = AlertDialog.Builder(this@MainActivity)
-                        alert2.setTitle(sourceFile) //
-                            .setMessage(getString(R.string.status_fail)) //
+                        alert2.setTitle(sourceFile) 
+                            .setMessage(getString(R.string.status_fail)) 
                             .show()
                     }
                 }
@@ -469,7 +470,7 @@ class MainActivity : AppCompatCommonActivity(), IConnectionListener, IModelListe
 
             // intent
             val intent = Intent()
-            intent.setComponent(ComponentName(TreebolicIface.PKG_TREEBOLIC, TreebolicIface.ACTIVITY_MODEL))
+            intent.component = ComponentName(TreebolicIface.PKG_TREEBOLIC, TreebolicIface.ACTIVITY_MODEL)
 
             // model passing
             if (TreebolicIface.USE_MODEL_REFERENCES) {

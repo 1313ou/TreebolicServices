@@ -20,5 +20,5 @@ import org.treebolic.owl.service.TreebolicOwlMessengerService
  * @author Bernard Bou
  */
 class TreebolicOwlMessengerClient(context: Context, connectionListener: IConnectionListener, modelListener: IModelListener) :
-    TreebolicMessengerClient(context, (BuildConfig.APPLICATION_ID + '/') + TreebolicOwlMessengerService::class.java.getName(), connectionListener, modelListener)
+    TreebolicMessengerClient(context, (BuildConfig.APPLICATION_ID + '/') + TreebolicOwlMessengerService::class.java.name, connectionListener, modelListener)
 

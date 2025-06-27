@@ -20,4 +20,4 @@ import org.treebolic.wordnet.service.TreebolicWordNetAIDLBoundService
  * @author Bernard Bou
  */
 class TreebolicWordNetAIDLBoundClient(context: Context, connectionListener: IConnectionListener, modelListener: IModelListener) :
-    TreebolicAIDLBoundClient(context, (BuildConfig.APPLICATION_ID + '/') + TreebolicWordNetAIDLBoundService::class.java.getName(), connectionListener, modelListener)
+    TreebolicAIDLBoundClient(context, (BuildConfig.APPLICATION_ID + '/') + TreebolicWordNetAIDLBoundService::class.java.name, connectionListener, modelListener)

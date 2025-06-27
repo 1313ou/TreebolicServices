@@ -20,4 +20,4 @@ import org.treebolic.files.service.TreebolicFilesMessengerService
  * @author Bernard Bou
  */
 class TreebolicFilesMessengerClient(context: Context, connectionListener: IConnectionListener, modelListener: IModelListener) :
-    TreebolicMessengerClient(context, (BuildConfig.APPLICATION_ID + '/') + TreebolicFilesMessengerService::class.java.getName(), connectionListener, modelListener)
+    TreebolicMessengerClient(context, (BuildConfig.APPLICATION_ID + '/') + TreebolicFilesMessengerService::class.java.name, connectionListener, modelListener)

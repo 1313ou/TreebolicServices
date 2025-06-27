@@ -20,5 +20,5 @@ import org.treebolic.files.service.TreebolicFilesBoundService
  * @author Bernard Bou
  */
 class TreebolicFilesBoundClient(context: Context, connectionListener: IConnectionListener, modelListener: IModelListener) :
-    TreebolicBoundClient(context, (BuildConfig.APPLICATION_ID + '/') + TreebolicFilesBoundService::class.java.getName(), connectionListener, modelListener)
+    TreebolicBoundClient(context, (BuildConfig.APPLICATION_ID + '/') + TreebolicFilesBoundService::class.java.name, connectionListener, modelListener)
 

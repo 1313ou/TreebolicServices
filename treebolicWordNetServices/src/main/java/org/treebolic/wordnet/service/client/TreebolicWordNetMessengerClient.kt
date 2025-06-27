@@ -20,4 +20,4 @@ import org.treebolic.wordnet.service.TreebolicWordNetMessengerService
  * @author Bernard Bou
  */
 class TreebolicWordNetMessengerClient(context: Context, connectionListener: IConnectionListener, modelListener: IModelListener) :
-    TreebolicMessengerClient(context, (BuildConfig.APPLICATION_ID + '/') + TreebolicWordNetMessengerService::class.java.getName(), connectionListener, modelListener)
+    TreebolicMessengerClient(context, (BuildConfig.APPLICATION_ID + '/') + TreebolicWordNetMessengerService::class.java.name, connectionListener, modelListener)

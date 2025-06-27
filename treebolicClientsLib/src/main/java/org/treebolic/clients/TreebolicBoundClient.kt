@@ -103,7 +103,7 @@ open class TreebolicBoundClient(
         }
 
         val intent = Intent()
-        intent.setComponent(ComponentName(servicePackage, serviceName))
+        intent.component = ComponentName(servicePackage, serviceName)
         if (!context.bindService(intent, connection!!, Context.BIND_AUTO_CREATE)) {
             Log.e(TAG, "Service failed to bind")
             Toast.makeText(context, R.string.fail_bind, Toast.LENGTH_LONG).show()

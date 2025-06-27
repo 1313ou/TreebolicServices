@@ -20,4 +20,4 @@ import org.treebolic.owl.service.TreebolicOwlBroadcastService
  * @author Bernard Bou
  */
 class TreebolicOwlBroadcastClient(context: Context, connectionListener: IConnectionListener, modelListener: IModelListener) :
-    TreebolicBroadcastClient(context, (BuildConfig.APPLICATION_ID + '/') + TreebolicOwlBroadcastService::class.java.getName(), connectionListener, modelListener)
+    TreebolicBroadcastClient(context, (BuildConfig.APPLICATION_ID + '/') + TreebolicOwlBroadcastService::class.java.name, connectionListener, modelListener)

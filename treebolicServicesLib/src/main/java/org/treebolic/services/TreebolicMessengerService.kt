@@ -85,14 +85,14 @@ abstract class TreebolicMessengerService : Service(), ITreebolicService {
         val settings = bundle.getString(ITreebolicService.EXTRA_SETTINGS)
 
         @Suppress("DEPRECATION")
-        val forward = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) //
-            bundle.getParcelable(ITreebolicService.EXTRA_FORWARD_RESULT_TO, Intent::class.java) else  //
+        val forward = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) 
+            bundle.getParcelable(ITreebolicService.EXTRA_FORWARD_RESULT_TO, Intent::class.java) else  
             bundle.getParcelable(ITreebolicService.EXTRA_FORWARD_RESULT_TO)
 
         // make model
         val callable = makeModelCallable(source, base, imageBase, settings, factory!!)
-        val callback: (Model?) -> Unit = if (forward == null) //
-            makeModelCallback(bundle, urlScheme, clients) else  //
+        val callback: (Model?) -> Unit = if (forward == null) 
+            makeModelCallback(bundle, urlScheme, clients) else  
             makeModelForwardCallback(WeakReference(this), urlScheme, forward)
         execute(callable, callback)
     }

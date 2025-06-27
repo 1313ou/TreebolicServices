@@ -43,6 +43,6 @@ dependencies {
     implementation(libs.core.ktx)
     coreLibraryDesugaring(libs.desugar)
 
-    androidTestImplementation(libs.test)
+    androidTestImplementation(libs.test.junit)
     androidTestImplementation(libs.espresso.core)
 }

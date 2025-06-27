@@ -73,7 +73,7 @@ abstract class ModelFactory(
             try {
                 return URL(if (!base.endsWith("/")) "$base/" else base)
             } catch (ignored: MalformedURLException) {
-                //
+                
             }
             return null
         }

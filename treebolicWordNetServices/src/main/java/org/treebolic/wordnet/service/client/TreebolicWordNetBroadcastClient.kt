@@ -20,5 +20,5 @@ import org.treebolic.wordnet.service.TreebolicWordNetBroadcastService
  * @author Bernard Bou
  */
 class TreebolicWordNetBroadcastClient(context: Context, connectionListener: IConnectionListener, modelListener: IModelListener) :
-    TreebolicBroadcastClient(context, (BuildConfig.APPLICATION_ID + '/') + TreebolicWordNetBroadcastService::class.java.getName(), connectionListener, modelListener)
+    TreebolicBroadcastClient(context, (BuildConfig.APPLICATION_ID + '/') + TreebolicWordNetBroadcastService::class.java.name, connectionListener, modelListener)
 

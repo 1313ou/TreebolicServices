@@ -13,6 +13,8 @@ import androidx.preference.PreferenceManager
 import org.treebolic.TreebolicIface
 import org.treebolic.services.iface.ITreebolicService
 import org.treebolic.storage.Storage.getTreebolicStorage
+import androidx.core.net.toUri
+import androidx.core.content.edit
 
 /**
  * Settings
@@ -82,7 +84,7 @@ object Settings {
     @SuppressLint("CommitPrefEdits", "ApplySharedPref")
     fun putStringPref(context: Context, key: String?, value: String?) {
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
-        sharedPref.edit().putString(key, value).commit()
+        sharedPref.edit(commit = true) { putString(key, value) }
     }
 
     // U T I L S
@@ -100,12 +102,12 @@ object Settings {
         val treebolicBase = "$uri/"
 
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
-        val editor = sharedPref.edit()
-        editor.putString(PREF_SERVICE, ITreebolicService.TYPE_BROADCAST)
-        editor.putString(TreebolicIface.PREF_BASE, treebolicBase)
-        editor.putString(TreebolicIface.PREF_IMAGEBASE, treebolicBase)
-        editor.putString(TreebolicIface.PREF_SOURCE, DEMO)
-        editor.commit()
+        sharedPref.edit(commit = true) {
+            putString(PREF_SERVICE, ITreebolicService.TYPE_BROADCAST)
+            putString(TreebolicIface.PREF_BASE, treebolicBase)
+            putString(TreebolicIface.PREF_IMAGEBASE, treebolicBase)
+            putString(TreebolicIface.PREF_SOURCE, DEMO)
+        }
     }
 
     /**
@@ -120,12 +122,12 @@ object Settings {
         val intent = Intent()
 
         if (apiLevel >= 9) {
-            intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-            intent.setData(Uri.parse("package:$pkgName"))
+            intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+            intent.data = "package:$pkgName".toUri()
         } else {
             val appPkgName = if (apiLevel == 8) "pkg" else "com.android.settings.ApplicationPkgName"
 
-            intent.setAction(Intent.ACTION_VIEW)
+            intent.action = Intent.ACTION_VIEW
             intent.setClassName("com.android.settings", "com.android.settings.InstalledAppDetails")
             intent.putExtra(appPkgName, pkgName)
         }

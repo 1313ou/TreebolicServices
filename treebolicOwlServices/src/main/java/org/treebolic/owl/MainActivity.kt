@@ -57,6 +57,8 @@ import org.treebolic.storage.Storage.getTreebolicStorage
 import treebolic.model.Model
 import java.io.File
 import java.io.IOException
+import androidx.core.content.edit
+import androidx.core.net.toUri
 
 /**
  * Treebolic Owl main activity. The activity obtains a model from data and requests Treebolic server to visualize it.
@@ -236,7 +238,7 @@ class MainActivity : AppCompatCommonActivity(), IConnectionListener, IModelListe
             }
 
             // flag as initialized
-            sharedPref.edit().putBoolean(Settings.PREF_INITIALIZED, true).commit()
+            sharedPref.edit(commit = true) { putBoolean(Settings.PREF_INITIALIZED, true) }
         }
     }
 
@@ -364,7 +366,7 @@ class MainActivity : AppCompatCommonActivity(), IConnectionListener, IModelListe
      */
     private fun requestSource() {
         val intent = Intent(this, FileChooserActivity::class.java)
-        intent.setType("application/rdf+xml")
+        intent.type = "application/rdf+xml"
         intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_INITIAL_DIR, getStringPref(this, TreebolicIface.PREF_BASE))
         intent.putExtra(FileChooserActivity.ARG_FILECHOOSER_EXTENSION_FILTER, arrayOf("owl", "rdf"))
         intent.addCategory(Intent.CATEGORY_OPENABLE)
@@ -394,10 +396,10 @@ class MainActivity : AppCompatCommonActivity(), IConnectionListener, IModelListe
     private fun sourceQualifies(source: String?): Boolean {
         val base = getStringPref(this, TreebolicIface.PREF_BASE)
         if (!source.isNullOrEmpty()) {
-            val baseUri = Uri.parse(base)
-            val path = baseUri.path
+            val baseUri = base?.toUri()
+            val path = baseUri?.path
             if (path != null) {
-                val baseFile = if (base == null) null else File(path)
+                val baseFile = File(path)
                 val file = File(baseFile, source)
                 Log.d(TAG, "file=$file")
                 return file.exists()
@@ -452,7 +454,7 @@ class MainActivity : AppCompatCommonActivity(), IConnectionListener, IModelListe
 
             // intent
             val intent = Intent()
-            intent.setComponent(ComponentName(TreebolicIface.PKG_TREEBOLIC, TreebolicIface.ACTIVITY_MODEL))
+            intent.component = ComponentName(TreebolicIface.PKG_TREEBOLIC, TreebolicIface.ACTIVITY_MODEL)
 
             // model passing
             if (TreebolicIface.USE_MODEL_REFERENCES) {

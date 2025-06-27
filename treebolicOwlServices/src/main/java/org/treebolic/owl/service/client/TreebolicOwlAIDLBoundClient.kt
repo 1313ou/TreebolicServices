@@ -20,4 +20,4 @@ import org.treebolic.owl.service.TreebolicOwlAIDLBoundService
  * @author Bernard Bou
  */
 class TreebolicOwlAIDLBoundClient(context: Context, connectionListener: IConnectionListener, modelListener: IModelListener) :
-    TreebolicAIDLBoundClient(context, (BuildConfig.APPLICATION_ID + '/') + TreebolicOwlAIDLBoundService::class.java.getName(), connectionListener, modelListener)
+    TreebolicAIDLBoundClient(context, (BuildConfig.APPLICATION_ID + '/') + TreebolicOwlAIDLBoundService::class.java.name, connectionListener, modelListener)

@@ -120,8 +120,8 @@ open class TreebolicBroadcastClient(
         val component = ComponentName(servicePackage, serviceName)
 
         val intent = Intent()
-        intent.setComponent(component)
-        intent.setAction(ITreebolicService.ACTION_MAKEMODEL)
+        intent.component = component
+        intent.action = ITreebolicService.ACTION_MAKEMODEL
         intent.putExtra(ITreebolicService.EXTRA_SOURCE, source)
         intent.putExtra(ITreebolicService.EXTRA_BASE, base)
         intent.putExtra(ITreebolicService.EXTRA_IMAGEBASE, imageBase)
@@ -131,7 +131,7 @@ open class TreebolicBroadcastClient(
 
         context.sendBroadcast(intent)
 
-        Log.d(TAG, "Intent broadcast to " + servicePackage + '/' + serviceName)
+        Log.d(TAG, "Intent broadcast to $servicePackage/$serviceName")
         Toast.makeText(context, R.string.started, Toast.LENGTH_LONG).show()
     }
 

@@ -45,8 +45,8 @@ abstract class TreebolicBroadcastService : BroadcastReceiver(), ITreebolicServic
                     val settings = intent.getStringExtra(ITreebolicService.EXTRA_SETTINGS)
 
                     @Suppress("DEPRECATION")
-                    val forward = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) //
-                        intent.getParcelableExtra(ITreebolicService.EXTRA_FORWARD_RESULT_TO, Intent::class.java) else  //
+                    val forward = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) 
+                        intent.getParcelableExtra(ITreebolicService.EXTRA_FORWARD_RESULT_TO, Intent::class.java) else  
                         intent.getParcelableExtra(ITreebolicService.EXTRA_FORWARD_RESULT_TO)
                     try {
                         val model = factory!!.make(source, base, imageBase, settings)

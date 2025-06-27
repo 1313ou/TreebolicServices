@@ -151,7 +151,7 @@ open class TreebolicMessengerClient(
                     val msg = Message.obtain(null, ITreebolicService.MSG_UNREGISTER_CLIENT)
                     msg.replyTo = inMessenger
                     service!!.send(msg)
-                } catch (ignored: RemoteException) {
+                } catch (_: RemoteException) {
                     // there is nothing special we need to do if the service has crashed.
                 }
             }
@@ -197,7 +197,7 @@ open class TreebolicMessengerClient(
 
         // bind
         val intent = Intent()
-        intent.setComponent(ComponentName(servicePackage, serviceName))
+        intent.component = ComponentName(servicePackage, serviceName)
         if (!context.bindService(intent, connection!!, Context.BIND_AUTO_CREATE)) {
             Log.e(TAG, "Service failed to bind")
             Toast.makeText(context, R.string.fail_bind, Toast.LENGTH_LONG).show()
