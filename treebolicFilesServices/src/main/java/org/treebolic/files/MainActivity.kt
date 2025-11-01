@@ -431,7 +431,7 @@ class MainActivity : AppCompatCommonActivity(), IConnectionListener, IModelListe
      *
      * @param view view
      */
-    private fun onClick(view: View?) {
+    private fun onClick(@Suppress("unused") view: View?) {
         query()
     }
 
