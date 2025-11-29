@@ -26,7 +26,7 @@ class Deployer(parentDir: File?) {
      * @param fin file input stream
      * @return directory
      */
-    fun process(@Suppress("unused") fin: InputStream?): File {
+    fun process(fin: InputStream?): File {
         return dir
     }
 
