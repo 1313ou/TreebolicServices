@@ -21,7 +21,7 @@ android {
         multiDexEnabled = true
     }
 
-    aidlPackagedList("org/treebolic/services/iface/ITreebolicAIDLService.aidl")
+    aidlPackagedList.add("org/treebolic/services/iface/ITreebolicAIDLService.aidl")
 
     buildFeatures {
         aidl = true
