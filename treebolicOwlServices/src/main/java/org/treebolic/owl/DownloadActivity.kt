@@ -14,6 +14,7 @@ import org.treebolic.storage.Storage.getTreebolicStorage
 import java.io.File
 import java.io.IOException
 import java.io.InputStream
+import org.treebolic.download.R as DownloadR
 
 /**
  * Owl download activity
@@ -28,7 +29,7 @@ class DownloadActivity : org.treebolic.download.DownloadActivity() {
         expandArchiveCheckbox!!.visibility = View.VISIBLE
         downloadUrl = getStringPref(this, Settings.PREF_DOWNLOAD)
         if (downloadUrl == null || downloadUrl!!.isEmpty()) {
-            Toast.makeText(this, R.string.error_null_download_url, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, DownloadR.string.error_null_download_url, Toast.LENGTH_SHORT).show()
             finish()
         }
     }
