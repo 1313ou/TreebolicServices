@@ -93,6 +93,5 @@ dependencies {
     implementation(libs.compress)
 
     implementation(libs.core.ktx)
-    implementation(libs.multidex)
     coreLibraryDesugaring(libs.desugar)
 }
